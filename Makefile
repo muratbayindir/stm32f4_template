@@ -14,7 +14,7 @@ TARGET = stm32f4_template
 # debug build?
 DEBUG = 0
 # optimization
-OPT = -O2
+OPT = -O3
 
 # firmware library path
 PERIFLIB_PATH = 
@@ -26,131 +26,23 @@ BUILD_DIR = build
 # source
 ######################################
 # C sources
-C_SOURCES = \
-Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_can.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cec.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_crc.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cryp.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cryp_ex.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dac.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dac_ex.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dcmi.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dcmi_ex.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dfsdm.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma2d.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dsi.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_eth.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_fmpi2c.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_fmpi2c_ex.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_hash.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_hash_ex.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_hcd.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2s.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2s_ex.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_irda.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_iwdg.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_lptim.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_mmc.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_nand.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_nor.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pccard.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd_ex.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_qspi.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rng.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rtc.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rtc_ex.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_sai.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_sai_ex.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_sd.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_sdram.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_smartcard.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spdifrx.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_sram.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_usart.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_wwdg.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_adc.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_crc.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_dac.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_dma.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_dma2d.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_fmc.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_fsmc.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_gpio.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_i2c.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_lptim.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_pwr.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_rcc.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_rng.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_rtc.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_sdmmc.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_spi.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_tim.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_usart.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_usb.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_utils.c \
-Drivers/BSP/Components/ili9341/ili9341.c \
-Drivers/BSP/Components/l3gd20/l3gd20.c \
-Drivers/BSP/Components/stmpe811/stmpe811.c \
-Drivers/BSP/STM32F429I-Discovery/stm32f429i_discovery.c \
-Drivers/BSP/STM32F429I-Discovery/stm32f429i_discovery_eeprom.c \
-Drivers/BSP/STM32F429I-Discovery/stm32f429i_discovery_gyroscope.c \
-Drivers/BSP/STM32F429I-Discovery/stm32f429i_discovery_io.c \
-Drivers/BSP/STM32F429I-Discovery/stm32f429i_discovery_lcd.c \
-Drivers/BSP/STM32F429I-Discovery/stm32f429i_discovery_sdram.c \
-Drivers/BSP/STM32F429I-Discovery/stm32f429i_discovery_ts.c \
-Middlewares/Third_Party/FreeRTOS/Source/croutine.c \
-Middlewares/Third_Party/FreeRTOS/Source/event_groups.c \
-Middlewares/Third_Party/FreeRTOS/Source/list.c \
-Middlewares/Third_Party/FreeRTOS/Source/queue.c \
-Middlewares/Third_Party/FreeRTOS/Source/stream_buffer.c \
-Middlewares/Third_Party/FreeRTOS/Source/tasks.c \
-Middlewares/Third_Party/FreeRTOS/Source/timers.c \
-Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c \
-Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_2.c \
-Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c \
-Middlewares/ST/STemWin/Config/GUIConf.c \
-Middlewares/ST/STemWin/Config/LCDConf_stm32f429i_disco_MB1075.c \
-Middlewares/ST/STemWin/OS/GUI_X.c \
-Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c \
-Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c \
-Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ioreq.c \
-Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_pipes.c \
-Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc.c \
-Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_bot.c \
-Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_scsi.c \
-Middlewares/Third_Party/FatFs/src/diskio.c \
-Middlewares/Third_Party/FatFs/src/ff.c \
-Middlewares/Third_Party/FatFs/src/ff_gen_drv.c \
-Utilities/CPU/cpu_utils.c \
-Src/usbh_conf.c \
-Src/usbh_diskio_dma.c \
-Src/stm32f4xx_it.c \
-Src/main.c
+C_SOURCES = $(wildcard Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/*.c) \
+			$(wildcard Drivers/STM32F4xx_HAL_Driver/Src/*.c) \
+			$(wildcard Drivers/BSP/Components/ili9341/*.c) \
+			$(wildcard Drivers/BSP/Components/l3gd20/*.c) \
+			$(wildcard Drivers/BSP/Components/stmpe811/*.c) \
+			$(wildcard Drivers/BSP/STM32F429I-Discovery/*.c) \
+			$(wildcard Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/*.c) \
+			$(wildcard Middlewares/Third_Party/FreeRTOS/Source/*.c) \
+			Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c \
+			Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_2.c \
+			$(wildcard Utilities/CPU/*.c) \
+			$(wildcard Middlewares/ST/STemWin/Config/*.c) \
+			Middlewares/ST/STemWin/OS/GUI_X.c \
+			$(wildcard Middlewares/ST/STM32_USB_Host_Library/Core/Src/*.c) \
+			$(wildcard Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/*.c) \
+			$(wildcard Middlewares/Third_Party/FatFs/src/*.c) \
+			$(wildcard Src/*.c)
 
 # ASM sources
 ASM_SOURCES =  \
@@ -167,13 +59,21 @@ PERIFLIB_SOURCES =
 # binaries
 #######################################
 # gcc-arm installation folder
-BINPATH = /opt/gcc-arm-none-eabi-7-2017-q4-major/bin/
+# BINPATH = /opt/gcc-arm-none-eabi-7-2018-q2-update/bin/
 PREFIX = arm-none-eabi-
-CC = $(BINPATH)./$(PREFIX)gcc
-AS = $(BINPATH)./$(PREFIX)gcc -x assembler-with-cpp
-CP = $(BINPATH)./$(PREFIX)objcopy
-AR = $(BINPATH)./$(PREFIX)ar
-SZ = $(BINPATH)./$(PREFIX)size
+ifdef BINPATH
+CC = $(BINPATH)/$(PREFIX)gcc
+AS = $(BINPATH)/$(PREFIX)gcc -x assembler-with-cpp
+CP = $(BINPATH)/$(PREFIX)objcopy
+AR = $(BINPATH)/$(PREFIX)ar
+SZ = $(BINPATH)/$(PREFIX)size
+else
+CC = $(PREFIX)gcc
+AS = $(PREFIX)gcc -x assembler-with-cpp
+CP = $(PREFIX)objcopy
+AR = $(PREFIX)ar
+SZ = $(PREFIX)size
+endif
 HEX = $(CP) -O ihex
 BIN = $(CP) -O binary -S
  
@@ -294,5 +194,11 @@ clean:
 # dependencies
 #######################################
 -include $(shell mkdir .dep 2>/dev/null) $(wildcard .dep/*)
+
+#######################################
+# program
+#######################################
+program:
+	stm32_programmer --connect port=SWD --halt --write '$(BUILD_DIR)/$(TARGET).hex' --verify --start 0x8000000
 
 # *** EOF ***
