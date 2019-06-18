@@ -1,0 +1,305 @@
+ARM GAS  D:\Programs\cygwin64\tmp\ccptrGfV.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"usbh_ioreq.c"
+  14              		.text
+  15              		.section	.text.USBH_CtlSendSetup,"ax",%progbits
+  16              		.align	1
+  17              		.p2align 2,,3
+  18              		.global	USBH_CtlSendSetup
+  19              		.arch armv7e-m
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	USBH_CtlSendSetup:
+  26              		@ args = 0, pretend = 0, frame = 0
+  27              		@ frame_needed = 0, uses_anonymous_args = 0
+  28 0000 30B5     		push	{r4, r5, lr}
+  29 0002 85B0     		sub	sp, sp, #20
+  30 0004 0024     		movs	r4, #0
+  31 0006 0825     		movs	r5, #8
+  32 0008 0191     		str	r1, [sp, #4]
+  33 000a 0394     		str	r4, [sp, #12]
+  34 000c 1146     		mov	r1, r2
+  35 000e 0094     		str	r4, [sp]
+  36 0010 2346     		mov	r3, r4
+  37 0012 2246     		mov	r2, r4
+  38 0014 0295     		str	r5, [sp, #8]
+  39 0016 FFF7FEFF 		bl	USBH_LL_SubmitURB
+  40 001a 2046     		mov	r0, r4
+  41 001c 05B0     		add	sp, sp, #20
+  42              		@ sp needed
+  43 001e 30BD     		pop	{r4, r5, pc}
+  45              		.section	.text.USBH_CtlSendData,"ax",%progbits
+  46              		.align	1
+  47              		.p2align 2,,3
+  48              		.global	USBH_CtlSendData
+  49              		.syntax unified
+  50              		.thumb
+  51              		.thumb_func
+  52              		.fpu fpv4-sp-d16
+  54              	USBH_CtlSendData:
+  55              		@ args = 4, pretend = 0, frame = 0
+  56              		@ frame_needed = 0, uses_anonymous_args = 0
+  57 0000 30B5     		push	{r4, r5, lr}
+  58 0002 90F81D52 		ldrb	r5, [r0, #541]	@ zero_extendqisi2
+  59 0006 85B0     		sub	sp, sp, #20
+  60 0008 002D     		cmp	r5, #0
+ARM GAS  D:\Programs\cygwin64\tmp\ccptrGfV.s 			page 2
+
+
+  61 000a 9DF82040 		ldrb	r4, [sp, #32]	@ zero_extendqisi2
+  62 000e 0292     		str	r2, [sp, #8]
+  63 0010 1D46     		mov	r5, r3
+  64 0012 18BF     		it	ne
+  65 0014 0024     		movne	r4, #0
+  66 0016 0023     		movs	r3, #0
+  67 0018 0122     		movs	r2, #1
+  68 001a 0191     		str	r1, [sp, #4]
+  69 001c 0092     		str	r2, [sp]
+  70 001e 0394     		str	r4, [sp, #12]
+  71 0020 2946     		mov	r1, r5
+  72 0022 1A46     		mov	r2, r3
+  73 0024 FFF7FEFF 		bl	USBH_LL_SubmitURB
+  74 0028 0020     		movs	r0, #0
+  75 002a 05B0     		add	sp, sp, #20
+  76              		@ sp needed
+  77 002c 30BD     		pop	{r4, r5, pc}
+  79 002e 00BF     		.section	.text.USBH_CtlReceiveData,"ax",%progbits
+  80              		.align	1
+  81              		.p2align 2,,3
+  82              		.global	USBH_CtlReceiveData
+  83              		.syntax unified
+  84              		.thumb
+  85              		.thumb_func
+  86              		.fpu fpv4-sp-d16
+  88              	USBH_CtlReceiveData:
+  89              		@ args = 0, pretend = 0, frame = 0
+  90              		@ frame_needed = 0, uses_anonymous_args = 0
+  91 0000 30B5     		push	{r4, r5, lr}
+  92 0002 85B0     		sub	sp, sp, #20
+  93 0004 0024     		movs	r4, #0
+  94 0006 0125     		movs	r5, #1
+  95 0008 CDE90112 		strd	r1, r2, [sp, #4]
+  96 000c 0394     		str	r4, [sp, #12]
+  97 000e 1946     		mov	r1, r3
+  98 0010 0095     		str	r5, [sp]
+  99 0012 2346     		mov	r3, r4
+ 100 0014 2A46     		mov	r2, r5
+ 101 0016 FFF7FEFF 		bl	USBH_LL_SubmitURB
+ 102 001a 2046     		mov	r0, r4
+ 103 001c 05B0     		add	sp, sp, #20
+ 104              		@ sp needed
+ 105 001e 30BD     		pop	{r4, r5, pc}
+ 107              		.section	.text.USBH_BulkSendData,"ax",%progbits
+ 108              		.align	1
+ 109              		.p2align 2,,3
+ 110              		.global	USBH_BulkSendData
+ 111              		.syntax unified
+ 112              		.thumb
+ 113              		.thumb_func
+ 114              		.fpu fpv4-sp-d16
+ 116              	USBH_BulkSendData:
+ 117              		@ args = 4, pretend = 0, frame = 0
+ 118              		@ frame_needed = 0, uses_anonymous_args = 0
+ 119 0000 30B5     		push	{r4, r5, lr}
+ 120 0002 90F81D52 		ldrb	r5, [r0, #541]	@ zero_extendqisi2
+ 121 0006 85B0     		sub	sp, sp, #20
+ARM GAS  D:\Programs\cygwin64\tmp\ccptrGfV.s 			page 3
+
+
+ 122 0008 002D     		cmp	r5, #0
+ 123 000a 9DF82040 		ldrb	r4, [sp, #32]	@ zero_extendqisi2
+ 124 000e 0292     		str	r2, [sp, #8]
+ 125 0010 18BF     		it	ne
+ 126 0012 0024     		movne	r4, #0
+ 127 0014 0122     		movs	r2, #1
+ 128 0016 0191     		str	r1, [sp, #4]
+ 129 0018 0092     		str	r2, [sp]
+ 130 001a 1946     		mov	r1, r3
+ 131 001c 0394     		str	r4, [sp, #12]
+ 132 001e 0223     		movs	r3, #2
+ 133 0020 0022     		movs	r2, #0
+ 134 0022 FFF7FEFF 		bl	USBH_LL_SubmitURB
+ 135 0026 0020     		movs	r0, #0
+ 136 0028 05B0     		add	sp, sp, #20
+ 137              		@ sp needed
+ 138 002a 30BD     		pop	{r4, r5, pc}
+ 140              		.section	.text.USBH_BulkReceiveData,"ax",%progbits
+ 141              		.align	1
+ 142              		.p2align 2,,3
+ 143              		.global	USBH_BulkReceiveData
+ 144              		.syntax unified
+ 145              		.thumb
+ 146              		.thumb_func
+ 147              		.fpu fpv4-sp-d16
+ 149              	USBH_BulkReceiveData:
+ 150              		@ args = 0, pretend = 0, frame = 0
+ 151              		@ frame_needed = 0, uses_anonymous_args = 0
+ 152 0000 30B5     		push	{r4, r5, lr}
+ 153 0002 85B0     		sub	sp, sp, #20
+ 154 0004 0024     		movs	r4, #0
+ 155 0006 0125     		movs	r5, #1
+ 156 0008 CDE90112 		strd	r1, r2, [sp, #4]
+ 157 000c 0394     		str	r4, [sp, #12]
+ 158 000e 1946     		mov	r1, r3
+ 159 0010 0095     		str	r5, [sp]
+ 160 0012 2A46     		mov	r2, r5
+ 161 0014 0223     		movs	r3, #2
+ 162 0016 FFF7FEFF 		bl	USBH_LL_SubmitURB
+ 163 001a 2046     		mov	r0, r4
+ 164 001c 05B0     		add	sp, sp, #20
+ 165              		@ sp needed
+ 166 001e 30BD     		pop	{r4, r5, pc}
+ 168              		.section	.text.USBH_InterruptReceiveData,"ax",%progbits
+ 169              		.align	1
+ 170              		.p2align 2,,3
+ 171              		.global	USBH_InterruptReceiveData
+ 172              		.syntax unified
+ 173              		.thumb
+ 174              		.thumb_func
+ 175              		.fpu fpv4-sp-d16
+ 177              	USBH_InterruptReceiveData:
+ 178              		@ args = 0, pretend = 0, frame = 0
+ 179              		@ frame_needed = 0, uses_anonymous_args = 0
+ 180 0000 30B5     		push	{r4, r5, lr}
+ 181 0002 85B0     		sub	sp, sp, #20
+ 182 0004 0024     		movs	r4, #0
+ARM GAS  D:\Programs\cygwin64\tmp\ccptrGfV.s 			page 4
+
+
+ 183 0006 0125     		movs	r5, #1
+ 184 0008 CDE90112 		strd	r1, r2, [sp, #4]
+ 185 000c 0394     		str	r4, [sp, #12]
+ 186 000e 1946     		mov	r1, r3
+ 187 0010 0095     		str	r5, [sp]
+ 188 0012 2A46     		mov	r2, r5
+ 189 0014 0323     		movs	r3, #3
+ 190 0016 FFF7FEFF 		bl	USBH_LL_SubmitURB
+ 191 001a 2046     		mov	r0, r4
+ 192 001c 05B0     		add	sp, sp, #20
+ 193              		@ sp needed
+ 194 001e 30BD     		pop	{r4, r5, pc}
+ 196              		.section	.text.USBH_InterruptSendData,"ax",%progbits
+ 197              		.align	1
+ 198              		.p2align 2,,3
+ 199              		.global	USBH_InterruptSendData
+ 200              		.syntax unified
+ 201              		.thumb
+ 202              		.thumb_func
+ 203              		.fpu fpv4-sp-d16
+ 205              	USBH_InterruptSendData:
+ 206              		@ args = 0, pretend = 0, frame = 0
+ 207              		@ frame_needed = 0, uses_anonymous_args = 0
+ 208 0000 30B5     		push	{r4, r5, lr}
+ 209 0002 85B0     		sub	sp, sp, #20
+ 210 0004 0024     		movs	r4, #0
+ 211 0006 0125     		movs	r5, #1
+ 212 0008 CDE90112 		strd	r1, r2, [sp, #4]
+ 213 000c 0394     		str	r4, [sp, #12]
+ 214 000e 1946     		mov	r1, r3
+ 215 0010 2246     		mov	r2, r4
+ 216 0012 0095     		str	r5, [sp]
+ 217 0014 0323     		movs	r3, #3
+ 218 0016 FFF7FEFF 		bl	USBH_LL_SubmitURB
+ 219 001a 2046     		mov	r0, r4
+ 220 001c 05B0     		add	sp, sp, #20
+ 221              		@ sp needed
+ 222 001e 30BD     		pop	{r4, r5, pc}
+ 224              		.section	.text.USBH_IsocReceiveData,"ax",%progbits
+ 225              		.align	1
+ 226              		.p2align 2,,3
+ 227              		.global	USBH_IsocReceiveData
+ 228              		.syntax unified
+ 229              		.thumb
+ 230              		.thumb_func
+ 231              		.fpu fpv4-sp-d16
+ 233              	USBH_IsocReceiveData:
+ 234              		@ args = 0, pretend = 0, frame = 0
+ 235              		@ frame_needed = 0, uses_anonymous_args = 0
+ 236 0000 30B5     		push	{r4, r5, lr}
+ 237 0002 85B0     		sub	sp, sp, #20
+ 238 0004 1D46     		mov	r5, r3
+ 239 0006 0024     		movs	r4, #0
+ 240 0008 0123     		movs	r3, #1
+ 241 000a 92B2     		uxth	r2, r2
+ 242 000c CDE90112 		strd	r1, r2, [sp, #4]
+ 243 0010 0394     		str	r4, [sp, #12]
+ARM GAS  D:\Programs\cygwin64\tmp\ccptrGfV.s 			page 5
+
+
+ 244 0012 2946     		mov	r1, r5
+ 245 0014 0093     		str	r3, [sp]
+ 246 0016 1A46     		mov	r2, r3
+ 247 0018 FFF7FEFF 		bl	USBH_LL_SubmitURB
+ 248 001c 2046     		mov	r0, r4
+ 249 001e 05B0     		add	sp, sp, #20
+ 250              		@ sp needed
+ 251 0020 30BD     		pop	{r4, r5, pc}
+ 253 0022 00BF     		.section	.text.USBH_IsocSendData,"ax",%progbits
+ 254              		.align	1
+ 255              		.p2align 2,,3
+ 256              		.global	USBH_IsocSendData
+ 257              		.syntax unified
+ 258              		.thumb
+ 259              		.thumb_func
+ 260              		.fpu fpv4-sp-d16
+ 262              	USBH_IsocSendData:
+ 263              		@ args = 0, pretend = 0, frame = 0
+ 264              		@ frame_needed = 0, uses_anonymous_args = 0
+ 265 0000 30B5     		push	{r4, r5, lr}
+ 266 0002 85B0     		sub	sp, sp, #20
+ 267 0004 0024     		movs	r4, #0
+ 268 0006 1D46     		mov	r5, r3
+ 269 0008 92B2     		uxth	r2, r2
+ 270 000a 0123     		movs	r3, #1
+ 271 000c CDE90112 		strd	r1, r2, [sp, #4]
+ 272 0010 0394     		str	r4, [sp, #12]
+ 273 0012 2946     		mov	r1, r5
+ 274 0014 2246     		mov	r2, r4
+ 275 0016 0093     		str	r3, [sp]
+ 276 0018 FFF7FEFF 		bl	USBH_LL_SubmitURB
+ 277 001c 2046     		mov	r0, r4
+ 278 001e 05B0     		add	sp, sp, #20
+ 279              		@ sp needed
+ 280 0020 30BD     		pop	{r4, r5, pc}
+ 282 0022 00BF     		.ident	"GCC: (GNU Tools for Arm Embedded Processors 8-2018-q4-major) 8.2.1 20181213 (release) [gcc
+ARM GAS  D:\Programs\cygwin64\tmp\ccptrGfV.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 usbh_ioreq.c
+D:\Programs\cygwin64\tmp\ccptrGfV.s:16     .text.USBH_CtlSendSetup:00000000 $t
+D:\Programs\cygwin64\tmp\ccptrGfV.s:25     .text.USBH_CtlSendSetup:00000000 USBH_CtlSendSetup
+D:\Programs\cygwin64\tmp\ccptrGfV.s:46     .text.USBH_CtlSendData:00000000 $t
+D:\Programs\cygwin64\tmp\ccptrGfV.s:54     .text.USBH_CtlSendData:00000000 USBH_CtlSendData
+D:\Programs\cygwin64\tmp\ccptrGfV.s:80     .text.USBH_CtlReceiveData:00000000 $t
+D:\Programs\cygwin64\tmp\ccptrGfV.s:88     .text.USBH_CtlReceiveData:00000000 USBH_CtlReceiveData
+D:\Programs\cygwin64\tmp\ccptrGfV.s:108    .text.USBH_BulkSendData:00000000 $t
+D:\Programs\cygwin64\tmp\ccptrGfV.s:116    .text.USBH_BulkSendData:00000000 USBH_BulkSendData
+D:\Programs\cygwin64\tmp\ccptrGfV.s:141    .text.USBH_BulkReceiveData:00000000 $t
+D:\Programs\cygwin64\tmp\ccptrGfV.s:149    .text.USBH_BulkReceiveData:00000000 USBH_BulkReceiveData
+D:\Programs\cygwin64\tmp\ccptrGfV.s:169    .text.USBH_InterruptReceiveData:00000000 $t
+D:\Programs\cygwin64\tmp\ccptrGfV.s:177    .text.USBH_InterruptReceiveData:00000000 USBH_InterruptReceiveData
+D:\Programs\cygwin64\tmp\ccptrGfV.s:197    .text.USBH_InterruptSendData:00000000 $t
+D:\Programs\cygwin64\tmp\ccptrGfV.s:205    .text.USBH_InterruptSendData:00000000 USBH_InterruptSendData
+D:\Programs\cygwin64\tmp\ccptrGfV.s:225    .text.USBH_IsocReceiveData:00000000 $t
+D:\Programs\cygwin64\tmp\ccptrGfV.s:233    .text.USBH_IsocReceiveData:00000000 USBH_IsocReceiveData
+D:\Programs\cygwin64\tmp\ccptrGfV.s:254    .text.USBH_IsocSendData:00000000 $t
+D:\Programs\cygwin64\tmp\ccptrGfV.s:262    .text.USBH_IsocSendData:00000000 USBH_IsocSendData
+
+UNDEFINED SYMBOLS
+USBH_LL_SubmitURB

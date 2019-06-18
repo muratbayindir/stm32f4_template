@@ -1,0 +1,551 @@
+ARM GAS  D:\Programs\cygwin64\tmp\cczkKq3D.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"stm32f4xx_ll_utils.c"
+  14              		.text
+  15              		.section	.text.UTILS_SetFlashLatency.part.0,"ax",%progbits
+  16              		.align	1
+  17              		.p2align 2,,3
+  18              		.arch armv7e-m
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu fpv4-sp-d16
+  24              	UTILS_SetFlashLatency.part.0:
+  25              		@ args = 0, pretend = 0, frame = 0
+  26              		@ frame_needed = 0, uses_anonymous_args = 0
+  27              		@ link register save eliminated.
+  28 0000 464A     		ldr	r2, .L81
+  29 0002 1368     		ldr	r3, [r2]
+  30 0004 03F44043 		and	r3, r3, #49152
+  31 0008 B3F5404F 		cmp	r3, #49152
+  32 000c 24D0     		beq	.L70
+  33 000e 1368     		ldr	r3, [r2]
+  34 0010 03F44043 		and	r3, r3, #49152
+  35 0014 B3F5004F 		cmp	r3, #32768
+  36 0018 13D0     		beq	.L71
+  37 001a 1368     		ldr	r3, [r2]
+  38 001c 03F44043 		and	r3, r3, #49152
+  39 0020 B3F5804F 		cmp	r3, #16384
+  40 0024 2AD0     		beq	.L72
+  41              	.L68:
+  42 0026 0021     		movs	r1, #0
+  43              	.L26:
+  44 0028 3D4A     		ldr	r2, .L81+4
+  45 002a 1368     		ldr	r3, [r2]
+  46 002c 23F00F03 		bic	r3, r3, #15
+  47 0030 0B43     		orrs	r3, r3, r1
+  48 0032 1360     		str	r3, [r2]
+  49 0034 1068     		ldr	r0, [r2]
+  50 0036 00F00F00 		and	r0, r0, #15
+  51 003a 401A     		subs	r0, r0, r1
+  52 003c 18BF     		it	ne
+  53 003e 0120     		movne	r0, #1
+  54 0040 7047     		bx	lr
+  55              	.L71:
+  56 0042 03F10F63 		add	r3, r3, #149946368
+  57 0046 03F5A343 		add	r3, r3, #20864
+  58 004a 9842     		cmp	r0, r3
+ARM GAS  D:\Programs\cygwin64\tmp\cczkKq3D.s 			page 2
+
+
+  59 004c 46D8     		bhi	.L15
+  60 004e 354B     		ldr	r3, .L81+8
+  61 0050 9842     		cmp	r0, r3
+  62 0052 37D8     		bhi	.L73
+  63              	.L17:
+  64 0054 1368     		ldr	r3, [r2]
+  65 0056 E6E7     		b	.L68
+  66              	.L70:
+  67 0058 03F10F63 		add	r3, r3, #149946368
+  68 005c 03F58C53 		add	r3, r3, #4480
+  69 0060 9842     		cmp	r0, r3
+  70 0062 36D8     		bhi	.L3
+  71 0064 304B     		ldr	r3, .L81+12
+  72 0066 9842     		cmp	r0, r3
+  73 0068 0DD9     		bls	.L74
+  74 006a 1368     		ldr	r3, [r2]
+  75 006c 03F44043 		and	r3, r3, #49152
+  76 0070 B3F5004F 		cmp	r3, #32768
+  77 0074 40D0     		beq	.L75
+  78              	.L22:
+  79 0076 1368     		ldr	r3, [r2]
+  80 0078 0421     		movs	r1, #4
+  81 007a D5E7     		b	.L26
+  82              	.L72:
+  83 007c 2B4B     		ldr	r3, .L81+16
+  84 007e 9842     		cmp	r0, r3
+  85 0080 17D9     		bls	.L62
+  86 0082 0321     		movs	r1, #3
+  87 0084 D0E7     		b	.L26
+  88              	.L74:
+  89 0086 294B     		ldr	r3, .L81+16
+  90 0088 9842     		cmp	r0, r3
+  91 008a 2CD8     		bhi	.L5
+  92 008c 284B     		ldr	r3, .L81+20
+  93 008e 9842     		cmp	r0, r3
+  94 0090 39D8     		bhi	.L76
+  95 0092 284B     		ldr	r3, .L81+24
+  96 0094 9842     		cmp	r0, r3
+  97 0096 1368     		ldr	r3, [r2]
+  98 0098 03F44043 		and	r3, r3, #49152
+  99 009c 16D8     		bhi	.L77
+ 100 009e B3F5004F 		cmp	r3, #32768
+ 101 00a2 D7D1     		bne	.L17
+ 102 00a4 1F4B     		ldr	r3, .L81+8
+ 103 00a6 9842     		cmp	r0, r3
+ 104 00a8 D4D9     		bls	.L17
+ 105              	.L18:
+ 106 00aa 1C4B     		ldr	r3, .L81
+ 107 00ac 0421     		movs	r1, #4
+ 108 00ae 1B68     		ldr	r3, [r3]
+ 109 00b0 BAE7     		b	.L26
+ 110              	.L62:
+ 111 00b2 1F4B     		ldr	r3, .L81+20
+ 112 00b4 9842     		cmp	r0, r3
+ 113 00b6 14D8     		bhi	.L78
+ 114 00b8 1E49     		ldr	r1, .L81+24
+ 115 00ba 8842     		cmp	r0, r1
+ARM GAS  D:\Programs\cygwin64\tmp\cczkKq3D.s 			page 3
+
+
+ 116 00bc 94BF     		ite	ls
+ 117 00be 0021     		movls	r1, #0
+ 118 00c0 0121     		movhi	r1, #1
+ 119 00c2 B1E7     		b	.L26
+ 120              	.L73:
+ 121 00c4 194B     		ldr	r3, .L81+16
+ 122 00c6 9842     		cmp	r0, r3
+ 123 00c8 D5D8     		bhi	.L22
+ 124 00ca EEE7     		b	.L18
+ 125              	.L77:
+ 126 00cc 1368     		ldr	r3, [r2]
+ 127 00ce 0121     		movs	r1, #1
+ 128 00d0 AAE7     		b	.L26
+ 129              	.L3:
+ 130 00d2 1368     		ldr	r3, [r2]
+ 131 00d4 0521     		movs	r1, #5
+ 132              	.L61:
+ 133 00d6 114B     		ldr	r3, .L81
+ 134 00d8 1B68     		ldr	r3, [r3]
+ 135 00da A5E7     		b	.L26
+ 136              	.L15:
+ 137 00dc 1368     		ldr	r3, [r2]
+ 138 00de 0521     		movs	r1, #5
+ 139 00e0 A2E7     		b	.L26
+ 140              	.L78:
+ 141 00e2 0221     		movs	r1, #2
+ 142 00e4 A0E7     		b	.L26
+ 143              	.L5:
+ 144 00e6 1368     		ldr	r3, [r2]
+ 145 00e8 03F44043 		and	r3, r3, #49152
+ 146 00ec B3F5004F 		cmp	r3, #32768
+ 147 00f0 07D0     		beq	.L79
+ 148 00f2 1368     		ldr	r3, [r2]
+ 149 00f4 0321     		movs	r1, #3
+ 150 00f6 97E7     		b	.L26
+ 151              	.L75:
+ 152 00f8 0421     		movs	r1, #4
+ 153              	.L37:
+ 154 00fa 0A4B     		ldr	r3, .L81+8
+ 155 00fc 9842     		cmp	r0, r3
+ 156 00fe EAD9     		bls	.L61
+ 157 0100 E9E7     		b	.L61
+ 158              	.L79:
+ 159 0102 0321     		movs	r1, #3
+ 160 0104 F9E7     		b	.L37
+ 161              	.L76:
+ 162 0106 1368     		ldr	r3, [r2]
+ 163 0108 03F44043 		and	r3, r3, #49152
+ 164 010c B3F5004F 		cmp	r3, #32768
+ 165 0110 02D0     		beq	.L80
+ 166 0112 1368     		ldr	r3, [r2]
+ 167 0114 0221     		movs	r1, #2
+ 168 0116 87E7     		b	.L26
+ 169              	.L80:
+ 170 0118 0221     		movs	r1, #2
+ 171 011a DCE7     		b	.L61
+ 172              	.L82:
+ARM GAS  D:\Programs\cygwin64\tmp\cczkKq3D.s 			page 4
+
+
+ 173              		.align	2
+ 174              	.L81:
+ 175 011c 00700040 		.word	1073770496
+ 176 0120 003C0240 		.word	1073888256
+ 177 0124 001BB700 		.word	12000000
+ 178 0128 000E2707 		.word	120000000
+ 179 012c 804A5D05 		.word	90000000
+ 180 0130 00879303 		.word	60000000
+ 181 0134 80C3C901 		.word	30000000
+ 183              		.section	.text.UTILS_EnablePLLAndSwitchSystem,"ax",%progbits
+ 184              		.align	1
+ 185              		.p2align 2,,3
+ 186              		.syntax unified
+ 187              		.thumb
+ 188              		.thumb_func
+ 189              		.fpu fpv4-sp-d16
+ 191              	UTILS_EnablePLLAndSwitchSystem:
+ 192              		@ args = 0, pretend = 0, frame = 0
+ 193              		@ frame_needed = 0, uses_anonymous_args = 0
+ 194 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 195 0002 0F68     		ldr	r7, [r1]
+ 196 0004 234A     		ldr	r2, .L100
+ 197 0006 244D     		ldr	r5, .L100+4
+ 198 0008 C7F30313 		ubfx	r3, r7, #4, #4
+ 199 000c 0E46     		mov	r6, r1
+ 200 000e D45C     		ldrb	r4, [r2, r3]	@ zero_extendqisi2
+ 201 0010 2968     		ldr	r1, [r5]
+ 202 0012 20FA04F4 		lsr	r4, r0, r4
+ 203 0016 A142     		cmp	r1, r4
+ 204 0018 06D2     		bcs	.L84
+ 205 001a 2046     		mov	r0, r4
+ 206 001c FFF7FEFF 		bl	UTILS_SetFlashLatency.part.0
+ 207 0020 0028     		cmp	r0, #0
+ 208 0022 33D1     		bne	.L85
+ 209 0024 3768     		ldr	r7, [r6]
+ 210 0026 2968     		ldr	r1, [r5]
+ 211              	.L84:
+ 212 0028 1C4A     		ldr	r2, .L100+8
+ 213 002a 1368     		ldr	r3, [r2]
+ 214 002c 43F08073 		orr	r3, r3, #16777216
+ 215 0030 1360     		str	r3, [r2]
+ 216              	.L86:
+ 217 0032 1368     		ldr	r3, [r2]
+ 218 0034 9B01     		lsls	r3, r3, #6
+ 219 0036 FCD5     		bpl	.L86
+ 220 0038 9368     		ldr	r3, [r2, #8]
+ 221 003a 1848     		ldr	r0, .L100+8
+ 222 003c 23F0F003 		bic	r3, r3, #240
+ 223 0040 3B43     		orrs	r3, r3, r7
+ 224 0042 9360     		str	r3, [r2, #8]
+ 225 0044 9368     		ldr	r3, [r2, #8]
+ 226 0046 23F00303 		bic	r3, r3, #3
+ 227 004a 43F00203 		orr	r3, r3, #2
+ 228 004e 9360     		str	r3, [r2, #8]
+ 229              	.L87:
+ 230 0050 8368     		ldr	r3, [r0, #8]
+ 231 0052 03F00C03 		and	r3, r3, #12
+ARM GAS  D:\Programs\cygwin64\tmp\cczkKq3D.s 			page 5
+
+
+ 232 0056 082B     		cmp	r3, #8
+ 233 0058 FAD1     		bne	.L87
+ 234 005a 8368     		ldr	r3, [r0, #8]
+ 235 005c 7268     		ldr	r2, [r6, #4]
+ 236 005e 23F4E053 		bic	r3, r3, #7168
+ 237 0062 1343     		orrs	r3, r3, r2
+ 238 0064 8360     		str	r3, [r0, #8]
+ 239 0066 8368     		ldr	r3, [r0, #8]
+ 240 0068 B268     		ldr	r2, [r6, #8]
+ 241 006a 23F46043 		bic	r3, r3, #57344
+ 242 006e 1343     		orrs	r3, r3, r2
+ 243 0070 8C42     		cmp	r4, r1
+ 244 0072 8360     		str	r3, [r0, #8]
+ 245 0074 05D2     		bcs	.L90
+ 246 0076 3CB1     		cbz	r4, .L99
+ 247              	.L91:
+ 248 0078 2046     		mov	r0, r4
+ 249 007a FFF7FEFF 		bl	UTILS_SetFlashLatency.part.0
+ 250 007e 00B1     		cbz	r0, .L90
+ 251              	.L89:
+ 252 0080 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 253              	.L90:
+ 254 0082 2C60     		str	r4, [r5]
+ 255 0084 0020     		movs	r0, #0
+ 256 0086 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 257              	.L99:
+ 258 0088 0120     		movs	r0, #1
+ 259 008a F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 260              	.L85:
+ 261 008c 2B68     		ldr	r3, [r5]
+ 262 008e A342     		cmp	r3, r4
+ 263 0090 F6D9     		bls	.L89
+ 264 0092 F1E7     		b	.L91
+ 265              	.L101:
+ 266              		.align	2
+ 267              	.L100:
+ 268 0094 00000000 		.word	AHBPrescTable
+ 269 0098 00000000 		.word	SystemCoreClock
+ 270 009c 00380240 		.word	1073887232
+ 272              		.section	.text.LL_Init1msTick,"ax",%progbits
+ 273              		.align	1
+ 274              		.p2align 2,,3
+ 275              		.global	LL_Init1msTick
+ 276              		.syntax unified
+ 277              		.thumb
+ 278              		.thumb_func
+ 279              		.fpu fpv4-sp-d16
+ 281              	LL_Init1msTick:
+ 282              		@ args = 0, pretend = 0, frame = 0
+ 283              		@ frame_needed = 0, uses_anonymous_args = 0
+ 284              		@ link register save eliminated.
+ 285 0000 054A     		ldr	r2, .L103
+ 286 0002 064B     		ldr	r3, .L103+4
+ 287 0004 A2FB0020 		umull	r2, r0, r2, r0
+ 288 0008 8009     		lsrs	r0, r0, #6
+ 289 000a 0138     		subs	r0, r0, #1
+ 290 000c 0021     		movs	r1, #0
+ARM GAS  D:\Programs\cygwin64\tmp\cczkKq3D.s 			page 6
+
+
+ 291 000e 0522     		movs	r2, #5
+ 292 0010 5860     		str	r0, [r3, #4]
+ 293 0012 9960     		str	r1, [r3, #8]
+ 294 0014 1A60     		str	r2, [r3]
+ 295 0016 7047     		bx	lr
+ 296              	.L104:
+ 297              		.align	2
+ 298              	.L103:
+ 299 0018 D34D6210 		.word	274877907
+ 300 001c 10E000E0 		.word	-536813552
+ 302              		.section	.text.LL_mDelay,"ax",%progbits
+ 303              		.align	1
+ 304              		.p2align 2,,3
+ 305              		.global	LL_mDelay
+ 306              		.syntax unified
+ 307              		.thumb
+ 308              		.thumb_func
+ 309              		.fpu fpv4-sp-d16
+ 311              	LL_mDelay:
+ 312              		@ args = 0, pretend = 0, frame = 8
+ 313              		@ frame_needed = 0, uses_anonymous_args = 0
+ 314              		@ link register save eliminated.
+ 315 0000 074B     		ldr	r3, .L118
+ 316 0002 82B0     		sub	sp, sp, #8
+ 317 0004 1B68     		ldr	r3, [r3]
+ 318 0006 0193     		str	r3, [sp, #4]
+ 319 0008 421C     		adds	r2, r0, #1
+ 320 000a 019B     		ldr	r3, [sp, #4]
+ 321 000c 044A     		ldr	r2, .L118
+ 322 000e 18BF     		it	ne
+ 323 0010 0130     		addne	r0, r0, #1
+ 324              	.L108:
+ 325 0012 1368     		ldr	r3, [r2]
+ 326 0014 DB03     		lsls	r3, r3, #15
+ 327 0016 FCD5     		bpl	.L108
+ 328 0018 0138     		subs	r0, r0, #1
+ 329 001a FAD1     		bne	.L108
+ 330 001c 02B0     		add	sp, sp, #8
+ 331              		@ sp needed
+ 332 001e 7047     		bx	lr
+ 333              	.L119:
+ 334              		.align	2
+ 335              	.L118:
+ 336 0020 10E000E0 		.word	-536813552
+ 338              		.section	.text.LL_SetSystemCoreClock,"ax",%progbits
+ 339              		.align	1
+ 340              		.p2align 2,,3
+ 341              		.global	LL_SetSystemCoreClock
+ 342              		.syntax unified
+ 343              		.thumb
+ 344              		.thumb_func
+ 345              		.fpu fpv4-sp-d16
+ 347              	LL_SetSystemCoreClock:
+ 348              		@ args = 0, pretend = 0, frame = 0
+ 349              		@ frame_needed = 0, uses_anonymous_args = 0
+ 350              		@ link register save eliminated.
+ 351 0000 014B     		ldr	r3, .L121
+ARM GAS  D:\Programs\cygwin64\tmp\cczkKq3D.s 			page 7
+
+
+ 352 0002 1860     		str	r0, [r3]
+ 353 0004 7047     		bx	lr
+ 354              	.L122:
+ 355 0006 00BF     		.align	2
+ 356              	.L121:
+ 357 0008 00000000 		.word	SystemCoreClock
+ 359              		.section	.text.LL_PLL_ConfigSystemClock_HSI,"ax",%progbits
+ 360              		.align	1
+ 361              		.p2align 2,,3
+ 362              		.global	LL_PLL_ConfigSystemClock_HSI
+ 363              		.syntax unified
+ 364              		.thumb
+ 365              		.thumb_func
+ 366              		.fpu fpv4-sp-d16
+ 368              	LL_PLL_ConfigSystemClock_HSI:
+ 369              		@ args = 0, pretend = 0, frame = 0
+ 370              		@ frame_needed = 0, uses_anonymous_args = 0
+ 371              		@ link register save eliminated.
+ 372 0000 1E4B     		ldr	r3, .L132
+ 373 0002 F0B4     		push	{r4, r5, r6, r7}
+ 374 0004 1A68     		ldr	r2, [r3]
+ 375 0006 1C68     		ldr	r4, [r3]
+ 376 0008 A400     		lsls	r4, r4, #2
+ 377 000a 03D5     		bpl	.L124
+ 378 000c 1B68     		ldr	r3, [r3]
+ 379              	.L125:
+ 380 000e 0120     		movs	r0, #1
+ 381 0010 F0BC     		pop	{r4, r5, r6, r7}
+ 382 0012 7047     		bx	lr
+ 383              	.L124:
+ 384 0014 1C68     		ldr	r4, [r3]
+ 385 0016 02F00072 		and	r2, r2, #33554432
+ 386 001a 04F00064 		and	r4, r4, #134217728
+ 387 001e 2243     		orrs	r2, r2, r4
+ 388 0020 F5D1     		bne	.L125
+ 389 0022 D0E90154 		ldrd	r5, r4, [r0, #4]
+ 390 0026 0668     		ldr	r6, [r0]
+ 391 0028 D3F800C0 		ldr	ip, [r3]
+ 392 002c 144F     		ldr	r7, .L132+4
+ 393 002e 200C     		lsrs	r0, r4, #16
+ 394 0030 0130     		adds	r0, r0, #1
+ 395 0032 4200     		lsls	r2, r0, #1
+ 396 0034 1CF0020F 		tst	ip, #2
+ 397 0038 06F03F00 		and	r0, r6, #63
+ 398 003c B7FBF0F0 		udiv	r0, r7, r0
+ 399 0040 C5F30807 		ubfx	r7, r5, #0, #9
+ 400 0044 00FB07F0 		mul	r0, r0, r7
+ 401 0048 B0FBF2F0 		udiv	r0, r0, r2
+ 402 004c 06D1     		bne	.L126
+ 403 004e 1A68     		ldr	r2, [r3]
+ 404 0050 42F00102 		orr	r2, r2, #1
+ 405 0054 1A60     		str	r2, [r3]
+ 406              	.L127:
+ 407 0056 1A68     		ldr	r2, [r3]
+ 408 0058 9207     		lsls	r2, r2, #30
+ 409 005a FCD5     		bpl	.L127
+ 410              	.L126:
+ARM GAS  D:\Programs\cygwin64\tmp\cczkKq3D.s 			page 8
+
+
+ 411 005c 074A     		ldr	r2, .L132
+ 412 005e 094B     		ldr	r3, .L132+8
+ 413 0060 5768     		ldr	r7, [r2, #4]
+ 414 0062 3B40     		ands	r3, r3, r7
+ 415 0064 3343     		orrs	r3, r3, r6
+ 416 0066 43EA8513 		orr	r3, r3, r5, lsl #6
+ 417 006a 5360     		str	r3, [r2, #4]
+ 418 006c 5368     		ldr	r3, [r2, #4]
+ 419 006e 23F44033 		bic	r3, r3, #196608
+ 420 0072 2343     		orrs	r3, r3, r4
+ 421 0074 5360     		str	r3, [r2, #4]
+ 422 0076 F0BC     		pop	{r4, r5, r6, r7}
+ 423 0078 FFF7FEBF 		b	UTILS_EnablePLLAndSwitchSystem
+ 424              	.L133:
+ 425              		.align	2
+ 426              	.L132:
+ 427 007c 00380240 		.word	1073887232
+ 428 0080 0024F400 		.word	16000000
+ 429 0084 0080BFFF 		.word	-4227072
+ 431              		.section	.text.LL_PLL_ConfigSystemClock_HSE,"ax",%progbits
+ 432              		.align	1
+ 433              		.p2align 2,,3
+ 434              		.global	LL_PLL_ConfigSystemClock_HSE
+ 435              		.syntax unified
+ 436              		.thumb
+ 437              		.thumb_func
+ 438              		.fpu fpv4-sp-d16
+ 440              	LL_PLL_ConfigSystemClock_HSE:
+ 441              		@ args = 0, pretend = 0, frame = 0
+ 442              		@ frame_needed = 0, uses_anonymous_args = 0
+ 443 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 444 0002 244C     		ldr	r4, .L145
+ 445 0004 2568     		ldr	r5, [r4]
+ 446 0006 2668     		ldr	r6, [r4]
+ 447 0008 B600     		lsls	r6, r6, #2
+ 448 000a 02D5     		bpl	.L135
+ 449 000c 2368     		ldr	r3, [r4]
+ 450              	.L136:
+ 451 000e 0120     		movs	r0, #1
+ 452 0010 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 453              	.L135:
+ 454 0012 2668     		ldr	r6, [r4]
+ 455 0014 05F00075 		and	r5, r5, #33554432
+ 456 0018 06F00066 		and	r6, r6, #134217728
+ 457 001c 3543     		orrs	r5, r5, r6
+ 458 001e F6D1     		bne	.L136
+ 459 0020 D2E90175 		ldrd	r7, r5, [r2, #4]
+ 460 0024 1668     		ldr	r6, [r2]
+ 461 0026 D4F800C0 		ldr	ip, [r4]
+ 462 002a 2A0C     		lsrs	r2, r5, #16
+ 463 002c 06F03F0E 		and	lr, r6, #63
+ 464 0030 0132     		adds	r2, r2, #1
+ 465 0032 B0FBFEF0 		udiv	r0, r0, lr
+ 466 0036 1CF4003F 		tst	ip, #131072
+ 467 003a C7F3080E 		ubfx	lr, r7, #0, #9
+ 468 003e 4FEA4202 		lsl	r2, r2, #1
+ 469 0042 00FB0EF0 		mul	r0, r0, lr
+ARM GAS  D:\Programs\cygwin64\tmp\cczkKq3D.s 			page 9
+
+
+ 470 0046 B0FBF2F0 		udiv	r0, r0, r2
+ 471 004a 0FD1     		bne	.L137
+ 472 004c 2268     		ldr	r2, [r4]
+ 473 004e 0129     		cmp	r1, #1
+ 474 0050 0CBF     		ite	eq
+ 475 0052 42F48022 		orreq	r2, r2, #262144
+ 476 0056 22F48022 		bicne	r2, r2, #262144
+ 477 005a 0E49     		ldr	r1, .L145
+ 478 005c 2260     		str	r2, [r4]
+ 479 005e 0A68     		ldr	r2, [r1]
+ 480 0060 42F48032 		orr	r2, r2, #65536
+ 481 0064 0A60     		str	r2, [r1]
+ 482              	.L140:
+ 483 0066 0C68     		ldr	r4, [r1]
+ 484 0068 A203     		lsls	r2, r4, #14
+ 485 006a FCD5     		bpl	.L140
+ 486              	.L137:
+ 487 006c 094C     		ldr	r4, .L145
+ 488 006e 0A4A     		ldr	r2, .L145+4
+ 489 0070 6168     		ldr	r1, [r4, #4]
+ 490 0072 0A40     		ands	r2, r2, r1
+ 491 0074 42EA8712 		orr	r2, r2, r7, lsl #6
+ 492 0078 3243     		orrs	r2, r2, r6
+ 493 007a 42F48002 		orr	r2, r2, #4194304
+ 494 007e 6260     		str	r2, [r4, #4]
+ 495 0080 6268     		ldr	r2, [r4, #4]
+ 496 0082 22F44032 		bic	r2, r2, #196608
+ 497 0086 1543     		orrs	r5, r5, r2
+ 498 0088 6560     		str	r5, [r4, #4]
+ 499 008a 1946     		mov	r1, r3
+ 500 008c BDE8F040 		pop	{r4, r5, r6, r7, lr}
+ 501 0090 FFF7FEBF 		b	UTILS_EnablePLLAndSwitchSystem
+ 502              	.L146:
+ 503              		.align	2
+ 504              	.L145:
+ 505 0094 00380240 		.word	1073887232
+ 506 0098 0080BFFF 		.word	-4227072
+ 508              		.ident	"GCC: (GNU Tools for Arm Embedded Processors 8-2018-q4-major) 8.2.1 20181213 (release) [gcc
+ARM GAS  D:\Programs\cygwin64\tmp\cczkKq3D.s 			page 10
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f4xx_ll_utils.c
+D:\Programs\cygwin64\tmp\cczkKq3D.s:16     .text.UTILS_SetFlashLatency.part.0:00000000 $t
+D:\Programs\cygwin64\tmp\cczkKq3D.s:24     .text.UTILS_SetFlashLatency.part.0:00000000 UTILS_SetFlashLatency.part.0
+D:\Programs\cygwin64\tmp\cczkKq3D.s:175    .text.UTILS_SetFlashLatency.part.0:0000011c $d
+D:\Programs\cygwin64\tmp\cczkKq3D.s:184    .text.UTILS_EnablePLLAndSwitchSystem:00000000 $t
+D:\Programs\cygwin64\tmp\cczkKq3D.s:191    .text.UTILS_EnablePLLAndSwitchSystem:00000000 UTILS_EnablePLLAndSwitchSystem
+D:\Programs\cygwin64\tmp\cczkKq3D.s:268    .text.UTILS_EnablePLLAndSwitchSystem:00000094 $d
+D:\Programs\cygwin64\tmp\cczkKq3D.s:273    .text.LL_Init1msTick:00000000 $t
+D:\Programs\cygwin64\tmp\cczkKq3D.s:281    .text.LL_Init1msTick:00000000 LL_Init1msTick
+D:\Programs\cygwin64\tmp\cczkKq3D.s:299    .text.LL_Init1msTick:00000018 $d
+D:\Programs\cygwin64\tmp\cczkKq3D.s:303    .text.LL_mDelay:00000000 $t
+D:\Programs\cygwin64\tmp\cczkKq3D.s:311    .text.LL_mDelay:00000000 LL_mDelay
+D:\Programs\cygwin64\tmp\cczkKq3D.s:336    .text.LL_mDelay:00000020 $d
+D:\Programs\cygwin64\tmp\cczkKq3D.s:339    .text.LL_SetSystemCoreClock:00000000 $t
+D:\Programs\cygwin64\tmp\cczkKq3D.s:347    .text.LL_SetSystemCoreClock:00000000 LL_SetSystemCoreClock
+D:\Programs\cygwin64\tmp\cczkKq3D.s:357    .text.LL_SetSystemCoreClock:00000008 $d
+D:\Programs\cygwin64\tmp\cczkKq3D.s:360    .text.LL_PLL_ConfigSystemClock_HSI:00000000 $t
+D:\Programs\cygwin64\tmp\cczkKq3D.s:368    .text.LL_PLL_ConfigSystemClock_HSI:00000000 LL_PLL_ConfigSystemClock_HSI
+D:\Programs\cygwin64\tmp\cczkKq3D.s:427    .text.LL_PLL_ConfigSystemClock_HSI:0000007c $d
+D:\Programs\cygwin64\tmp\cczkKq3D.s:432    .text.LL_PLL_ConfigSystemClock_HSE:00000000 $t
+D:\Programs\cygwin64\tmp\cczkKq3D.s:440    .text.LL_PLL_ConfigSystemClock_HSE:00000000 LL_PLL_ConfigSystemClock_HSE
+D:\Programs\cygwin64\tmp\cczkKq3D.s:505    .text.LL_PLL_ConfigSystemClock_HSE:00000094 $d
+
+UNDEFINED SYMBOLS
+AHBPrescTable
+SystemCoreClock

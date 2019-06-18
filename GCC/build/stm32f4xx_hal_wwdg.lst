@@ -1,0 +1,141 @@
+ARM GAS  D:\Programs\cygwin64\tmp\ccH5dv9C.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"stm32f4xx_hal_wwdg.c"
+  14              		.text
+  15              		.section	.text.HAL_WWDG_MspInit,"ax",%progbits
+  16              		.align	1
+  17              		.p2align 2,,3
+  18              		.weak	HAL_WWDG_MspInit
+  19              		.arch armv7e-m
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	HAL_WWDG_MspInit:
+  26              		@ args = 0, pretend = 0, frame = 0
+  27              		@ frame_needed = 0, uses_anonymous_args = 0
+  28              		@ link register save eliminated.
+  29 0000 7047     		bx	lr
+  31 0002 00BF     		.section	.text.HAL_WWDG_Init,"ax",%progbits
+  32              		.align	1
+  33              		.p2align 2,,3
+  34              		.global	HAL_WWDG_Init
+  35              		.syntax unified
+  36              		.thumb
+  37              		.thumb_func
+  38              		.fpu fpv4-sp-d16
+  40              	HAL_WWDG_Init:
+  41              		@ args = 0, pretend = 0, frame = 0
+  42              		@ frame_needed = 0, uses_anonymous_args = 0
+  43 0000 80B1     		cbz	r0, .L5
+  44 0002 38B5     		push	{r3, r4, r5, lr}
+  45 0004 0446     		mov	r4, r0
+  46 0006 FFF7FEFF 		bl	HAL_WWDG_MspInit
+  47 000a D4E90150 		ldrd	r5, r0, [r4, #4]
+  48 000e 2369     		ldr	r3, [r4, #16]
+  49 0010 E268     		ldr	r2, [r4, #12]
+  50 0012 2168     		ldr	r1, [r4]
+  51 0014 2B43     		orrs	r3, r3, r5
+  52 0016 0343     		orrs	r3, r3, r0
+  53 0018 42F08002 		orr	r2, r2, #128
+  54 001c 0A60     		str	r2, [r1]
+  55 001e 0020     		movs	r0, #0
+  56 0020 4B60     		str	r3, [r1, #4]
+  57 0022 38BD     		pop	{r3, r4, r5, pc}
+  58              	.L5:
+  59 0024 0120     		movs	r0, #1
+  60 0026 7047     		bx	lr
+ARM GAS  D:\Programs\cygwin64\tmp\ccH5dv9C.s 			page 2
+
+
+  62              		.section	.text.HAL_WWDG_Refresh,"ax",%progbits
+  63              		.align	1
+  64              		.p2align 2,,3
+  65              		.global	HAL_WWDG_Refresh
+  66              		.syntax unified
+  67              		.thumb
+  68              		.thumb_func
+  69              		.fpu fpv4-sp-d16
+  71              	HAL_WWDG_Refresh:
+  72              		@ args = 0, pretend = 0, frame = 0
+  73              		@ frame_needed = 0, uses_anonymous_args = 0
+  74              		@ link register save eliminated.
+  75 0000 0346     		mov	r3, r0
+  76 0002 0020     		movs	r0, #0
+  77 0004 1A68     		ldr	r2, [r3]
+  78 0006 DB68     		ldr	r3, [r3, #12]
+  79 0008 1360     		str	r3, [r2]
+  80 000a 7047     		bx	lr
+  82              		.section	.text.HAL_WWDG_EarlyWakeupCallback,"ax",%progbits
+  83              		.align	1
+  84              		.p2align 2,,3
+  85              		.weak	HAL_WWDG_EarlyWakeupCallback
+  86              		.syntax unified
+  87              		.thumb
+  88              		.thumb_func
+  89              		.fpu fpv4-sp-d16
+  91              	HAL_WWDG_EarlyWakeupCallback:
+  92              		@ args = 0, pretend = 0, frame = 0
+  93              		@ frame_needed = 0, uses_anonymous_args = 0
+  94              		@ link register save eliminated.
+  95 0000 7047     		bx	lr
+  97 0002 00BF     		.section	.text.HAL_WWDG_IRQHandler,"ax",%progbits
+  98              		.align	1
+  99              		.p2align 2,,3
+ 100              		.global	HAL_WWDG_IRQHandler
+ 101              		.syntax unified
+ 102              		.thumb
+ 103              		.thumb_func
+ 104              		.fpu fpv4-sp-d16
+ 106              	HAL_WWDG_IRQHandler:
+ 107              		@ args = 0, pretend = 0, frame = 0
+ 108              		@ frame_needed = 0, uses_anonymous_args = 0
+ 109 0000 08B5     		push	{r3, lr}
+ 110 0002 0368     		ldr	r3, [r0]
+ 111 0004 5A68     		ldr	r2, [r3, #4]
+ 112 0006 9105     		lsls	r1, r2, #22
+ 113 0008 02D5     		bpl	.L12
+ 114 000a 9A68     		ldr	r2, [r3, #8]
+ 115 000c D207     		lsls	r2, r2, #31
+ 116 000e 00D4     		bmi	.L21
+ 117              	.L12:
+ 118 0010 08BD     		pop	{r3, pc}
+ 119              	.L21:
+ 120 0012 6FF00102 		mvn	r2, #1
+ 121 0016 9A60     		str	r2, [r3, #8]
+ 122 0018 FFF7FEFF 		bl	HAL_WWDG_EarlyWakeupCallback
+ 123 001c 08BD     		pop	{r3, pc}
+ARM GAS  D:\Programs\cygwin64\tmp\ccH5dv9C.s 			page 3
+
+
+ 125 001e 00BF     		.ident	"GCC: (GNU Tools for Arm Embedded Processors 8-2018-q4-major) 8.2.1 20181213 (release) [gcc
+ARM GAS  D:\Programs\cygwin64\tmp\ccH5dv9C.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f4xx_hal_wwdg.c
+D:\Programs\cygwin64\tmp\ccH5dv9C.s:16     .text.HAL_WWDG_MspInit:00000000 $t
+D:\Programs\cygwin64\tmp\ccH5dv9C.s:25     .text.HAL_WWDG_MspInit:00000000 HAL_WWDG_MspInit
+D:\Programs\cygwin64\tmp\ccH5dv9C.s:32     .text.HAL_WWDG_Init:00000000 $t
+D:\Programs\cygwin64\tmp\ccH5dv9C.s:40     .text.HAL_WWDG_Init:00000000 HAL_WWDG_Init
+D:\Programs\cygwin64\tmp\ccH5dv9C.s:63     .text.HAL_WWDG_Refresh:00000000 $t
+D:\Programs\cygwin64\tmp\ccH5dv9C.s:71     .text.HAL_WWDG_Refresh:00000000 HAL_WWDG_Refresh
+D:\Programs\cygwin64\tmp\ccH5dv9C.s:83     .text.HAL_WWDG_EarlyWakeupCallback:00000000 $t
+D:\Programs\cygwin64\tmp\ccH5dv9C.s:91     .text.HAL_WWDG_EarlyWakeupCallback:00000000 HAL_WWDG_EarlyWakeupCallback
+D:\Programs\cygwin64\tmp\ccH5dv9C.s:98     .text.HAL_WWDG_IRQHandler:00000000 $t
+D:\Programs\cygwin64\tmp\ccH5dv9C.s:106    .text.HAL_WWDG_IRQHandler:00000000 HAL_WWDG_IRQHandler
+
+NO UNDEFINED SYMBOLS

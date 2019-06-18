@@ -1,0 +1,326 @@
+ARM GAS  D:\Programs\cygwin64\tmp\cc6tHJMf.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"stm32f429i_discovery_ts.c"
+  14              		.text
+  15              		.section	.text.BSP_TS_Init,"ax",%progbits
+  16              		.align	1
+  17              		.p2align 2,,3
+  18              		.global	BSP_TS_Init
+  19              		.arch armv7e-m
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	BSP_TS_Init:
+  26              		@ args = 0, pretend = 0, frame = 0
+  27              		@ frame_needed = 0, uses_anonymous_args = 0
+  28 0000 38B5     		push	{r3, r4, r5, lr}
+  29 0002 0C4B     		ldr	r3, .L7
+  30 0004 0C4C     		ldr	r4, .L7+4
+  31 0006 0D4A     		ldr	r2, .L7+8
+  32 0008 1880     		strh	r0, [r3]	@ movhi
+  33 000a 6368     		ldr	r3, [r4, #4]
+  34 000c 1180     		strh	r1, [r2]	@ movhi
+  35 000e 8220     		movs	r0, #130
+  36 0010 9847     		blx	r3
+  37 0012 40F61103 		movw	r3, #2065
+  38 0016 9842     		cmp	r0, r3
+  39 0018 01D0     		beq	.L6
+  40 001a 0120     		movs	r0, #1
+  41 001c 38BD     		pop	{r3, r4, r5, pc}
+  42              	.L6:
+  43 001e 084D     		ldr	r5, .L7+12
+  44 0020 2368     		ldr	r3, [r4]
+  45 0022 2C60     		str	r4, [r5]
+  46 0024 8220     		movs	r0, #130
+  47 0026 9847     		blx	r3
+  48 0028 2B68     		ldr	r3, [r5]
+  49 002a 8220     		movs	r0, #130
+  50 002c DB68     		ldr	r3, [r3, #12]
+  51 002e 9847     		blx	r3
+  52 0030 0020     		movs	r0, #0
+  53 0032 38BD     		pop	{r3, r4, r5, pc}
+  54              	.L8:
+  55              		.align	2
+  56              	.L7:
+  57 0034 00000000 		.word	.LANCHOR0
+  58 0038 00000000 		.word	stmpe811_ts_drv
+ARM GAS  D:\Programs\cygwin64\tmp\cc6tHJMf.s 			page 2
+
+
+  59 003c 00000000 		.word	.LANCHOR1
+  60 0040 00000000 		.word	.LANCHOR2
+  62              		.section	.text.BSP_TS_ITConfig,"ax",%progbits
+  63              		.align	1
+  64              		.p2align 2,,3
+  65              		.global	BSP_TS_ITConfig
+  66              		.syntax unified
+  67              		.thumb
+  68              		.thumb_func
+  69              		.fpu fpv4-sp-d16
+  71              	BSP_TS_ITConfig:
+  72              		@ args = 0, pretend = 0, frame = 0
+  73              		@ frame_needed = 0, uses_anonymous_args = 0
+  74 0000 08B5     		push	{r3, lr}
+  75 0002 034B     		ldr	r3, .L11
+  76 0004 1B68     		ldr	r3, [r3]
+  77 0006 8220     		movs	r0, #130
+  78 0008 9B69     		ldr	r3, [r3, #24]
+  79 000a 9847     		blx	r3
+  80 000c 0020     		movs	r0, #0
+  81 000e 08BD     		pop	{r3, pc}
+  82              	.L12:
+  83              		.align	2
+  84              	.L11:
+  85 0010 00000000 		.word	.LANCHOR2
+  87              		.section	.text.BSP_TS_ITGetStatus,"ax",%progbits
+  88              		.align	1
+  89              		.p2align 2,,3
+  90              		.global	BSP_TS_ITGetStatus
+  91              		.syntax unified
+  92              		.thumb
+  93              		.thumb_func
+  94              		.fpu fpv4-sp-d16
+  96              	BSP_TS_ITGetStatus:
+  97              		@ args = 0, pretend = 0, frame = 0
+  98              		@ frame_needed = 0, uses_anonymous_args = 0
+  99              		@ link register save eliminated.
+ 100 0000 024B     		ldr	r3, .L14
+ 101 0002 1B68     		ldr	r3, [r3]
+ 102 0004 8220     		movs	r0, #130
+ 103 0006 1B6A     		ldr	r3, [r3, #32]
+ 104 0008 1847     		bx	r3
+ 105              	.L15:
+ 106 000a 00BF     		.align	2
+ 107              	.L14:
+ 108 000c 00000000 		.word	.LANCHOR2
+ 110              		.section	.text.BSP_TS_GetState,"ax",%progbits
+ 111              		.align	1
+ 112              		.p2align 2,,3
+ 113              		.global	BSP_TS_GetState
+ 114              		.syntax unified
+ 115              		.thumb
+ 116              		.thumb_func
+ 117              		.fpu fpv4-sp-d16
+ 119              	BSP_TS_GetState:
+ 120              		@ args = 0, pretend = 0, frame = 8
+ 121              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  D:\Programs\cygwin64\tmp\cc6tHJMf.s 			page 3
+
+
+ 122 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 123 0002 3B4D     		ldr	r5, .L36
+ 124 0004 2B68     		ldr	r3, [r5]
+ 125 0006 0446     		mov	r4, r0
+ 126 0008 83B0     		sub	sp, sp, #12
+ 127 000a 1B69     		ldr	r3, [r3, #16]
+ 128 000c 8220     		movs	r0, #130
+ 129 000e 9847     		blx	r3
+ 130 0010 80B2     		uxth	r0, r0
+ 131 0012 2080     		strh	r0, [r4]	@ movhi
+ 132 0014 0028     		cmp	r0, #0
+ 133 0016 50D0     		beq	.L16
+ 134 0018 2B68     		ldr	r3, [r5]
+ 135 001a 0DF10602 		add	r2, sp, #6
+ 136 001e 5B69     		ldr	r3, [r3, #20]
+ 137 0020 01A9     		add	r1, sp, #4
+ 138 0022 8220     		movs	r0, #130
+ 139 0024 9847     		blx	r3
+ 140 0026 BDF80620 		ldrh	r2, [sp, #6]
+ 141 002a A2F5B472 		sub	r2, r2, #360
+ 142 002e 92B2     		uxth	r2, r2
+ 143 0030 0A2A     		cmp	r2, #10
+ 144 0032 44D9     		bls	.L28
+ 145 0034 2F49     		ldr	r1, .L36+4
+ 146 0036 304B     		ldr	r3, .L36+8
+ 147 0038 A1FB0212 		umull	r1, r2, r1, r2
+ 148 003c 1B88     		ldrh	r3, [r3]
+ 149 003e D208     		lsrs	r2, r2, #3
+ 150 0040 9342     		cmp	r3, r2
+ 151 0042 38BF     		it	cc
+ 152 0044 03F1FF32 		addcc	r2, r3, #-1
+ 153 0048 BDF80430 		ldrh	r3, [sp, #4]
+ 154 004c 40F6B831 		movw	r1, #3000
+ 155 0050 38BF     		it	cc
+ 156 0052 92B2     		uxthcc	r2, r2
+ 157 0054 8B42     		cmp	r3, r1
+ 158 0056 1046     		mov	r0, r2
+ 159 0058 39D8     		bhi	.L20
+ 160              	.L35:
+ 161 005a 284D     		ldr	r5, .L36+12
+ 162 005c C3F57163 		rsb	r3, r3, #3856
+ 163 0060 0E33     		adds	r3, r3, #14
+ 164 0062 2E68     		ldr	r6, [r5]
+ 165 0064 9BB2     		uxth	r3, r3
+ 166              	.L21:
+ 167 0066 264F     		ldr	r7, .L36+16
+ 168 0068 2649     		ldr	r1, .L36+20
+ 169 006a A7FB0373 		umull	r7, r3, r7, r3
+ 170 006e 0988     		ldrh	r1, [r1]
+ 171 0070 DB08     		lsrs	r3, r3, #3
+ 172 0072 9942     		cmp	r1, r3
+ 173 0074 3CBF     		itt	cc
+ 174 0076 01F1FF33 		addcc	r3, r1, #-1
+ 175 007a 9BB2     		uxthcc	r3, r3
+ 176 007c B1B2     		uxth	r1, r6
+ 177 007e B342     		cmp	r3, r6
+ 178 0080 1F46     		mov	r7, r3
+ARM GAS  D:\Programs\cygwin64\tmp\cc6tHJMf.s 			page 4
+
+
+ 179 0082 8C46     		mov	ip, r1
+ 180 0084 2FD9     		bls	.L22
+ 181 0086 5B1A     		subs	r3, r3, r1
+ 182 0088 9BB2     		uxth	r3, r3
+ 183              	.L24:
+ 184 008a DFF87CE0 		ldr	lr, .L36+24
+ 185 008e DEF80060 		ldr	r6, [lr]
+ 186 0092 8642     		cmp	r6, r0
+ 187 0094 1FFA86FC 		uxth	ip, r6
+ 188 0098 34BF     		ite	cc
+ 189 009a A2EB0C06 		subcc	r6, r2, ip
+ 190 009e ACEB0206 		subcs	r6, ip, r2
+ 191 00a2 B6B2     		uxth	r6, r6
+ 192 00a4 3344     		add	r3, r3, r6
+ 193 00a6 052B     		cmp	r3, #5
+ 194 00a8 04DD     		ble	.L27
+ 195 00aa 2F60     		str	r7, [r5]
+ 196 00ac CEF80000 		str	r0, [lr]
+ 197 00b0 B9B2     		uxth	r1, r7
+ 198 00b2 9446     		mov	ip, r2
+ 199              	.L27:
+ 200 00b4 6180     		strh	r1, [r4, #2]	@ movhi
+ 201 00b6 A4F804C0 		strh	ip, [r4, #4]	@ movhi
+ 202              	.L16:
+ 203 00ba 03B0     		add	sp, sp, #12
+ 204              		@ sp needed
+ 205 00bc F0BD     		pop	{r4, r5, r6, r7, pc}
+ 206              	.L28:
+ 207 00be BDF80430 		ldrh	r3, [sp, #4]
+ 208 00c2 40F6B831 		movw	r1, #3000
+ 209 00c6 0020     		movs	r0, #0
+ 210 00c8 8B42     		cmp	r3, r1
+ 211 00ca 0246     		mov	r2, r0
+ 212 00cc C5D9     		bls	.L35
+ 213              	.L20:
+ 214 00ce C3F56D63 		rsb	r3, r3, #3792
+ 215 00d2 0833     		adds	r3, r3, #8
+ 216 00d4 094D     		ldr	r5, .L36+12
+ 217 00d6 9BB2     		uxth	r3, r3
+ 218 00d8 0E2B     		cmp	r3, #14
+ 219 00da 2E68     		ldr	r6, [r5]
+ 220 00dc C3D8     		bhi	.L21
+ 221 00de 0023     		movs	r3, #0
+ 222 00e0 1FFA86FC 		uxth	ip, r6
+ 223 00e4 1F46     		mov	r7, r3
+ 224              	.L22:
+ 225 00e6 6146     		mov	r1, ip
+ 226 00e8 CB1A     		subs	r3, r1, r3
+ 227 00ea 9BB2     		uxth	r3, r3
+ 228 00ec CDE7     		b	.L24
+ 229              	.L37:
+ 230 00ee 00BF     		.align	2
+ 231              	.L36:
+ 232 00f0 00000000 		.word	.LANCHOR2
+ 233 00f4 A38B2EBA 		.word	-1171354717
+ 234 00f8 00000000 		.word	.LANCHOR1
+ 235 00fc 00000000 		.word	.LANCHOR3
+ARM GAS  D:\Programs\cygwin64\tmp\cc6tHJMf.s 			page 5
+
+
+ 236 0100 89888888 		.word	-2004318071
+ 237 0104 00000000 		.word	.LANCHOR0
+ 238 0108 00000000 		.word	.LANCHOR4
+ 240              		.section	.text.BSP_TS_ITClear,"ax",%progbits
+ 241              		.align	1
+ 242              		.p2align 2,,3
+ 243              		.global	BSP_TS_ITClear
+ 244              		.syntax unified
+ 245              		.thumb
+ 246              		.thumb_func
+ 247              		.fpu fpv4-sp-d16
+ 249              	BSP_TS_ITClear:
+ 250              		@ args = 0, pretend = 0, frame = 0
+ 251              		@ frame_needed = 0, uses_anonymous_args = 0
+ 252              		@ link register save eliminated.
+ 253 0000 024B     		ldr	r3, .L39
+ 254 0002 1B68     		ldr	r3, [r3]
+ 255 0004 8220     		movs	r0, #130
+ 256 0006 DB69     		ldr	r3, [r3, #28]
+ 257 0008 1847     		bx	r3	@ indirect register sibling call
+ 258              	.L40:
+ 259 000a 00BF     		.align	2
+ 260              	.L39:
+ 261 000c 00000000 		.word	.LANCHOR2
+ 263              		.section	.bss.TsDrv,"aw",%nobits
+ 264              		.align	2
+ 265              		.set	.LANCHOR2,. + 0
+ 268              	TsDrv:
+ 269 0000 00000000 		.space	4
+ 270              		.section	.bss.TsXBoundary,"aw",%nobits
+ 271              		.align	1
+ 272              		.set	.LANCHOR0,. + 0
+ 275              	TsXBoundary:
+ 276 0000 0000     		.space	2
+ 277              		.section	.bss.TsYBoundary,"aw",%nobits
+ 278              		.align	1
+ 279              		.set	.LANCHOR1,. + 0
+ 282              	TsYBoundary:
+ 283 0000 0000     		.space	2
+ 284              		.section	.bss._x.12026,"aw",%nobits
+ 285              		.align	2
+ 286              		.set	.LANCHOR3,. + 0
+ 289              	_x.12026:
+ 290 0000 00000000 		.space	4
+ 291              		.section	.bss._y.12027,"aw",%nobits
+ 292              		.align	2
+ 293              		.set	.LANCHOR4,. + 0
+ 296              	_y.12027:
+ 297 0000 00000000 		.space	4
+ 298              		.ident	"GCC: (GNU Tools for Arm Embedded Processors 8-2018-q4-major) 8.2.1 20181213 (release) [gcc
+ARM GAS  D:\Programs\cygwin64\tmp\cc6tHJMf.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f429i_discovery_ts.c
+D:\Programs\cygwin64\tmp\cc6tHJMf.s:16     .text.BSP_TS_Init:00000000 $t
+D:\Programs\cygwin64\tmp\cc6tHJMf.s:25     .text.BSP_TS_Init:00000000 BSP_TS_Init
+D:\Programs\cygwin64\tmp\cc6tHJMf.s:57     .text.BSP_TS_Init:00000034 $d
+D:\Programs\cygwin64\tmp\cc6tHJMf.s:63     .text.BSP_TS_ITConfig:00000000 $t
+D:\Programs\cygwin64\tmp\cc6tHJMf.s:71     .text.BSP_TS_ITConfig:00000000 BSP_TS_ITConfig
+D:\Programs\cygwin64\tmp\cc6tHJMf.s:85     .text.BSP_TS_ITConfig:00000010 $d
+D:\Programs\cygwin64\tmp\cc6tHJMf.s:88     .text.BSP_TS_ITGetStatus:00000000 $t
+D:\Programs\cygwin64\tmp\cc6tHJMf.s:96     .text.BSP_TS_ITGetStatus:00000000 BSP_TS_ITGetStatus
+D:\Programs\cygwin64\tmp\cc6tHJMf.s:108    .text.BSP_TS_ITGetStatus:0000000c $d
+D:\Programs\cygwin64\tmp\cc6tHJMf.s:111    .text.BSP_TS_GetState:00000000 $t
+D:\Programs\cygwin64\tmp\cc6tHJMf.s:119    .text.BSP_TS_GetState:00000000 BSP_TS_GetState
+D:\Programs\cygwin64\tmp\cc6tHJMf.s:232    .text.BSP_TS_GetState:000000f0 $d
+D:\Programs\cygwin64\tmp\cc6tHJMf.s:241    .text.BSP_TS_ITClear:00000000 $t
+D:\Programs\cygwin64\tmp\cc6tHJMf.s:249    .text.BSP_TS_ITClear:00000000 BSP_TS_ITClear
+D:\Programs\cygwin64\tmp\cc6tHJMf.s:261    .text.BSP_TS_ITClear:0000000c $d
+D:\Programs\cygwin64\tmp\cc6tHJMf.s:264    .bss.TsDrv:00000000 $d
+D:\Programs\cygwin64\tmp\cc6tHJMf.s:268    .bss.TsDrv:00000000 TsDrv
+D:\Programs\cygwin64\tmp\cc6tHJMf.s:271    .bss.TsXBoundary:00000000 $d
+D:\Programs\cygwin64\tmp\cc6tHJMf.s:275    .bss.TsXBoundary:00000000 TsXBoundary
+D:\Programs\cygwin64\tmp\cc6tHJMf.s:278    .bss.TsYBoundary:00000000 $d
+D:\Programs\cygwin64\tmp\cc6tHJMf.s:282    .bss.TsYBoundary:00000000 TsYBoundary
+D:\Programs\cygwin64\tmp\cc6tHJMf.s:285    .bss._x.12026:00000000 $d
+D:\Programs\cygwin64\tmp\cc6tHJMf.s:289    .bss._x.12026:00000000 _x.12026
+D:\Programs\cygwin64\tmp\cc6tHJMf.s:292    .bss._y.12027:00000000 $d
+D:\Programs\cygwin64\tmp\cc6tHJMf.s:296    .bss._y.12027:00000000 _y.12027
+
+UNDEFINED SYMBOLS
+stmpe811_ts_drv

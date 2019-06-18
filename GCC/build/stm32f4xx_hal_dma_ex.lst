@@ -1,0 +1,603 @@
+ARM GAS  D:\Programs\cygwin64\tmp\ccj7k4pe.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"stm32f4xx_hal_dma_ex.c"
+  14              		.text
+  15              		.section	.text.HAL_DMAEx_MultiBufferStart,"ax",%progbits
+  16              		.align	1
+  17              		.p2align 2,,3
+  18              		.global	HAL_DMAEx_MultiBufferStart
+  19              		.arch armv7e-m
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	HAL_DMAEx_MultiBufferStart:
+  26              		@ args = 4, pretend = 0, frame = 0
+  27              		@ frame_needed = 0, uses_anonymous_args = 0
+  28              		@ link register save eliminated.
+  29 0000 70B4     		push	{r4, r5, r6}
+  30 0002 8568     		ldr	r5, [r0, #8]
+  31 0004 802D     		cmp	r5, #128
+  32 0006 25D0     		beq	.L10
+  33 0008 90F83440 		ldrb	r4, [r0, #52]	@ zero_extendqisi2
+  34 000c 012C     		cmp	r4, #1
+  35 000e 06D0     		beq	.L5
+  36 0010 90F83540 		ldrb	r4, [r0, #53]	@ zero_extendqisi2
+  37 0014 0126     		movs	r6, #1
+  38 0016 B442     		cmp	r4, r6
+  39 0018 80F83460 		strb	r6, [r0, #52]
+  40 001c 02D0     		beq	.L11
+  41              	.L5:
+  42 001e 0220     		movs	r0, #2
+  43 0020 70BC     		pop	{r4, r5, r6}
+  44 0022 7047     		bx	lr
+  45              	.L11:
+  46 0024 0468     		ldr	r4, [r0]
+  47 0026 0226     		movs	r6, #2
+  48 0028 80F83560 		strb	r6, [r0, #53]
+  49 002c 2068     		ldr	r0, [r4]
+  50 002e 40F48020 		orr	r0, r0, #262144
+  51 0032 2060     		str	r0, [r4]
+  52 0034 402D     		cmp	r5, #64
+  53 0036 2361     		str	r3, [r4, #16]
+  54 0038 039B     		ldr	r3, [sp, #12]
+  55 003a 6360     		str	r3, [r4, #4]
+  56 003c 0BBF     		itete	eq
+  57 003e A260     		streq	r2, [r4, #8]
+  58 0040 A160     		strne	r1, [r4, #8]
+ARM GAS  D:\Programs\cygwin64\tmp\ccj7k4pe.s 			page 2
+
+
+  59 0042 E160     		streq	r1, [r4, #12]
+  60 0044 E260     		strne	r2, [r4, #12]
+  61 0046 2368     		ldr	r3, [r4]
+  62 0048 43F00103 		orr	r3, r3, #1
+  63 004c 2360     		str	r3, [r4]
+  64 004e 0020     		movs	r0, #0
+  65 0050 70BC     		pop	{r4, r5, r6}
+  66 0052 7047     		bx	lr
+  67              	.L10:
+  68 0054 4FF48073 		mov	r3, #256
+  69 0058 4365     		str	r3, [r0, #84]
+  70 005a 70BC     		pop	{r4, r5, r6}
+  71 005c 0120     		movs	r0, #1
+  72 005e 7047     		bx	lr
+  74              		.section	.text.HAL_DMAEx_MultiBufferStart_IT,"ax",%progbits
+  75              		.align	1
+  76              		.p2align 2,,3
+  77              		.global	HAL_DMAEx_MultiBufferStart_IT
+  78              		.syntax unified
+  79              		.thumb
+  80              		.thumb_func
+  81              		.fpu fpv4-sp-d16
+  83              	HAL_DMAEx_MultiBufferStart_IT:
+  84              		@ args = 4, pretend = 0, frame = 0
+  85              		@ frame_needed = 0, uses_anonymous_args = 0
+  86              		@ link register save eliminated.
+  87 0000 F0B4     		push	{r4, r5, r6, r7}
+  88 0002 8568     		ldr	r5, [r0, #8]
+  89 0004 802D     		cmp	r5, #128
+  90 0006 1CD0     		beq	.L98
+  91 0008 C46B     		ldr	r4, [r0, #60]
+  92 000a ACB1     		cbz	r4, .L15
+  93 000c 446C     		ldr	r4, [r0, #68]
+  94 000e 9CB1     		cbz	r4, .L15
+  95 0010 C46C     		ldr	r4, [r0, #76]
+  96 0012 8CB1     		cbz	r4, .L15
+  97 0014 90F83440 		ldrb	r4, [r0, #52]	@ zero_extendqisi2
+  98 0018 012C     		cmp	r4, #1
+  99 001a 00F0F080 		beq	.L82
+ 100 001e 90F83540 		ldrb	r4, [r0, #53]	@ zero_extendqisi2
+ 101 0022 0126     		movs	r6, #1
+ 102 0024 B442     		cmp	r4, r6
+ 103 0026 80F83460 		strb	r6, [r0, #52]
+ 104 002a 10D0     		beq	.L99
+ 105 002c 0023     		movs	r3, #0
+ 106 002e 80F83430 		strb	r3, [r0, #52]
+ 107 0032 F0BC     		pop	{r4, r5, r6, r7}
+ 108 0034 0220     		movs	r0, #2
+ 109 0036 7047     		bx	lr
+ 110              	.L15:
+ 111 0038 4023     		movs	r3, #64
+ 112 003a 4365     		str	r3, [r0, #84]
+ 113 003c 0120     		movs	r0, #1
+ 114              	.L92:
+ 115 003e F0BC     		pop	{r4, r5, r6, r7}
+ 116 0040 7047     		bx	lr
+ 117              	.L98:
+ARM GAS  D:\Programs\cygwin64\tmp\ccj7k4pe.s 			page 3
+
+
+ 118 0042 4FF48073 		mov	r3, #256
+ 119 0046 4365     		str	r3, [r0, #84]
+ 120 0048 F0BC     		pop	{r4, r5, r6, r7}
+ 121 004a 0120     		movs	r0, #1
+ 122 004c 7047     		bx	lr
+ 123              	.L99:
+ 124 004e 0468     		ldr	r4, [r0]
+ 125 0050 0026     		movs	r6, #0
+ 126 0052 0227     		movs	r7, #2
+ 127 0054 80F83570 		strb	r7, [r0, #53]
+ 128 0058 4665     		str	r6, [r0, #84]
+ 129 005a 2668     		ldr	r6, [r4]
+ 130 005c 46F48026 		orr	r6, r6, #262144
+ 131 0060 2660     		str	r6, [r4]
+ 132 0062 2361     		str	r3, [r4, #16]
+ 133 0064 049B     		ldr	r3, [sp, #16]
+ 134 0066 6360     		str	r3, [r4, #4]
+ 135 0068 C54B     		ldr	r3, .L102
+ 136 006a 402D     		cmp	r5, #64
+ 137 006c 0BBF     		itete	eq
+ 138 006e A260     		streq	r2, [r4, #8]
+ 139 0070 A160     		strne	r1, [r4, #8]
+ 140 0072 E160     		streq	r1, [r4, #12]
+ 141 0074 E260     		strne	r2, [r4, #12]
+ 142 0076 9C42     		cmp	r4, r3
+ 143 0078 69D9     		bls	.L20
+ 144 007a A3F58963 		sub	r3, r3, #1096
+ 145 007e 9C42     		cmp	r4, r3
+ 146 0080 43D0     		beq	.L23
+ 147 0082 03F58063 		add	r3, r3, #1024
+ 148 0086 9C42     		cmp	r4, r3
+ 149 0088 3FD0     		beq	.L23
+ 150 008a A3F56873 		sub	r3, r3, #928
+ 151 008e 9C42     		cmp	r4, r3
+ 152 0090 3BD0     		beq	.L23
+ 153 0092 03F58063 		add	r3, r3, #1024
+ 154 0096 9C42     		cmp	r4, r3
+ 155 0098 37D0     		beq	.L23
+ 156 009a A3F58963 		sub	r3, r3, #1096
+ 157 009e 9C42     		cmp	r4, r3
+ 158 00a0 00F05E81 		beq	.L25
+ 159 00a4 03F58063 		add	r3, r3, #1024
+ 160 00a8 9C42     		cmp	r4, r3
+ 161 00aa 00F05981 		beq	.L25
+ 162 00ae A3F56873 		sub	r3, r3, #928
+ 163 00b2 9C42     		cmp	r4, r3
+ 164 00b4 00F05481 		beq	.L25
+ 165 00b8 03F58063 		add	r3, r3, #1024
+ 166 00bc 9C42     		cmp	r4, r3
+ 167 00be 00F04F81 		beq	.L25
+ 168 00c2 A3F58963 		sub	r3, r3, #1096
+ 169 00c6 9C42     		cmp	r4, r3
+ 170 00c8 00F09381 		beq	.L31
+ 171 00cc 03F58063 		add	r3, r3, #1024
+ 172 00d0 9C42     		cmp	r4, r3
+ 173 00d2 00F08E81 		beq	.L31
+ 174 00d6 A3F56873 		sub	r3, r3, #928
+ARM GAS  D:\Programs\cygwin64\tmp\ccj7k4pe.s 			page 4
+
+
+ 175 00da 9C42     		cmp	r4, r3
+ 176 00dc 00F08981 		beq	.L31
+ 177 00e0 03F58063 		add	r3, r3, #1024
+ 178 00e4 9C42     		cmp	r4, r3
+ 179 00e6 00F08481 		beq	.L31
+ 180 00ea A64B     		ldr	r3, .L102+4
+ 181 00ec 4FF00061 		mov	r1, #134217728
+ 182 00f0 D960     		str	r1, [r3, #12]
+ 183 00f2 4FF00072 		mov	r2, #33554432
+ 184 00f6 4FF08065 		mov	r5, #67108864
+ 185 00fa 4FF08071 		mov	r1, #16777216
+ 186 00fe DD60     		str	r5, [r3, #12]
+ 187 0100 DA60     		str	r2, [r3, #12]
+ 188 0102 4FF48002 		mov	r2, #4194304
+ 189 0106 D960     		str	r1, [r3, #12]
+ 190 0108 09E0     		b	.L78
+ 191              	.L23:
+ 192 010a 9E4B     		ldr	r3, .L102+4
+ 193 010c 2021     		movs	r1, #32
+ 194 010e D960     		str	r1, [r3, #12]
+ 195 0110 0822     		movs	r2, #8
+ 196 0112 1025     		movs	r5, #16
+ 197 0114 0421     		movs	r1, #4
+ 198 0116 DD60     		str	r5, [r3, #12]
+ 199 0118 DA60     		str	r2, [r3, #12]
+ 200 011a 0122     		movs	r2, #1
+ 201 011c D960     		str	r1, [r3, #12]
+ 202              	.L78:
+ 203 011e 994B     		ldr	r3, .L102+4
+ 204 0120 DA60     		str	r2, [r3, #12]
+ 205              	.L75:
+ 206 0122 2368     		ldr	r3, [r4]
+ 207 0124 026C     		ldr	r2, [r0, #64]
+ 208 0126 43F01603 		orr	r3, r3, #22
+ 209 012a 2360     		str	r3, [r4]
+ 210 012c 6369     		ldr	r3, [r4, #20]
+ 211 012e 43F08003 		orr	r3, r3, #128
+ 212 0132 6361     		str	r3, [r4, #20]
+ 213 0134 002A     		cmp	r2, #0
+ 214 0136 5ED0     		beq	.L100
+ 215              	.L76:
+ 216 0138 2368     		ldr	r3, [r4]
+ 217 013a 43F00803 		orr	r3, r3, #8
+ 218 013e 2360     		str	r3, [r4]
+ 219              	.L77:
+ 220 0140 2368     		ldr	r3, [r4]
+ 221 0142 43F00103 		orr	r3, r3, #1
+ 222 0146 2360     		str	r3, [r4]
+ 223 0148 0020     		movs	r0, #0
+ 224 014a F0BC     		pop	{r4, r5, r6, r7}
+ 225 014c 7047     		bx	lr
+ 226              	.L20:
+ 227 014e 8E4B     		ldr	r3, .L102+8
+ 228 0150 9C42     		cmp	r4, r3
+ 229 0152 56D8     		bhi	.L101
+ 230 0154 8D4B     		ldr	r3, .L102+12
+ 231 0156 9C42     		cmp	r4, r3
+ARM GAS  D:\Programs\cygwin64\tmp\ccj7k4pe.s 			page 5
+
+
+ 232 0158 40F2A780 		bls	.L48
+ 233 015c 483B     		subs	r3, r3, #72
+ 234 015e 9C42     		cmp	r4, r3
+ 235 0160 00F0E880 		beq	.L51
+ 236 0164 03F58063 		add	r3, r3, #1024
+ 237 0168 9C42     		cmp	r4, r3
+ 238 016a 00F0E380 		beq	.L51
+ 239 016e A3F56873 		sub	r3, r3, #928
+ 240 0172 9C42     		cmp	r4, r3
+ 241 0174 00F0DE80 		beq	.L51
+ 242 0178 03F58063 		add	r3, r3, #1024
+ 243 017c 9C42     		cmp	r4, r3
+ 244 017e 00F0D980 		beq	.L51
+ 245 0182 A3F58963 		sub	r3, r3, #1096
+ 246 0186 9C42     		cmp	r4, r3
+ 247 0188 00F02481 		beq	.L53
+ 248 018c 03F58063 		add	r3, r3, #1024
+ 249 0190 9C42     		cmp	r4, r3
+ 250 0192 00F01F81 		beq	.L53
+ 251 0196 A3F56873 		sub	r3, r3, #928
+ 252 019a 9C42     		cmp	r4, r3
+ 253 019c 00F01A81 		beq	.L53
+ 254 01a0 03F58063 		add	r3, r3, #1024
+ 255 01a4 9C42     		cmp	r4, r3
+ 256 01a6 00F01581 		beq	.L53
+ 257 01aa A3F58963 		sub	r3, r3, #1096
+ 258 01ae 9C42     		cmp	r4, r3
+ 259 01b0 00F04F81 		beq	.L59
+ 260 01b4 03F58063 		add	r3, r3, #1024
+ 261 01b8 9C42     		cmp	r4, r3
+ 262 01ba 00F04A81 		beq	.L59
+ 263 01be A3F56873 		sub	r3, r3, #928
+ 264 01c2 9C42     		cmp	r4, r3
+ 265 01c4 00F04581 		beq	.L59
+ 266 01c8 03F58063 		add	r3, r3, #1024
+ 267 01cc 9C42     		cmp	r4, r3
+ 268 01ce 00F04081 		beq	.L59
+ 269 01d2 6F4A     		ldr	r2, .L102+16
+ 270 01d4 4FF00061 		mov	r1, #134217728
+ 271 01d8 D160     		str	r1, [r2, #12]
+ 272 01da 4FF00073 		mov	r3, #33554432
+ 273 01de 4FF08065 		mov	r5, #67108864
+ 274 01e2 4FF08071 		mov	r1, #16777216
+ 275 01e6 D560     		str	r5, [r2, #12]
+ 276 01e8 D360     		str	r3, [r2, #12]
+ 277 01ea 4FF48003 		mov	r3, #4194304
+ 278 01ee D160     		str	r1, [r2, #12]
+ 279              	.L80:
+ 280 01f0 674A     		ldr	r2, .L102+16
+ 281 01f2 D360     		str	r3, [r2, #12]
+ 282 01f4 95E7     		b	.L75
+ 283              	.L100:
+ 284 01f6 836C     		ldr	r3, [r0, #72]
+ 285 01f8 002B     		cmp	r3, #0
+ 286 01fa 9DD1     		bne	.L76
+ 287 01fc A0E7     		b	.L77
+ 288              	.L82:
+ARM GAS  D:\Programs\cygwin64\tmp\ccj7k4pe.s 			page 6
+
+
+ 289 01fe 0220     		movs	r0, #2
+ 290 0200 1DE7     		b	.L92
+ 291              	.L101:
+ 292 0202 A83B     		subs	r3, r3, #168
+ 293 0204 9C42     		cmp	r4, r3
+ 294 0206 45D0     		beq	.L35
+ 295 0208 03F58063 		add	r3, r3, #1024
+ 296 020c 9C42     		cmp	r4, r3
+ 297 020e 41D0     		beq	.L35
+ 298 0210 A3F56873 		sub	r3, r3, #928
+ 299 0214 9C42     		cmp	r4, r3
+ 300 0216 3DD0     		beq	.L35
+ 301 0218 03F58063 		add	r3, r3, #1024
+ 302 021c 9C42     		cmp	r4, r3
+ 303 021e 39D0     		beq	.L35
+ 304 0220 A3F58963 		sub	r3, r3, #1096
+ 305 0224 9C42     		cmp	r4, r3
+ 306 0226 00F0B780 		beq	.L39
+ 307 022a 03F58063 		add	r3, r3, #1024
+ 308 022e 9C42     		cmp	r4, r3
+ 309 0230 00F0B280 		beq	.L39
+ 310 0234 A3F56873 		sub	r3, r3, #928
+ 311 0238 9C42     		cmp	r4, r3
+ 312 023a 00F0AD80 		beq	.L39
+ 313 023e 03F58063 		add	r3, r3, #1024
+ 314 0242 9C42     		cmp	r4, r3
+ 315 0244 00F0A880 		beq	.L39
+ 316 0248 A3F58963 		sub	r3, r3, #1096
+ 317 024c 9C42     		cmp	r4, r3
+ 318 024e 00F0E080 		beq	.L46
+ 319 0252 03F58063 		add	r3, r3, #1024
+ 320 0256 9C42     		cmp	r4, r3
+ 321 0258 00F0DB80 		beq	.L46
+ 322 025c A3F56873 		sub	r3, r3, #928
+ 323 0260 9C42     		cmp	r4, r3
+ 324 0262 00F0D680 		beq	.L46
+ 325 0266 03F58063 		add	r3, r3, #1024
+ 326 026a 9C42     		cmp	r4, r3
+ 327 026c 00F0D180 		beq	.L46
+ 328 0270 444B     		ldr	r3, .L102+4
+ 329 0272 4FF00061 		mov	r1, #134217728
+ 330 0276 9960     		str	r1, [r3, #8]
+ 331 0278 4FF00072 		mov	r2, #33554432
+ 332 027c 4FF08065 		mov	r5, #67108864
+ 333 0280 4FF08071 		mov	r1, #16777216
+ 334 0284 9D60     		str	r5, [r3, #8]
+ 335 0286 9A60     		str	r2, [r3, #8]
+ 336 0288 4FF48002 		mov	r2, #4194304
+ 337 028c 9960     		str	r1, [r3, #8]
+ 338              	.L79:
+ 339 028e 3D4B     		ldr	r3, .L102+4
+ 340 0290 9A60     		str	r2, [r3, #8]
+ 341 0292 46E7     		b	.L75
+ 342              	.L35:
+ 343 0294 3B4B     		ldr	r3, .L102+4
+ 344 0296 2021     		movs	r1, #32
+ 345 0298 9960     		str	r1, [r3, #8]
+ARM GAS  D:\Programs\cygwin64\tmp\ccj7k4pe.s 			page 7
+
+
+ 346 029a 0822     		movs	r2, #8
+ 347 029c 1025     		movs	r5, #16
+ 348 029e 0421     		movs	r1, #4
+ 349 02a0 9D60     		str	r5, [r3, #8]
+ 350 02a2 9A60     		str	r2, [r3, #8]
+ 351 02a4 0122     		movs	r2, #1
+ 352 02a6 9960     		str	r1, [r3, #8]
+ 353 02a8 F1E7     		b	.L79
+ 354              	.L48:
+ 355 02aa 3A4B     		ldr	r3, .L102+20
+ 356 02ac 9C42     		cmp	r4, r3
+ 357 02ae 4CD0     		beq	.L63
+ 358 02b0 03F58063 		add	r3, r3, #1024
+ 359 02b4 9C42     		cmp	r4, r3
+ 360 02b6 48D0     		beq	.L63
+ 361 02b8 A3F56873 		sub	r3, r3, #928
+ 362 02bc 9C42     		cmp	r4, r3
+ 363 02be 44D0     		beq	.L63
+ 364 02c0 03F58063 		add	r3, r3, #1024
+ 365 02c4 9C42     		cmp	r4, r3
+ 366 02c6 40D0     		beq	.L63
+ 367 02c8 A3F58963 		sub	r3, r3, #1096
+ 368 02cc 9C42     		cmp	r4, r3
+ 369 02ce 72D0     		beq	.L67
+ 370 02d0 03F58063 		add	r3, r3, #1024
+ 371 02d4 9C42     		cmp	r4, r3
+ 372 02d6 6ED0     		beq	.L67
+ 373 02d8 A3F56873 		sub	r3, r3, #928
+ 374 02dc 9C42     		cmp	r4, r3
+ 375 02de 6AD0     		beq	.L67
+ 376 02e0 03F58063 		add	r3, r3, #1024
+ 377 02e4 9C42     		cmp	r4, r3
+ 378 02e6 66D0     		beq	.L67
+ 379 02e8 A3F58963 		sub	r3, r3, #1096
+ 380 02ec 9C42     		cmp	r4, r3
+ 381 02ee 00F0A080 		beq	.L73
+ 382 02f2 03F58063 		add	r3, r3, #1024
+ 383 02f6 9C42     		cmp	r4, r3
+ 384 02f8 00F09B80 		beq	.L73
+ 385 02fc A3F56873 		sub	r3, r3, #928
+ 386 0300 9C42     		cmp	r4, r3
+ 387 0302 00F09680 		beq	.L73
+ 388 0306 03F58063 		add	r3, r3, #1024
+ 389 030a 9C42     		cmp	r4, r3
+ 390 030c 00F09180 		beq	.L73
+ 391 0310 1F4A     		ldr	r2, .L102+16
+ 392 0312 4FF00061 		mov	r1, #134217728
+ 393 0316 9160     		str	r1, [r2, #8]
+ 394 0318 4FF00073 		mov	r3, #33554432
+ 395 031c 4FF08065 		mov	r5, #67108864
+ 396 0320 4FF08071 		mov	r1, #16777216
+ 397 0324 9560     		str	r5, [r2, #8]
+ 398 0326 9360     		str	r3, [r2, #8]
+ 399 0328 4FF48003 		mov	r3, #4194304
+ 400 032c 9160     		str	r1, [r2, #8]
+ 401              	.L81:
+ 402 032e 184A     		ldr	r2, .L102+16
+ARM GAS  D:\Programs\cygwin64\tmp\ccj7k4pe.s 			page 8
+
+
+ 403 0330 9360     		str	r3, [r2, #8]
+ 404 0332 F6E6     		b	.L75
+ 405              	.L51:
+ 406 0334 164A     		ldr	r2, .L102+16
+ 407 0336 2021     		movs	r1, #32
+ 408 0338 D160     		str	r1, [r2, #12]
+ 409 033a 0823     		movs	r3, #8
+ 410 033c 1025     		movs	r5, #16
+ 411 033e 0421     		movs	r1, #4
+ 412 0340 D560     		str	r5, [r2, #12]
+ 413 0342 D360     		str	r3, [r2, #12]
+ 414 0344 0123     		movs	r3, #1
+ 415 0346 D160     		str	r1, [r2, #12]
+ 416 0348 52E7     		b	.L80
+ 417              	.L63:
+ 418 034a 114A     		ldr	r2, .L102+16
+ 419 034c 2021     		movs	r1, #32
+ 420 034e 9160     		str	r1, [r2, #8]
+ 421 0350 0823     		movs	r3, #8
+ 422 0352 1025     		movs	r5, #16
+ 423 0354 0421     		movs	r1, #4
+ 424 0356 9560     		str	r5, [r2, #8]
+ 425 0358 9360     		str	r3, [r2, #8]
+ 426 035a 0123     		movs	r3, #1
+ 427 035c 9160     		str	r1, [r2, #8]
+ 428 035e E6E7     		b	.L81
+ 429              	.L25:
+ 430 0360 084B     		ldr	r3, .L102+4
+ 431 0362 4FF40061 		mov	r1, #2048
+ 432 0366 D960     		str	r1, [r3, #12]
+ 433 0368 4FF40072 		mov	r2, #512
+ 434 036c 4FF48065 		mov	r5, #1024
+ 435 0370 4FF48071 		mov	r1, #256
+ 436 0374 DD60     		str	r5, [r3, #12]
+ 437 0376 DA60     		str	r2, [r3, #12]
+ 438 0378 4022     		movs	r2, #64
+ 439 037a D960     		str	r1, [r3, #12]
+ 440 037c CFE6     		b	.L78
+ 441              	.L103:
+ 442 037e 00BF     		.align	2
+ 443              	.L102:
+ 444 0380 58640240 		.word	1073898584
+ 445 0384 00640240 		.word	1073898496
+ 446 0388 B8600240 		.word	1073897656
+ 447 038c 58600240 		.word	1073897560
+ 448 0390 00600240 		.word	1073897472
+ 449 0394 10600240 		.word	1073897488
+ 450              	.L39:
+ 451 0398 364B     		ldr	r3, .L104
+ 452 039a 4FF40061 		mov	r1, #2048
+ 453 039e 9960     		str	r1, [r3, #8]
+ 454 03a0 4FF40072 		mov	r2, #512
+ 455 03a4 4FF48065 		mov	r5, #1024
+ 456 03a8 4FF48071 		mov	r1, #256
+ 457 03ac 9D60     		str	r5, [r3, #8]
+ 458 03ae 9A60     		str	r2, [r3, #8]
+ 459 03b0 4022     		movs	r2, #64
+ARM GAS  D:\Programs\cygwin64\tmp\ccj7k4pe.s 			page 9
+
+
+ 460 03b2 9960     		str	r1, [r3, #8]
+ 461 03b4 6BE7     		b	.L79
+ 462              	.L67:
+ 463 03b6 304A     		ldr	r2, .L104+4
+ 464 03b8 4FF40061 		mov	r1, #2048
+ 465 03bc 9160     		str	r1, [r2, #8]
+ 466 03be 4FF40073 		mov	r3, #512
+ 467 03c2 4FF48065 		mov	r5, #1024
+ 468 03c6 4FF48071 		mov	r1, #256
+ 469 03ca 9560     		str	r5, [r2, #8]
+ 470 03cc 9360     		str	r3, [r2, #8]
+ 471 03ce 4023     		movs	r3, #64
+ 472 03d0 9160     		str	r1, [r2, #8]
+ 473 03d2 ACE7     		b	.L81
+ 474              	.L53:
+ 475 03d4 284A     		ldr	r2, .L104+4
+ 476 03d6 4FF40061 		mov	r1, #2048
+ 477 03da D160     		str	r1, [r2, #12]
+ 478 03dc 4FF40073 		mov	r3, #512
+ 479 03e0 4FF48065 		mov	r5, #1024
+ 480 03e4 4FF48071 		mov	r1, #256
+ 481 03e8 D560     		str	r5, [r2, #12]
+ 482 03ea D360     		str	r3, [r2, #12]
+ 483 03ec 4023     		movs	r3, #64
+ 484 03ee D160     		str	r1, [r2, #12]
+ 485 03f0 FEE6     		b	.L80
+ 486              	.L31:
+ 487 03f2 204B     		ldr	r3, .L104
+ 488 03f4 4FF40011 		mov	r1, #2097152
+ 489 03f8 D960     		str	r1, [r3, #12]
+ 490 03fa 4FF40022 		mov	r2, #524288
+ 491 03fe 4FF48015 		mov	r5, #1048576
+ 492 0402 4FF48021 		mov	r1, #262144
+ 493 0406 DD60     		str	r5, [r3, #12]
+ 494 0408 DA60     		str	r2, [r3, #12]
+ 495 040a 4FF48032 		mov	r2, #65536
+ 496 040e D960     		str	r1, [r3, #12]
+ 497 0410 85E6     		b	.L78
+ 498              	.L46:
+ 499 0412 184B     		ldr	r3, .L104
+ 500 0414 4FF40011 		mov	r1, #2097152
+ 501 0418 9960     		str	r1, [r3, #8]
+ 502 041a 4FF40022 		mov	r2, #524288
+ 503 041e 4FF48015 		mov	r5, #1048576
+ 504 0422 4FF48021 		mov	r1, #262144
+ 505 0426 9D60     		str	r5, [r3, #8]
+ 506 0428 9A60     		str	r2, [r3, #8]
+ 507 042a 4FF48032 		mov	r2, #65536
+ 508 042e 9960     		str	r1, [r3, #8]
+ 509 0430 2DE7     		b	.L79
+ 510              	.L73:
+ 511 0432 114A     		ldr	r2, .L104+4
+ 512 0434 4FF40011 		mov	r1, #2097152
+ 513 0438 9160     		str	r1, [r2, #8]
+ 514 043a 4FF40023 		mov	r3, #524288
+ 515 043e 4FF48015 		mov	r5, #1048576
+ 516 0442 4FF48021 		mov	r1, #262144
+ARM GAS  D:\Programs\cygwin64\tmp\ccj7k4pe.s 			page 10
+
+
+ 517 0446 9560     		str	r5, [r2, #8]
+ 518 0448 9360     		str	r3, [r2, #8]
+ 519 044a 4FF48033 		mov	r3, #65536
+ 520 044e 9160     		str	r1, [r2, #8]
+ 521 0450 6DE7     		b	.L81
+ 522              	.L59:
+ 523 0452 094A     		ldr	r2, .L104+4
+ 524 0454 4FF40011 		mov	r1, #2097152
+ 525 0458 D160     		str	r1, [r2, #12]
+ 526 045a 4FF40023 		mov	r3, #524288
+ 527 045e 4FF48015 		mov	r5, #1048576
+ 528 0462 4FF48021 		mov	r1, #262144
+ 529 0466 D560     		str	r5, [r2, #12]
+ 530 0468 D360     		str	r3, [r2, #12]
+ 531 046a 4FF48033 		mov	r3, #65536
+ 532 046e D160     		str	r1, [r2, #12]
+ 533 0470 BEE6     		b	.L80
+ 534              	.L105:
+ 535 0472 00BF     		.align	2
+ 536              	.L104:
+ 537 0474 00640240 		.word	1073898496
+ 538 0478 00600240 		.word	1073897472
+ 540              		.section	.text.HAL_DMAEx_ChangeMemory,"ax",%progbits
+ 541              		.align	1
+ 542              		.p2align 2,,3
+ 543              		.global	HAL_DMAEx_ChangeMemory
+ 544              		.syntax unified
+ 545              		.thumb
+ 546              		.thumb_func
+ 547              		.fpu fpv4-sp-d16
+ 549              	HAL_DMAEx_ChangeMemory:
+ 550              		@ args = 0, pretend = 0, frame = 0
+ 551              		@ frame_needed = 0, uses_anonymous_args = 0
+ 552              		@ link register save eliminated.
+ 553 0000 0368     		ldr	r3, [r0]
+ 554 0002 12B9     		cbnz	r2, .L107
+ 555 0004 D960     		str	r1, [r3, #12]
+ 556 0006 0020     		movs	r0, #0
+ 557 0008 7047     		bx	lr
+ 558              	.L107:
+ 559 000a 1961     		str	r1, [r3, #16]
+ 560 000c 0020     		movs	r0, #0
+ 561 000e 7047     		bx	lr
+ 563              		.ident	"GCC: (GNU Tools for Arm Embedded Processors 8-2018-q4-major) 8.2.1 20181213 (release) [gcc
+ARM GAS  D:\Programs\cygwin64\tmp\ccj7k4pe.s 			page 11
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f4xx_hal_dma_ex.c
+D:\Programs\cygwin64\tmp\ccj7k4pe.s:16     .text.HAL_DMAEx_MultiBufferStart:00000000 $t
+D:\Programs\cygwin64\tmp\ccj7k4pe.s:25     .text.HAL_DMAEx_MultiBufferStart:00000000 HAL_DMAEx_MultiBufferStart
+D:\Programs\cygwin64\tmp\ccj7k4pe.s:75     .text.HAL_DMAEx_MultiBufferStart_IT:00000000 $t
+D:\Programs\cygwin64\tmp\ccj7k4pe.s:83     .text.HAL_DMAEx_MultiBufferStart_IT:00000000 HAL_DMAEx_MultiBufferStart_IT
+D:\Programs\cygwin64\tmp\ccj7k4pe.s:444    .text.HAL_DMAEx_MultiBufferStart_IT:00000380 $d
+D:\Programs\cygwin64\tmp\ccj7k4pe.s:451    .text.HAL_DMAEx_MultiBufferStart_IT:00000398 $t
+D:\Programs\cygwin64\tmp\ccj7k4pe.s:537    .text.HAL_DMAEx_MultiBufferStart_IT:00000474 $d
+D:\Programs\cygwin64\tmp\ccj7k4pe.s:541    .text.HAL_DMAEx_ChangeMemory:00000000 $t
+D:\Programs\cygwin64\tmp\ccj7k4pe.s:549    .text.HAL_DMAEx_ChangeMemory:00000000 HAL_DMAEx_ChangeMemory
+
+NO UNDEFINED SYMBOLS

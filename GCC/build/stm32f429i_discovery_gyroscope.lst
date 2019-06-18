@@ -1,0 +1,251 @@
+ARM GAS  D:\Programs\cygwin64\tmp\cc5JoMv7.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"stm32f429i_discovery_gyroscope.c"
+  14              		.text
+  15              		.section	.text.BSP_GYRO_Init,"ax",%progbits
+  16              		.align	1
+  17              		.p2align 2,,3
+  18              		.global	BSP_GYRO_Init
+  19              		.arch armv7e-m
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	BSP_GYRO_Init:
+  26              		@ args = 0, pretend = 0, frame = 0
+  27              		@ frame_needed = 0, uses_anonymous_args = 0
+  28 0000 38B5     		push	{r3, r4, r5, lr}
+  29 0002 0D4C     		ldr	r4, .L10
+  30 0004 A368     		ldr	r3, [r4, #8]
+  31 0006 9847     		blx	r3
+  32 0008 D428     		cmp	r0, #212
+  33 000a 05D0     		beq	.L4
+  34 000c A368     		ldr	r3, [r4, #8]
+  35 000e 9847     		blx	r3
+  36 0010 D528     		cmp	r0, #213
+  37 0012 01D0     		beq	.L4
+  38 0014 0120     		movs	r0, #1
+  39 0016 38BD     		pop	{r3, r4, r5, pc}
+  40              	.L4:
+  41 0018 084D     		ldr	r5, .L10+4
+  42 001a 2368     		ldr	r3, [r4]
+  43 001c 2C60     		str	r4, [r5]
+  44 001e 41F23F00 		movw	r0, #4159
+  45 0022 9847     		blx	r3
+  46 0024 2B68     		ldr	r3, [r5]
+  47 0026 0020     		movs	r0, #0
+  48 0028 9B6A     		ldr	r3, [r3, #40]
+  49 002a 9847     		blx	r3
+  50 002c 2B68     		ldr	r3, [r5]
+  51 002e 1020     		movs	r0, #16
+  52 0030 DB6A     		ldr	r3, [r3, #44]
+  53 0032 9847     		blx	r3
+  54 0034 0020     		movs	r0, #0
+  55 0036 38BD     		pop	{r3, r4, r5, pc}
+  56              	.L11:
+  57              		.align	2
+  58              	.L10:
+ARM GAS  D:\Programs\cygwin64\tmp\cc5JoMv7.s 			page 2
+
+
+  59 0038 00000000 		.word	L3gd20Drv
+  60 003c 00000000 		.word	.LANCHOR0
+  62              		.section	.text.BSP_GYRO_ReadID,"ax",%progbits
+  63              		.align	1
+  64              		.p2align 2,,3
+  65              		.global	BSP_GYRO_ReadID
+  66              		.syntax unified
+  67              		.thumb
+  68              		.thumb_func
+  69              		.fpu fpv4-sp-d16
+  71              	BSP_GYRO_ReadID:
+  72              		@ args = 0, pretend = 0, frame = 0
+  73              		@ frame_needed = 0, uses_anonymous_args = 0
+  74              		@ link register save eliminated.
+  75 0000 024B     		ldr	r3, .L14
+  76 0002 1B68     		ldr	r3, [r3]
+  77 0004 9868     		ldr	r0, [r3, #8]
+  78 0006 00B1     		cbz	r0, .L13
+  79 0008 0047     		bx	r0
+  80              	.L13:
+  81 000a 7047     		bx	lr
+  82              	.L15:
+  83              		.align	2
+  84              	.L14:
+  85 000c 00000000 		.word	.LANCHOR0
+  87              		.section	.text.BSP_GYRO_Reset,"ax",%progbits
+  88              		.align	1
+  89              		.p2align 2,,3
+  90              		.global	BSP_GYRO_Reset
+  91              		.syntax unified
+  92              		.thumb
+  93              		.thumb_func
+  94              		.fpu fpv4-sp-d16
+  96              	BSP_GYRO_Reset:
+  97              		@ args = 0, pretend = 0, frame = 0
+  98              		@ frame_needed = 0, uses_anonymous_args = 0
+  99              		@ link register save eliminated.
+ 100 0000 024B     		ldr	r3, .L18
+ 101 0002 1B68     		ldr	r3, [r3]
+ 102 0004 DB68     		ldr	r3, [r3, #12]
+ 103 0006 03B1     		cbz	r3, .L16
+ 104 0008 1847     		bx	r3	@ indirect register sibling call
+ 105              	.L16:
+ 106 000a 7047     		bx	lr
+ 107              	.L19:
+ 108              		.align	2
+ 109              	.L18:
+ 110 000c 00000000 		.word	.LANCHOR0
+ 112              		.section	.text.BSP_GYRO_ITConfig,"ax",%progbits
+ 113              		.align	1
+ 114              		.p2align 2,,3
+ 115              		.global	BSP_GYRO_ITConfig
+ 116              		.syntax unified
+ 117              		.thumb
+ 118              		.thumb_func
+ 119              		.fpu fpv4-sp-d16
+ 121              	BSP_GYRO_ITConfig:
+ARM GAS  D:\Programs\cygwin64\tmp\cc5JoMv7.s 			page 3
+
+
+ 122              		@ args = 0, pretend = 0, frame = 0
+ 123              		@ frame_needed = 0, uses_anonymous_args = 0
+ 124              		@ link register save eliminated.
+ 125 0000 054B     		ldr	r3, .L22
+ 126 0002 1B68     		ldr	r3, [r3]
+ 127 0004 5A69     		ldr	r2, [r3, #20]
+ 128 0006 32B1     		cbz	r2, .L20
+ 129 0008 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+ 130 000a 4178     		ldrb	r1, [r0, #1]	@ zero_extendqisi2
+ 131 000c 8078     		ldrb	r0, [r0, #2]	@ zero_extendqisi2
+ 132 000e 0B43     		orrs	r3, r3, r1
+ 133 0010 40EA0320 		orr	r0, r0, r3, lsl #8
+ 134 0014 1047     		bx	r2	@ indirect register sibling call
+ 135              	.L20:
+ 136 0016 7047     		bx	lr
+ 137              	.L23:
+ 138              		.align	2
+ 139              	.L22:
+ 140 0018 00000000 		.word	.LANCHOR0
+ 142              		.section	.text.BSP_GYRO_EnableIT,"ax",%progbits
+ 143              		.align	1
+ 144              		.p2align 2,,3
+ 145              		.global	BSP_GYRO_EnableIT
+ 146              		.syntax unified
+ 147              		.thumb
+ 148              		.thumb_func
+ 149              		.fpu fpv4-sp-d16
+ 151              	BSP_GYRO_EnableIT:
+ 152              		@ args = 0, pretend = 0, frame = 0
+ 153              		@ frame_needed = 0, uses_anonymous_args = 0
+ 154              		@ link register save eliminated.
+ 155 0000 024B     		ldr	r3, .L26
+ 156 0002 1B68     		ldr	r3, [r3]
+ 157 0004 9B69     		ldr	r3, [r3, #24]
+ 158 0006 03B1     		cbz	r3, .L24
+ 159 0008 1847     		bx	r3	@ indirect register sibling call
+ 160              	.L24:
+ 161 000a 7047     		bx	lr
+ 162              	.L27:
+ 163              		.align	2
+ 164              	.L26:
+ 165 000c 00000000 		.word	.LANCHOR0
+ 167              		.section	.text.BSP_GYRO_DisableIT,"ax",%progbits
+ 168              		.align	1
+ 169              		.p2align 2,,3
+ 170              		.global	BSP_GYRO_DisableIT
+ 171              		.syntax unified
+ 172              		.thumb
+ 173              		.thumb_func
+ 174              		.fpu fpv4-sp-d16
+ 176              	BSP_GYRO_DisableIT:
+ 177              		@ args = 0, pretend = 0, frame = 0
+ 178              		@ frame_needed = 0, uses_anonymous_args = 0
+ 179              		@ link register save eliminated.
+ 180 0000 024B     		ldr	r3, .L30
+ 181 0002 1B68     		ldr	r3, [r3]
+ 182 0004 DB69     		ldr	r3, [r3, #28]
+ARM GAS  D:\Programs\cygwin64\tmp\cc5JoMv7.s 			page 4
+
+
+ 183 0006 03B1     		cbz	r3, .L28
+ 184 0008 1847     		bx	r3	@ indirect register sibling call
+ 185              	.L28:
+ 186 000a 7047     		bx	lr
+ 187              	.L31:
+ 188              		.align	2
+ 189              	.L30:
+ 190 000c 00000000 		.word	.LANCHOR0
+ 192              		.section	.text.BSP_GYRO_GetXYZ,"ax",%progbits
+ 193              		.align	1
+ 194              		.p2align 2,,3
+ 195              		.global	BSP_GYRO_GetXYZ
+ 196              		.syntax unified
+ 197              		.thumb
+ 198              		.thumb_func
+ 199              		.fpu fpv4-sp-d16
+ 201              	BSP_GYRO_GetXYZ:
+ 202              		@ args = 0, pretend = 0, frame = 0
+ 203              		@ frame_needed = 0, uses_anonymous_args = 0
+ 204              		@ link register save eliminated.
+ 205 0000 024B     		ldr	r3, .L34
+ 206 0002 1B68     		ldr	r3, [r3]
+ 207 0004 1B6B     		ldr	r3, [r3, #48]
+ 208 0006 03B1     		cbz	r3, .L32
+ 209 0008 1847     		bx	r3	@ indirect register sibling call
+ 210              	.L32:
+ 211 000a 7047     		bx	lr
+ 212              	.L35:
+ 213              		.align	2
+ 214              	.L34:
+ 215 000c 00000000 		.word	.LANCHOR0
+ 217              		.section	.bss.GyroscopeDrv,"aw",%nobits
+ 218              		.align	2
+ 219              		.set	.LANCHOR0,. + 0
+ 222              	GyroscopeDrv:
+ 223 0000 00000000 		.space	4
+ 224              		.ident	"GCC: (GNU Tools for Arm Embedded Processors 8-2018-q4-major) 8.2.1 20181213 (release) [gcc
+ARM GAS  D:\Programs\cygwin64\tmp\cc5JoMv7.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f429i_discovery_gyroscope.c
+D:\Programs\cygwin64\tmp\cc5JoMv7.s:16     .text.BSP_GYRO_Init:00000000 $t
+D:\Programs\cygwin64\tmp\cc5JoMv7.s:25     .text.BSP_GYRO_Init:00000000 BSP_GYRO_Init
+D:\Programs\cygwin64\tmp\cc5JoMv7.s:59     .text.BSP_GYRO_Init:00000038 $d
+D:\Programs\cygwin64\tmp\cc5JoMv7.s:63     .text.BSP_GYRO_ReadID:00000000 $t
+D:\Programs\cygwin64\tmp\cc5JoMv7.s:71     .text.BSP_GYRO_ReadID:00000000 BSP_GYRO_ReadID
+D:\Programs\cygwin64\tmp\cc5JoMv7.s:85     .text.BSP_GYRO_ReadID:0000000c $d
+D:\Programs\cygwin64\tmp\cc5JoMv7.s:88     .text.BSP_GYRO_Reset:00000000 $t
+D:\Programs\cygwin64\tmp\cc5JoMv7.s:96     .text.BSP_GYRO_Reset:00000000 BSP_GYRO_Reset
+D:\Programs\cygwin64\tmp\cc5JoMv7.s:110    .text.BSP_GYRO_Reset:0000000c $d
+D:\Programs\cygwin64\tmp\cc5JoMv7.s:113    .text.BSP_GYRO_ITConfig:00000000 $t
+D:\Programs\cygwin64\tmp\cc5JoMv7.s:121    .text.BSP_GYRO_ITConfig:00000000 BSP_GYRO_ITConfig
+D:\Programs\cygwin64\tmp\cc5JoMv7.s:140    .text.BSP_GYRO_ITConfig:00000018 $d
+D:\Programs\cygwin64\tmp\cc5JoMv7.s:143    .text.BSP_GYRO_EnableIT:00000000 $t
+D:\Programs\cygwin64\tmp\cc5JoMv7.s:151    .text.BSP_GYRO_EnableIT:00000000 BSP_GYRO_EnableIT
+D:\Programs\cygwin64\tmp\cc5JoMv7.s:165    .text.BSP_GYRO_EnableIT:0000000c $d
+D:\Programs\cygwin64\tmp\cc5JoMv7.s:168    .text.BSP_GYRO_DisableIT:00000000 $t
+D:\Programs\cygwin64\tmp\cc5JoMv7.s:176    .text.BSP_GYRO_DisableIT:00000000 BSP_GYRO_DisableIT
+D:\Programs\cygwin64\tmp\cc5JoMv7.s:190    .text.BSP_GYRO_DisableIT:0000000c $d
+D:\Programs\cygwin64\tmp\cc5JoMv7.s:193    .text.BSP_GYRO_GetXYZ:00000000 $t
+D:\Programs\cygwin64\tmp\cc5JoMv7.s:201    .text.BSP_GYRO_GetXYZ:00000000 BSP_GYRO_GetXYZ
+D:\Programs\cygwin64\tmp\cc5JoMv7.s:215    .text.BSP_GYRO_GetXYZ:0000000c $d
+D:\Programs\cygwin64\tmp\cc5JoMv7.s:218    .bss.GyroscopeDrv:00000000 $d
+D:\Programs\cygwin64\tmp\cc5JoMv7.s:222    .bss.GyroscopeDrv:00000000 GyroscopeDrv
+
+UNDEFINED SYMBOLS
+L3gd20Drv

@@ -1,0 +1,1959 @@
+ARM GAS  D:\Programs\cygwin64\tmp\ccmCPgco.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"stm32f4xx_hal_eth.c"
+  14              		.text
+  15              		.section	.text.ETH_MACDMAConfig,"ax",%progbits
+  16              		.align	1
+  17              		.p2align 2,,3
+  18              		.arch armv7e-m
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu fpv4-sp-d16
+  24              	ETH_MACDMAConfig:
+  25              		@ args = 0, pretend = 0, frame = 0
+  26              		@ frame_needed = 0, uses_anonymous_args = 0
+  27 0000 70B5     		push	{r4, r5, r6, lr}
+  28 0002 0446     		mov	r4, r0
+  29 0004 0029     		cmp	r1, #0
+  30 0006 61D1     		bne	.L2
+  31 0008 D0E90231 		ldrd	r3, r1, [r0, #8]
+  32 000c 1943     		orrs	r1, r1, r3
+  33              	.L3:
+  34 000e E369     		ldr	r3, [r4, #28]
+  35 0010 0BB9     		cbnz	r3, .L4
+  36 0012 41F48061 		orr	r1, r1, #1024
+  37              	.L4:
+  38 0016 2268     		ldr	r2, [r4]
+  39 0018 314B     		ldr	r3, .L8
+  40 001a 1068     		ldr	r0, [r2]
+  41 001c 0340     		ands	r3, r3, r0
+  42 001e 0B43     		orrs	r3, r3, r1
+  43 0020 43F40073 		orr	r3, r3, #512
+  44 0024 1360     		str	r3, [r2]
+  45 0026 0120     		movs	r0, #1
+  46 0028 1568     		ldr	r5, [r2]
+  47 002a FFF7FEFF 		bl	HAL_Delay
+  48 002e 2368     		ldr	r3, [r4]
+  49 0030 4022     		movs	r2, #64
+  50 0032 1D60     		str	r5, [r3]
+  51 0034 0120     		movs	r0, #1
+  52 0036 5A60     		str	r2, [r3, #4]
+  53 0038 5E68     		ldr	r6, [r3, #4]
+  54 003a FFF7FEFF 		bl	HAL_Delay
+  55 003e 2368     		ldr	r3, [r4]
+  56 0040 0025     		movs	r5, #0
+  57 0042 5E60     		str	r6, [r3, #4]
+  58 0044 9D60     		str	r5, [r3, #8]
+ARM GAS  D:\Programs\cygwin64\tmp\ccmCPgco.s 			page 2
+
+
+  59 0046 DD60     		str	r5, [r3, #12]
+  60 0048 9A69     		ldr	r2, [r3, #24]
+  61 004a 4FF64171 		movw	r1, #65345
+  62 004e 0A40     		ands	r2, r2, r1
+  63 0050 42F08002 		orr	r2, r2, #128
+  64 0054 9A61     		str	r2, [r3, #24]
+  65 0056 0120     		movs	r0, #1
+  66 0058 9E69     		ldr	r6, [r3, #24]
+  67 005a FFF7FEFF 		bl	HAL_Delay
+  68 005e 2368     		ldr	r3, [r4]
+  69 0060 0120     		movs	r0, #1
+  70 0062 9E61     		str	r6, [r3, #24]
+  71 0064 DD61     		str	r5, [r3, #28]
+  72 0066 DD69     		ldr	r5, [r3, #28]
+  73 0068 FFF7FEFF 		bl	HAL_Delay
+  74 006c 2268     		ldr	r2, [r4]
+  75 006e 1D4B     		ldr	r3, .L8+4
+  76 0070 D561     		str	r5, [r2, #28]
+  77 0072 41F21805 		movw	r5, #4120
+  78 0076 0120     		movs	r0, #1
+  79 0078 5159     		ldr	r1, [r2, r5]
+  80 007a 0B40     		ands	r3, r3, r1
+  81 007c 43F00873 		orr	r3, r3, #35651584
+  82 0080 43F00403 		orr	r3, r3, #4
+  83 0084 5351     		str	r3, [r2, r5]
+  84 0086 5659     		ldr	r6, [r2, r5]
+  85 0088 FFF7FEFF 		bl	HAL_Delay
+  86 008c 2368     		ldr	r3, [r4]
+  87 008e 164A     		ldr	r2, .L8+8
+  88 0090 5E51     		str	r6, [r3, r5]
+  89 0092 03F58053 		add	r3, r3, #4096
+  90 0096 0120     		movs	r0, #1
+  91 0098 1A60     		str	r2, [r3]
+  92 009a 1D68     		ldr	r5, [r3]
+  93 009c FFF7FEFF 		bl	HAL_Delay
+  94 00a0 2368     		ldr	r3, [r4]
+  95 00a2 A269     		ldr	r2, [r4, #24]
+  96 00a4 03F58051 		add	r1, r3, #4096
+  97 00a8 012A     		cmp	r2, #1
+  98 00aa 0D60     		str	r5, [r1]
+  99 00ac 07D1     		bne	.L5
+ 100 00ae 41F21C01 		movw	r1, #4124
+ 101 00b2 5A58     		ldr	r2, [r3, r1]
+ 102 00b4 42F48032 		orr	r2, r2, #65536
+ 103 00b8 42F04002 		orr	r2, r2, #64
+ 104 00bc 5A50     		str	r2, [r3, r1]
+ 105              	.L5:
+ 106 00be 6369     		ldr	r3, [r4, #20]
+ 107 00c0 0A4A     		ldr	r2, .L8+12
+ 108 00c2 9988     		ldrh	r1, [r3, #4]	@ unaligned
+ 109 00c4 1160     		str	r1, [r2]
+ 110 00c6 1B68     		ldr	r3, [r3]	@ unaligned
+ 111 00c8 5360     		str	r3, [r2, #4]
+ 112 00ca 70BD     		pop	{r4, r5, r6, pc}
+ 113              	.L2:
+ 114 00cc 4FF48043 		mov	r3, #16384
+ 115 00d0 4FF40062 		mov	r2, #2048
+ARM GAS  D:\Programs\cygwin64\tmp\ccmCPgco.s 			page 3
+
+
+ 116 00d4 C0E90232 		strd	r3, r2, [r0, #8]
+ 117 00d8 4FF49041 		mov	r1, #18432
+ 118 00dc 97E7     		b	.L3
+ 119              	.L9:
+ 120 00de 00BF     		.align	2
+ 121              	.L8:
+ 122 00e0 0F8120FF 		.word	-14647025
+ 123 00e4 233FDEF8 		.word	-119652573
+ 124 00e8 8020C102 		.word	46211200
+ 125 00ec 40800240 		.word	1073905728
+ 127              		.section	.text.HAL_ETH_DMATxDescListInit,"ax",%progbits
+ 128              		.align	1
+ 129              		.p2align 2,,3
+ 130              		.global	HAL_ETH_DMATxDescListInit
+ 131              		.syntax unified
+ 132              		.thumb
+ 133              		.thumb_func
+ 134              		.fpu fpv4-sp-d16
+ 136              	HAL_ETH_DMATxDescListInit:
+ 137              		@ args = 0, pretend = 0, frame = 0
+ 138              		@ frame_needed = 0, uses_anonymous_args = 0
+ 139 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 140 0004 90F84540 		ldrb	r4, [r0, #69]	@ zero_extendqisi2
+ 141 0008 012C     		cmp	r4, #1
+ 142 000a 75D0     		beq	.L24
+ 143 000c 0125     		movs	r5, #1
+ 144 000e 0224     		movs	r4, #2
+ 145 0010 C162     		str	r1, [r0, #44]
+ 146 0012 80F84550 		strb	r5, [r0, #69]
+ 147 0016 80F84440 		strb	r4, [r0, #68]
+ 148 001a 63B3     		cbz	r3, .L21
+ 149 001c C569     		ldr	r5, [r0, #28]
+ 150 001e 5C1E     		subs	r4, r3, #1
+ 151 0020 BDB3     		cbz	r5, .L13
+ 152 0022 B4B1     		cbz	r4, .L14
+ 153 0024 9C42     		cmp	r4, r3
+ 154 0026 28BF     		it	cs
+ 155 0028 1C46     		movcs	r4, r3
+ 156 002a A646     		mov	lr, r4
+ 157 002c 1646     		mov	r6, r2
+ 158 002e 0D46     		mov	r5, r1
+ 159 0030 0024     		movs	r4, #0
+ 160 0032 4FF4801C 		mov	ip, #1048576
+ 161              	.L15:
+ 162 0036 2F46     		mov	r7, r5
+ 163 0038 0134     		adds	r4, r4, #1
+ 164 003a AE60     		str	r6, [r5, #8]
+ 165 003c C5F800C0 		str	ip, [r5]
+ 166 0040 7445     		cmp	r4, lr
+ 167 0042 05F12005 		add	r5, r5, #32
+ 168 0046 06F2F456 		addw	r6, r6, #1524
+ 169 004a FD60     		str	r5, [r7, #12]
+ 170 004c F3D3     		bcc	.L15
+ 171 004e 9C42     		cmp	r4, r3
+ 172 0050 11D2     		bcs	.L21
+ 173              	.L14:
+ 174 0052 40F2F455 		movw	r5, #1524
+ARM GAS  D:\Programs\cygwin64\tmp\ccmCPgco.s 			page 4
+
+
+ 175 0056 05FB0422 		mla	r2, r5, r4, r2
+ 176 005a 4FF48016 		mov	r6, #1048576
+ 177 005e 01EB4415 		add	r5, r1, r4, lsl #5
+ 178              	.L17:
+ 179 0062 0134     		adds	r4, r4, #1
+ 180 0064 A342     		cmp	r3, r4
+ 181 0066 C5E90221 		strd	r2, r1, [r5, #8]
+ 182 006a 2E60     		str	r6, [r5]
+ 183 006c 02F2F452 		addw	r2, r2, #1524
+ 184 0070 05F12005 		add	r5, r5, #32
+ 185 0074 F5D8     		bhi	.L17
+ 186              	.L21:
+ 187 0076 0568     		ldr	r5, [r0]
+ 188 0078 41F21002 		movw	r2, #4112
+ 189 007c 0023     		movs	r3, #0
+ 190 007e A950     		str	r1, [r5, r2]
+ 191 0080 0124     		movs	r4, #1
+ 192 0082 1A46     		mov	r2, r3
+ 193 0084 80F84440 		strb	r4, [r0, #68]
+ 194 0088 80F84530 		strb	r3, [r0, #69]
+ 195 008c 1046     		mov	r0, r2
+ 196 008e BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 197              	.L13:
+ 198 0092 D4B1     		cbz	r4, .L19
+ 199 0094 9C42     		cmp	r4, r3
+ 200 0096 28BF     		it	cs
+ 201 0098 1C46     		movcs	r4, r3
+ 202 009a A046     		mov	r8, r4
+ 203 009c 1746     		mov	r7, r2
+ 204 009e 2C46     		mov	r4, r5
+ 205 00a0 4FF4801E 		mov	lr, #1048576
+ 206 00a4 0D46     		mov	r5, r1
+ 207              	.L20:
+ 208 00a6 C5F800E0 		str	lr, [r5]
+ 209 00aa 2E68     		ldr	r6, [r5]
+ 210 00ac AF60     		str	r7, [r5, #8]
+ 211 00ae 46F44006 		orr	r6, r6, #12582912
+ 212 00b2 AC46     		mov	ip, r5
+ 213 00b4 0134     		adds	r4, r4, #1
+ 214 00b6 45F8206B 		str	r6, [r5], #32
+ 215 00ba 4445     		cmp	r4, r8
+ 216 00bc 07F2F457 		addw	r7, r7, #1524
+ 217 00c0 CCF80C50 		str	r5, [ip, #12]
+ 218 00c4 EFD3     		bcc	.L20
+ 219 00c6 A342     		cmp	r3, r4
+ 220 00c8 D5D9     		bls	.L21
+ 221              	.L19:
+ 222 00ca 40F2F455 		movw	r5, #1524
+ 223 00ce 05FB0422 		mla	r2, r5, r4, r2
+ 224 00d2 4FF48017 		mov	r7, #1048576
+ 225 00d6 01EB4415 		add	r5, r1, r4, lsl #5
+ 226              	.L22:
+ 227 00da 2F60     		str	r7, [r5]
+ 228 00dc 2E68     		ldr	r6, [r5]
+ 229 00de AA60     		str	r2, [r5, #8]
+ 230 00e0 0134     		adds	r4, r4, #1
+ 231 00e2 46F44006 		orr	r6, r6, #12582912
+ARM GAS  D:\Programs\cygwin64\tmp\ccmCPgco.s 			page 5
+
+
+ 232 00e6 A342     		cmp	r3, r4
+ 233 00e8 E960     		str	r1, [r5, #12]
+ 234 00ea 2E60     		str	r6, [r5]
+ 235 00ec 02F2F452 		addw	r2, r2, #1524
+ 236 00f0 05F12005 		add	r5, r5, #32
+ 237 00f4 F1D8     		bhi	.L22
+ 238 00f6 BEE7     		b	.L21
+ 239              	.L24:
+ 240 00f8 0222     		movs	r2, #2
+ 241 00fa 1046     		mov	r0, r2
+ 242 00fc BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 244              		.section	.text.HAL_ETH_DMARxDescListInit,"ax",%progbits
+ 245              		.align	1
+ 246              		.p2align 2,,3
+ 247              		.global	HAL_ETH_DMARxDescListInit
+ 248              		.syntax unified
+ 249              		.thumb
+ 250              		.thumb_func
+ 251              		.fpu fpv4-sp-d16
+ 253              	HAL_ETH_DMARxDescListInit:
+ 254              		@ args = 0, pretend = 0, frame = 0
+ 255              		@ frame_needed = 0, uses_anonymous_args = 0
+ 256 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 257 0004 90F84540 		ldrb	r4, [r0, #69]	@ zero_extendqisi2
+ 258 0008 012C     		cmp	r4, #1
+ 259 000a 47D0     		beq	.L43
+ 260 000c 9046     		mov	r8, r2
+ 261 000e 0124     		movs	r4, #1
+ 262 0010 0222     		movs	r2, #2
+ 263 0012 8162     		str	r1, [r0, #40]
+ 264 0014 80F84540 		strb	r4, [r0, #69]
+ 265 0018 80F84420 		strb	r2, [r0, #68]
+ 266 001c 83B3     		cbz	r3, .L41
+ 267 001e 5D1E     		subs	r5, r3, #1
+ 268 0020 19D0     		beq	.L39
+ 269 0022 9D42     		cmp	r5, r3
+ 270 0024 28BF     		it	cs
+ 271 0026 1D46     		movcs	r5, r3
+ 272 0028 AE46     		mov	lr, r5
+ 273 002a 4646     		mov	r6, r8
+ 274 002c 0C46     		mov	r4, r1
+ 275 002e 0025     		movs	r5, #0
+ 276 0030 4FF0004C 		mov	ip, #-2147483648
+ 277 0034 44F2F452 		movw	r2, #17908
+ 278              	.L40:
+ 279 0038 2746     		mov	r7, r4
+ 280 003a 0135     		adds	r5, r5, #1
+ 281 003c C4E90126 		strd	r2, r6, [r4, #4]
+ 282 0040 C4F800C0 		str	ip, [r4]
+ 283 0044 7545     		cmp	r5, lr
+ 284 0046 04F12004 		add	r4, r4, #32
+ 285 004a 06F2F456 		addw	r6, r6, #1524
+ 286 004e FC60     		str	r4, [r7, #12]
+ 287 0050 F2D3     		bcc	.L40
+ 288 0052 AB42     		cmp	r3, r5
+ 289 0054 14D9     		bls	.L41
+ 290              	.L39:
+ARM GAS  D:\Programs\cygwin64\tmp\ccmCPgco.s 			page 6
+
+
+ 291 0056 40F2F454 		movw	r4, #1524
+ 292 005a 04FB0582 		mla	r2, r4, r5, r8
+ 293 005e 4FF00047 		mov	r7, #-2147483648
+ 294 0062 01EB4514 		add	r4, r1, r5, lsl #5
+ 295 0066 44F2F456 		movw	r6, #17908
+ 296              	.L42:
+ 297 006a 0135     		adds	r5, r5, #1
+ 298 006c AB42     		cmp	r3, r5
+ 299 006e C4E90162 		strd	r6, r2, [r4, #4]
+ 300 0072 2760     		str	r7, [r4]
+ 301 0074 E160     		str	r1, [r4, #12]
+ 302 0076 02F2F452 		addw	r2, r2, #1524
+ 303 007a 04F12004 		add	r4, r4, #32
+ 304 007e F4D8     		bhi	.L42
+ 305              	.L41:
+ 306 0080 0568     		ldr	r5, [r0]
+ 307 0082 41F20C02 		movw	r2, #4108
+ 308 0086 0023     		movs	r3, #0
+ 309 0088 A950     		str	r1, [r5, r2]
+ 310 008a 0124     		movs	r4, #1
+ 311 008c 1A46     		mov	r2, r3
+ 312 008e 80F84440 		strb	r4, [r0, #68]
+ 313 0092 80F84530 		strb	r3, [r0, #69]
+ 314 0096 1046     		mov	r0, r2
+ 315 0098 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 316              	.L43:
+ 317 009c 0222     		movs	r2, #2
+ 318 009e 1046     		mov	r0, r2
+ 319 00a0 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 321              		.section	.text.HAL_ETH_MspInit,"ax",%progbits
+ 322              		.align	1
+ 323              		.p2align 2,,3
+ 324              		.weak	HAL_ETH_MspInit
+ 325              		.syntax unified
+ 326              		.thumb
+ 327              		.thumb_func
+ 328              		.fpu fpv4-sp-d16
+ 330              	HAL_ETH_MspInit:
+ 331              		@ args = 0, pretend = 0, frame = 0
+ 332              		@ frame_needed = 0, uses_anonymous_args = 0
+ 333              		@ link register save eliminated.
+ 334 0000 7047     		bx	lr
+ 336 0002 00BF     		.section	.text.HAL_ETH_Init,"ax",%progbits
+ 337              		.align	1
+ 338              		.p2align 2,,3
+ 339              		.global	HAL_ETH_Init
+ 340              		.syntax unified
+ 341              		.thumb
+ 342              		.thumb_func
+ 343              		.fpu fpv4-sp-d16
+ 345              	HAL_ETH_Init:
+ 346              		@ args = 0, pretend = 0, frame = 8
+ 347              		@ frame_needed = 0, uses_anonymous_args = 0
+ 348 0000 0028     		cmp	r0, #0
+ 349 0002 00F02E81 		beq	.L87
+ 350 0006 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 351 000a 90F84430 		ldrb	r3, [r0, #68]	@ zero_extendqisi2
+ARM GAS  D:\Programs\cygwin64\tmp\ccmCPgco.s 			page 7
+
+
+ 352 000e 82B0     		sub	sp, sp, #8
+ 353 0010 0446     		mov	r4, r0
+ 354 0012 03F0FF02 		and	r2, r3, #255
+ 355 0016 002B     		cmp	r3, #0
+ 356 0018 00F0D880 		beq	.L127
+ 357              	.L53:
+ 358 001c B049     		ldr	r1, .L137
+ 359 001e B14A     		ldr	r2, .L137+4
+ 360 0020 0023     		movs	r3, #0
+ 361 0022 0193     		str	r3, [sp, #4]
+ 362 0024 486C     		ldr	r0, [r1, #68]
+ 363 0026 2368     		ldr	r3, [r4]
+ 364 0028 40F48040 		orr	r0, r0, #16384
+ 365 002c 4864     		str	r0, [r1, #68]
+ 366 002e 496C     		ldr	r1, [r1, #68]
+ 367 0030 01F48041 		and	r1, r1, #16384
+ 368 0034 0191     		str	r1, [sp, #4]
+ 369 0036 0199     		ldr	r1, [sp, #4]
+ 370 0038 5168     		ldr	r1, [r2, #4]
+ 371 003a 21F40001 		bic	r1, r1, #8388608
+ 372 003e 5160     		str	r1, [r2, #4]
+ 373 0040 5168     		ldr	r1, [r2, #4]
+ 374 0042 206A     		ldr	r0, [r4, #32]
+ 375 0044 03F58053 		add	r3, r3, #4096
+ 376 0048 0143     		orrs	r1, r1, r0
+ 377 004a 5160     		str	r1, [r2, #4]
+ 378 004c 1A68     		ldr	r2, [r3]
+ 379 004e 42F00102 		orr	r2, r2, #1
+ 380 0052 1A60     		str	r2, [r3]
+ 381 0054 FFF7FEFF 		bl	HAL_GetTick
+ 382 0058 0546     		mov	r5, r0
+ 383 005a 05E0     		b	.L54
+ 384              	.L55:
+ 385 005c FFF7FEFF 		bl	HAL_GetTick
+ 386 0060 401B     		subs	r0, r0, r5
+ 387 0062 B0F5FA7F 		cmp	r0, #500
+ 388 0066 47D8     		bhi	.L128
+ 389              	.L54:
+ 390 0068 2368     		ldr	r3, [r4]
+ 391 006a 03F58052 		add	r2, r3, #4096
+ 392 006e 1268     		ldr	r2, [r2]
+ 393 0070 D107     		lsls	r1, r2, #31
+ 394 0072 F3D4     		bmi	.L55
+ 395 0074 1D69     		ldr	r5, [r3, #16]
+ 396 0076 FFF7FEFF 		bl	HAL_RCC_GetHCLKFreq
+ 397 007a 9B4B     		ldr	r3, .L137+8
+ 398 007c 9B4A     		ldr	r2, .L137+12
+ 399 007e 0344     		add	r3, r3, r0
+ 400 0080 9342     		cmp	r3, r2
+ 401 0082 25F01C05 		bic	r5, r5, #28
+ 402 0086 00F2A680 		bhi	.L56
+ 403 008a 45F00805 		orr	r5, r5, #8
+ 404              	.L57:
+ 405 008e 2268     		ldr	r2, [r4]
+ 406 0090 1561     		str	r5, [r2, #16]
+ 407 0092 94F84430 		ldrb	r3, [r4, #68]	@ zero_extendqisi2
+ 408 0096 422B     		cmp	r3, #66
+ARM GAS  D:\Programs\cygwin64\tmp\ccmCPgco.s 			page 8
+
+
+ 409 0098 24D0     		beq	.L84
+ 410 009a 4223     		movs	r3, #66
+ 411 009c 84F84430 		strb	r3, [r4, #68]
+ 412 00a0 238A     		ldrh	r3, [r4, #16]
+ 413 00a2 1169     		ldr	r1, [r2, #16]
+ 414 00a4 DB02     		lsls	r3, r3, #11
+ 415 00a6 01F01C01 		and	r1, r1, #28
+ 416 00aa 9BB2     		uxth	r3, r3
+ 417 00ac 0B43     		orrs	r3, r3, r1
+ 418 00ae 43F00303 		orr	r3, r3, #3
+ 419 00b2 4FF40041 		mov	r1, #32768
+ 420 00b6 5161     		str	r1, [r2, #20]
+ 421 00b8 1361     		str	r3, [r2, #16]
+ 422 00ba FFF7FEFF 		bl	HAL_GetTick
+ 423 00be 0646     		mov	r6, r0
+ 424 00c0 04E0     		b	.L62
+ 425              	.L61:
+ 426 00c2 2368     		ldr	r3, [r4]
+ 427 00c4 1D69     		ldr	r5, [r3, #16]
+ 428 00c6 15F00105 		ands	r5, r5, #1
+ 429 00ca 1ED0     		beq	.L129
+ 430              	.L62:
+ 431 00cc FFF7FEFF 		bl	HAL_GetTick
+ 432 00d0 801B     		subs	r0, r0, r6
+ 433 00d2 B0F5803F 		cmp	r0, #65536
+ 434 00d6 F4D3     		bcc	.L61
+ 435              	.L126:
+ 436 00d8 0122     		movs	r2, #1
+ 437 00da 0023     		movs	r3, #0
+ 438 00dc 84F84420 		strb	r2, [r4, #68]
+ 439 00e0 84F84530 		strb	r3, [r4, #69]
+ 440              	.L84:
+ 441 00e4 2046     		mov	r0, r4
+ 442 00e6 0121     		movs	r1, #1
+ 443 00e8 FFF7FEFF 		bl	ETH_MACDMAConfig
+ 444 00ec 0120     		movs	r0, #1
+ 445 00ee 84F84400 		strb	r0, [r4, #68]
+ 446              	.L52:
+ 447 00f2 02B0     		add	sp, sp, #8
+ 448              		@ sp needed
+ 449 00f4 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 450              	.L128:
+ 451 00f8 0320     		movs	r0, #3
+ 452 00fa 0023     		movs	r3, #0
+ 453 00fc 84F84400 		strb	r0, [r4, #68]
+ 454 0100 84F84530 		strb	r3, [r4, #69]
+ 455 0104 02B0     		add	sp, sp, #8
+ 456              		@ sp needed
+ 457 0106 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 458              	.L129:
+ 459 010a 0127     		movs	r7, #1
+ 460 010c 84F84470 		strb	r7, [r4, #68]
+ 461 0110 FF20     		movs	r0, #255
+ 462 0112 FFF7FEFF 		bl	HAL_Delay
+ 463 0116 6368     		ldr	r3, [r4, #4]
+ 464 0118 002B     		cmp	r3, #0
+ 465 011a 71D0     		beq	.L130
+ARM GAS  D:\Programs\cygwin64\tmp\ccmCPgco.s 			page 9
+
+
+ 466 011c FFF7FEFF 		bl	HAL_GetTick
+ 467 0120 AA46     		mov	r10, r5
+ 468 0122 8046     		mov	r8, r0
+ 469 0124 4FF08209 		mov	r9, #130
+ 470              	.L69:
+ 471 0128 94F84430 		ldrb	r3, [r4, #68]	@ zero_extendqisi2
+ 472 012c 822B     		cmp	r3, #130
+ 473 012e 1ED0     		beq	.L65
+ 474 0130 2168     		ldr	r1, [r4]
+ 475 0132 84F84490 		strb	r9, [r4, #68]
+ 476 0136 238A     		ldrh	r3, [r4, #16]
+ 477 0138 0A69     		ldr	r2, [r1, #16]
+ 478 013a DB02     		lsls	r3, r3, #11
+ 479 013c 02F01C02 		and	r2, r2, #28
+ 480 0140 9BB2     		uxth	r3, r3
+ 481 0142 1343     		orrs	r3, r3, r2
+ 482 0144 43F04103 		orr	r3, r3, #65
+ 483 0148 0B61     		str	r3, [r1, #16]
+ 484 014a FFF7FEFF 		bl	HAL_GetTick
+ 485 014e 0646     		mov	r6, r0
+ 486 0150 03E0     		b	.L67
+ 487              	.L66:
+ 488 0152 2368     		ldr	r3, [r4]
+ 489 0154 1A69     		ldr	r2, [r3, #16]
+ 490 0156 D207     		lsls	r2, r2, #31
+ 491 0158 7ED5     		bpl	.L131
+ 492              	.L67:
+ 493 015a FFF7FEFF 		bl	HAL_GetTick
+ 494 015e 801B     		subs	r0, r0, r6
+ 495 0160 B0F5803F 		cmp	r0, #65536
+ 496 0164 F5D3     		bcc	.L66
+ 497 0166 84F84470 		strb	r7, [r4, #68]
+ 498 016a 84F845A0 		strb	r10, [r4, #69]
+ 499              	.L65:
+ 500 016e FFF7FEFF 		bl	HAL_GetTick
+ 501 0172 41F28833 		movw	r3, #5000
+ 502 0176 A0EB0800 		sub	r0, r0, r8
+ 503 017a 9842     		cmp	r0, r3
+ 504 017c 73D8     		bhi	.L125
+ 505 017e 6E07     		lsls	r6, r5, #29
+ 506 0180 D2D5     		bpl	.L69
+ 507 0182 94F84430 		ldrb	r3, [r4, #68]	@ zero_extendqisi2
+ 508 0186 422B     		cmp	r3, #66
+ 509 0188 ACD0     		beq	.L84
+ 510 018a 2268     		ldr	r2, [r4]
+ 511 018c 4223     		movs	r3, #66
+ 512 018e 84F84430 		strb	r3, [r4, #68]
+ 513 0192 238A     		ldrh	r3, [r4, #16]
+ 514 0194 1169     		ldr	r1, [r2, #16]
+ 515 0196 DB02     		lsls	r3, r3, #11
+ 516 0198 01F01C01 		and	r1, r1, #28
+ 517 019c 9BB2     		uxth	r3, r3
+ 518 019e 0B43     		orrs	r3, r3, r1
+ 519 01a0 43F00303 		orr	r3, r3, #3
+ 520 01a4 4FF48051 		mov	r1, #4096
+ 521 01a8 5161     		str	r1, [r2, #20]
+ 522 01aa 1361     		str	r3, [r2, #16]
+ARM GAS  D:\Programs\cygwin64\tmp\ccmCPgco.s 			page 10
+
+
+ 523 01ac FFF7FEFF 		bl	HAL_GetTick
+ 524 01b0 0646     		mov	r6, r0
+ 525 01b2 04E0     		b	.L72
+ 526              	.L71:
+ 527 01b4 2368     		ldr	r3, [r4]
+ 528 01b6 1F69     		ldr	r7, [r3, #16]
+ 529 01b8 17F00107 		ands	r7, r7, #1
+ 530 01bc 71D0     		beq	.L132
+ 531              	.L72:
+ 532 01be FFF7FEFF 		bl	HAL_GetTick
+ 533 01c2 801B     		subs	r0, r0, r6
+ 534 01c4 B0F5803F 		cmp	r0, #65536
+ 535 01c8 F4D3     		bcc	.L71
+ 536 01ca 85E7     		b	.L126
+ 537              	.L127:
+ 538 01cc 80F84520 		strb	r2, [r0, #69]
+ 539 01d0 FFF7FEFF 		bl	HAL_ETH_MspInit
+ 540 01d4 22E7     		b	.L53
+ 541              	.L56:
+ 542 01d6 464B     		ldr	r3, .L137+16
+ 543 01d8 464A     		ldr	r2, .L137+20
+ 544 01da 0344     		add	r3, r3, r0
+ 545 01dc 9342     		cmp	r3, r2
+ 546 01de 38D9     		bls	.L133
+ 547 01e0 454B     		ldr	r3, .L137+24
+ 548 01e2 464A     		ldr	r2, .L137+28
+ 549 01e4 0344     		add	r3, r3, r0
+ 550 01e6 9342     		cmp	r3, r2
+ 551 01e8 7FF651AF 		bls	.L57
+ 552 01ec 444B     		ldr	r3, .L137+32
+ 553 01ee 454A     		ldr	r2, .L137+36
+ 554 01f0 0344     		add	r3, r3, r0
+ 555 01f2 9342     		cmp	r3, r2
+ 556 01f4 94BF     		ite	ls
+ 557 01f6 45F00405 		orrls	r5, r5, #4
+ 558 01fa 45F01005 		orrhi	r5, r5, #16
+ 559 01fe 46E7     		b	.L57
+ 560              	.L130:
+ 561 0200 D4E90232 		ldrd	r3, r2, [r4, #8]
+ 562 0204 94F84410 		ldrb	r1, [r4, #68]	@ zero_extendqisi2
+ 563 0208 5B08     		lsrs	r3, r3, #1
+ 564 020a 43EAD203 		orr	r3, r3, r2, lsr #3
+ 565 020e 4229     		cmp	r1, #66
+ 566 0210 9AB2     		uxth	r2, r3
+ 567 0212 3FF467AF 		beq	.L84
+ 568 0216 2168     		ldr	r1, [r4]
+ 569 0218 4223     		movs	r3, #66
+ 570 021a 84F84430 		strb	r3, [r4, #68]
+ 571 021e 238A     		ldrh	r3, [r4, #16]
+ 572 0220 0869     		ldr	r0, [r1, #16]
+ 573 0222 4A61     		str	r2, [r1, #20]
+ 574 0224 DB02     		lsls	r3, r3, #11
+ 575 0226 00F01C02 		and	r2, r0, #28
+ 576 022a 9BB2     		uxth	r3, r3
+ 577 022c 1343     		orrs	r3, r3, r2
+ 578 022e 43F00303 		orr	r3, r3, #3
+ 579 0232 0B61     		str	r3, [r1, #16]
+ARM GAS  D:\Programs\cygwin64\tmp\ccmCPgco.s 			page 11
+
+
+ 580 0234 FFF7FEFF 		bl	HAL_GetTick
+ 581 0238 0546     		mov	r5, r0
+ 582 023a 03E0     		b	.L86
+ 583              	.L85:
+ 584 023c 2368     		ldr	r3, [r4]
+ 585 023e 1B69     		ldr	r3, [r3, #16]
+ 586 0240 DB07     		lsls	r3, r3, #31
+ 587 0242 1CD5     		bpl	.L134
+ 588              	.L86:
+ 589 0244 FFF7FEFF 		bl	HAL_GetTick
+ 590 0248 401B     		subs	r0, r0, r5
+ 591 024a B0F5803F 		cmp	r0, #65536
+ 592 024e F5D3     		bcc	.L85
+ 593 0250 42E7     		b	.L126
+ 594              	.L133:
+ 595 0252 45F00C05 		orr	r5, r5, #12
+ 596 0256 1AE7     		b	.L57
+ 597              	.L131:
+ 598 0258 5D69     		ldr	r5, [r3, #20]
+ 599 025a 84F84470 		strb	r7, [r4, #68]
+ 600 025e ADB2     		uxth	r5, r5
+ 601 0260 85E7     		b	.L65
+ 602              	.L87:
+ 603 0262 0120     		movs	r0, #1
+ 604 0264 7047     		bx	lr
+ 605              	.L125:
+ 606 0266 2046     		mov	r0, r4
+ 607 0268 0121     		movs	r1, #1
+ 608 026a FFF7FEFF 		bl	ETH_MACDMAConfig
+ 609 026e 0122     		movs	r2, #1
+ 610 0270 0023     		movs	r3, #0
+ 611 0272 84F84420 		strb	r2, [r4, #68]
+ 612 0276 84F84530 		strb	r3, [r4, #69]
+ 613 027a 0320     		movs	r0, #3
+ 614 027c 39E7     		b	.L52
+ 615              	.L134:
+ 616 027e 0123     		movs	r3, #1
+ 617 0280 84F84430 		strb	r3, [r4, #68]
+ 618 0284 40F6FF70 		movw	r0, #4095
+ 619 0288 FFF7FEFF 		bl	HAL_Delay
+ 620              	.L83:
+ 621 028c 2046     		mov	r0, r4
+ 622 028e 0021     		movs	r1, #0
+ 623 0290 FFF7FEFF 		bl	ETH_MACDMAConfig
+ 624 0294 0123     		movs	r3, #1
+ 625 0296 0020     		movs	r0, #0
+ 626 0298 84F84430 		strb	r3, [r4, #68]
+ 627 029c 02B0     		add	sp, sp, #8
+ 628              		@ sp needed
+ 629 029e BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 630              	.L132:
+ 631 02a2 4FF00108 		mov	r8, #1
+ 632 02a6 84F84480 		strb	r8, [r4, #68]
+ 633 02aa FFF7FEFF 		bl	HAL_GetTick
+ 634 02ae 4FF0820A 		mov	r10, #130
+ 635 02b2 8146     		mov	r9, r0
+ 636              	.L73:
+ARM GAS  D:\Programs\cygwin64\tmp\ccmCPgco.s 			page 12
+
+
+ 637 02b4 94F84430 		ldrb	r3, [r4, #68]	@ zero_extendqisi2
+ 638 02b8 822B     		cmp	r3, #130
+ 639 02ba 33D0     		beq	.L74
+ 640 02bc 2168     		ldr	r1, [r4]
+ 641 02be 84F844A0 		strb	r10, [r4, #68]
+ 642 02c2 238A     		ldrh	r3, [r4, #16]
+ 643 02c4 0A69     		ldr	r2, [r1, #16]
+ 644 02c6 DB02     		lsls	r3, r3, #11
+ 645 02c8 02F01C02 		and	r2, r2, #28
+ 646 02cc 9BB2     		uxth	r3, r3
+ 647 02ce 1343     		orrs	r3, r3, r2
+ 648 02d0 43F04103 		orr	r3, r3, #65
+ 649 02d4 0B61     		str	r3, [r1, #16]
+ 650 02d6 FFF7FEFF 		bl	HAL_GetTick
+ 651 02da 0646     		mov	r6, r0
+ 652 02dc 18E0     		b	.L76
+ 653              	.L138:
+ 654 02de 00BF     		.align	2
+ 655              	.L137:
+ 656 02e0 00380240 		.word	1073887232
+ 657 02e4 00380140 		.word	1073821696
+ 658 02e8 00D3CEFE 		.word	-20000000
+ 659 02ec BFE1E400 		.word	14999999
+ 660 02f0 40F1E9FD 		.word	-35000000
+ 661 02f4 3F787D01 		.word	24999999
+ 662 02f8 00796CFC 		.word	-60000000
+ 663 02fc FF596202 		.word	39999999
+ 664 0300 001F0AFA 		.word	-100000000
+ 665 0304 7FF0FA02 		.word	49999999
+ 666              	.L75:
+ 667 0308 2368     		ldr	r3, [r4]
+ 668 030a 1A69     		ldr	r2, [r3, #16]
+ 669 030c D007     		lsls	r0, r2, #31
+ 670 030e 38D5     		bpl	.L135
+ 671              	.L76:
+ 672 0310 FFF7FEFF 		bl	HAL_GetTick
+ 673 0314 801B     		subs	r0, r0, r6
+ 674 0316 B0F5803F 		cmp	r0, #65536
+ 675 031a F5D3     		bcc	.L75
+ 676 031c 84F84480 		strb	r8, [r4, #68]
+ 677 0320 84F84570 		strb	r7, [r4, #69]
+ 678              	.L74:
+ 679 0324 FFF7FEFF 		bl	HAL_GetTick
+ 680 0328 41F28833 		movw	r3, #5000
+ 681 032c A0EB0900 		sub	r0, r0, r9
+ 682 0330 9842     		cmp	r0, r3
+ 683 0332 98D8     		bhi	.L125
+ 684 0334 A906     		lsls	r1, r5, #26
+ 685 0336 BDD5     		bpl	.L73
+ 686 0338 94F84430 		ldrb	r3, [r4, #68]	@ zero_extendqisi2
+ 687 033c 822B     		cmp	r3, #130
+ 688 033e 3FF4D1AE 		beq	.L84
+ 689 0342 2168     		ldr	r1, [r4]
+ 690 0344 8223     		movs	r3, #130
+ 691 0346 84F84430 		strb	r3, [r4, #68]
+ 692 034a 238A     		ldrh	r3, [r4, #16]
+ 693 034c 0A69     		ldr	r2, [r1, #16]
+ARM GAS  D:\Programs\cygwin64\tmp\ccmCPgco.s 			page 13
+
+
+ 694 034e DB02     		lsls	r3, r3, #11
+ 695 0350 02F01C02 		and	r2, r2, #28
+ 696 0354 9BB2     		uxth	r3, r3
+ 697 0356 1343     		orrs	r3, r3, r2
+ 698 0358 43F48063 		orr	r3, r3, #1024
+ 699 035c 43F00103 		orr	r3, r3, #1
+ 700 0360 0B61     		str	r3, [r1, #16]
+ 701 0362 FFF7FEFF 		bl	HAL_GetTick
+ 702 0366 0546     		mov	r5, r0
+ 703 0368 04E0     		b	.L80
+ 704              	.L79:
+ 705 036a 2268     		ldr	r2, [r4]
+ 706 036c 1369     		ldr	r3, [r2, #16]
+ 707 036e 13F00103 		ands	r3, r3, #1
+ 708 0372 0BD0     		beq	.L136
+ 709              	.L80:
+ 710 0374 FFF7FEFF 		bl	HAL_GetTick
+ 711 0378 401B     		subs	r0, r0, r5
+ 712 037a B0F5803F 		cmp	r0, #65536
+ 713 037e F4D3     		bcc	.L79
+ 714 0380 AAE6     		b	.L126
+ 715              	.L135:
+ 716 0382 5D69     		ldr	r5, [r3, #20]
+ 717 0384 84F84480 		strb	r8, [r4, #68]
+ 718 0388 ADB2     		uxth	r5, r5
+ 719 038a CBE7     		b	.L74
+ 720              	.L136:
+ 721 038c 5269     		ldr	r2, [r2, #20]
+ 722 038e 12F0040F 		tst	r2, #4
+ 723 0392 0CBF     		ite	eq
+ 724 0394 0020     		moveq	r0, #0
+ 725 0396 4FF40060 		movne	r0, #2048
+ 726 039a 9207     		lsls	r2, r2, #30
+ 727 039c 4FF00101 		mov	r1, #1
+ 728 03a0 58BF     		it	pl
+ 729 03a2 4FF48043 		movpl	r3, #16384
+ 730 03a6 E060     		str	r0, [r4, #12]
+ 731 03a8 84F84410 		strb	r1, [r4, #68]
+ 732 03ac A360     		str	r3, [r4, #8]
+ 733 03ae 6DE7     		b	.L83
+ 735              		.section	.text.HAL_ETH_MspDeInit,"ax",%progbits
+ 736              		.align	1
+ 737              		.p2align 2,,3
+ 738              		.weak	HAL_ETH_MspDeInit
+ 739              		.syntax unified
+ 740              		.thumb
+ 741              		.thumb_func
+ 742              		.fpu fpv4-sp-d16
+ 744              	HAL_ETH_MspDeInit:
+ 745              		@ args = 0, pretend = 0, frame = 0
+ 746              		@ frame_needed = 0, uses_anonymous_args = 0
+ 747              		@ link register save eliminated.
+ 748 0000 7047     		bx	lr
+ 750 0002 00BF     		.section	.text.HAL_ETH_DeInit,"ax",%progbits
+ 751              		.align	1
+ 752              		.p2align 2,,3
+ 753              		.global	HAL_ETH_DeInit
+ARM GAS  D:\Programs\cygwin64\tmp\ccmCPgco.s 			page 14
+
+
+ 754              		.syntax unified
+ 755              		.thumb
+ 756              		.thumb_func
+ 757              		.fpu fpv4-sp-d16
+ 759              	HAL_ETH_DeInit:
+ 760              		@ args = 0, pretend = 0, frame = 0
+ 761              		@ frame_needed = 0, uses_anonymous_args = 0
+ 762 0000 10B5     		push	{r4, lr}
+ 763 0002 0223     		movs	r3, #2
+ 764 0004 0446     		mov	r4, r0
+ 765 0006 80F84430 		strb	r3, [r0, #68]
+ 766 000a FFF7FEFF 		bl	HAL_ETH_MspDeInit
+ 767 000e 0020     		movs	r0, #0
+ 768 0010 84F84400 		strb	r0, [r4, #68]
+ 769 0014 84F84500 		strb	r0, [r4, #69]
+ 770 0018 10BD     		pop	{r4, pc}
+ 772 001a 00BF     		.section	.text.HAL_ETH_TransmitFrame,"ax",%progbits
+ 773              		.align	1
+ 774              		.p2align 2,,3
+ 775              		.global	HAL_ETH_TransmitFrame
+ 776              		.syntax unified
+ 777              		.thumb
+ 778              		.thumb_func
+ 779              		.fpu fpv4-sp-d16
+ 781              	HAL_ETH_TransmitFrame:
+ 782              		@ args = 0, pretend = 0, frame = 0
+ 783              		@ frame_needed = 0, uses_anonymous_args = 0
+ 784              		@ link register save eliminated.
+ 785 0000 90F84530 		ldrb	r3, [r0, #69]	@ zero_extendqisi2
+ 786 0004 012B     		cmp	r3, #1
+ 787 0006 73D0     		beq	.L154
+ 788 0008 0246     		mov	r2, r0
+ 789 000a 0223     		movs	r3, #2
+ 790 000c 0120     		movs	r0, #1
+ 791 000e 82F84500 		strb	r0, [r2, #69]
+ 792 0012 82F84430 		strb	r3, [r2, #68]
+ 793 0016 0029     		cmp	r1, #0
+ 794 0018 38D0     		beq	.L163
+ 795 001a D36A     		ldr	r3, [r2, #44]
+ 796 001c F0B4     		push	{r4, r5, r6, r7}
+ 797 001e 1C68     		ldr	r4, [r3]
+ 798 0020 002C     		cmp	r4, #0
+ 799 0022 5BDB     		blt	.L164
+ 800 0024 40F2F450 		movw	r0, #1524
+ 801 0028 8142     		cmp	r1, r0
+ 802 002a 36D9     		bls	.L146
+ 803 002c 314C     		ldr	r4, .L166
+ 804 002e A4FB0154 		umull	r5, r4, r4, r1
+ 805 0032 A40A     		lsrs	r4, r4, #10
+ 806 0034 00FB1410 		mls	r0, r0, r4, r1
+ 807 0038 68B3     		cbz	r0, .L147
+ 808 003a 0134     		adds	r4, r4, #1
+ 809              	.L148:
+ 810 003c 2E4E     		ldr	r6, .L166+4
+ 811 003e 01F2F451 		addw	r1, r1, #1524
+ 812 0042 06FB0411 		mla	r1, r6, r4, r1
+ 813 0046 C1F30C06 		ubfx	r6, r1, #0, #13
+ARM GAS  D:\Programs\cygwin64\tmp\ccmCPgco.s 			page 15
+
+
+ 814 004a 40F2F455 		movw	r5, #1524
+ 815 004e 0021     		movs	r1, #0
+ 816 0050 671E     		subs	r7, r4, #1
+ 817 0052 0FE0     		b	.L152
+ 818              	.L150:
+ 819 0054 8F42     		cmp	r7, r1
+ 820 0056 5D60     		str	r5, [r3, #4]
+ 821 0058 04D1     		bne	.L151
+ 822 005a 1868     		ldr	r0, [r3]
+ 823 005c 5E60     		str	r6, [r3, #4]
+ 824 005e 40F00050 		orr	r0, r0, #536870912
+ 825 0062 1860     		str	r0, [r3]
+ 826              	.L151:
+ 827 0064 1868     		ldr	r0, [r3]
+ 828 0066 0131     		adds	r1, r1, #1
+ 829 0068 40F00040 		orr	r0, r0, #-2147483648
+ 830 006c A142     		cmp	r1, r4
+ 831 006e 1860     		str	r0, [r3]
+ 832 0070 DB68     		ldr	r3, [r3, #12]
+ 833 0072 3BD0     		beq	.L165
+ 834              	.L152:
+ 835 0074 1868     		ldr	r0, [r3]
+ 836 0076 20F04050 		bic	r0, r0, #805306368
+ 837 007a 1860     		str	r0, [r3]
+ 838 007c 0029     		cmp	r1, #0
+ 839 007e E9D1     		bne	.L150
+ 840 0080 1868     		ldr	r0, [r3]
+ 841 0082 5D60     		str	r5, [r3, #4]
+ 842 0084 40F08050 		orr	r0, r0, #268435456
+ 843 0088 1860     		str	r0, [r3]
+ 844 008a EBE7     		b	.L151
+ 845              	.L163:
+ 846 008c 82F84400 		strb	r0, [r2, #68]
+ 847 0090 82F84510 		strb	r1, [r2, #69]
+ 848 0094 7047     		bx	lr
+ 849              	.L147:
+ 850 0096 012C     		cmp	r4, #1
+ 851 0098 D0D1     		bne	.L148
+ 852              	.L146:
+ 853 009a 1868     		ldr	r0, [r3]
+ 854 009c DC68     		ldr	r4, [r3, #12]
+ 855 009e 40F04050 		orr	r0, r0, #805306368
+ 856 00a2 1860     		str	r0, [r3]
+ 857 00a4 1868     		ldr	r0, [r3]
+ 858 00a6 C1F30C01 		ubfx	r1, r1, #0, #13
+ 859 00aa 40F00040 		orr	r0, r0, #-2147483648
+ 860 00ae 5960     		str	r1, [r3, #4]
+ 861 00b0 1860     		str	r0, [r3]
+ 862 00b2 D462     		str	r4, [r2, #44]
+ 863              	.L149:
+ 864 00b4 1368     		ldr	r3, [r2]
+ 865 00b6 41F21401 		movw	r1, #4116
+ 866 00ba 5858     		ldr	r0, [r3, r1]
+ 867 00bc 4007     		lsls	r0, r0, #29
+ 868 00be 05D5     		bpl	.L153
+ 869 00c0 41F20400 		movw	r0, #4100
+ 870 00c4 0425     		movs	r5, #4
+ARM GAS  D:\Programs\cygwin64\tmp\ccmCPgco.s 			page 16
+
+
+ 871 00c6 0024     		movs	r4, #0
+ 872 00c8 5D50     		str	r5, [r3, r1]
+ 873 00ca 1C50     		str	r4, [r3, r0]
+ 874              	.L153:
+ 875 00cc 0020     		movs	r0, #0
+ 876 00ce 0123     		movs	r3, #1
+ 877 00d0 82F84430 		strb	r3, [r2, #68]
+ 878 00d4 82F84500 		strb	r0, [r2, #69]
+ 879 00d8 F0BC     		pop	{r4, r5, r6, r7}
+ 880 00da 7047     		bx	lr
+ 881              	.L164:
+ 882 00dc 1221     		movs	r1, #18
+ 883 00de 0023     		movs	r3, #0
+ 884 00e0 82F84410 		strb	r1, [r2, #68]
+ 885 00e4 82F84530 		strb	r3, [r2, #69]
+ 886 00e8 F0BC     		pop	{r4, r5, r6, r7}
+ 887 00ea 7047     		bx	lr
+ 888              	.L165:
+ 889 00ec D362     		str	r3, [r2, #44]
+ 890 00ee E1E7     		b	.L149
+ 891              	.L154:
+ 892 00f0 0220     		movs	r0, #2
+ 893 00f2 7047     		bx	lr
+ 894              	.L167:
+ 895              		.align	2
+ 896              	.L166:
+ 897 00f4 0BB002AC 		.word	-1409110005
+ 898 00f8 0CFAFFFF 		.word	-1524
+ 900              		.section	.text.HAL_ETH_GetReceivedFrame,"ax",%progbits
+ 901              		.align	1
+ 902              		.p2align 2,,3
+ 903              		.global	HAL_ETH_GetReceivedFrame
+ 904              		.syntax unified
+ 905              		.thumb
+ 906              		.thumb_func
+ 907              		.fpu fpv4-sp-d16
+ 909              	HAL_ETH_GetReceivedFrame:
+ 910              		@ args = 0, pretend = 0, frame = 0
+ 911              		@ frame_needed = 0, uses_anonymous_args = 0
+ 912              		@ link register save eliminated.
+ 913 0000 90F84520 		ldrb	r2, [r0, #69]	@ zero_extendqisi2
+ 914 0004 012A     		cmp	r2, #1
+ 915 0006 3FD0     		beq	.L175
+ 916 0008 826A     		ldr	r2, [r0, #40]
+ 917 000a 0221     		movs	r1, #2
+ 918 000c 30B4     		push	{r4, r5}
+ 919 000e 80F84410 		strb	r1, [r0, #68]
+ 920 0012 1168     		ldr	r1, [r2]
+ 921 0014 0346     		mov	r3, r0
+ 922 0016 0029     		cmp	r1, #0
+ 923 0018 4FF00100 		mov	r0, #1
+ 924 001c 83F84500 		strb	r0, [r3, #69]
+ 925 0020 0BDB     		blt	.L170
+ 926 0022 1168     		ldr	r1, [r2]
+ 927 0024 D468     		ldr	r4, [r2, #12]
+ 928 0026 11F48071 		ands	r1, r1, #256
+ 929 002a 0ED1     		bne	.L180
+ARM GAS  D:\Programs\cygwin64\tmp\ccmCPgco.s 			page 17
+
+
+ 930 002c 1568     		ldr	r5, [r2]
+ 931 002e AD05     		lsls	r5, r5, #22
+ 932 0030 25D5     		bpl	.L174
+ 933 0032 C3E90C21 		strd	r2, r1, [r3, #48]
+ 934 0036 9863     		str	r0, [r3, #56]
+ 935 0038 9C62     		str	r4, [r3, #40]
+ 936              	.L170:
+ 937 003a 0120     		movs	r0, #1
+ 938 003c 0022     		movs	r2, #0
+ 939 003e 83F84400 		strb	r0, [r3, #68]
+ 940 0042 83F84520 		strb	r2, [r3, #69]
+ 941 0046 30BC     		pop	{r4, r5}
+ 942 0048 7047     		bx	lr
+ 943              	.L180:
+ 944 004a 996B     		ldr	r1, [r3, #56]
+ 945 004c 0144     		add	r1, r1, r0
+ 946 004e 8142     		cmp	r1, r0
+ 947 0050 0CBF     		ite	eq
+ 948 0052 1046     		moveq	r0, r2
+ 949 0054 186B     		ldrne	r0, [r3, #48]
+ 950 0056 9963     		str	r1, [r3, #56]
+ 951 0058 1168     		ldr	r1, [r2]
+ 952 005a 8568     		ldr	r5, [r0, #8]
+ 953 005c 08BF     		it	eq
+ 954 005e 1A63     		streq	r2, [r3, #48]
+ 955 0060 5A63     		str	r2, [r3, #52]
+ 956 0062 C1F30D42 		ubfx	r2, r1, #16, #14
+ 957 0066 0020     		movs	r0, #0
+ 958 0068 043A     		subs	r2, r2, #4
+ 959 006a 0121     		movs	r1, #1
+ 960 006c C3E90F25 		strd	r2, r5, [r3, #60]
+ 961 0070 9C62     		str	r4, [r3, #40]
+ 962 0072 83F84410 		strb	r1, [r3, #68]
+ 963 0076 83F84500 		strb	r0, [r3, #69]
+ 964 007a 30BC     		pop	{r4, r5}
+ 965 007c 7047     		bx	lr
+ 966              	.L174:
+ 967 007e 9A6B     		ldr	r2, [r3, #56]
+ 968 0080 9C62     		str	r4, [r3, #40]
+ 969 0082 0132     		adds	r2, r2, #1
+ 970 0084 9A63     		str	r2, [r3, #56]
+ 971 0086 D8E7     		b	.L170
+ 972              	.L175:
+ 973 0088 0220     		movs	r0, #2
+ 974 008a 7047     		bx	lr
+ 976              		.section	.text.HAL_ETH_GetReceivedFrame_IT,"ax",%progbits
+ 977              		.align	1
+ 978              		.p2align 2,,3
+ 979              		.global	HAL_ETH_GetReceivedFrame_IT
+ 980              		.syntax unified
+ 981              		.thumb
+ 982              		.thumb_func
+ 983              		.fpu fpv4-sp-d16
+ 985              	HAL_ETH_GetReceivedFrame_IT:
+ 986              		@ args = 0, pretend = 0, frame = 0
+ 987              		@ frame_needed = 0, uses_anonymous_args = 0
+ 988              		@ link register save eliminated.
+ARM GAS  D:\Programs\cygwin64\tmp\ccmCPgco.s 			page 18
+
+
+ 989 0000 90F84520 		ldrb	r2, [r0, #69]	@ zero_extendqisi2
+ 990 0004 012A     		cmp	r2, #1
+ 991 0006 71D0     		beq	.L195
+ 992 0008 0222     		movs	r2, #2
+ 993 000a 816A     		ldr	r1, [r0, #40]
+ 994 000c 10B4     		push	{r4}
+ 995 000e 80F84420 		strb	r2, [r0, #68]
+ 996 0012 0A68     		ldr	r2, [r1]
+ 997 0014 0124     		movs	r4, #1
+ 998 0016 002A     		cmp	r2, #0
+ 999 0018 0346     		mov	r3, r0
+ 1000 001a 80F84540 		strb	r4, [r0, #69]
+ 1001 001e 49DB     		blt	.L183
+ 1002 0020 0868     		ldr	r0, [r1]
+ 1003 0022 CA68     		ldr	r2, [r1, #12]
+ 1004 0024 00F44070 		and	r0, r0, #768
+ 1005 0028 B0F5007F 		cmp	r0, #512
+ 1006 002c 50D0     		beq	.L184
+ 1007 002e 0C68     		ldr	r4, [r1]
+ 1008 0030 986B     		ldr	r0, [r3, #56]
+ 1009 0032 14F4407F 		tst	r4, #768
+ 1010 0036 00F10100 		add	r0, r0, #1
+ 1011 003a 5BD1     		bne	.L185
+ 1012 003c 9863     		str	r0, [r3, #56]
+ 1013 003e 9A62     		str	r2, [r3, #40]
+ 1014              	.L186:
+ 1015 0040 1168     		ldr	r1, [r2]
+ 1016 0042 0029     		cmp	r1, #0
+ 1017 0044 36DB     		blt	.L183
+ 1018 0046 1068     		ldr	r0, [r2]
+ 1019 0048 D168     		ldr	r1, [r2, #12]
+ 1020 004a 00F44070 		and	r0, r0, #768
+ 1021 004e B0F5007F 		cmp	r0, #512
+ 1022 0052 41D0     		beq	.L187
+ 1023 0054 1468     		ldr	r4, [r2]
+ 1024 0056 986B     		ldr	r0, [r3, #56]
+ 1025 0058 14F4407F 		tst	r4, #768
+ 1026 005c 00F10100 		add	r0, r0, #1
+ 1027 0060 5ED1     		bne	.L196
+ 1028 0062 9863     		str	r0, [r3, #56]
+ 1029 0064 9962     		str	r1, [r3, #40]
+ 1030              	.L188:
+ 1031 0066 0A68     		ldr	r2, [r1]
+ 1032 0068 002A     		cmp	r2, #0
+ 1033 006a 23DB     		blt	.L183
+ 1034 006c 0868     		ldr	r0, [r1]
+ 1035 006e CA68     		ldr	r2, [r1, #12]
+ 1036 0070 00F44070 		and	r0, r0, #768
+ 1037 0074 B0F5007F 		cmp	r0, #512
+ 1038 0078 25D0     		beq	.L189
+ 1039 007a 0C68     		ldr	r4, [r1]
+ 1040 007c 986B     		ldr	r0, [r3, #56]
+ 1041 007e 14F4407F 		tst	r4, #768
+ 1042 0082 00F10100 		add	r0, r0, #1
+ 1043 0086 35D1     		bne	.L185
+ 1044 0088 9863     		str	r0, [r3, #56]
+ 1045 008a 9A62     		str	r2, [r3, #40]
+ARM GAS  D:\Programs\cygwin64\tmp\ccmCPgco.s 			page 19
+
+
+ 1046              	.L190:
+ 1047 008c 1168     		ldr	r1, [r2]
+ 1048 008e 0029     		cmp	r1, #0
+ 1049 0090 10DB     		blt	.L183
+ 1050 0092 1168     		ldr	r1, [r2]
+ 1051 0094 D468     		ldr	r4, [r2, #12]
+ 1052 0096 01F44071 		and	r1, r1, #768
+ 1053 009a B1F5007F 		cmp	r1, #512
+ 1054 009e 20D0     		beq	.L191
+ 1055 00a0 1168     		ldr	r1, [r2]
+ 1056 00a2 986B     		ldr	r0, [r3, #56]
+ 1057 00a4 11F4407F 		tst	r1, #768
+ 1058 00a8 00F10100 		add	r0, r0, #1
+ 1059 00ac 20D1     		bne	.L197
+ 1060 00ae 9863     		str	r0, [r3, #56]
+ 1061 00b0 9C62     		str	r4, [r3, #40]
+ 1062              	.L192:
+ 1063 00b2 2268     		ldr	r2, [r4]
+ 1064              	.L183:
+ 1065 00b4 0120     		movs	r0, #1
+ 1066 00b6 0022     		movs	r2, #0
+ 1067 00b8 83F84400 		strb	r0, [r3, #68]
+ 1068 00bc 83F84520 		strb	r2, [r3, #69]
+ 1069              	.L182:
+ 1070 00c0 5DF8044B 		ldr	r4, [sp], #4
+ 1071 00c4 7047     		bx	lr
+ 1072              	.L189:
+ 1073 00c6 0120     		movs	r0, #1
+ 1074 00c8 1963     		str	r1, [r3, #48]
+ 1075 00ca 9A62     		str	r2, [r3, #40]
+ 1076 00cc 9863     		str	r0, [r3, #56]
+ 1077 00ce DDE7     		b	.L190
+ 1078              	.L184:
+ 1079 00d0 1963     		str	r1, [r3, #48]
+ 1080 00d2 9C63     		str	r4, [r3, #56]
+ 1081 00d4 9A62     		str	r2, [r3, #40]
+ 1082 00d6 B3E7     		b	.L186
+ 1083              	.L187:
+ 1084 00d8 0120     		movs	r0, #1
+ 1085 00da 1A63     		str	r2, [r3, #48]
+ 1086 00dc 9962     		str	r1, [r3, #40]
+ 1087 00de 9863     		str	r0, [r3, #56]
+ 1088 00e0 C1E7     		b	.L188
+ 1089              	.L191:
+ 1090 00e2 0121     		movs	r1, #1
+ 1091 00e4 1A63     		str	r2, [r3, #48]
+ 1092 00e6 9C62     		str	r4, [r3, #40]
+ 1093 00e8 9963     		str	r1, [r3, #56]
+ 1094 00ea E2E7     		b	.L192
+ 1095              	.L195:
+ 1096 00ec 0220     		movs	r0, #2
+ 1097 00ee 7047     		bx	lr
+ 1098              	.L197:
+ 1099 00f0 1146     		mov	r1, r2
+ 1100 00f2 2246     		mov	r2, r4
+ 1101              	.L185:
+ 1102 00f4 0128     		cmp	r0, #1
+ARM GAS  D:\Programs\cygwin64\tmp\ccmCPgco.s 			page 20
+
+
+ 1103 00f6 C3E90D10 		strd	r1, r0, [r3, #52]
+ 1104 00fa 06BF     		itte	eq
+ 1105 00fc 1963     		streq	r1, [r3, #48]
+ 1106 00fe 0846     		moveq	r0, r1
+ 1107 0100 186B     		ldrne	r0, [r3, #48]
+ 1108 0102 0968     		ldr	r1, [r1]
+ 1109 0104 8068     		ldr	r0, [r0, #8]
+ 1110 0106 1864     		str	r0, [r3, #64]
+ 1111 0108 C1F30D41 		ubfx	r1, r1, #16, #14
+ 1112 010c 0439     		subs	r1, r1, #4
+ 1113 010e 0124     		movs	r4, #1
+ 1114 0110 0020     		movs	r0, #0
+ 1115 0112 D963     		str	r1, [r3, #60]
+ 1116 0114 9A62     		str	r2, [r3, #40]
+ 1117 0116 83F84440 		strb	r4, [r3, #68]
+ 1118 011a 83F84500 		strb	r0, [r3, #69]
+ 1119 011e CFE7     		b	.L182
+ 1120              	.L196:
+ 1121 0120 1446     		mov	r4, r2
+ 1122 0122 0A46     		mov	r2, r1
+ 1123 0124 2146     		mov	r1, r4
+ 1124 0126 E5E7     		b	.L185
+ 1126              		.section	.text.HAL_ETH_TxCpltCallback,"ax",%progbits
+ 1127              		.align	1
+ 1128              		.p2align 2,,3
+ 1129              		.weak	HAL_ETH_TxCpltCallback
+ 1130              		.syntax unified
+ 1131              		.thumb
+ 1132              		.thumb_func
+ 1133              		.fpu fpv4-sp-d16
+ 1135              	HAL_ETH_TxCpltCallback:
+ 1136              		@ args = 0, pretend = 0, frame = 0
+ 1137              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1138              		@ link register save eliminated.
+ 1139 0000 7047     		bx	lr
+ 1141 0002 00BF     		.section	.text.HAL_ETH_RxCpltCallback,"ax",%progbits
+ 1142              		.align	1
+ 1143              		.p2align 2,,3
+ 1144              		.weak	HAL_ETH_RxCpltCallback
+ 1145              		.syntax unified
+ 1146              		.thumb
+ 1147              		.thumb_func
+ 1148              		.fpu fpv4-sp-d16
+ 1150              	HAL_ETH_RxCpltCallback:
+ 1151              		@ args = 0, pretend = 0, frame = 0
+ 1152              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1153              		@ link register save eliminated.
+ 1154 0000 7047     		bx	lr
+ 1156 0002 00BF     		.section	.text.HAL_ETH_ErrorCallback,"ax",%progbits
+ 1157              		.align	1
+ 1158              		.p2align 2,,3
+ 1159              		.weak	HAL_ETH_ErrorCallback
+ 1160              		.syntax unified
+ 1161              		.thumb
+ 1162              		.thumb_func
+ 1163              		.fpu fpv4-sp-d16
+ 1165              	HAL_ETH_ErrorCallback:
+ARM GAS  D:\Programs\cygwin64\tmp\ccmCPgco.s 			page 21
+
+
+ 1166              		@ args = 0, pretend = 0, frame = 0
+ 1167              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1168              		@ link register save eliminated.
+ 1169 0000 7047     		bx	lr
+ 1171 0002 00BF     		.section	.text.HAL_ETH_IRQHandler,"ax",%progbits
+ 1172              		.align	1
+ 1173              		.p2align 2,,3
+ 1174              		.global	HAL_ETH_IRQHandler
+ 1175              		.syntax unified
+ 1176              		.thumb
+ 1177              		.thumb_func
+ 1178              		.fpu fpv4-sp-d16
+ 1180              	HAL_ETH_IRQHandler:
+ 1181              		@ args = 0, pretend = 0, frame = 0
+ 1182              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1183 0000 70B5     		push	{r4, r5, r6, lr}
+ 1184 0002 0368     		ldr	r3, [r0]
+ 1185 0004 41F21406 		movw	r6, #4116
+ 1186 0008 0446     		mov	r4, r0
+ 1187 000a 9D59     		ldr	r5, [r3, r6]
+ 1188 000c 15F04005 		ands	r5, r5, #64
+ 1189 0010 23D1     		bne	.L216
+ 1190 0012 9A59     		ldr	r2, [r3, r6]
+ 1191 0014 D207     		lsls	r2, r2, #31
+ 1192 0016 16D4     		bmi	.L217
+ 1193              	.L207:
+ 1194 0018 41F21405 		movw	r5, #4116
+ 1195 001c 4FF48032 		mov	r2, #65536
+ 1196 0020 5A51     		str	r2, [r3, r5]
+ 1197 0022 5B59     		ldr	r3, [r3, r5]
+ 1198 0024 1B04     		lsls	r3, r3, #16
+ 1199 0026 00D4     		bmi	.L218
+ 1200 0028 70BD     		pop	{r4, r5, r6, pc}
+ 1201              	.L218:
+ 1202 002a 2046     		mov	r0, r4
+ 1203 002c FFF7FEFF 		bl	HAL_ETH_ErrorCallback
+ 1204 0030 2168     		ldr	r1, [r4]
+ 1205 0032 4FF40040 		mov	r0, #32768
+ 1206 0036 0122     		movs	r2, #1
+ 1207 0038 0023     		movs	r3, #0
+ 1208 003a 4851     		str	r0, [r1, r5]
+ 1209 003c 84F84420 		strb	r2, [r4, #68]
+ 1210 0040 84F84530 		strb	r3, [r4, #69]
+ 1211 0044 70BD     		pop	{r4, r5, r6, pc}
+ 1212              	.L217:
+ 1213 0046 FFF7FEFF 		bl	HAL_ETH_TxCpltCallback
+ 1214 004a 2368     		ldr	r3, [r4]
+ 1215 004c 0122     		movs	r2, #1
+ 1216 004e 9A51     		str	r2, [r3, r6]
+ 1217 0050 84F84420 		strb	r2, [r4, #68]
+ 1218 0054 84F84550 		strb	r5, [r4, #69]
+ 1219 0058 DEE7     		b	.L207
+ 1220              	.L216:
+ 1221 005a FFF7FEFF 		bl	HAL_ETH_RxCpltCallback
+ 1222 005e 2368     		ldr	r3, [r4]
+ 1223 0060 4020     		movs	r0, #64
+ 1224 0062 0121     		movs	r1, #1
+ARM GAS  D:\Programs\cygwin64\tmp\ccmCPgco.s 			page 22
+
+
+ 1225 0064 0022     		movs	r2, #0
+ 1226 0066 9851     		str	r0, [r3, r6]
+ 1227 0068 84F84410 		strb	r1, [r4, #68]
+ 1228 006c 84F84520 		strb	r2, [r4, #69]
+ 1229 0070 D2E7     		b	.L207
+ 1231 0072 00BF     		.section	.text.HAL_ETH_ReadPHYRegister,"ax",%progbits
+ 1232              		.align	1
+ 1233              		.p2align 2,,3
+ 1234              		.global	HAL_ETH_ReadPHYRegister
+ 1235              		.syntax unified
+ 1236              		.thumb
+ 1237              		.thumb_func
+ 1238              		.fpu fpv4-sp-d16
+ 1240              	HAL_ETH_ReadPHYRegister:
+ 1241              		@ args = 0, pretend = 0, frame = 0
+ 1242              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1243 0000 90F84430 		ldrb	r3, [r0, #68]	@ zero_extendqisi2
+ 1244 0004 822B     		cmp	r3, #130
+ 1245 0006 33D0     		beq	.L223
+ 1246 0008 70B5     		push	{r4, r5, r6, lr}
+ 1247 000a 0446     		mov	r4, r0
+ 1248 000c 038A     		ldrh	r3, [r0, #16]
+ 1249 000e 0068     		ldr	r0, [r0]
+ 1250 0010 1546     		mov	r5, r2
+ 1251 0012 8222     		movs	r2, #130
+ 1252 0014 84F84420 		strb	r2, [r4, #68]
+ 1253 0018 0269     		ldr	r2, [r0, #16]
+ 1254 001a 8901     		lsls	r1, r1, #6
+ 1255 001c DB02     		lsls	r3, r3, #11
+ 1256 001e 01F4F861 		and	r1, r1, #1984
+ 1257 0022 9BB2     		uxth	r3, r3
+ 1258 0024 0B43     		orrs	r3, r3, r1
+ 1259 0026 02F01C02 		and	r2, r2, #28
+ 1260 002a 1343     		orrs	r3, r3, r2
+ 1261 002c 43F00103 		orr	r3, r3, #1
+ 1262 0030 0361     		str	r3, [r0, #16]
+ 1263 0032 FFF7FEFF 		bl	HAL_GetTick
+ 1264 0036 0646     		mov	r6, r0
+ 1265 0038 04E0     		b	.L222
+ 1266              	.L221:
+ 1267 003a 2168     		ldr	r1, [r4]
+ 1268 003c 0B69     		ldr	r3, [r1, #16]
+ 1269 003e 13F00103 		ands	r3, r3, #1
+ 1270 0042 0DD0     		beq	.L229
+ 1271              	.L222:
+ 1272 0044 FFF7FEFF 		bl	HAL_GetTick
+ 1273 0048 801B     		subs	r0, r0, r6
+ 1274 004a B0F5803F 		cmp	r0, #65536
+ 1275 004e F4D3     		bcc	.L221
+ 1276 0050 0122     		movs	r2, #1
+ 1277 0052 0023     		movs	r3, #0
+ 1278 0054 84F84420 		strb	r2, [r4, #68]
+ 1279 0058 84F84530 		strb	r3, [r4, #69]
+ 1280 005c 0320     		movs	r0, #3
+ 1281 005e 70BD     		pop	{r4, r5, r6, pc}
+ 1282              	.L229:
+ 1283 0060 4A69     		ldr	r2, [r1, #20]
+ARM GAS  D:\Programs\cygwin64\tmp\ccmCPgco.s 			page 23
+
+
+ 1284 0062 0121     		movs	r1, #1
+ 1285 0064 92B2     		uxth	r2, r2
+ 1286 0066 2A60     		str	r2, [r5]
+ 1287 0068 1846     		mov	r0, r3
+ 1288 006a 84F84410 		strb	r1, [r4, #68]
+ 1289 006e 70BD     		pop	{r4, r5, r6, pc}
+ 1290              	.L223:
+ 1291 0070 0220     		movs	r0, #2
+ 1292 0072 7047     		bx	lr
+ 1294              		.section	.text.HAL_ETH_WritePHYRegister,"ax",%progbits
+ 1295              		.align	1
+ 1296              		.p2align 2,,3
+ 1297              		.global	HAL_ETH_WritePHYRegister
+ 1298              		.syntax unified
+ 1299              		.thumb
+ 1300              		.thumb_func
+ 1301              		.fpu fpv4-sp-d16
+ 1303              	HAL_ETH_WritePHYRegister:
+ 1304              		@ args = 0, pretend = 0, frame = 0
+ 1305              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1306 0000 38B5     		push	{r3, r4, r5, lr}
+ 1307 0002 90F84430 		ldrb	r3, [r0, #68]	@ zero_extendqisi2
+ 1308 0006 422B     		cmp	r3, #66
+ 1309 0008 30D0     		beq	.L234
+ 1310 000a 0446     		mov	r4, r0
+ 1311 000c 038A     		ldrh	r3, [r0, #16]
+ 1312 000e 0068     		ldr	r0, [r0]
+ 1313 0010 4225     		movs	r5, #66
+ 1314 0012 84F84450 		strb	r5, [r4, #68]
+ 1315 0016 0569     		ldr	r5, [r0, #16]
+ 1316 0018 8901     		lsls	r1, r1, #6
+ 1317 001a DB02     		lsls	r3, r3, #11
+ 1318 001c 01F4F861 		and	r1, r1, #1984
+ 1319 0020 9BB2     		uxth	r3, r3
+ 1320 0022 0B43     		orrs	r3, r3, r1
+ 1321 0024 05F01C01 		and	r1, r5, #28
+ 1322 0028 0B43     		orrs	r3, r3, r1
+ 1323 002a 92B2     		uxth	r2, r2
+ 1324 002c 43F00303 		orr	r3, r3, #3
+ 1325 0030 4261     		str	r2, [r0, #20]
+ 1326 0032 0361     		str	r3, [r0, #16]
+ 1327 0034 FFF7FEFF 		bl	HAL_GetTick
+ 1328 0038 0546     		mov	r5, r0
+ 1329 003a 04E0     		b	.L233
+ 1330              	.L232:
+ 1331 003c 2368     		ldr	r3, [r4]
+ 1332 003e 1B69     		ldr	r3, [r3, #16]
+ 1333 0040 13F00103 		ands	r3, r3, #1
+ 1334 0044 0DD0     		beq	.L237
+ 1335              	.L233:
+ 1336 0046 FFF7FEFF 		bl	HAL_GetTick
+ 1337 004a 401B     		subs	r0, r0, r5
+ 1338 004c B0F5803F 		cmp	r0, #65536
+ 1339 0050 F4D3     		bcc	.L232
+ 1340 0052 0122     		movs	r2, #1
+ 1341 0054 0023     		movs	r3, #0
+ 1342 0056 84F84420 		strb	r2, [r4, #68]
+ARM GAS  D:\Programs\cygwin64\tmp\ccmCPgco.s 			page 24
+
+
+ 1343 005a 84F84530 		strb	r3, [r4, #69]
+ 1344 005e 0320     		movs	r0, #3
+ 1345 0060 38BD     		pop	{r3, r4, r5, pc}
+ 1346              	.L237:
+ 1347 0062 0122     		movs	r2, #1
+ 1348 0064 1846     		mov	r0, r3
+ 1349 0066 84F84420 		strb	r2, [r4, #68]
+ 1350 006a 38BD     		pop	{r3, r4, r5, pc}
+ 1351              	.L234:
+ 1352 006c 0220     		movs	r0, #2
+ 1353 006e 38BD     		pop	{r3, r4, r5, pc}
+ 1355              		.section	.text.HAL_ETH_Start,"ax",%progbits
+ 1356              		.align	1
+ 1357              		.p2align 2,,3
+ 1358              		.global	HAL_ETH_Start
+ 1359              		.syntax unified
+ 1360              		.thumb
+ 1361              		.thumb_func
+ 1362              		.fpu fpv4-sp-d16
+ 1364              	HAL_ETH_Start:
+ 1365              		@ args = 0, pretend = 0, frame = 24
+ 1366              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1367              		@ link register save eliminated.
+ 1368 0000 90F84520 		ldrb	r2, [r0, #69]	@ zero_extendqisi2
+ 1369 0004 012A     		cmp	r2, #1
+ 1370 0006 62D0     		beq	.L243
+ 1371 0008 70B4     		push	{r4, r5, r6}
+ 1372 000a 0346     		mov	r3, r0
+ 1373 000c 87B0     		sub	sp, sp, #28
+ 1374 000e 1968     		ldr	r1, [r3]
+ 1375 0010 304D     		ldr	r5, .L251
+ 1376 0012 314C     		ldr	r4, .L251+4
+ 1377 0014 0220     		movs	r0, #2
+ 1378 0016 0022     		movs	r2, #0
+ 1379 0018 83F84400 		strb	r0, [r3, #68]
+ 1380 001c 0492     		str	r2, [sp, #16]
+ 1381 001e 0868     		ldr	r0, [r1]
+ 1382 0020 2A68     		ldr	r2, [r5]
+ 1383 0022 40F00800 		orr	r0, r0, #8
+ 1384 0026 0126     		movs	r6, #1
+ 1385 0028 83F84560 		strb	r6, [r3, #69]
+ 1386 002c A4FB0242 		umull	r4, r2, r4, r2
+ 1387 0030 0860     		str	r0, [r1]
+ 1388 0032 0968     		ldr	r1, [r1]
+ 1389 0034 0491     		str	r1, [sp, #16]
+ 1390 0036 520A     		lsrs	r2, r2, #9
+ 1391 0038 0592     		str	r2, [sp, #20]
+ 1392              	.L240:
+ 1393              		.syntax unified
+ 1394              	@ 2279 "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_eth.c" 1
+ 1395 003a 00BF     		nop
+ 1396              	@ 0 "" 2
+ 1397              		.thumb
+ 1398              		.syntax unified
+ 1399 003c 059A     		ldr	r2, [sp, #20]
+ 1400 003e 511E     		subs	r1, r2, #1
+ 1401 0040 0591     		str	r1, [sp, #20]
+ARM GAS  D:\Programs\cygwin64\tmp\ccmCPgco.s 			page 25
+
+
+ 1402 0042 002A     		cmp	r2, #0
+ 1403 0044 F9D1     		bne	.L240
+ 1404 0046 1968     		ldr	r1, [r3]
+ 1405 0048 0498     		ldr	r0, [sp, #16]
+ 1406 004a 0860     		str	r0, [r1]
+ 1407 004c 0292     		str	r2, [sp, #8]
+ 1408 004e 0868     		ldr	r0, [r1]
+ 1409 0050 2A68     		ldr	r2, [r5]
+ 1410 0052 214C     		ldr	r4, .L251+4
+ 1411 0054 40F00400 		orr	r0, r0, #4
+ 1412 0058 0860     		str	r0, [r1]
+ 1413 005a A4FB0202 		umull	r0, r2, r4, r2
+ 1414 005e 0968     		ldr	r1, [r1]
+ 1415 0060 0291     		str	r1, [sp, #8]
+ 1416 0062 520A     		lsrs	r2, r2, #9
+ 1417 0064 0392     		str	r2, [sp, #12]
+ 1418              	.L241:
+ 1419              		.syntax unified
+ 1420              	@ 2279 "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_eth.c" 1
+ 1421 0066 00BF     		nop
+ 1422              	@ 0 "" 2
+ 1423              		.thumb
+ 1424              		.syntax unified
+ 1425 0068 039A     		ldr	r2, [sp, #12]
+ 1426 006a 511E     		subs	r1, r2, #1
+ 1427 006c 0391     		str	r1, [sp, #12]
+ 1428 006e 002A     		cmp	r2, #0
+ 1429 0070 F9D1     		bne	.L241
+ 1430 0072 1968     		ldr	r1, [r3]
+ 1431 0074 0298     		ldr	r0, [sp, #8]
+ 1432 0076 0860     		str	r0, [r1]
+ 1433 0078 41F21800 		movw	r0, #4120
+ 1434 007c 0092     		str	r2, [sp]
+ 1435 007e 0C58     		ldr	r4, [r1, r0]
+ 1436 0080 2A68     		ldr	r2, [r5]
+ 1437 0082 154D     		ldr	r5, .L251+4
+ 1438 0084 44F48014 		orr	r4, r4, #1048576
+ 1439 0088 0C50     		str	r4, [r1, r0]
+ 1440 008a A5FB0242 		umull	r4, r2, r5, r2
+ 1441 008e 0958     		ldr	r1, [r1, r0]
+ 1442 0090 0091     		str	r1, [sp]
+ 1443 0092 520A     		lsrs	r2, r2, #9
+ 1444 0094 0192     		str	r2, [sp, #4]
+ 1445              	.L242:
+ 1446              		.syntax unified
+ 1447              	@ 2279 "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_eth.c" 1
+ 1448 0096 00BF     		nop
+ 1449              	@ 0 "" 2
+ 1450              		.thumb
+ 1451              		.syntax unified
+ 1452 0098 019C     		ldr	r4, [sp, #4]
+ 1453 009a 621E     		subs	r2, r4, #1
+ 1454 009c 0192     		str	r2, [sp, #4]
+ 1455 009e 002C     		cmp	r4, #0
+ 1456 00a0 F9D1     		bne	.L242
+ 1457 00a2 1968     		ldr	r1, [r3]
+ 1458 00a4 0098     		ldr	r0, [sp]
+ARM GAS  D:\Programs\cygwin64\tmp\ccmCPgco.s 			page 26
+
+
+ 1459 00a6 41F21802 		movw	r2, #4120
+ 1460 00aa 0125     		movs	r5, #1
+ 1461 00ac 8850     		str	r0, [r1, r2]
+ 1462 00ae 8858     		ldr	r0, [r1, r2]
+ 1463 00b0 40F40050 		orr	r0, r0, #8192
+ 1464 00b4 8850     		str	r0, [r1, r2]
+ 1465 00b6 8858     		ldr	r0, [r1, r2]
+ 1466 00b8 40F00200 		orr	r0, r0, #2
+ 1467 00bc 8850     		str	r0, [r1, r2]
+ 1468 00be 2046     		mov	r0, r4
+ 1469 00c0 83F84540 		strb	r4, [r3, #69]
+ 1470 00c4 83F84450 		strb	r5, [r3, #68]
+ 1471 00c8 07B0     		add	sp, sp, #28
+ 1472              		@ sp needed
+ 1473 00ca 70BC     		pop	{r4, r5, r6}
+ 1474 00cc 7047     		bx	lr
+ 1475              	.L243:
+ 1476 00ce 0220     		movs	r0, #2
+ 1477 00d0 7047     		bx	lr
+ 1478              	.L252:
+ 1479 00d2 00BF     		.align	2
+ 1480              	.L251:
+ 1481 00d4 00000000 		.word	SystemCoreClock
+ 1482 00d8 D34D6210 		.word	274877907
+ 1484              		.section	.text.HAL_ETH_Stop,"ax",%progbits
+ 1485              		.align	1
+ 1486              		.p2align 2,,3
+ 1487              		.global	HAL_ETH_Stop
+ 1488              		.syntax unified
+ 1489              		.thumb
+ 1490              		.thumb_func
+ 1491              		.fpu fpv4-sp-d16
+ 1493              	HAL_ETH_Stop:
+ 1494              		@ args = 0, pretend = 0, frame = 24
+ 1495              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1496              		@ link register save eliminated.
+ 1497 0000 90F84520 		ldrb	r2, [r0, #69]	@ zero_extendqisi2
+ 1498 0004 012A     		cmp	r2, #1
+ 1499 0006 63D0     		beq	.L258
+ 1500 0008 0221     		movs	r1, #2
+ 1501 000a 70B4     		push	{r4, r5, r6}
+ 1502 000c 0268     		ldr	r2, [r0]
+ 1503 000e 80F84410 		strb	r1, [r0, #68]
+ 1504 0012 0346     		mov	r3, r0
+ 1505 0014 41F21800 		movw	r0, #4120
+ 1506 0018 0124     		movs	r4, #1
+ 1507 001a 1158     		ldr	r1, [r2, r0]
+ 1508 001c 83F84540 		strb	r4, [r3, #69]
+ 1509 0020 21F40051 		bic	r1, r1, #8192
+ 1510 0024 1150     		str	r1, [r2, r0]
+ 1511 0026 1558     		ldr	r5, [r2, r0]
+ 1512 0028 2A4C     		ldr	r4, .L266
+ 1513 002a 2B4E     		ldr	r6, .L266+4
+ 1514 002c 87B0     		sub	sp, sp, #28
+ 1515 002e 25F00205 		bic	r5, r5, #2
+ 1516 0032 1550     		str	r5, [r2, r0]
+ 1517 0034 0021     		movs	r1, #0
+ARM GAS  D:\Programs\cygwin64\tmp\ccmCPgco.s 			page 27
+
+
+ 1518 0036 0491     		str	r1, [sp, #16]
+ 1519 0038 1068     		ldr	r0, [r2]
+ 1520 003a 2168     		ldr	r1, [r4]
+ 1521 003c 20F00400 		bic	r0, r0, #4
+ 1522 0040 1060     		str	r0, [r2]
+ 1523 0042 A6FB0101 		umull	r0, r1, r6, r1
+ 1524 0046 1268     		ldr	r2, [r2]
+ 1525 0048 0492     		str	r2, [sp, #16]
+ 1526 004a 490A     		lsrs	r1, r1, #9
+ 1527 004c 0591     		str	r1, [sp, #20]
+ 1528              	.L255:
+ 1529              		.syntax unified
+ 1530              	@ 2279 "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_eth.c" 1
+ 1531 004e 00BF     		nop
+ 1532              	@ 0 "" 2
+ 1533              		.thumb
+ 1534              		.syntax unified
+ 1535 0050 059A     		ldr	r2, [sp, #20]
+ 1536 0052 511E     		subs	r1, r2, #1
+ 1537 0054 0591     		str	r1, [sp, #20]
+ 1538 0056 002A     		cmp	r2, #0
+ 1539 0058 F9D1     		bne	.L255
+ 1540 005a 1968     		ldr	r1, [r3]
+ 1541 005c 0498     		ldr	r0, [sp, #16]
+ 1542 005e 0860     		str	r0, [r1]
+ 1543 0060 41F21800 		movw	r0, #4120
+ 1544 0064 0292     		str	r2, [sp, #8]
+ 1545 0066 0D58     		ldr	r5, [r1, r0]
+ 1546 0068 2268     		ldr	r2, [r4]
+ 1547 006a 1B4E     		ldr	r6, .L266+4
+ 1548 006c 45F48015 		orr	r5, r5, #1048576
+ 1549 0070 0D50     		str	r5, [r1, r0]
+ 1550 0072 A6FB0252 		umull	r5, r2, r6, r2
+ 1551 0076 0958     		ldr	r1, [r1, r0]
+ 1552 0078 0291     		str	r1, [sp, #8]
+ 1553 007a 520A     		lsrs	r2, r2, #9
+ 1554 007c 0392     		str	r2, [sp, #12]
+ 1555              	.L256:
+ 1556              		.syntax unified
+ 1557              	@ 2279 "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_eth.c" 1
+ 1558 007e 00BF     		nop
+ 1559              	@ 0 "" 2
+ 1560              		.thumb
+ 1561              		.syntax unified
+ 1562 0080 0398     		ldr	r0, [sp, #12]
+ 1563 0082 421E     		subs	r2, r0, #1
+ 1564 0084 0392     		str	r2, [sp, #12]
+ 1565 0086 0028     		cmp	r0, #0
+ 1566 0088 F9D1     		bne	.L256
+ 1567 008a 1968     		ldr	r1, [r3]
+ 1568 008c 2268     		ldr	r2, [r4]
+ 1569 008e 029D     		ldr	r5, [sp, #8]
+ 1570 0090 114E     		ldr	r6, .L266+4
+ 1571 0092 41F21804 		movw	r4, #4120
+ 1572 0096 A6FB0262 		umull	r6, r2, r6, r2
+ 1573 009a 0D51     		str	r5, [r1, r4]
+ 1574 009c 0090     		str	r0, [sp]
+ARM GAS  D:\Programs\cygwin64\tmp\ccmCPgco.s 			page 28
+
+
+ 1575 009e 0868     		ldr	r0, [r1]
+ 1576 00a0 20F00800 		bic	r0, r0, #8
+ 1577 00a4 0860     		str	r0, [r1]
+ 1578 00a6 0968     		ldr	r1, [r1]
+ 1579 00a8 0091     		str	r1, [sp]
+ 1580 00aa 520A     		lsrs	r2, r2, #9
+ 1581 00ac 0192     		str	r2, [sp, #4]
+ 1582              	.L257:
+ 1583              		.syntax unified
+ 1584              	@ 2279 "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_eth.c" 1
+ 1585 00ae 00BF     		nop
+ 1586              	@ 0 "" 2
+ 1587              		.thumb
+ 1588              		.syntax unified
+ 1589 00b0 0198     		ldr	r0, [sp, #4]
+ 1590 00b2 421E     		subs	r2, r0, #1
+ 1591 00b4 0192     		str	r2, [sp, #4]
+ 1592 00b6 0028     		cmp	r0, #0
+ 1593 00b8 F9D1     		bne	.L257
+ 1594 00ba 1A68     		ldr	r2, [r3]
+ 1595 00bc 0099     		ldr	r1, [sp]
+ 1596 00be 1160     		str	r1, [r2]
+ 1597 00c0 0122     		movs	r2, #1
+ 1598 00c2 83F84500 		strb	r0, [r3, #69]
+ 1599 00c6 83F84420 		strb	r2, [r3, #68]
+ 1600 00ca 07B0     		add	sp, sp, #28
+ 1601              		@ sp needed
+ 1602 00cc 70BC     		pop	{r4, r5, r6}
+ 1603 00ce 7047     		bx	lr
+ 1604              	.L258:
+ 1605 00d0 0220     		movs	r0, #2
+ 1606 00d2 7047     		bx	lr
+ 1607              	.L267:
+ 1608              		.align	2
+ 1609              	.L266:
+ 1610 00d4 00000000 		.word	SystemCoreClock
+ 1611 00d8 D34D6210 		.word	274877907
+ 1613              		.section	.text.HAL_ETH_ConfigMAC,"ax",%progbits
+ 1614              		.align	1
+ 1615              		.p2align 2,,3
+ 1616              		.global	HAL_ETH_ConfigMAC
+ 1617              		.syntax unified
+ 1618              		.thumb
+ 1619              		.thumb_func
+ 1620              		.fpu fpv4-sp-d16
+ 1622              	HAL_ETH_ConfigMAC:
+ 1623              		@ args = 0, pretend = 0, frame = 0
+ 1624              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1625 0000 90F84530 		ldrb	r3, [r0, #69]	@ zero_extendqisi2
+ 1626 0004 012B     		cmp	r3, #1
+ 1627 0006 00F08B80 		beq	.L272
+ 1628 000a 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 1629 000e 0223     		movs	r3, #2
+ 1630 0010 0C46     		mov	r4, r1
+ 1631 0012 0126     		movs	r6, #1
+ 1632 0014 0546     		mov	r5, r0
+ 1633 0016 80F84560 		strb	r6, [r0, #69]
+ARM GAS  D:\Programs\cygwin64\tmp\ccmCPgco.s 			page 29
+
+
+ 1634 001a 80F84430 		strb	r3, [r0, #68]
+ 1635 001e 0268     		ldr	r2, [r0]
+ 1636 0020 D0E9021C 		ldrd	r1, ip, [r0, #8]
+ 1637 0024 002C     		cmp	r4, #0
+ 1638 0026 6DD0     		beq	.L270
+ 1639 0028 D4E90037 		ldrd	r3, r7, [r4]
+ 1640 002c A068     		ldr	r0, [r4, #8]
+ 1641 002e 3B43     		orrs	r3, r3, r7
+ 1642 0030 0343     		orrs	r3, r3, r0
+ 1643 0032 E068     		ldr	r0, [r4, #12]
+ 1644 0034 0343     		orrs	r3, r3, r0
+ 1645 0036 2069     		ldr	r0, [r4, #16]
+ 1646 0038 0343     		orrs	r3, r3, r0
+ 1647 003a 6069     		ldr	r0, [r4, #20]
+ 1648 003c 0343     		orrs	r3, r3, r0
+ 1649 003e D4E90607 		ldrd	r0, r7, [r4, #24]
+ 1650 0042 0343     		orrs	r3, r3, r0
+ 1651 0044 206A     		ldr	r0, [r4, #32]
+ 1652 0046 3B43     		orrs	r3, r3, r7
+ 1653 0048 0343     		orrs	r3, r3, r0
+ 1654 004a 606A     		ldr	r0, [r4, #36]
+ 1655 004c 1768     		ldr	r7, [r2]
+ 1656 004e 0343     		orrs	r3, r3, r0
+ 1657 0050 A06A     		ldr	r0, [r4, #40]
+ 1658 0052 0343     		orrs	r3, r3, r0
+ 1659 0054 3348     		ldr	r0, .L277
+ 1660 0056 0B43     		orrs	r3, r3, r1
+ 1661 0058 43EA0C03 		orr	r3, r3, ip
+ 1662 005c 3840     		ands	r0, r0, r7
+ 1663 005e 0343     		orrs	r3, r3, r0
+ 1664 0060 1360     		str	r3, [r2]
+ 1665 0062 3046     		mov	r0, r6
+ 1666 0064 D2F80080 		ldr	r8, [r2]
+ 1667 0068 FFF7FEFF 		bl	HAL_Delay
+ 1668 006c D4E90B37 		ldrd	r3, r7, [r4, #44]
+ 1669 0070 D4E90D10 		ldrd	r1, r0, [r4, #52]
+ 1670 0074 3B43     		orrs	r3, r3, r7
+ 1671 0076 0B43     		orrs	r3, r3, r1
+ 1672 0078 D4E90F17 		ldrd	r1, r7, [r4, #60]
+ 1673 007c 0343     		orrs	r3, r3, r0
+ 1674 007e 0B43     		orrs	r3, r3, r1
+ 1675 0080 D4E91101 		ldrd	r0, r1, [r4, #68]
+ 1676 0084 3B43     		orrs	r3, r3, r7
+ 1677 0086 2A68     		ldr	r2, [r5]
+ 1678 0088 0343     		orrs	r3, r3, r0
+ 1679 008a 0B43     		orrs	r3, r3, r1
+ 1680 008c C2F80080 		str	r8, [r2]
+ 1681 0090 3046     		mov	r0, r6
+ 1682 0092 5360     		str	r3, [r2, #4]
+ 1683 0094 D2F80480 		ldr	r8, [r2, #4]
+ 1684 0098 FFF7FEFF 		bl	HAL_Delay
+ 1685 009c D4E91637 		ldrd	r3, r7, [r4, #88]
+ 1686 00a0 216E     		ldr	r1, [r4, #96]
+ 1687 00a2 2A68     		ldr	r2, [r5]
+ 1688 00a4 D4F84CC0 		ldr	ip, [r4, #76]
+ 1689 00a8 206D     		ldr	r0, [r4, #80]
+ 1690 00aa C2F80480 		str	r8, [r2, #4]
+ARM GAS  D:\Programs\cygwin64\tmp\ccmCPgco.s 			page 30
+
+
+ 1691 00ae 3B43     		orrs	r3, r3, r7
+ 1692 00b0 676E     		ldr	r7, [r4, #100]
+ 1693 00b2 C2F808C0 		str	ip, [r2, #8]
+ 1694 00b6 0B43     		orrs	r3, r3, r1
+ 1695 00b8 D060     		str	r0, [r2, #12]
+ 1696 00ba 3B43     		orrs	r3, r3, r7
+ 1697 00bc A76E     		ldr	r7, [r4, #104]
+ 1698 00be 9069     		ldr	r0, [r2, #24]
+ 1699 00c0 616D     		ldr	r1, [r4, #84]
+ 1700 00c2 4FF6417C 		movw	ip, #65345
+ 1701 00c6 3B43     		orrs	r3, r3, r7
+ 1702 00c8 00EA0C00 		and	r0, r0, ip
+ 1703 00cc 43EA0143 		orr	r3, r3, r1, lsl #16
+ 1704 00d0 0343     		orrs	r3, r3, r0
+ 1705 00d2 9361     		str	r3, [r2, #24]
+ 1706 00d4 3046     		mov	r0, r6
+ 1707 00d6 9769     		ldr	r7, [r2, #24]
+ 1708 00d8 FFF7FEFF 		bl	HAL_Delay
+ 1709 00dc D4E91B21 		ldrd	r2, r1, [r4, #108]
+ 1710 00e0 2B68     		ldr	r3, [r5]
+ 1711 00e2 0A43     		orrs	r2, r2, r1
+ 1712 00e4 9F61     		str	r7, [r3, #24]
+ 1713 00e6 3046     		mov	r0, r6
+ 1714 00e8 DA61     		str	r2, [r3, #28]
+ 1715 00ea DC69     		ldr	r4, [r3, #28]
+ 1716 00ec FFF7FEFF 		bl	HAL_Delay
+ 1717 00f0 2B68     		ldr	r3, [r5]
+ 1718 00f2 DC61     		str	r4, [r3, #28]
+ 1719              	.L271:
+ 1720 00f4 0123     		movs	r3, #1
+ 1721 00f6 0020     		movs	r0, #0
+ 1722 00f8 85F84430 		strb	r3, [r5, #68]
+ 1723 00fc 85F84500 		strb	r0, [r5, #69]
+ 1724 0100 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 1725              	.L270:
+ 1726 0104 1068     		ldr	r0, [r2]
+ 1727 0106 41EA0C03 		orr	r3, r1, ip
+ 1728 010a 20F49041 		bic	r1, r0, #18432
+ 1729 010e 0B43     		orrs	r3, r3, r1
+ 1730 0110 1360     		str	r3, [r2]
+ 1731 0112 3046     		mov	r0, r6
+ 1732 0114 1468     		ldr	r4, [r2]
+ 1733 0116 FFF7FEFF 		bl	HAL_Delay
+ 1734 011a 2B68     		ldr	r3, [r5]
+ 1735 011c 1C60     		str	r4, [r3]
+ 1736 011e E9E7     		b	.L271
+ 1737              	.L272:
+ 1738 0120 0220     		movs	r0, #2
+ 1739 0122 7047     		bx	lr
+ 1740              	.L278:
+ 1741              		.align	2
+ 1742              	.L277:
+ 1743 0124 0F8120FF 		.word	-14647025
+ 1745              		.section	.text.HAL_ETH_ConfigDMA,"ax",%progbits
+ 1746              		.align	1
+ 1747              		.p2align 2,,3
+ 1748              		.global	HAL_ETH_ConfigDMA
+ARM GAS  D:\Programs\cygwin64\tmp\ccmCPgco.s 			page 31
+
+
+ 1749              		.syntax unified
+ 1750              		.thumb
+ 1751              		.thumb_func
+ 1752              		.fpu fpv4-sp-d16
+ 1754              	HAL_ETH_ConfigDMA:
+ 1755              		@ args = 0, pretend = 0, frame = 0
+ 1756              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1757 0000 90F84530 		ldrb	r3, [r0, #69]	@ zero_extendqisi2
+ 1758 0004 012B     		cmp	r3, #1
+ 1759 0006 50D0     		beq	.L281
+ 1760 0008 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 1761 000c D1E90037 		ldrd	r3, r7, [r1]
+ 1762 0010 0546     		mov	r5, r0
+ 1763 0012 D1E90260 		ldrd	r6, r0, [r1, #8]
+ 1764 0016 0C46     		mov	r4, r1
+ 1765 0018 3B43     		orrs	r3, r3, r7
+ 1766 001a D1E90412 		ldrd	r1, r2, [r1, #16]
+ 1767 001e 3343     		orrs	r3, r3, r6
+ 1768 0020 0343     		orrs	r3, r3, r0
+ 1769 0022 0B43     		orrs	r3, r3, r1
+ 1770 0024 D4E907C6 		ldrd	ip, r6, [r4, #28]
+ 1771 0028 A069     		ldr	r0, [r4, #24]
+ 1772 002a 2968     		ldr	r1, [r5]
+ 1773 002c 41F21807 		movw	r7, #4120
+ 1774 0030 1343     		orrs	r3, r3, r2
+ 1775 0032 0222     		movs	r2, #2
+ 1776 0034 85F84420 		strb	r2, [r5, #68]
+ 1777 0038 0343     		orrs	r3, r3, r0
+ 1778 003a 1D4A     		ldr	r2, .L286
+ 1779 003c C859     		ldr	r0, [r1, r7]
+ 1780 003e 43EA0C03 		orr	r3, r3, ip
+ 1781 0042 0240     		ands	r2, r2, r0
+ 1782 0044 3343     		orrs	r3, r3, r6
+ 1783 0046 1343     		orrs	r3, r3, r2
+ 1784 0048 0126     		movs	r6, #1
+ 1785 004a 85F84560 		strb	r6, [r5, #69]
+ 1786 004e 3046     		mov	r0, r6
+ 1787 0050 CB51     		str	r3, [r1, r7]
+ 1788 0052 51F80780 		ldr	r8, [r1, r7]
+ 1789 0056 FFF7FEFF 		bl	HAL_Delay
+ 1790 005a D4E90930 		ldrd	r3, r0, [r4, #36]
+ 1791 005e 2A68     		ldr	r2, [r5]
+ 1792 0060 A16B     		ldr	r1, [r4, #56]
+ 1793 0062 D4F82CC0 		ldr	ip, [r4, #44]
+ 1794 0066 42F80780 		str	r8, [r2, r7]
+ 1795 006a 0343     		orrs	r3, r3, r0
+ 1796 006c D4E90C70 		ldrd	r7, r0, [r4, #48]
+ 1797 0070 43EA8103 		orr	r3, r3, r1, lsl #2
+ 1798 0074 43EA0C03 		orr	r3, r3, ip
+ 1799 0078 E16B     		ldr	r1, [r4, #60]
+ 1800 007a 3B43     		orrs	r3, r3, r7
+ 1801 007c 0343     		orrs	r3, r3, r0
+ 1802 007e 02F58052 		add	r2, r2, #4096
+ 1803 0082 0B43     		orrs	r3, r3, r1
+ 1804 0084 43F40003 		orr	r3, r3, #8388608
+ 1805 0088 1360     		str	r3, [r2]
+ 1806 008a 3046     		mov	r0, r6
+ARM GAS  D:\Programs\cygwin64\tmp\ccmCPgco.s 			page 32
+
+
+ 1807 008c 1468     		ldr	r4, [r2]
+ 1808 008e FFF7FEFF 		bl	HAL_Delay
+ 1809 0092 2B68     		ldr	r3, [r5]
+ 1810 0094 03F58053 		add	r3, r3, #4096
+ 1811 0098 0022     		movs	r2, #0
+ 1812 009a 1C60     		str	r4, [r3]
+ 1813 009c 1046     		mov	r0, r2
+ 1814 009e 85F84460 		strb	r6, [r5, #68]
+ 1815 00a2 85F84520 		strb	r2, [r5, #69]
+ 1816 00a6 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 1817              	.L281:
+ 1818 00aa 0220     		movs	r0, #2
+ 1819 00ac 7047     		bx	lr
+ 1820              	.L287:
+ 1821 00ae 00BF     		.align	2
+ 1822              	.L286:
+ 1823 00b0 233FDEF8 		.word	-119652573
+ 1825              		.section	.text.HAL_ETH_GetState,"ax",%progbits
+ 1826              		.align	1
+ 1827              		.p2align 2,,3
+ 1828              		.global	HAL_ETH_GetState
+ 1829              		.syntax unified
+ 1830              		.thumb
+ 1831              		.thumb_func
+ 1832              		.fpu fpv4-sp-d16
+ 1834              	HAL_ETH_GetState:
+ 1835              		@ args = 0, pretend = 0, frame = 0
+ 1836              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1837              		@ link register save eliminated.
+ 1838 0000 90F84400 		ldrb	r0, [r0, #68]	@ zero_extendqisi2
+ 1839 0004 7047     		bx	lr
+ 1841 0006 00BF     		.ident	"GCC: (GNU Tools for Arm Embedded Processors 8-2018-q4-major) 8.2.1 20181213 (release) [gcc
+ARM GAS  D:\Programs\cygwin64\tmp\ccmCPgco.s 			page 33
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f4xx_hal_eth.c
+D:\Programs\cygwin64\tmp\ccmCPgco.s:16     .text.ETH_MACDMAConfig:00000000 $t
+D:\Programs\cygwin64\tmp\ccmCPgco.s:24     .text.ETH_MACDMAConfig:00000000 ETH_MACDMAConfig
+D:\Programs\cygwin64\tmp\ccmCPgco.s:122    .text.ETH_MACDMAConfig:000000e0 $d
+D:\Programs\cygwin64\tmp\ccmCPgco.s:128    .text.HAL_ETH_DMATxDescListInit:00000000 $t
+D:\Programs\cygwin64\tmp\ccmCPgco.s:136    .text.HAL_ETH_DMATxDescListInit:00000000 HAL_ETH_DMATxDescListInit
+D:\Programs\cygwin64\tmp\ccmCPgco.s:245    .text.HAL_ETH_DMARxDescListInit:00000000 $t
+D:\Programs\cygwin64\tmp\ccmCPgco.s:253    .text.HAL_ETH_DMARxDescListInit:00000000 HAL_ETH_DMARxDescListInit
+D:\Programs\cygwin64\tmp\ccmCPgco.s:322    .text.HAL_ETH_MspInit:00000000 $t
+D:\Programs\cygwin64\tmp\ccmCPgco.s:330    .text.HAL_ETH_MspInit:00000000 HAL_ETH_MspInit
+D:\Programs\cygwin64\tmp\ccmCPgco.s:337    .text.HAL_ETH_Init:00000000 $t
+D:\Programs\cygwin64\tmp\ccmCPgco.s:345    .text.HAL_ETH_Init:00000000 HAL_ETH_Init
+D:\Programs\cygwin64\tmp\ccmCPgco.s:656    .text.HAL_ETH_Init:000002e0 $d
+D:\Programs\cygwin64\tmp\ccmCPgco.s:667    .text.HAL_ETH_Init:00000308 $t
+D:\Programs\cygwin64\tmp\ccmCPgco.s:736    .text.HAL_ETH_MspDeInit:00000000 $t
+D:\Programs\cygwin64\tmp\ccmCPgco.s:744    .text.HAL_ETH_MspDeInit:00000000 HAL_ETH_MspDeInit
+D:\Programs\cygwin64\tmp\ccmCPgco.s:751    .text.HAL_ETH_DeInit:00000000 $t
+D:\Programs\cygwin64\tmp\ccmCPgco.s:759    .text.HAL_ETH_DeInit:00000000 HAL_ETH_DeInit
+D:\Programs\cygwin64\tmp\ccmCPgco.s:773    .text.HAL_ETH_TransmitFrame:00000000 $t
+D:\Programs\cygwin64\tmp\ccmCPgco.s:781    .text.HAL_ETH_TransmitFrame:00000000 HAL_ETH_TransmitFrame
+D:\Programs\cygwin64\tmp\ccmCPgco.s:897    .text.HAL_ETH_TransmitFrame:000000f4 $d
+D:\Programs\cygwin64\tmp\ccmCPgco.s:901    .text.HAL_ETH_GetReceivedFrame:00000000 $t
+D:\Programs\cygwin64\tmp\ccmCPgco.s:909    .text.HAL_ETH_GetReceivedFrame:00000000 HAL_ETH_GetReceivedFrame
+D:\Programs\cygwin64\tmp\ccmCPgco.s:977    .text.HAL_ETH_GetReceivedFrame_IT:00000000 $t
+D:\Programs\cygwin64\tmp\ccmCPgco.s:985    .text.HAL_ETH_GetReceivedFrame_IT:00000000 HAL_ETH_GetReceivedFrame_IT
+D:\Programs\cygwin64\tmp\ccmCPgco.s:1127   .text.HAL_ETH_TxCpltCallback:00000000 $t
+D:\Programs\cygwin64\tmp\ccmCPgco.s:1135   .text.HAL_ETH_TxCpltCallback:00000000 HAL_ETH_TxCpltCallback
+D:\Programs\cygwin64\tmp\ccmCPgco.s:1142   .text.HAL_ETH_RxCpltCallback:00000000 $t
+D:\Programs\cygwin64\tmp\ccmCPgco.s:1150   .text.HAL_ETH_RxCpltCallback:00000000 HAL_ETH_RxCpltCallback
+D:\Programs\cygwin64\tmp\ccmCPgco.s:1157   .text.HAL_ETH_ErrorCallback:00000000 $t
+D:\Programs\cygwin64\tmp\ccmCPgco.s:1165   .text.HAL_ETH_ErrorCallback:00000000 HAL_ETH_ErrorCallback
+D:\Programs\cygwin64\tmp\ccmCPgco.s:1172   .text.HAL_ETH_IRQHandler:00000000 $t
+D:\Programs\cygwin64\tmp\ccmCPgco.s:1180   .text.HAL_ETH_IRQHandler:00000000 HAL_ETH_IRQHandler
+D:\Programs\cygwin64\tmp\ccmCPgco.s:1232   .text.HAL_ETH_ReadPHYRegister:00000000 $t
+D:\Programs\cygwin64\tmp\ccmCPgco.s:1240   .text.HAL_ETH_ReadPHYRegister:00000000 HAL_ETH_ReadPHYRegister
+D:\Programs\cygwin64\tmp\ccmCPgco.s:1295   .text.HAL_ETH_WritePHYRegister:00000000 $t
+D:\Programs\cygwin64\tmp\ccmCPgco.s:1303   .text.HAL_ETH_WritePHYRegister:00000000 HAL_ETH_WritePHYRegister
+D:\Programs\cygwin64\tmp\ccmCPgco.s:1356   .text.HAL_ETH_Start:00000000 $t
+D:\Programs\cygwin64\tmp\ccmCPgco.s:1364   .text.HAL_ETH_Start:00000000 HAL_ETH_Start
+D:\Programs\cygwin64\tmp\ccmCPgco.s:1481   .text.HAL_ETH_Start:000000d4 $d
+D:\Programs\cygwin64\tmp\ccmCPgco.s:1485   .text.HAL_ETH_Stop:00000000 $t
+D:\Programs\cygwin64\tmp\ccmCPgco.s:1493   .text.HAL_ETH_Stop:00000000 HAL_ETH_Stop
+D:\Programs\cygwin64\tmp\ccmCPgco.s:1610   .text.HAL_ETH_Stop:000000d4 $d
+D:\Programs\cygwin64\tmp\ccmCPgco.s:1614   .text.HAL_ETH_ConfigMAC:00000000 $t
+D:\Programs\cygwin64\tmp\ccmCPgco.s:1622   .text.HAL_ETH_ConfigMAC:00000000 HAL_ETH_ConfigMAC
+D:\Programs\cygwin64\tmp\ccmCPgco.s:1743   .text.HAL_ETH_ConfigMAC:00000124 $d
+D:\Programs\cygwin64\tmp\ccmCPgco.s:1746   .text.HAL_ETH_ConfigDMA:00000000 $t
+D:\Programs\cygwin64\tmp\ccmCPgco.s:1754   .text.HAL_ETH_ConfigDMA:00000000 HAL_ETH_ConfigDMA
+D:\Programs\cygwin64\tmp\ccmCPgco.s:1823   .text.HAL_ETH_ConfigDMA:000000b0 $d
+D:\Programs\cygwin64\tmp\ccmCPgco.s:1826   .text.HAL_ETH_GetState:00000000 $t
+D:\Programs\cygwin64\tmp\ccmCPgco.s:1834   .text.HAL_ETH_GetState:00000000 HAL_ETH_GetState
+
+UNDEFINED SYMBOLS
+HAL_Delay
+HAL_GetTick
+HAL_RCC_GetHCLKFreq
+ARM GAS  D:\Programs\cygwin64\tmp\ccmCPgco.s 			page 34
+
+
+SystemCoreClock

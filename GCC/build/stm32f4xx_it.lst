@@ -1,0 +1,203 @@
+ARM GAS  D:\Programs\cygwin64\tmp\ccqB1c73.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"stm32f4xx_it.c"
+  14              		.text
+  15              		.section	.text.NMI_Handler,"ax",%progbits
+  16              		.align	1
+  17              		.p2align 2,,3
+  18              		.global	NMI_Handler
+  19              		.arch armv7e-m
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	NMI_Handler:
+  26              		@ args = 0, pretend = 0, frame = 0
+  27              		@ frame_needed = 0, uses_anonymous_args = 0
+  28              		@ link register save eliminated.
+  29 0000 7047     		bx	lr
+  31 0002 00BF     		.section	.text.HardFault_Handler,"ax",%progbits
+  32              		.align	1
+  33              		.p2align 2,,3
+  34              		.global	HardFault_Handler
+  35              		.syntax unified
+  36              		.thumb
+  37              		.thumb_func
+  38              		.fpu fpv4-sp-d16
+  40              	HardFault_Handler:
+  41              		@ Volatile: function does not return.
+  42              		@ args = 0, pretend = 0, frame = 0
+  43              		@ frame_needed = 0, uses_anonymous_args = 0
+  44 0000 0020     		movs	r0, #0
+  45 0002 08B5     		push	{r3, lr}
+  46 0004 FFF7FEFF 		bl	BSP_LED_Off
+  47 0008 0120     		movs	r0, #1
+  48 000a FFF7FEFF 		bl	BSP_LED_On
+  49              	.L4:
+  50 000e FEE7     		b	.L4
+  52              		.section	.text.MemManage_Handler,"ax",%progbits
+  53              		.align	1
+  54              		.p2align 2,,3
+  55              		.global	MemManage_Handler
+  56              		.syntax unified
+  57              		.thumb
+  58              		.thumb_func
+  59              		.fpu fpv4-sp-d16
+  61              	MemManage_Handler:
+  62              		@ Volatile: function does not return.
+ARM GAS  D:\Programs\cygwin64\tmp\ccqB1c73.s 			page 2
+
+
+  63              		@ args = 0, pretend = 0, frame = 0
+  64              		@ frame_needed = 0, uses_anonymous_args = 0
+  65              		@ link register save eliminated.
+  66              	.L7:
+  67 0000 FEE7     		b	.L7
+  69 0002 00BF     		.section	.text.BusFault_Handler,"ax",%progbits
+  70              		.align	1
+  71              		.p2align 2,,3
+  72              		.global	BusFault_Handler
+  73              		.syntax unified
+  74              		.thumb
+  75              		.thumb_func
+  76              		.fpu fpv4-sp-d16
+  78              	BusFault_Handler:
+  79              		@ Volatile: function does not return.
+  80              		@ args = 0, pretend = 0, frame = 0
+  81              		@ frame_needed = 0, uses_anonymous_args = 0
+  82              		@ link register save eliminated.
+  83              	.L9:
+  84 0000 FEE7     		b	.L9
+  86 0002 00BF     		.section	.text.UsageFault_Handler,"ax",%progbits
+  87              		.align	1
+  88              		.p2align 2,,3
+  89              		.global	UsageFault_Handler
+  90              		.syntax unified
+  91              		.thumb
+  92              		.thumb_func
+  93              		.fpu fpv4-sp-d16
+  95              	UsageFault_Handler:
+  96              		@ Volatile: function does not return.
+  97              		@ args = 0, pretend = 0, frame = 0
+  98              		@ frame_needed = 0, uses_anonymous_args = 0
+  99              		@ link register save eliminated.
+ 100              	.L11:
+ 101 0000 FEE7     		b	.L11
+ 103 0002 00BF     		.section	.text.DebugMon_Handler,"ax",%progbits
+ 104              		.align	1
+ 105              		.p2align 2,,3
+ 106              		.global	DebugMon_Handler
+ 107              		.syntax unified
+ 108              		.thumb
+ 109              		.thumb_func
+ 110              		.fpu fpv4-sp-d16
+ 112              	DebugMon_Handler:
+ 113              		@ args = 0, pretend = 0, frame = 0
+ 114              		@ frame_needed = 0, uses_anonymous_args = 0
+ 115              		@ link register save eliminated.
+ 116 0000 7047     		bx	lr
+ 118 0002 00BF     		.section	.text.HAL_Delay,"ax",%progbits
+ 119              		.align	1
+ 120              		.p2align 2,,3
+ 121              		.global	HAL_Delay
+ 122              		.syntax unified
+ 123              		.thumb
+ 124              		.thumb_func
+ 125              		.fpu fpv4-sp-d16
+ 127              	HAL_Delay:
+ARM GAS  D:\Programs\cygwin64\tmp\ccqB1c73.s 			page 3
+
+
+ 128              		@ args = 0, pretend = 0, frame = 8
+ 129              		@ frame_needed = 0, uses_anonymous_args = 0
+ 130              		@ link register save eliminated.
+ 131 0000 82B0     		sub	sp, sp, #8
+ 132 0002 0190     		str	r0, [sp, #4]
+ 133 0004 0198     		ldr	r0, [sp, #4]
+ 134 0006 02B0     		add	sp, sp, #8
+ 135              		@ sp needed
+ 136 0008 FFF7FEBF 		b	osDelay
+ 138              		.section	.text.LTDC_IRQHandler,"ax",%progbits
+ 139              		.align	1
+ 140              		.p2align 2,,3
+ 141              		.global	LTDC_IRQHandler
+ 142              		.syntax unified
+ 143              		.thumb
+ 144              		.thumb_func
+ 145              		.fpu fpv4-sp-d16
+ 147              	LTDC_IRQHandler:
+ 148              		@ args = 0, pretend = 0, frame = 0
+ 149              		@ frame_needed = 0, uses_anonymous_args = 0
+ 150              		@ link register save eliminated.
+ 151 0000 0148     		ldr	r0, .L16
+ 152 0002 FFF7FEBF 		b	HAL_LTDC_IRQHandler
+ 153              	.L17:
+ 154 0006 00BF     		.align	2
+ 155              	.L16:
+ 156 0008 00000000 		.word	hltdc
+ 158              		.section	.text.OTG_HS_IRQHandler,"ax",%progbits
+ 159              		.align	1
+ 160              		.p2align 2,,3
+ 161              		.global	OTG_HS_IRQHandler
+ 162              		.syntax unified
+ 163              		.thumb
+ 164              		.thumb_func
+ 165              		.fpu fpv4-sp-d16
+ 167              	OTG_HS_IRQHandler:
+ 168              		@ args = 0, pretend = 0, frame = 0
+ 169              		@ frame_needed = 0, uses_anonymous_args = 0
+ 170              		@ link register save eliminated.
+ 171 0000 0148     		ldr	r0, .L19
+ 172 0002 FFF7FEBF 		b	HAL_HCD_IRQHandler
+ 173              	.L20:
+ 174 0006 00BF     		.align	2
+ 175              	.L19:
+ 176 0008 00000000 		.word	hhcd
+ 178              		.ident	"GCC: (GNU Tools for Arm Embedded Processors 8-2018-q4-major) 8.2.1 20181213 (release) [gcc
+ARM GAS  D:\Programs\cygwin64\tmp\ccqB1c73.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f4xx_it.c
+D:\Programs\cygwin64\tmp\ccqB1c73.s:16     .text.NMI_Handler:00000000 $t
+D:\Programs\cygwin64\tmp\ccqB1c73.s:25     .text.NMI_Handler:00000000 NMI_Handler
+D:\Programs\cygwin64\tmp\ccqB1c73.s:32     .text.HardFault_Handler:00000000 $t
+D:\Programs\cygwin64\tmp\ccqB1c73.s:40     .text.HardFault_Handler:00000000 HardFault_Handler
+D:\Programs\cygwin64\tmp\ccqB1c73.s:53     .text.MemManage_Handler:00000000 $t
+D:\Programs\cygwin64\tmp\ccqB1c73.s:61     .text.MemManage_Handler:00000000 MemManage_Handler
+D:\Programs\cygwin64\tmp\ccqB1c73.s:70     .text.BusFault_Handler:00000000 $t
+D:\Programs\cygwin64\tmp\ccqB1c73.s:78     .text.BusFault_Handler:00000000 BusFault_Handler
+D:\Programs\cygwin64\tmp\ccqB1c73.s:87     .text.UsageFault_Handler:00000000 $t
+D:\Programs\cygwin64\tmp\ccqB1c73.s:95     .text.UsageFault_Handler:00000000 UsageFault_Handler
+D:\Programs\cygwin64\tmp\ccqB1c73.s:104    .text.DebugMon_Handler:00000000 $t
+D:\Programs\cygwin64\tmp\ccqB1c73.s:112    .text.DebugMon_Handler:00000000 DebugMon_Handler
+D:\Programs\cygwin64\tmp\ccqB1c73.s:119    .text.HAL_Delay:00000000 $t
+D:\Programs\cygwin64\tmp\ccqB1c73.s:127    .text.HAL_Delay:00000000 HAL_Delay
+D:\Programs\cygwin64\tmp\ccqB1c73.s:139    .text.LTDC_IRQHandler:00000000 $t
+D:\Programs\cygwin64\tmp\ccqB1c73.s:147    .text.LTDC_IRQHandler:00000000 LTDC_IRQHandler
+D:\Programs\cygwin64\tmp\ccqB1c73.s:156    .text.LTDC_IRQHandler:00000008 $d
+D:\Programs\cygwin64\tmp\ccqB1c73.s:159    .text.OTG_HS_IRQHandler:00000000 $t
+D:\Programs\cygwin64\tmp\ccqB1c73.s:167    .text.OTG_HS_IRQHandler:00000000 OTG_HS_IRQHandler
+D:\Programs\cygwin64\tmp\ccqB1c73.s:176    .text.OTG_HS_IRQHandler:00000008 $d
+
+UNDEFINED SYMBOLS
+BSP_LED_Off
+BSP_LED_On
+osDelay
+HAL_LTDC_IRQHandler
+hltdc
+HAL_HCD_IRQHandler
+hhcd

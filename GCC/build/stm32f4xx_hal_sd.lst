@@ -1,0 +1,3221 @@
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"stm32f4xx_hal_sd.c"
+  14              		.text
+  15              		.section	.text.SD_DMATransmitCplt,"ax",%progbits
+  16              		.align	1
+  17              		.p2align 2,,3
+  18              		.arch armv7e-m
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu fpv4-sp-d16
+  24              	SD_DMATransmitCplt:
+  25              		@ args = 0, pretend = 0, frame = 0
+  26              		@ frame_needed = 0, uses_anonymous_args = 0
+  27              		@ link register save eliminated.
+  28 0000 836B     		ldr	r3, [r0, #56]
+  29 0002 1A68     		ldr	r2, [r3]
+  30 0004 D36B     		ldr	r3, [r2, #60]
+  31 0006 43F48073 		orr	r3, r3, #256
+  32 000a D363     		str	r3, [r2, #60]
+  33 000c 7047     		bx	lr
+  35 000e 00BF     		.section	.text.SD_FindSCR,"ax",%progbits
+  36              		.align	1
+  37              		.p2align 2,,3
+  38              		.syntax unified
+  39              		.thumb
+  40              		.thumb_func
+  41              		.fpu fpv4-sp-d16
+  43              	SD_FindSCR:
+  44              		@ args = 0, pretend = 0, frame = 32
+  45              		@ frame_needed = 0, uses_anonymous_args = 0
+  46 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+  47 0004 89B0     		sub	sp, sp, #36
+  48 0006 0446     		mov	r4, r0
+  49 0008 8946     		mov	r9, r1
+  50 000a FFF7FEFF 		bl	HAL_GetTick
+  51 000e 0022     		movs	r2, #0
+  52 0010 0023     		movs	r3, #0
+  53 0012 0646     		mov	r6, r0
+  54 0014 0821     		movs	r1, #8
+  55 0016 2068     		ldr	r0, [r4]
+  56 0018 CDE90023 		strd	r2, [sp]
+  57 001c FFF7FEFF 		bl	SDMMC_CmdBlockLength
+  58 0020 0546     		mov	r5, r0
+  59 0022 18B1     		cbz	r0, .L15
+  60              	.L3:
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 2
+
+
+  61 0024 2846     		mov	r0, r5
+  62 0026 09B0     		add	sp, sp, #36
+  63              		@ sp needed
+  64 0028 BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+  65              	.L15:
+  66 002c 216D     		ldr	r1, [r4, #80]
+  67 002e 2068     		ldr	r0, [r4]
+  68 0030 0904     		lsls	r1, r1, #16
+  69 0032 FFF7FEFF 		bl	SDMMC_CmdAppCommand
+  70 0036 0546     		mov	r5, r0
+  71 0038 0028     		cmp	r0, #0
+  72 003a F3D1     		bne	.L3
+  73 003c 4FF0FF32 		mov	r2, #-1
+  74 0040 0823     		movs	r3, #8
+  75 0042 CDE90223 		strd	r2, [sp, #8]
+  76 0046 3022     		movs	r2, #48
+  77 0048 0223     		movs	r3, #2
+  78 004a CDE90423 		strd	r2, [sp, #16]
+  79 004e 02A9     		add	r1, sp, #8
+  80 0050 0022     		movs	r2, #0
+  81 0052 0123     		movs	r3, #1
+  82 0054 2068     		ldr	r0, [r4]
+  83 0056 CDE90623 		strd	r2, [sp, #24]
+  84 005a FFF7FEFF 		bl	SDIO_ConfigData
+  85 005e 2068     		ldr	r0, [r4]
+  86 0060 FFF7FEFF 		bl	SDMMC_CmdSendSCR
+  87 0064 0546     		mov	r5, r0
+  88 0066 0028     		cmp	r0, #0
+  89 0068 DCD1     		bne	.L3
+  90 006a 8046     		mov	r8, r0
+  91 006c 40F22A47 		movw	r7, #1066
+  92              	.L5:
+  93 0070 2068     		ldr	r0, [r4]
+  94 0072 436B     		ldr	r3, [r0, #52]
+  95 0074 3B42     		tst	r3, r7
+  96 0076 436B     		ldr	r3, [r0, #52]
+  97 0078 18D1     		bne	.L16
+  98 007a 9B02     		lsls	r3, r3, #10
+  99 007c 07D4     		bmi	.L17
+ 100 007e FFF7FEFF 		bl	HAL_GetTick
+ 101 0082 801B     		subs	r0, r0, r6
+ 102 0084 0130     		adds	r0, r0, #1
+ 103 0086 F3D1     		bne	.L5
+ 104              	.L13:
+ 105 0088 4FF00045 		mov	r5, #-2147483648
+ 106 008c CAE7     		b	.L3
+ 107              	.L17:
+ 108 008e FFF7FEFF 		bl	SDIO_ReadFIFO
+ 109 0092 08AB     		add	r3, sp, #32
+ 110 0094 03EB8803 		add	r3, r3, r8, lsl #2
+ 111 0098 08F10108 		add	r8, r8, #1
+ 112 009c 43F8200C 		str	r0, [r3, #-32]
+ 113 00a0 FFF7FEFF 		bl	HAL_GetTick
+ 114 00a4 801B     		subs	r0, r0, r6
+ 115 00a6 0130     		adds	r0, r0, #1
+ 116 00a8 E2D1     		bne	.L5
+ 117 00aa EDE7     		b	.L13
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 3
+
+
+ 118              	.L16:
+ 119 00ac 1907     		lsls	r1, r3, #28
+ 120 00ae 12D4     		bmi	.L18
+ 121 00b0 436B     		ldr	r3, [r0, #52]
+ 122 00b2 9A07     		lsls	r2, r3, #30
+ 123 00b4 0CD4     		bmi	.L19
+ 124 00b6 436B     		ldr	r3, [r0, #52]
+ 125 00b8 9B06     		lsls	r3, r3, #26
+ 126 00ba 0FD4     		bmi	.L20
+ 127 00bc DDE90023 		ldrd	r2, r3, [sp]
+ 128 00c0 40F2FF51 		movw	r1, #1535
+ 129 00c4 12BA     		rev	r2, r2
+ 130 00c6 1BBA     		rev	r3, r3
+ 131 00c8 8163     		str	r1, [r0, #56]
+ 132 00ca C9E90032 		strd	r3, r2, [r9]
+ 133 00ce A9E7     		b	.L3
+ 134              	.L19:
+ 135 00d0 0225     		movs	r5, #2
+ 136 00d2 8563     		str	r5, [r0, #56]
+ 137 00d4 A6E7     		b	.L3
+ 138              	.L18:
+ 139 00d6 0825     		movs	r5, #8
+ 140 00d8 8563     		str	r5, [r0, #56]
+ 141 00da A3E7     		b	.L3
+ 142              	.L20:
+ 143 00dc 2025     		movs	r5, #32
+ 144 00de 8563     		str	r5, [r0, #56]
+ 145 00e0 A0E7     		b	.L3
+ 147 00e2 00BF     		.section	.text.HAL_SD_MspInit,"ax",%progbits
+ 148              		.align	1
+ 149              		.p2align 2,,3
+ 150              		.weak	HAL_SD_MspInit
+ 151              		.syntax unified
+ 152              		.thumb
+ 153              		.thumb_func
+ 154              		.fpu fpv4-sp-d16
+ 156              	HAL_SD_MspInit:
+ 157              		@ args = 0, pretend = 0, frame = 0
+ 158              		@ frame_needed = 0, uses_anonymous_args = 0
+ 159              		@ link register save eliminated.
+ 160 0000 7047     		bx	lr
+ 162 0002 00BF     		.section	.text.HAL_SD_MspDeInit,"ax",%progbits
+ 163              		.align	1
+ 164              		.p2align 2,,3
+ 165              		.weak	HAL_SD_MspDeInit
+ 166              		.syntax unified
+ 167              		.thumb
+ 168              		.thumb_func
+ 169              		.fpu fpv4-sp-d16
+ 171              	HAL_SD_MspDeInit:
+ 172              		@ args = 0, pretend = 0, frame = 0
+ 173              		@ frame_needed = 0, uses_anonymous_args = 0
+ 174              		@ link register save eliminated.
+ 175 0000 7047     		bx	lr
+ 177 0002 00BF     		.section	.text.HAL_SD_DeInit,"ax",%progbits
+ 178              		.align	1
+ 179              		.p2align 2,,3
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 4
+
+
+ 180              		.global	HAL_SD_DeInit
+ 181              		.syntax unified
+ 182              		.thumb
+ 183              		.thumb_func
+ 184              		.fpu fpv4-sp-d16
+ 186              	HAL_SD_DeInit:
+ 187              		@ args = 0, pretend = 0, frame = 0
+ 188              		@ frame_needed = 0, uses_anonymous_args = 0
+ 189 0000 80B1     		cbz	r0, .L25
+ 190 0002 10B5     		push	{r4, lr}
+ 191 0004 0323     		movs	r3, #3
+ 192 0006 0446     		mov	r4, r0
+ 193 0008 80F83430 		strb	r3, [r0, #52]
+ 194 000c 0068     		ldr	r0, [r0]
+ 195 000e FFF7FEFF 		bl	SDIO_PowerState_OFF
+ 196 0012 2046     		mov	r0, r4
+ 197 0014 FFF7FEFF 		bl	HAL_SD_MspDeInit
+ 198 0018 0023     		movs	r3, #0
+ 199 001a A363     		str	r3, [r4, #56]
+ 200 001c 1846     		mov	r0, r3
+ 201 001e 84F83430 		strb	r3, [r4, #52]
+ 202 0022 10BD     		pop	{r4, pc}
+ 203              	.L25:
+ 204 0024 0120     		movs	r0, #1
+ 205 0026 7047     		bx	lr
+ 207              		.section	.text.HAL_SD_ReadBlocks,"ax",%progbits
+ 208              		.align	1
+ 209              		.p2align 2,,3
+ 210              		.global	HAL_SD_ReadBlocks
+ 211              		.syntax unified
+ 212              		.thumb
+ 213              		.thumb_func
+ 214              		.fpu fpv4-sp-d16
+ 216              	HAL_SD_ReadBlocks:
+ 217              		@ args = 4, pretend = 0, frame = 24
+ 218              		@ frame_needed = 0, uses_anonymous_args = 0
+ 219 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 220 0004 87B0     		sub	sp, sp, #28
+ 221 0006 0D46     		mov	r5, r1
+ 222 0008 0446     		mov	r4, r0
+ 223 000a 9146     		mov	r9, r2
+ 224 000c 9846     		mov	r8, r3
+ 225 000e 109E     		ldr	r6, [sp, #64]
+ 226 0010 FFF7FEFF 		bl	HAL_GetTick
+ 227 0014 002D     		cmp	r5, #0
+ 228 0016 00F0B080 		beq	.L79
+ 229 001a 0746     		mov	r7, r0
+ 230 001c 94F83400 		ldrb	r0, [r4, #52]	@ zero_extendqisi2
+ 231 0020 C0B2     		uxtb	r0, r0
+ 232 0022 0128     		cmp	r0, #1
+ 233 0024 24D1     		bne	.L33
+ 234 0026 E26D     		ldr	r2, [r4, #92]
+ 235 0028 09EB0803 		add	r3, r9, r8
+ 236 002c 0021     		movs	r1, #0
+ 237 002e 9342     		cmp	r3, r2
+ 238 0030 A163     		str	r1, [r4, #56]
+ 239 0032 00F2AA80 		bhi	.L80
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 5
+
+
+ 240 0036 636C     		ldr	r3, [r4, #68]
+ 241 0038 2068     		ldr	r0, [r4]
+ 242 003a 0322     		movs	r2, #3
+ 243 003c 012B     		cmp	r3, #1
+ 244 003e 84F83420 		strb	r2, [r4, #52]
+ 245 0042 C162     		str	r1, [r0, #44]
+ 246 0044 4FF40071 		mov	r1, #512
+ 247 0048 18BF     		it	ne
+ 248 004a 4FEA4929 		lslne	r9, r9, #9
+ 249 004e FFF7FEFF 		bl	SDMMC_CmdBlockLength
+ 250 0052 A8B1     		cbz	r0, .L36
+ 251 0054 2368     		ldr	r3, [r4]
+ 252 0056 40F2FF52 		movw	r2, #1535
+ 253 005a 9A63     		str	r2, [r3, #56]
+ 254 005c A36B     		ldr	r3, [r4, #56]
+ 255 005e 0122     		movs	r2, #1
+ 256 0060 1843     		orrs	r0, r0, r3
+ 257 0062 A063     		str	r0, [r4, #56]
+ 258 0064 1046     		mov	r0, r2
+ 259 0066 84F83420 		strb	r2, [r4, #52]
+ 260 006a 07B0     		add	sp, sp, #28
+ 261              		@ sp needed
+ 262 006c BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 263              	.L33:
+ 264 0070 A36B     		ldr	r3, [r4, #56]
+ 265 0072 43F00053 		orr	r3, r3, #536870912
+ 266 0076 A363     		str	r3, [r4, #56]
+ 267 0078 0120     		movs	r0, #1
+ 268              	.L32:
+ 269 007a 07B0     		add	sp, sp, #28
+ 270              		@ sp needed
+ 271 007c BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 272              	.L36:
+ 273 0080 4FF0FF31 		mov	r1, #-1
+ 274 0084 4FEA4822 		lsl	r2, r8, #9
+ 275 0088 9023     		movs	r3, #144
+ 276 008a 0490     		str	r0, [sp, #16]
+ 277 008c 4FF0010B 		mov	fp, #1
+ 278 0090 0091     		str	r1, [sp]
+ 279 0092 4FF0020A 		mov	r10, #2
+ 280 0096 6946     		mov	r1, sp
+ 281 0098 2068     		ldr	r0, [r4]
+ 282 009a 0192     		str	r2, [sp, #4]
+ 283 009c CDE9023A 		strd	r3, r10, [sp, #8]
+ 284 00a0 CDF814B0 		str	fp, [sp, #20]
+ 285 00a4 FFF7FEFF 		bl	SDIO_ConfigData
+ 286 00a8 D845     		cmp	r8, fp
+ 287 00aa 40F28280 		bls	.L37
+ 288 00ae C4F830A0 		str	r10, [r4, #48]
+ 289 00b2 4946     		mov	r1, r9
+ 290 00b4 2068     		ldr	r0, [r4]
+ 291 00b6 FFF7FEFF 		bl	SDMMC_CmdReadMultiBlock
+ 292 00ba 0346     		mov	r3, r0
+ 293              	.L38:
+ 294 00bc 2068     		ldr	r0, [r4]
+ 295 00be 002B     		cmp	r3, #0
+ 296 00c0 7FD1     		bne	.L81
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 6
+
+
+ 297 00c2 436B     		ldr	r3, [r0, #52]
+ 298 00c4 40F22A3A 		movw	r10, #810
+ 299 00c8 13EA0A0F 		tst	r3, r10
+ 300 00cc 0ED1     		bne	.L45
+ 301              	.L44:
+ 302 00ce 436B     		ldr	r3, [r0, #52]
+ 303 00d0 1A04     		lsls	r2, r3, #16
+ 304 00d2 44D4     		bmi	.L82
+ 305              	.L40:
+ 306 00d4 002E     		cmp	r6, #0
+ 307 00d6 5FD0     		beq	.L43
+ 308 00d8 FFF7FEFF 		bl	HAL_GetTick
+ 309 00dc C01B     		subs	r0, r0, r7
+ 310 00de B042     		cmp	r0, r6
+ 311 00e0 5AD2     		bcs	.L43
+ 312 00e2 2068     		ldr	r0, [r4]
+ 313 00e4 436B     		ldr	r3, [r0, #52]
+ 314 00e6 13EA0A0F 		tst	r3, r10
+ 315 00ea F0D0     		beq	.L44
+ 316              	.L45:
+ 317 00ec 436B     		ldr	r3, [r0, #52]
+ 318 00ee DB05     		lsls	r3, r3, #23
+ 319 00f0 0BD5     		bpl	.L46
+ 320 00f2 B8F1010F 		cmp	r8, #1
+ 321 00f6 08D9     		bls	.L46
+ 322 00f8 636C     		ldr	r3, [r4, #68]
+ 323 00fa 032B     		cmp	r3, #3
+ 324 00fc 05D0     		beq	.L46
+ 325 00fe FFF7FEFF 		bl	SDMMC_CmdStopTransfer
+ 326 0102 0028     		cmp	r0, #0
+ 327 0104 40F09A80 		bne	.L47
+ 328 0108 2068     		ldr	r0, [r4]
+ 329              	.L46:
+ 330 010a 436B     		ldr	r3, [r0, #52]
+ 331 010c 1907     		lsls	r1, r3, #28
+ 332 010e 63D4     		bmi	.L83
+ 333 0110 436B     		ldr	r3, [r0, #52]
+ 334 0112 9A07     		lsls	r2, r3, #30
+ 335 0114 6CD4     		bmi	.L84
+ 336 0116 436B     		ldr	r3, [r0, #52]
+ 337 0118 9B06     		lsls	r3, r3, #26
+ 338 011a 75D4     		bmi	.L50
+ 339 011c 436B     		ldr	r3, [r0, #52]
+ 340 011e 002E     		cmp	r6, #0
+ 341 0120 7ED0     		beq	.L51
+ 342 0122 9902     		lsls	r1, r3, #10
+ 343 0124 40F18280 		bpl	.L52
+ 344 0128 03E0     		b	.L54
+ 345              	.L85:
+ 346 012a 2068     		ldr	r0, [r4]
+ 347 012c 436B     		ldr	r3, [r0, #52]
+ 348 012e 9A02     		lsls	r2, r3, #10
+ 349 0130 7CD5     		bpl	.L52
+ 350              	.L54:
+ 351 0132 FFF7FEFF 		bl	SDIO_ReadFIFO
+ 352 0136 45F8040B 		str	r0, [r5], #4
+ 353 013a FFF7FEFF 		bl	HAL_GetTick
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 7
+
+
+ 354 013e C01B     		subs	r0, r0, r7
+ 355 0140 8642     		cmp	r6, r0
+ 356 0142 F2D8     		bhi	.L85
+ 357              	.L53:
+ 358 0144 2368     		ldr	r3, [r4]
+ 359 0146 40F2FF52 		movw	r2, #1535
+ 360 014a 9A63     		str	r2, [r3, #56]
+ 361 014c A36B     		ldr	r3, [r4, #56]
+ 362 014e 0122     		movs	r2, #1
+ 363 0150 43F00043 		orr	r3, r3, #-2147483648
+ 364 0154 A363     		str	r3, [r4, #56]
+ 365 0156 1046     		mov	r0, r2
+ 366 0158 84F83420 		strb	r2, [r4, #52]
+ 367 015c 8DE7     		b	.L32
+ 368              	.L82:
+ 369 015e A5F1040B 		sub	fp, r5, #4
+ 370 0162 05F11C09 		add	r9, r5, #28
+ 371 0166 00E0     		b	.L42
+ 372              	.L86:
+ 373 0168 2068     		ldr	r0, [r4]
+ 374              	.L42:
+ 375 016a FFF7FEFF 		bl	SDIO_ReadFIFO
+ 376 016e 4BF8040F 		str	r0, [fp, #4]!
+ 377 0172 CB45     		cmp	fp, r9
+ 378 0174 F8D1     		bne	.L86
+ 379 0176 2035     		adds	r5, r5, #32
+ 380 0178 ACE7     		b	.L40
+ 381              	.L79:
+ 382 017a A36B     		ldr	r3, [r4, #56]
+ 383 017c 0120     		movs	r0, #1
+ 384 017e 43F00063 		orr	r3, r3, #134217728
+ 385 0182 A363     		str	r3, [r4, #56]
+ 386 0184 07B0     		add	sp, sp, #28
+ 387              		@ sp needed
+ 388 0186 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 389              	.L80:
+ 390 018a A36B     		ldr	r3, [r4, #56]
+ 391 018c 43F00073 		orr	r3, r3, #33554432
+ 392 0190 A363     		str	r3, [r4, #56]
+ 393 0192 07B0     		add	sp, sp, #28
+ 394              		@ sp needed
+ 395 0194 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 396              	.L43:
+ 397 0198 2368     		ldr	r3, [r4]
+ 398 019a 40F2FF52 		movw	r2, #1535
+ 399 019e 9A63     		str	r2, [r3, #56]
+ 400 01a0 A36B     		ldr	r3, [r4, #56]
+ 401 01a2 0122     		movs	r2, #1
+ 402 01a4 43F00043 		orr	r3, r3, #-2147483648
+ 403 01a8 A363     		str	r3, [r4, #56]
+ 404 01aa 0320     		movs	r0, #3
+ 405 01ac 84F83420 		strb	r2, [r4, #52]
+ 406 01b0 63E7     		b	.L32
+ 407              	.L37:
+ 408 01b2 C4F830B0 		str	fp, [r4, #48]
+ 409 01b6 4946     		mov	r1, r9
+ 410 01b8 2068     		ldr	r0, [r4]
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 8
+
+
+ 411 01ba FFF7FEFF 		bl	SDMMC_CmdReadSingleBlock
+ 412 01be 0346     		mov	r3, r0
+ 413 01c0 7CE7     		b	.L38
+ 414              	.L81:
+ 415 01c2 40F2FF52 		movw	r2, #1535
+ 416 01c6 8263     		str	r2, [r0, #56]
+ 417 01c8 A26B     		ldr	r2, [r4, #56]
+ 418 01ca 0121     		movs	r1, #1
+ 419 01cc 1343     		orrs	r3, r3, r2
+ 420 01ce A363     		str	r3, [r4, #56]
+ 421 01d0 0846     		mov	r0, r1
+ 422 01d2 84F83410 		strb	r1, [r4, #52]
+ 423 01d6 50E7     		b	.L32
+ 424              	.L83:
+ 425 01d8 40F2FF53 		movw	r3, #1535
+ 426 01dc 8363     		str	r3, [r0, #56]
+ 427 01de A36B     		ldr	r3, [r4, #56]
+ 428 01e0 0122     		movs	r2, #1
+ 429 01e2 43F00803 		orr	r3, r3, #8
+ 430 01e6 A363     		str	r3, [r4, #56]
+ 431 01e8 1046     		mov	r0, r2
+ 432 01ea 84F83420 		strb	r2, [r4, #52]
+ 433 01ee 44E7     		b	.L32
+ 434              	.L84:
+ 435 01f0 40F2FF53 		movw	r3, #1535
+ 436 01f4 8363     		str	r3, [r0, #56]
+ 437 01f6 A36B     		ldr	r3, [r4, #56]
+ 438 01f8 0122     		movs	r2, #1
+ 439 01fa 43F00203 		orr	r3, r3, #2
+ 440 01fe A363     		str	r3, [r4, #56]
+ 441 0200 1046     		mov	r0, r2
+ 442 0202 84F83420 		strb	r2, [r4, #52]
+ 443 0206 38E7     		b	.L32
+ 444              	.L50:
+ 445 0208 40F2FF53 		movw	r3, #1535
+ 446 020c 8363     		str	r3, [r0, #56]
+ 447 020e A36B     		ldr	r3, [r4, #56]
+ 448 0210 0122     		movs	r2, #1
+ 449 0212 43F02003 		orr	r3, r3, #32
+ 450 0216 A363     		str	r3, [r4, #56]
+ 451 0218 1046     		mov	r0, r2
+ 452 021a 84F83420 		strb	r2, [r4, #52]
+ 453 021e 2CE7     		b	.L32
+ 454              	.L51:
+ 455 0220 9B02     		lsls	r3, r3, #10
+ 456 0222 03D5     		bpl	.L52
+ 457 0224 FFF7FEFF 		bl	SDIO_ReadFIFO
+ 458 0228 2860     		str	r0, [r5]
+ 459 022a 8BE7     		b	.L53
+ 460              	.L52:
+ 461 022c 40F2FF52 		movw	r2, #1535
+ 462 0230 0123     		movs	r3, #1
+ 463 0232 8263     		str	r2, [r0, #56]
+ 464 0234 0020     		movs	r0, #0
+ 465 0236 84F83430 		strb	r3, [r4, #52]
+ 466 023a 1EE7     		b	.L32
+ 467              	.L47:
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 9
+
+
+ 468 023c 2368     		ldr	r3, [r4]
+ 469 023e 40F2FF52 		movw	r2, #1535
+ 470 0242 9A63     		str	r2, [r3, #56]
+ 471 0244 A36B     		ldr	r3, [r4, #56]
+ 472 0246 0122     		movs	r2, #1
+ 473 0248 0343     		orrs	r3, r3, r0
+ 474 024a A363     		str	r3, [r4, #56]
+ 475 024c 1046     		mov	r0, r2
+ 476 024e 84F83420 		strb	r2, [r4, #52]
+ 477 0252 12E7     		b	.L32
+ 479              		.section	.text.HAL_SD_WriteBlocks,"ax",%progbits
+ 480              		.align	1
+ 481              		.p2align 2,,3
+ 482              		.global	HAL_SD_WriteBlocks
+ 483              		.syntax unified
+ 484              		.thumb
+ 485              		.thumb_func
+ 486              		.fpu fpv4-sp-d16
+ 488              	HAL_SD_WriteBlocks:
+ 489              		@ args = 4, pretend = 0, frame = 24
+ 490              		@ frame_needed = 0, uses_anonymous_args = 0
+ 491 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 492 0004 86B0     		sub	sp, sp, #24
+ 493 0006 0D46     		mov	r5, r1
+ 494 0008 0446     		mov	r4, r0
+ 495 000a 9146     		mov	r9, r2
+ 496 000c 9846     		mov	r8, r3
+ 497 000e 0E9E     		ldr	r6, [sp, #56]
+ 498 0010 FFF7FEFF 		bl	HAL_GetTick
+ 499 0014 002D     		cmp	r5, #0
+ 500 0016 4AD0     		beq	.L122
+ 501 0018 94F83430 		ldrb	r3, [r4, #52]	@ zero_extendqisi2
+ 502 001c DBB2     		uxtb	r3, r3
+ 503 001e 012B     		cmp	r3, #1
+ 504 0020 30D1     		bne	.L90
+ 505 0022 E16D     		ldr	r1, [r4, #92]
+ 506 0024 09EB0802 		add	r2, r9, r8
+ 507 0028 0746     		mov	r7, r0
+ 508 002a 8A42     		cmp	r2, r1
+ 509 002c 4FF00000 		mov	r0, #0
+ 510 0030 A063     		str	r0, [r4, #56]
+ 511 0032 45D8     		bhi	.L123
+ 512 0034 2368     		ldr	r3, [r4]
+ 513 0036 626C     		ldr	r2, [r4, #68]
+ 514 0038 0321     		movs	r1, #3
+ 515 003a 84F83410 		strb	r1, [r4, #52]
+ 516 003e 012A     		cmp	r2, #1
+ 517 0040 D862     		str	r0, [r3, #44]
+ 518 0042 4FF40071 		mov	r1, #512
+ 519 0046 1846     		mov	r0, r3
+ 520 0048 18BF     		it	ne
+ 521 004a 4FEA4929 		lslne	r9, r9, #9
+ 522 004e FFF7FEFF 		bl	SDMMC_CmdBlockLength
+ 523 0052 00BB     		cbnz	r0, .L124
+ 524 0054 B8F1010F 		cmp	r8, #1
+ 525 0058 2068     		ldr	r0, [r4]
+ 526 005a 6FD9     		bls	.L94
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 10
+
+
+ 527 005c 2023     		movs	r3, #32
+ 528 005e 2363     		str	r3, [r4, #48]
+ 529 0060 4946     		mov	r1, r9
+ 530 0062 FFF7FEFF 		bl	SDMMC_CmdWriteMultiBlock
+ 531 0066 0346     		mov	r3, r0
+ 532              	.L95:
+ 533 0068 2068     		ldr	r0, [r4]
+ 534 006a 002B     		cmp	r3, #0
+ 535 006c 30D0     		beq	.L96
+ 536 006e 40F2FF52 		movw	r2, #1535
+ 537 0072 8263     		str	r2, [r0, #56]
+ 538 0074 A26B     		ldr	r2, [r4, #56]
+ 539 0076 0121     		movs	r1, #1
+ 540 0078 1343     		orrs	r3, r3, r2
+ 541 007a A363     		str	r3, [r4, #56]
+ 542 007c 0B46     		mov	r3, r1
+ 543 007e 84F83410 		strb	r1, [r4, #52]
+ 544 0082 04E0     		b	.L89
+ 545              	.L90:
+ 546 0084 A36B     		ldr	r3, [r4, #56]
+ 547 0086 43F00053 		orr	r3, r3, #536870912
+ 548 008a A363     		str	r3, [r4, #56]
+ 549 008c 0123     		movs	r3, #1
+ 550              	.L89:
+ 551 008e 1846     		mov	r0, r3
+ 552 0090 06B0     		add	sp, sp, #24
+ 553              		@ sp needed
+ 554 0092 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 555              	.L124:
+ 556 0096 2368     		ldr	r3, [r4]
+ 557 0098 40F2FF52 		movw	r2, #1535
+ 558 009c 9A63     		str	r2, [r3, #56]
+ 559 009e A36B     		ldr	r3, [r4, #56]
+ 560 00a0 0122     		movs	r2, #1
+ 561 00a2 1843     		orrs	r0, r0, r3
+ 562 00a4 A063     		str	r0, [r4, #56]
+ 563 00a6 1346     		mov	r3, r2
+ 564 00a8 84F83420 		strb	r2, [r4, #52]
+ 565 00ac EFE7     		b	.L89
+ 566              	.L122:
+ 567 00ae A36B     		ldr	r3, [r4, #56]
+ 568 00b0 43F00063 		orr	r3, r3, #134217728
+ 569 00b4 A363     		str	r3, [r4, #56]
+ 570 00b6 0123     		movs	r3, #1
+ 571 00b8 1846     		mov	r0, r3
+ 572 00ba 06B0     		add	sp, sp, #24
+ 573              		@ sp needed
+ 574 00bc BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 575              	.L123:
+ 576 00c0 A26B     		ldr	r2, [r4, #56]
+ 577 00c2 1846     		mov	r0, r3
+ 578 00c4 42F00072 		orr	r2, r2, #33554432
+ 579 00c8 A263     		str	r2, [r4, #56]
+ 580 00ca 06B0     		add	sp, sp, #24
+ 581              		@ sp needed
+ 582 00cc BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 583              	.L96:
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 11
+
+
+ 584 00d0 4FF0FF32 		mov	r2, #-1
+ 585 00d4 CDE90333 		strd	r3, r3, [sp, #12]
+ 586 00d8 4FEA4823 		lsl	r3, r8, #9
+ 587 00dc 0092     		str	r2, [sp]
+ 588 00de 0193     		str	r3, [sp, #4]
+ 589 00e0 9022     		movs	r2, #144
+ 590 00e2 0123     		movs	r3, #1
+ 591 00e4 6946     		mov	r1, sp
+ 592 00e6 0292     		str	r2, [sp, #8]
+ 593 00e8 0593     		str	r3, [sp, #20]
+ 594 00ea FFF7FEFF 		bl	SDIO_ConfigData
+ 595 00ee 40F21A39 		movw	r9, #794
+ 596              	.L97:
+ 597 00f2 2068     		ldr	r0, [r4]
+ 598 00f4 436B     		ldr	r3, [r0, #52]
+ 599 00f6 13EA090F 		tst	r3, r9
+ 600 00fa 436B     		ldr	r3, [r0, #52]
+ 601 00fc 25D1     		bne	.L125
+ 602 00fe 5B04     		lsls	r3, r3, #17
+ 603 0100 10D4     		bmi	.L126
+ 604              	.L98:
+ 605 0102 26B1     		cbz	r6, .L102
+ 606 0104 FFF7FEFF 		bl	HAL_GetTick
+ 607 0108 C01B     		subs	r0, r0, r7
+ 608 010a B042     		cmp	r0, r6
+ 609 010c F1D3     		bcc	.L97
+ 610              	.L102:
+ 611 010e 2368     		ldr	r3, [r4]
+ 612 0110 40F2FF52 		movw	r2, #1535
+ 613 0114 9A63     		str	r2, [r3, #56]
+ 614 0116 A36B     		ldr	r3, [r4, #56]
+ 615 0118 A363     		str	r3, [r4, #56]
+ 616 011a 0123     		movs	r3, #1
+ 617 011c 84F83430 		strb	r3, [r4, #52]
+ 618 0120 0323     		movs	r3, #3
+ 619 0122 B4E7     		b	.L89
+ 620              	.L126:
+ 621 0124 05F1200A 		add	r10, r5, #32
+ 622 0128 00E0     		b	.L100
+ 623              	.L127:
+ 624 012a 2068     		ldr	r0, [r4]
+ 625              	.L100:
+ 626 012c 2946     		mov	r1, r5
+ 627 012e 0435     		adds	r5, r5, #4
+ 628 0130 FFF7FEFF 		bl	SDIO_WriteFIFO
+ 629 0134 AA45     		cmp	r10, r5
+ 630 0136 F8D1     		bne	.L127
+ 631 0138 5546     		mov	r5, r10
+ 632 013a E2E7     		b	.L98
+ 633              	.L94:
+ 634 013c 1023     		movs	r3, #16
+ 635 013e 2363     		str	r3, [r4, #48]
+ 636 0140 4946     		mov	r1, r9
+ 637 0142 FFF7FEFF 		bl	SDMMC_CmdWriteSingleBlock
+ 638 0146 0346     		mov	r3, r0
+ 639 0148 8EE7     		b	.L95
+ 640              	.L125:
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 12
+
+
+ 641 014a D905     		lsls	r1, r3, #23
+ 642 014c 0AD5     		bpl	.L104
+ 643 014e B8F1010F 		cmp	r8, #1
+ 644 0152 07D9     		bls	.L104
+ 645 0154 636C     		ldr	r3, [r4, #68]
+ 646 0156 032B     		cmp	r3, #3
+ 647 0158 04D0     		beq	.L104
+ 648 015a FFF7FEFF 		bl	SDMMC_CmdStopTransfer
+ 649 015e 0028     		cmp	r0, #0
+ 650 0160 35D1     		bne	.L105
+ 651 0162 2068     		ldr	r0, [r4]
+ 652              	.L104:
+ 653 0164 436B     		ldr	r3, [r0, #52]
+ 654 0166 1A07     		lsls	r2, r3, #28
+ 655 0168 12D4     		bmi	.L128
+ 656 016a 436B     		ldr	r3, [r0, #52]
+ 657 016c 9B07     		lsls	r3, r3, #30
+ 658 016e 1BD4     		bmi	.L129
+ 659 0170 436B     		ldr	r3, [r0, #52]
+ 660 0172 13F01003 		ands	r3, r3, #16
+ 661 0176 23D0     		beq	.L108
+ 662 0178 40F2FF53 		movw	r3, #1535
+ 663 017c 8363     		str	r3, [r0, #56]
+ 664 017e A36B     		ldr	r3, [r4, #56]
+ 665 0180 0122     		movs	r2, #1
+ 666 0182 43F01003 		orr	r3, r3, #16
+ 667 0186 A363     		str	r3, [r4, #56]
+ 668 0188 1346     		mov	r3, r2
+ 669 018a 84F83420 		strb	r2, [r4, #52]
+ 670 018e 7EE7     		b	.L89
+ 671              	.L128:
+ 672 0190 40F2FF53 		movw	r3, #1535
+ 673 0194 8363     		str	r3, [r0, #56]
+ 674 0196 A36B     		ldr	r3, [r4, #56]
+ 675 0198 0122     		movs	r2, #1
+ 676 019a 43F00803 		orr	r3, r3, #8
+ 677 019e A363     		str	r3, [r4, #56]
+ 678 01a0 1346     		mov	r3, r2
+ 679 01a2 84F83420 		strb	r2, [r4, #52]
+ 680 01a6 72E7     		b	.L89
+ 681              	.L129:
+ 682 01a8 40F2FF53 		movw	r3, #1535
+ 683 01ac 8363     		str	r3, [r0, #56]
+ 684 01ae A36B     		ldr	r3, [r4, #56]
+ 685 01b0 0122     		movs	r2, #1
+ 686 01b2 43F00203 		orr	r3, r3, #2
+ 687 01b6 A363     		str	r3, [r4, #56]
+ 688 01b8 1346     		mov	r3, r2
+ 689 01ba 84F83420 		strb	r2, [r4, #52]
+ 690 01be 66E7     		b	.L89
+ 691              	.L108:
+ 692 01c0 40F2FF51 		movw	r1, #1535
+ 693 01c4 0122     		movs	r2, #1
+ 694 01c6 8163     		str	r1, [r0, #56]
+ 695 01c8 84F83420 		strb	r2, [r4, #52]
+ 696 01cc 5FE7     		b	.L89
+ 697              	.L105:
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 13
+
+
+ 698 01ce 2368     		ldr	r3, [r4]
+ 699 01d0 40F2FF52 		movw	r2, #1535
+ 700 01d4 9A63     		str	r2, [r3, #56]
+ 701 01d6 A36B     		ldr	r3, [r4, #56]
+ 702 01d8 0122     		movs	r2, #1
+ 703 01da 0343     		orrs	r3, r3, r0
+ 704 01dc A363     		str	r3, [r4, #56]
+ 705 01de 1346     		mov	r3, r2
+ 706 01e0 84F83420 		strb	r2, [r4, #52]
+ 707 01e4 53E7     		b	.L89
+ 709 01e6 00BF     		.section	.text.HAL_SD_ReadBlocks_IT,"ax",%progbits
+ 710              		.align	1
+ 711              		.p2align 2,,3
+ 712              		.global	HAL_SD_ReadBlocks_IT
+ 713              		.syntax unified
+ 714              		.thumb
+ 715              		.thumb_func
+ 716              		.fpu fpv4-sp-d16
+ 718              	HAL_SD_ReadBlocks_IT:
+ 719              		@ args = 0, pretend = 0, frame = 24
+ 720              		@ frame_needed = 0, uses_anonymous_args = 0
+ 721 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 722 0002 0446     		mov	r4, r0
+ 723 0004 87B0     		sub	sp, sp, #28
+ 724 0006 0029     		cmp	r1, #0
+ 725 0008 5BD0     		beq	.L144
+ 726 000a 90F83400 		ldrb	r0, [r0, #52]	@ zero_extendqisi2
+ 727 000e C0B2     		uxtb	r0, r0
+ 728 0010 0128     		cmp	r0, #1
+ 729 0012 47D1     		bne	.L138
+ 730 0014 1E46     		mov	r6, r3
+ 731 0016 E36D     		ldr	r3, [r4, #92]
+ 732 0018 1546     		mov	r5, r2
+ 733 001a 3244     		add	r2, r2, r6
+ 734 001c 0027     		movs	r7, #0
+ 735 001e 9A42     		cmp	r2, r3
+ 736 0020 A763     		str	r7, [r4, #56]
+ 737 0022 42D8     		bhi	.L145
+ 738 0024 2068     		ldr	r0, [r4]
+ 739 0026 0323     		movs	r3, #3
+ 740 0028 84F83430 		strb	r3, [r4, #52]
+ 741 002c C762     		str	r7, [r0, #44]
+ 742 002e C36B     		ldr	r3, [r0, #60]
+ 743 0030 676C     		ldr	r7, [r4, #68]
+ 744 0032 A162     		str	r1, [r4, #40]
+ 745 0034 43F40343 		orr	r3, r3, #33536
+ 746 0038 7202     		lsls	r2, r6, #9
+ 747 003a 43F02A03 		orr	r3, r3, #42
+ 748 003e E262     		str	r2, [r4, #44]
+ 749 0040 9021     		movs	r1, #144
+ 750 0042 C363     		str	r3, [r0, #60]
+ 751 0044 4FF0FF33 		mov	r3, #-1
+ 752 0048 012F     		cmp	r7, #1
+ 753 004a 0192     		str	r2, [sp, #4]
+ 754 004c 0093     		str	r3, [sp]
+ 755 004e 4FF00202 		mov	r2, #2
+ 756 0052 4FF00003 		mov	r3, #0
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 14
+
+
+ 757 0056 0291     		str	r1, [sp, #8]
+ 758 0058 4FF00107 		mov	r7, #1
+ 759 005c 6946     		mov	r1, sp
+ 760 005e 18BF     		it	ne
+ 761 0060 6D02     		lslne	r5, r5, #9
+ 762 0062 0392     		str	r2, [sp, #12]
+ 763 0064 CDE90437 		strd	r3, r7, [sp, #16]
+ 764 0068 FFF7FEFF 		bl	SDIO_ConfigData
+ 765 006c 4FF40071 		mov	r1, #512
+ 766 0070 2068     		ldr	r0, [r4]
+ 767 0072 FFF7FEFF 		bl	SDMMC_CmdBlockLength
+ 768 0076 58BB     		cbnz	r0, .L146
+ 769 0078 012E     		cmp	r6, #1
+ 770 007a 2068     		ldr	r0, [r4]
+ 771 007c 1BD9     		bls	.L136
+ 772 007e 0A23     		movs	r3, #10
+ 773 0080 2946     		mov	r1, r5
+ 774 0082 2363     		str	r3, [r4, #48]
+ 775 0084 FFF7FEFF 		bl	SDMMC_CmdReadMultiBlock
+ 776              	.L137:
+ 777 0088 68B1     		cbz	r0, .L132
+ 778 008a 2368     		ldr	r3, [r4]
+ 779 008c 40F2FF52 		movw	r2, #1535
+ 780 0090 9A63     		str	r2, [r3, #56]
+ 781 0092 A36B     		ldr	r3, [r4, #56]
+ 782 0094 0122     		movs	r2, #1
+ 783 0096 1843     		orrs	r0, r0, r3
+ 784 0098 A063     		str	r0, [r4, #56]
+ 785 009a 1046     		mov	r0, r2
+ 786 009c 84F83420 		strb	r2, [r4, #52]
+ 787 00a0 07B0     		add	sp, sp, #28
+ 788              		@ sp needed
+ 789 00a2 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 790              	.L138:
+ 791 00a4 0220     		movs	r0, #2
+ 792              	.L132:
+ 793 00a6 07B0     		add	sp, sp, #28
+ 794              		@ sp needed
+ 795 00a8 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 796              	.L145:
+ 797 00aa A36B     		ldr	r3, [r4, #56]
+ 798 00ac 43F00073 		orr	r3, r3, #33554432
+ 799 00b0 A363     		str	r3, [r4, #56]
+ 800 00b2 07B0     		add	sp, sp, #28
+ 801              		@ sp needed
+ 802 00b4 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 803              	.L136:
+ 804 00b6 0923     		movs	r3, #9
+ 805 00b8 2946     		mov	r1, r5
+ 806 00ba 2363     		str	r3, [r4, #48]
+ 807 00bc FFF7FEFF 		bl	SDMMC_CmdReadSingleBlock
+ 808 00c0 E2E7     		b	.L137
+ 809              	.L144:
+ 810 00c2 836B     		ldr	r3, [r0, #56]
+ 811 00c4 43F00063 		orr	r3, r3, #134217728
+ 812 00c8 8363     		str	r3, [r0, #56]
+ 813 00ca 0120     		movs	r0, #1
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 15
+
+
+ 814 00cc 07B0     		add	sp, sp, #28
+ 815              		@ sp needed
+ 816 00ce F0BD     		pop	{r4, r5, r6, r7, pc}
+ 817              	.L146:
+ 818 00d0 2368     		ldr	r3, [r4]
+ 819 00d2 40F2FF52 		movw	r2, #1535
+ 820 00d6 9A63     		str	r2, [r3, #56]
+ 821 00d8 A36B     		ldr	r3, [r4, #56]
+ 822 00da 1843     		orrs	r0, r0, r3
+ 823 00dc A063     		str	r0, [r4, #56]
+ 824 00de 3846     		mov	r0, r7
+ 825 00e0 84F83470 		strb	r7, [r4, #52]
+ 826 00e4 07B0     		add	sp, sp, #28
+ 827              		@ sp needed
+ 828 00e6 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 830              		.section	.text.HAL_SD_WriteBlocks_IT,"ax",%progbits
+ 831              		.align	1
+ 832              		.p2align 2,,3
+ 833              		.global	HAL_SD_WriteBlocks_IT
+ 834              		.syntax unified
+ 835              		.thumb
+ 836              		.thumb_func
+ 837              		.fpu fpv4-sp-d16
+ 839              	HAL_SD_WriteBlocks_IT:
+ 840              		@ args = 0, pretend = 0, frame = 24
+ 841              		@ frame_needed = 0, uses_anonymous_args = 0
+ 842 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 843 0002 0446     		mov	r4, r0
+ 844 0004 87B0     		sub	sp, sp, #28
+ 845 0006 0029     		cmp	r1, #0
+ 846 0008 4BD0     		beq	.L161
+ 847 000a 90F83400 		ldrb	r0, [r0, #52]	@ zero_extendqisi2
+ 848 000e C0B2     		uxtb	r0, r0
+ 849 0010 0128     		cmp	r0, #1
+ 850 0012 36D1     		bne	.L156
+ 851 0014 1E46     		mov	r6, r3
+ 852 0016 E36D     		ldr	r3, [r4, #92]
+ 853 0018 1546     		mov	r5, r2
+ 854 001a 3244     		add	r2, r2, r6
+ 855 001c 0027     		movs	r7, #0
+ 856 001e 9A42     		cmp	r2, r3
+ 857 0020 A763     		str	r7, [r4, #56]
+ 858 0022 31D8     		bhi	.L162
+ 859 0024 2068     		ldr	r0, [r4]
+ 860 0026 626C     		ldr	r2, [r4, #68]
+ 861 0028 0323     		movs	r3, #3
+ 862 002a 84F83430 		strb	r3, [r4, #52]
+ 863 002e C762     		str	r7, [r0, #44]
+ 864 0030 C36B     		ldr	r3, [r0, #60]
+ 865 0032 2162     		str	r1, [r4, #32]
+ 866 0034 43F48643 		orr	r3, r3, #17152
+ 867 0038 43F01A03 		orr	r3, r3, #26
+ 868 003c 7702     		lsls	r7, r6, #9
+ 869 003e 012A     		cmp	r2, #1
+ 870 0040 6762     		str	r7, [r4, #36]
+ 871 0042 4FF40071 		mov	r1, #512
+ 872 0046 C363     		str	r3, [r0, #60]
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 16
+
+
+ 873 0048 18BF     		it	ne
+ 874 004a 6D02     		lslne	r5, r5, #9
+ 875 004c FFF7FEFF 		bl	SDMMC_CmdBlockLength
+ 876 0050 70BB     		cbnz	r0, .L163
+ 877 0052 012E     		cmp	r6, #1
+ 878 0054 2068     		ldr	r0, [r4]
+ 879 0056 1DD9     		bls	.L153
+ 880 0058 2823     		movs	r3, #40
+ 881 005a 2946     		mov	r1, r5
+ 882 005c 2363     		str	r3, [r4, #48]
+ 883 005e FFF7FEFF 		bl	SDMMC_CmdWriteMultiBlock
+ 884 0062 0546     		mov	r5, r0
+ 885              	.L154:
+ 886 0064 2068     		ldr	r0, [r4]
+ 887 0066 002D     		cmp	r5, #0
+ 888 0068 2FD0     		beq	.L155
+ 889 006a 40F2FF53 		movw	r3, #1535
+ 890 006e 8363     		str	r3, [r0, #56]
+ 891 0070 A06B     		ldr	r0, [r4, #56]
+ 892 0072 0123     		movs	r3, #1
+ 893 0074 2843     		orrs	r0, r0, r5
+ 894 0076 A063     		str	r0, [r4, #56]
+ 895 0078 1846     		mov	r0, r3
+ 896 007a 84F83430 		strb	r3, [r4, #52]
+ 897 007e 07B0     		add	sp, sp, #28
+ 898              		@ sp needed
+ 899 0080 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 900              	.L156:
+ 901 0082 0220     		movs	r0, #2
+ 902              	.L149:
+ 903 0084 07B0     		add	sp, sp, #28
+ 904              		@ sp needed
+ 905 0086 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 906              	.L162:
+ 907 0088 A36B     		ldr	r3, [r4, #56]
+ 908 008a 43F00073 		orr	r3, r3, #33554432
+ 909 008e A363     		str	r3, [r4, #56]
+ 910 0090 07B0     		add	sp, sp, #28
+ 911              		@ sp needed
+ 912 0092 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 913              	.L153:
+ 914 0094 1823     		movs	r3, #24
+ 915 0096 2946     		mov	r1, r5
+ 916 0098 2363     		str	r3, [r4, #48]
+ 917 009a FFF7FEFF 		bl	SDMMC_CmdWriteSingleBlock
+ 918 009e 0546     		mov	r5, r0
+ 919 00a0 E0E7     		b	.L154
+ 920              	.L161:
+ 921 00a2 836B     		ldr	r3, [r0, #56]
+ 922 00a4 43F00063 		orr	r3, r3, #134217728
+ 923 00a8 8363     		str	r3, [r0, #56]
+ 924 00aa 0120     		movs	r0, #1
+ 925 00ac 07B0     		add	sp, sp, #28
+ 926              		@ sp needed
+ 927 00ae F0BD     		pop	{r4, r5, r6, r7, pc}
+ 928              	.L163:
+ 929 00b0 2368     		ldr	r3, [r4]
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 17
+
+
+ 930 00b2 40F2FF52 		movw	r2, #1535
+ 931 00b6 9A63     		str	r2, [r3, #56]
+ 932 00b8 A36B     		ldr	r3, [r4, #56]
+ 933 00ba 0122     		movs	r2, #1
+ 934 00bc 1843     		orrs	r0, r0, r3
+ 935 00be A063     		str	r0, [r4, #56]
+ 936 00c0 1046     		mov	r0, r2
+ 937 00c2 84F83420 		strb	r2, [r4, #52]
+ 938 00c6 07B0     		add	sp, sp, #28
+ 939              		@ sp needed
+ 940 00c8 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 941              	.L155:
+ 942 00ca 9022     		movs	r2, #144
+ 943 00cc 0123     		movs	r3, #1
+ 944 00ce 4FF0FF34 		mov	r4, #-1
+ 945 00d2 6946     		mov	r1, sp
+ 946 00d4 0197     		str	r7, [sp, #4]
+ 947 00d6 CDE90355 		strd	r5, r5, [sp, #12]
+ 948 00da 0094     		str	r4, [sp]
+ 949 00dc 0292     		str	r2, [sp, #8]
+ 950 00de 0593     		str	r3, [sp, #20]
+ 951 00e0 FFF7FEFF 		bl	SDIO_ConfigData
+ 952 00e4 2846     		mov	r0, r5
+ 953 00e6 CDE7     		b	.L149
+ 955              		.section	.text.HAL_SD_ReadBlocks_DMA,"ax",%progbits
+ 956              		.align	1
+ 957              		.p2align 2,,3
+ 958              		.global	HAL_SD_ReadBlocks_DMA
+ 959              		.syntax unified
+ 960              		.thumb
+ 961              		.thumb_func
+ 962              		.fpu fpv4-sp-d16
+ 964              	HAL_SD_ReadBlocks_DMA:
+ 965              		@ args = 0, pretend = 0, frame = 24
+ 966              		@ frame_needed = 0, uses_anonymous_args = 0
+ 967 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+ 968 0004 0446     		mov	r4, r0
+ 969 0006 87B0     		sub	sp, sp, #28
+ 970 0008 0029     		cmp	r1, #0
+ 971 000a 7DD0     		beq	.L178
+ 972 000c 90F83450 		ldrb	r5, [r0, #52]	@ zero_extendqisi2
+ 973 0010 EDB2     		uxtb	r5, r5
+ 974 0012 012D     		cmp	r5, #1
+ 975 0014 69D1     		bne	.L172
+ 976 0016 1646     		mov	r6, r2
+ 977 0018 C26D     		ldr	r2, [r0, #92]
+ 978 001a 1F46     		mov	r7, r3
+ 979 001c F318     		adds	r3, r6, r3
+ 980 001e 0020     		movs	r0, #0
+ 981 0020 9342     		cmp	r3, r2
+ 982 0022 A063     		str	r0, [r4, #56]
+ 983 0024 07D9     		bls	.L167
+ 984 0026 A36B     		ldr	r3, [r4, #56]
+ 985 0028 43F00073 		orr	r3, r3, #33554432
+ 986 002c 2846     		mov	r0, r5
+ 987 002e A363     		str	r3, [r4, #56]
+ 988              	.L166:
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 18
+
+
+ 989 0030 07B0     		add	sp, sp, #28
+ 990              		@ sp needed
+ 991 0032 BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 992              	.L167:
+ 993 0036 D4F800E0 		ldr	lr, [r4]
+ 994 003a D4F83CC0 		ldr	ip, [r4, #60]
+ 995 003e DFF8EC90 		ldr	r9, .L180+8
+ 996 0042 0323     		movs	r3, #3
+ 997 0044 84F83430 		strb	r3, [r4, #52]
+ 998 0048 CEF82C00 		str	r0, [lr, #44]
+ 999 004c DEF83C30 		ldr	r3, [lr, #60]
+ 1000 0050 43F44A73 		orr	r3, r3, #808
+ 1001 0054 43F00203 		orr	r3, r3, #2
+ 1002 0058 CEF83C30 		str	r3, [lr, #60]
+ 1003 005c 4FEA4728 		lsl	r8, r7, #9
+ 1004 0060 304B     		ldr	r3, .L180
+ 1005 0062 CCF85000 		str	r0, [ip, #80]
+ 1006 0066 0A46     		mov	r2, r1
+ 1007 0068 CCF84C30 		str	r3, [ip, #76]
+ 1008 006c 0EF18001 		add	r1, lr, #128
+ 1009 0070 CCF83C90 		str	r9, [ip, #60]
+ 1010 0074 6046     		mov	r0, ip
+ 1011 0076 4FEA9803 		lsr	r3, r8, #2
+ 1012 007a FFF7FEFF 		bl	HAL_DMA_Start_IT
+ 1013 007e 2A4B     		ldr	r3, .L180+4
+ 1014 0080 1D60     		str	r5, [r3]
+ 1015 0082 636C     		ldr	r3, [r4, #68]
+ 1016 0084 CDF80480 		str	r8, [sp, #4]
+ 1017 0088 4FF0FF30 		mov	r0, #-1
+ 1018 008c 9021     		movs	r1, #144
+ 1019 008e 012B     		cmp	r3, #1
+ 1020 0090 4FF00202 		mov	r2, #2
+ 1021 0094 4FF00003 		mov	r3, #0
+ 1022 0098 0090     		str	r0, [sp]
+ 1023 009a 0291     		str	r1, [sp, #8]
+ 1024 009c 4FF00105 		mov	r5, #1
+ 1025 00a0 6946     		mov	r1, sp
+ 1026 00a2 2068     		ldr	r0, [r4]
+ 1027 00a4 0392     		str	r2, [sp, #12]
+ 1028 00a6 18BF     		it	ne
+ 1029 00a8 7602     		lslne	r6, r6, #9
+ 1030 00aa CDE90435 		strd	r3, r5, [sp, #16]
+ 1031 00ae FFF7FEFF 		bl	SDIO_ConfigData
+ 1032 00b2 4FF40071 		mov	r1, #512
+ 1033 00b6 2068     		ldr	r0, [r4]
+ 1034 00b8 FFF7FEFF 		bl	SDMMC_CmdBlockLength
+ 1035 00bc C8B9     		cbnz	r0, .L179
+ 1036 00be 012F     		cmp	r7, #1
+ 1037 00c0 2068     		ldr	r0, [r4]
+ 1038 00c2 29D9     		bls	.L170
+ 1039 00c4 8223     		movs	r3, #130
+ 1040 00c6 3146     		mov	r1, r6
+ 1041 00c8 2363     		str	r3, [r4, #48]
+ 1042 00ca FFF7FEFF 		bl	SDMMC_CmdReadMultiBlock
+ 1043              	.L171:
+ 1044 00ce 0028     		cmp	r0, #0
+ 1045 00d0 AED0     		beq	.L166
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 19
+
+
+ 1046 00d2 2368     		ldr	r3, [r4]
+ 1047 00d4 40F2FF52 		movw	r2, #1535
+ 1048 00d8 9A63     		str	r2, [r3, #56]
+ 1049 00da A56B     		ldr	r5, [r4, #56]
+ 1050 00dc 0123     		movs	r3, #1
+ 1051 00de 2843     		orrs	r0, r0, r5
+ 1052 00e0 A063     		str	r0, [r4, #56]
+ 1053 00e2 1846     		mov	r0, r3
+ 1054 00e4 84F83430 		strb	r3, [r4, #52]
+ 1055 00e8 A2E7     		b	.L166
+ 1056              	.L172:
+ 1057 00ea 0220     		movs	r0, #2
+ 1058 00ec 07B0     		add	sp, sp, #28
+ 1059              		@ sp needed
+ 1060 00ee BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 1061              	.L179:
+ 1062 00f2 2368     		ldr	r3, [r4]
+ 1063 00f4 40F2FF52 		movw	r2, #1535
+ 1064 00f8 9A63     		str	r2, [r3, #56]
+ 1065 00fa A36B     		ldr	r3, [r4, #56]
+ 1066 00fc 1843     		orrs	r0, r0, r3
+ 1067 00fe A063     		str	r0, [r4, #56]
+ 1068 0100 2846     		mov	r0, r5
+ 1069 0102 84F83450 		strb	r5, [r4, #52]
+ 1070 0106 93E7     		b	.L166
+ 1071              	.L178:
+ 1072 0108 836B     		ldr	r3, [r0, #56]
+ 1073 010a 43F00063 		orr	r3, r3, #134217728
+ 1074 010e 8363     		str	r3, [r0, #56]
+ 1075 0110 0120     		movs	r0, #1
+ 1076 0112 07B0     		add	sp, sp, #28
+ 1077              		@ sp needed
+ 1078 0114 BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 1079              	.L170:
+ 1080 0118 8123     		movs	r3, #129
+ 1081 011a 3146     		mov	r1, r6
+ 1082 011c 2363     		str	r3, [r4, #48]
+ 1083 011e FFF7FEFF 		bl	SDMMC_CmdReadSingleBlock
+ 1084 0122 D4E7     		b	.L171
+ 1085              	.L181:
+ 1086              		.align	2
+ 1087              	.L180:
+ 1088 0124 00000000 		.word	SD_DMAError
+ 1089 0128 8C852542 		.word	1109755276
+ 1090 012c 00000000 		.word	SD_DMAReceiveCplt
+ 1092              		.section	.text.HAL_SD_WriteBlocks_DMA,"ax",%progbits
+ 1093              		.align	1
+ 1094              		.p2align 2,,3
+ 1095              		.global	HAL_SD_WriteBlocks_DMA
+ 1096              		.syntax unified
+ 1097              		.thumb
+ 1098              		.thumb_func
+ 1099              		.fpu fpv4-sp-d16
+ 1101              	HAL_SD_WriteBlocks_DMA:
+ 1102              		@ args = 0, pretend = 0, frame = 24
+ 1103              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1104 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 20
+
+
+ 1105 0004 0446     		mov	r4, r0
+ 1106 0006 86B0     		sub	sp, sp, #24
+ 1107 0008 0029     		cmp	r1, #0
+ 1108 000a 56D0     		beq	.L196
+ 1109 000c 90F83400 		ldrb	r0, [r0, #52]	@ zero_extendqisi2
+ 1110 0010 C0B2     		uxtb	r0, r0
+ 1111 0012 0128     		cmp	r0, #1
+ 1112 0014 3FD1     		bne	.L191
+ 1113 0016 1F46     		mov	r7, r3
+ 1114 0018 E36D     		ldr	r3, [r4, #92]
+ 1115 001a 1546     		mov	r5, r2
+ 1116 001c 3A44     		add	r2, r2, r7
+ 1117 001e 0E46     		mov	r6, r1
+ 1118 0020 9A42     		cmp	r2, r3
+ 1119 0022 4FF00001 		mov	r1, #0
+ 1120 0026 A163     		str	r1, [r4, #56]
+ 1121 0028 39D8     		bhi	.L197
+ 1122 002a 2068     		ldr	r0, [r4]
+ 1123 002c 236C     		ldr	r3, [r4, #64]
+ 1124 002e D4F844C0 		ldr	ip, [r4, #68]
+ 1125 0032 0322     		movs	r2, #3
+ 1126 0034 84F83420 		strb	r2, [r4, #52]
+ 1127 0038 C162     		str	r1, [r0, #44]
+ 1128 003a C26B     		ldr	r2, [r0, #60]
+ 1129 003c 42F40672 		orr	r2, r2, #536
+ 1130 0040 42F00202 		orr	r2, r2, #2
+ 1131 0044 C263     		str	r2, [r0, #60]
+ 1132 0046 364A     		ldr	r2, .L199
+ 1133 0048 DA63     		str	r2, [r3, #60]
+ 1134 004a 364A     		ldr	r2, .L199+4
+ 1135 004c 1965     		str	r1, [r3, #80]
+ 1136 004e BCF1010F 		cmp	ip, #1
+ 1137 0052 DA64     		str	r2, [r3, #76]
+ 1138 0054 4FF40071 		mov	r1, #512
+ 1139 0058 18BF     		it	ne
+ 1140 005a 6D02     		lslne	r5, r5, #9
+ 1141 005c FFF7FEFF 		bl	SDMMC_CmdBlockLength
+ 1142 0060 0028     		cmp	r0, #0
+ 1143 0062 32D1     		bne	.L198
+ 1144 0064 012F     		cmp	r7, #1
+ 1145 0066 2068     		ldr	r0, [r4]
+ 1146 0068 20D9     		bls	.L188
+ 1147 006a A023     		movs	r3, #160
+ 1148 006c 2946     		mov	r1, r5
+ 1149 006e 2363     		str	r3, [r4, #48]
+ 1150 0070 FFF7FEFF 		bl	SDMMC_CmdWriteMultiBlock
+ 1151 0074 0546     		mov	r5, r0
+ 1152              	.L189:
+ 1153 0076 2268     		ldr	r2, [r4]
+ 1154 0078 002D     		cmp	r5, #0
+ 1155 007a 34D0     		beq	.L190
+ 1156 007c 40F2FF53 		movw	r3, #1535
+ 1157 0080 9363     		str	r3, [r2, #56]
+ 1158 0082 A06B     		ldr	r0, [r4, #56]
+ 1159 0084 0123     		movs	r3, #1
+ 1160 0086 2843     		orrs	r0, r0, r5
+ 1161 0088 A063     		str	r0, [r4, #56]
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 21
+
+
+ 1162 008a 1846     		mov	r0, r3
+ 1163 008c 84F83430 		strb	r3, [r4, #52]
+ 1164 0090 06B0     		add	sp, sp, #24
+ 1165              		@ sp needed
+ 1166 0092 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 1167              	.L191:
+ 1168 0096 0220     		movs	r0, #2
+ 1169              	.L184:
+ 1170 0098 06B0     		add	sp, sp, #24
+ 1171              		@ sp needed
+ 1172 009a BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 1173              	.L197:
+ 1174 009e A36B     		ldr	r3, [r4, #56]
+ 1175 00a0 43F00073 		orr	r3, r3, #33554432
+ 1176 00a4 A363     		str	r3, [r4, #56]
+ 1177 00a6 06B0     		add	sp, sp, #24
+ 1178              		@ sp needed
+ 1179 00a8 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 1180              	.L188:
+ 1181 00ac 9023     		movs	r3, #144
+ 1182 00ae 2946     		mov	r1, r5
+ 1183 00b0 2363     		str	r3, [r4, #48]
+ 1184 00b2 FFF7FEFF 		bl	SDMMC_CmdWriteSingleBlock
+ 1185 00b6 0546     		mov	r5, r0
+ 1186 00b8 DDE7     		b	.L189
+ 1187              	.L196:
+ 1188 00ba 836B     		ldr	r3, [r0, #56]
+ 1189 00bc 43F00063 		orr	r3, r3, #134217728
+ 1190 00c0 8363     		str	r3, [r0, #56]
+ 1191 00c2 0120     		movs	r0, #1
+ 1192 00c4 06B0     		add	sp, sp, #24
+ 1193              		@ sp needed
+ 1194 00c6 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 1195              	.L198:
+ 1196 00ca 2368     		ldr	r3, [r4]
+ 1197 00cc 40F2FF52 		movw	r2, #1535
+ 1198 00d0 9A63     		str	r2, [r3, #56]
+ 1199 00d2 A36B     		ldr	r3, [r4, #56]
+ 1200 00d4 0122     		movs	r2, #1
+ 1201 00d6 1843     		orrs	r0, r0, r3
+ 1202 00d8 A063     		str	r0, [r4, #56]
+ 1203 00da 1046     		mov	r0, r2
+ 1204 00dc 84F83420 		strb	r2, [r4, #52]
+ 1205 00e0 06B0     		add	sp, sp, #24
+ 1206              		@ sp needed
+ 1207 00e2 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 1208              	.L190:
+ 1209 00e6 DFF840C0 		ldr	ip, .L199+8
+ 1210 00ea 206C     		ldr	r0, [r4, #64]
+ 1211 00ec 7F02     		lsls	r7, r7, #9
+ 1212 00ee 4FF00108 		mov	r8, #1
+ 1213 00f2 8032     		adds	r2, r2, #128
+ 1214 00f4 3146     		mov	r1, r6
+ 1215 00f6 BB08     		lsrs	r3, r7, #2
+ 1216 00f8 CCF80080 		str	r8, [ip]
+ 1217 00fc FFF7FEFF 		bl	HAL_DMA_Start_IT
+ 1218 0100 4FF0FF32 		mov	r2, #-1
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 22
+
+
+ 1219 0104 9023     		movs	r3, #144
+ 1220 0106 2068     		ldr	r0, [r4]
+ 1221 0108 0197     		str	r7, [sp, #4]
+ 1222 010a 6946     		mov	r1, sp
+ 1223 010c CDF81480 		str	r8, [sp, #20]
+ 1224 0110 CDE90355 		strd	r5, r5, [sp, #12]
+ 1225 0114 0092     		str	r2, [sp]
+ 1226 0116 0293     		str	r3, [sp, #8]
+ 1227 0118 FFF7FEFF 		bl	SDIO_ConfigData
+ 1228 011c 2846     		mov	r0, r5
+ 1229 011e BBE7     		b	.L184
+ 1230              	.L200:
+ 1231              		.align	2
+ 1232              	.L199:
+ 1233 0120 00000000 		.word	SD_DMATransmitCplt
+ 1234 0124 00000000 		.word	SD_DMAError
+ 1235 0128 8C852542 		.word	1109755276
+ 1237              		.section	.text.HAL_SD_Erase,"ax",%progbits
+ 1238              		.align	1
+ 1239              		.p2align 2,,3
+ 1240              		.global	HAL_SD_Erase
+ 1241              		.syntax unified
+ 1242              		.thumb
+ 1243              		.thumb_func
+ 1244              		.fpu fpv4-sp-d16
+ 1246              	HAL_SD_Erase:
+ 1247              		@ args = 0, pretend = 0, frame = 8
+ 1248              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1249 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 1250 0002 90F83450 		ldrb	r5, [r0, #52]	@ zero_extendqisi2
+ 1251 0006 EDB2     		uxtb	r5, r5
+ 1252 0008 012D     		cmp	r5, #1
+ 1253 000a 83B0     		sub	sp, sp, #12
+ 1254 000c 23D1     		bne	.L211
+ 1255 000e 0E46     		mov	r6, r1
+ 1256 0010 B242     		cmp	r2, r6
+ 1257 0012 4FF00001 		mov	r1, #0
+ 1258 0016 0446     		mov	r4, r0
+ 1259 0018 8163     		str	r1, [r0, #56]
+ 1260 001a 15D3     		bcc	.L223
+ 1261 001c C36D     		ldr	r3, [r0, #92]
+ 1262 001e 9342     		cmp	r3, r2
+ 1263 0020 39D3     		bcc	.L224
+ 1264 0022 C36C     		ldr	r3, [r0, #76]
+ 1265 0024 0068     		ldr	r0, [r0]
+ 1266 0026 0327     		movs	r7, #3
+ 1267 0028 9B06     		lsls	r3, r3, #26
+ 1268 002a 84F83470 		strb	r7, [r4, #52]
+ 1269 002e 15D4     		bmi	.L205
+ 1270 0030 40F2FF53 		movw	r3, #1535
+ 1271 0034 8363     		str	r3, [r0, #56]
+ 1272 0036 A36B     		ldr	r3, [r4, #56]
+ 1273 0038 2846     		mov	r0, r5
+ 1274 003a 43F08063 		orr	r3, r3, #67108864
+ 1275 003e A363     		str	r3, [r4, #56]
+ 1276 0040 84F83450 		strb	r5, [r4, #52]
+ 1277 0044 03B0     		add	sp, sp, #12
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 23
+
+
+ 1278              		@ sp needed
+ 1279 0046 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 1280              	.L223:
+ 1281 0048 836B     		ldr	r3, [r0, #56]
+ 1282 004a 43F00063 		orr	r3, r3, #134217728
+ 1283 004e 2846     		mov	r0, r5
+ 1284 0050 A363     		str	r3, [r4, #56]
+ 1285              	.L202:
+ 1286 0052 03B0     		add	sp, sp, #12
+ 1287              		@ sp needed
+ 1288 0054 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 1289              	.L211:
+ 1290 0056 0220     		movs	r0, #2
+ 1291 0058 03B0     		add	sp, sp, #12
+ 1292              		@ sp needed
+ 1293 005a F0BD     		pop	{r4, r5, r6, r7, pc}
+ 1294              	.L205:
+ 1295 005c 0192     		str	r2, [sp, #4]
+ 1296 005e FFF7FEFF 		bl	SDIO_GetResponse
+ 1297 0062 10F0007F 		tst	r0, #33554432
+ 1298 0066 019A     		ldr	r2, [sp, #4]
+ 1299 0068 3CD1     		bne	.L225
+ 1300 006a 636C     		ldr	r3, [r4, #68]
+ 1301 006c 012B     		cmp	r3, #1
+ 1302 006e 1BD0     		beq	.L207
+ 1303 0070 032B     		cmp	r3, #3
+ 1304 0072 17D1     		bne	.L226
+ 1305              	.L208:
+ 1306 0074 2068     		ldr	r0, [r4]
+ 1307 0076 FFF7FEFF 		bl	SDMMC_CmdErase
+ 1308 007a 0028     		cmp	r0, #0
+ 1309 007c 2ED0     		beq	.L210
+ 1310              	.L222:
+ 1311 007e 2368     		ldr	r3, [r4]
+ 1312 0080 40F2FF52 		movw	r2, #1535
+ 1313 0084 9A63     		str	r2, [r3, #56]
+ 1314 0086 A36B     		ldr	r3, [r4, #56]
+ 1315 0088 0122     		movs	r2, #1
+ 1316 008a 1843     		orrs	r0, r0, r3
+ 1317 008c A063     		str	r0, [r4, #56]
+ 1318 008e 1046     		mov	r0, r2
+ 1319 0090 84F83420 		strb	r2, [r4, #52]
+ 1320 0094 DDE7     		b	.L202
+ 1321              	.L224:
+ 1322 0096 836B     		ldr	r3, [r0, #56]
+ 1323 0098 2846     		mov	r0, r5
+ 1324 009a 43F00073 		orr	r3, r3, #33554432
+ 1325 009e A363     		str	r3, [r4, #56]
+ 1326 00a0 03B0     		add	sp, sp, #12
+ 1327              		@ sp needed
+ 1328 00a2 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 1329              	.L226:
+ 1330 00a4 7602     		lsls	r6, r6, #9
+ 1331 00a6 5202     		lsls	r2, r2, #9
+ 1332              	.L207:
+ 1333 00a8 3146     		mov	r1, r6
+ 1334 00aa 2068     		ldr	r0, [r4]
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 24
+
+
+ 1335 00ac 0192     		str	r2, [sp, #4]
+ 1336 00ae FFF7FEFF 		bl	SDMMC_CmdSDEraseStartAdd
+ 1337 00b2 019A     		ldr	r2, [sp, #4]
+ 1338 00b4 0028     		cmp	r0, #0
+ 1339 00b6 E2D1     		bne	.L222
+ 1340 00b8 1146     		mov	r1, r2
+ 1341 00ba 2068     		ldr	r0, [r4]
+ 1342 00bc FFF7FEFF 		bl	SDMMC_CmdSDEraseEndAdd
+ 1343 00c0 0028     		cmp	r0, #0
+ 1344 00c2 D7D0     		beq	.L208
+ 1345 00c4 2368     		ldr	r3, [r4]
+ 1346 00c6 40F2FF52 		movw	r2, #1535
+ 1347 00ca 9A63     		str	r2, [r3, #56]
+ 1348 00cc A36B     		ldr	r3, [r4, #56]
+ 1349 00ce 0122     		movs	r2, #1
+ 1350 00d0 0343     		orrs	r3, r3, r0
+ 1351 00d2 A363     		str	r3, [r4, #56]
+ 1352 00d4 1046     		mov	r0, r2
+ 1353 00d6 84F83420 		strb	r2, [r4, #52]
+ 1354 00da BAE7     		b	.L202
+ 1355              	.L210:
+ 1356 00dc 0123     		movs	r3, #1
+ 1357 00de 84F83430 		strb	r3, [r4, #52]
+ 1358 00e2 B6E7     		b	.L202
+ 1359              	.L225:
+ 1360 00e4 2368     		ldr	r3, [r4]
+ 1361 00e6 40F2FF52 		movw	r2, #1535
+ 1362 00ea 9A63     		str	r2, [r3, #56]
+ 1363 00ec A36B     		ldr	r3, [r4, #56]
+ 1364 00ee 43F40063 		orr	r3, r3, #2048
+ 1365 00f2 A363     		str	r3, [r4, #56]
+ 1366 00f4 2846     		mov	r0, r5
+ 1367 00f6 84F83450 		strb	r5, [r4, #52]
+ 1368 00fa AAE7     		b	.L202
+ 1370              		.section	.text.HAL_SD_GetState,"ax",%progbits
+ 1371              		.align	1
+ 1372              		.p2align 2,,3
+ 1373              		.global	HAL_SD_GetState
+ 1374              		.syntax unified
+ 1375              		.thumb
+ 1376              		.thumb_func
+ 1377              		.fpu fpv4-sp-d16
+ 1379              	HAL_SD_GetState:
+ 1380              		@ args = 0, pretend = 0, frame = 0
+ 1381              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1382              		@ link register save eliminated.
+ 1383 0000 90F83400 		ldrb	r0, [r0, #52]	@ zero_extendqisi2
+ 1384 0004 7047     		bx	lr
+ 1386 0006 00BF     		.section	.text.HAL_SD_GetError,"ax",%progbits
+ 1387              		.align	1
+ 1388              		.p2align 2,,3
+ 1389              		.global	HAL_SD_GetError
+ 1390              		.syntax unified
+ 1391              		.thumb
+ 1392              		.thumb_func
+ 1393              		.fpu fpv4-sp-d16
+ 1395              	HAL_SD_GetError:
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 25
+
+
+ 1396              		@ args = 0, pretend = 0, frame = 0
+ 1397              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1398              		@ link register save eliminated.
+ 1399 0000 806B     		ldr	r0, [r0, #56]
+ 1400 0002 7047     		bx	lr
+ 1402              		.section	.text.HAL_SD_TxCpltCallback,"ax",%progbits
+ 1403              		.align	1
+ 1404              		.p2align 2,,3
+ 1405              		.weak	HAL_SD_TxCpltCallback
+ 1406              		.syntax unified
+ 1407              		.thumb
+ 1408              		.thumb_func
+ 1409              		.fpu fpv4-sp-d16
+ 1411              	HAL_SD_TxCpltCallback:
+ 1412              		@ args = 0, pretend = 0, frame = 0
+ 1413              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1414              		@ link register save eliminated.
+ 1415 0000 7047     		bx	lr
+ 1417 0002 00BF     		.section	.text.HAL_SD_RxCpltCallback,"ax",%progbits
+ 1418              		.align	1
+ 1419              		.p2align 2,,3
+ 1420              		.weak	HAL_SD_RxCpltCallback
+ 1421              		.syntax unified
+ 1422              		.thumb
+ 1423              		.thumb_func
+ 1424              		.fpu fpv4-sp-d16
+ 1426              	HAL_SD_RxCpltCallback:
+ 1427              		@ args = 0, pretend = 0, frame = 0
+ 1428              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1429              		@ link register save eliminated.
+ 1430 0000 7047     		bx	lr
+ 1432 0002 00BF     		.section	.text.HAL_SD_ErrorCallback,"ax",%progbits
+ 1433              		.align	1
+ 1434              		.p2align 2,,3
+ 1435              		.weak	HAL_SD_ErrorCallback
+ 1436              		.syntax unified
+ 1437              		.thumb
+ 1438              		.thumb_func
+ 1439              		.fpu fpv4-sp-d16
+ 1441              	HAL_SD_ErrorCallback:
+ 1442              		@ args = 0, pretend = 0, frame = 0
+ 1443              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1444              		@ link register save eliminated.
+ 1445 0000 7047     		bx	lr
+ 1447 0002 00BF     		.section	.text.SD_DMAReceiveCplt,"ax",%progbits
+ 1448              		.align	1
+ 1449              		.p2align 2,,3
+ 1450              		.syntax unified
+ 1451              		.thumb
+ 1452              		.thumb_func
+ 1453              		.fpu fpv4-sp-d16
+ 1455              	SD_DMAReceiveCplt:
+ 1456              		@ args = 0, pretend = 0, frame = 0
+ 1457              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1458 0000 38B5     		push	{r3, r4, r5, lr}
+ 1459 0002 846B     		ldr	r4, [r0, #56]
+ 1460 0004 226B     		ldr	r2, [r4, #48]
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 26
+
+
+ 1461 0006 2368     		ldr	r3, [r4]
+ 1462 0008 822A     		cmp	r2, #130
+ 1463 000a 0DD0     		beq	.L237
+ 1464              	.L233:
+ 1465 000c DA6A     		ldr	r2, [r3, #44]
+ 1466 000e 40F2FF55 		movw	r5, #1535
+ 1467 0012 22F00802 		bic	r2, r2, #8
+ 1468 0016 0121     		movs	r1, #1
+ 1469 0018 DA62     		str	r2, [r3, #44]
+ 1470 001a 2046     		mov	r0, r4
+ 1471 001c 9D63     		str	r5, [r3, #56]
+ 1472 001e 84F83410 		strb	r1, [r4, #52]
+ 1473 0022 FFF7FEFF 		bl	HAL_SD_RxCpltCallback
+ 1474 0026 38BD     		pop	{r3, r4, r5, pc}
+ 1475              	.L237:
+ 1476 0028 1846     		mov	r0, r3
+ 1477 002a FFF7FEFF 		bl	SDMMC_CmdStopTransfer
+ 1478 002e 08B9     		cbnz	r0, .L234
+ 1479              	.L236:
+ 1480 0030 2368     		ldr	r3, [r4]
+ 1481 0032 EBE7     		b	.L233
+ 1482              	.L234:
+ 1483 0034 A36B     		ldr	r3, [r4, #56]
+ 1484 0036 1843     		orrs	r0, r0, r3
+ 1485 0038 A063     		str	r0, [r4, #56]
+ 1486 003a 2046     		mov	r0, r4
+ 1487 003c FFF7FEFF 		bl	HAL_SD_ErrorCallback
+ 1488 0040 F6E7     		b	.L236
+ 1490 0042 00BF     		.section	.text.SD_DMAError,"ax",%progbits
+ 1491              		.align	1
+ 1492              		.p2align 2,,3
+ 1493              		.syntax unified
+ 1494              		.thumb
+ 1495              		.thumb_func
+ 1496              		.fpu fpv4-sp-d16
+ 1498              	SD_DMAError:
+ 1499              		@ args = 0, pretend = 0, frame = 0
+ 1500              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1501 0000 10B5     		push	{r4, lr}
+ 1502 0002 846B     		ldr	r4, [r0, #56]
+ 1503 0004 E36B     		ldr	r3, [r4, #60]
+ 1504 0006 5B6D     		ldr	r3, [r3, #84]
+ 1505 0008 012B     		cmp	r3, #1
+ 1506 000a 07D0     		beq	.L239
+ 1507 000c 236C     		ldr	r3, [r4, #64]
+ 1508 000e 5B6D     		ldr	r3, [r3, #84]
+ 1509 0010 012B     		cmp	r3, #1
+ 1510 0012 03D0     		beq	.L239
+ 1511 0014 2046     		mov	r0, r4
+ 1512 0016 FFF7FEFF 		bl	HAL_SD_ErrorCallback
+ 1513 001a 10BD     		pop	{r4, pc}
+ 1514              	.L239:
+ 1515 001c 2068     		ldr	r0, [r4]
+ 1516 001e 216D     		ldr	r1, [r4, #80]
+ 1517 0020 40F2FF53 		movw	r3, #1535
+ 1518 0024 8363     		str	r3, [r0, #56]
+ 1519 0026 C36B     		ldr	r3, [r0, #60]
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 27
+
+
+ 1520 0028 23F49D73 		bic	r3, r3, #314
+ 1521 002c C363     		str	r3, [r0, #60]
+ 1522 002e A36B     		ldr	r3, [r4, #56]
+ 1523 0030 43F08043 		orr	r3, r3, #1073741824
+ 1524 0034 A363     		str	r3, [r4, #56]
+ 1525 0036 0904     		lsls	r1, r1, #16
+ 1526 0038 FFF7FEFF 		bl	SDMMC_CmdSendStatus
+ 1527 003c 58B9     		cbnz	r0, .L248
+ 1528 003e 0146     		mov	r1, r0
+ 1529 0040 2068     		ldr	r0, [r4]
+ 1530 0042 FFF7FEFF 		bl	SDIO_GetResponse
+ 1531 0046 C0F34320 		ubfx	r0, r0, #9, #4
+ 1532 004a 0538     		subs	r0, r0, #5
+ 1533 004c 0128     		cmp	r0, #1
+ 1534 004e 05D8     		bhi	.L243
+ 1535 0050 2068     		ldr	r0, [r4]
+ 1536 0052 FFF7FEFF 		bl	SDMMC_CmdStopTransfer
+ 1537              	.L248:
+ 1538 0056 A36B     		ldr	r3, [r4, #56]
+ 1539 0058 1843     		orrs	r0, r0, r3
+ 1540 005a A063     		str	r0, [r4, #56]
+ 1541              	.L243:
+ 1542 005c 0123     		movs	r3, #1
+ 1543 005e 84F83430 		strb	r3, [r4, #52]
+ 1544 0062 2046     		mov	r0, r4
+ 1545 0064 FFF7FEFF 		bl	HAL_SD_ErrorCallback
+ 1546 0068 10BD     		pop	{r4, pc}
+ 1548 006a 00BF     		.section	.text.HAL_SD_AbortCallback,"ax",%progbits
+ 1549              		.align	1
+ 1550              		.p2align 2,,3
+ 1551              		.weak	HAL_SD_AbortCallback
+ 1552              		.syntax unified
+ 1553              		.thumb
+ 1554              		.thumb_func
+ 1555              		.fpu fpv4-sp-d16
+ 1557              	HAL_SD_AbortCallback:
+ 1558              		@ args = 0, pretend = 0, frame = 0
+ 1559              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1560              		@ link register save eliminated.
+ 1561 0000 7047     		bx	lr
+ 1563 0002 00BF     		.section	.text.SD_DMATxAbort,"ax",%progbits
+ 1564              		.align	1
+ 1565              		.p2align 2,,3
+ 1566              		.syntax unified
+ 1567              		.thumb
+ 1568              		.thumb_func
+ 1569              		.fpu fpv4-sp-d16
+ 1571              	SD_DMATxAbort:
+ 1572              		@ args = 0, pretend = 0, frame = 0
+ 1573              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1574 0000 70B5     		push	{r4, r5, r6, lr}
+ 1575 0002 846B     		ldr	r4, [r0, #56]
+ 1576 0004 236C     		ldr	r3, [r4, #64]
+ 1577 0006 0BB1     		cbz	r3, .L251
+ 1578 0008 0023     		movs	r3, #0
+ 1579 000a 2364     		str	r3, [r4, #64]
+ 1580              	.L251:
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 28
+
+
+ 1581 000c E56B     		ldr	r5, [r4, #60]
+ 1582 000e 05B1     		cbz	r5, .L262
+ 1583              	.L250:
+ 1584 0010 70BD     		pop	{r4, r5, r6, pc}
+ 1585              	.L262:
+ 1586 0012 216D     		ldr	r1, [r4, #80]
+ 1587 0014 2068     		ldr	r0, [r4]
+ 1588 0016 0904     		lsls	r1, r1, #16
+ 1589 0018 FFF7FEFF 		bl	SDMMC_CmdSendStatus
+ 1590 001c 0646     		mov	r6, r0
+ 1591 001e C0B9     		cbnz	r0, .L254
+ 1592 0020 0146     		mov	r1, r0
+ 1593 0022 2068     		ldr	r0, [r4]
+ 1594 0024 FFF7FEFF 		bl	SDIO_GetResponse
+ 1595 0028 C0F34320 		ubfx	r0, r0, #9, #4
+ 1596 002c 0123     		movs	r3, #1
+ 1597 002e 0538     		subs	r0, r0, #5
+ 1598 0030 9842     		cmp	r0, r3
+ 1599 0032 A663     		str	r6, [r4, #56]
+ 1600 0034 84F83430 		strb	r3, [r4, #52]
+ 1601 0038 EAD8     		bhi	.L250
+ 1602 003a 2068     		ldr	r0, [r4]
+ 1603 003c FFF7FEFF 		bl	SDMMC_CmdStopTransfer
+ 1604 0040 A36B     		ldr	r3, [r4, #56]
+ 1605 0042 1843     		orrs	r0, r0, r3
+ 1606 0044 A063     		str	r0, [r4, #56]
+ 1607 0046 A36B     		ldr	r3, [r4, #56]
+ 1608 0048 2046     		mov	r0, r4
+ 1609 004a 53B1     		cbz	r3, .L257
+ 1610 004c FFF7FEFF 		bl	HAL_SD_AbortCallback
+ 1611 0050 70BD     		pop	{r4, r5, r6, pc}
+ 1612              	.L254:
+ 1613 0052 A36B     		ldr	r3, [r4, #56]
+ 1614 0054 0122     		movs	r2, #1
+ 1615 0056 1E43     		orrs	r6, r6, r3
+ 1616 0058 A663     		str	r6, [r4, #56]
+ 1617 005a A563     		str	r5, [r4, #56]
+ 1618 005c 84F83420 		strb	r2, [r4, #52]
+ 1619 0060 70BD     		pop	{r4, r5, r6, pc}
+ 1620              	.L257:
+ 1621 0062 FFF7FEFF 		bl	HAL_SD_ErrorCallback
+ 1622 0066 70BD     		pop	{r4, r5, r6, pc}
+ 1624              		.section	.text.SD_DMARxAbort,"ax",%progbits
+ 1625              		.align	1
+ 1626              		.p2align 2,,3
+ 1627              		.syntax unified
+ 1628              		.thumb
+ 1629              		.thumb_func
+ 1630              		.fpu fpv4-sp-d16
+ 1632              	SD_DMARxAbort:
+ 1633              		@ args = 0, pretend = 0, frame = 0
+ 1634              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1635 0000 70B5     		push	{r4, r5, r6, lr}
+ 1636 0002 846B     		ldr	r4, [r0, #56]
+ 1637 0004 E36B     		ldr	r3, [r4, #60]
+ 1638 0006 0BB1     		cbz	r3, .L264
+ 1639 0008 0023     		movs	r3, #0
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 29
+
+
+ 1640 000a E363     		str	r3, [r4, #60]
+ 1641              	.L264:
+ 1642 000c 256C     		ldr	r5, [r4, #64]
+ 1643 000e 05B1     		cbz	r5, .L275
+ 1644              	.L263:
+ 1645 0010 70BD     		pop	{r4, r5, r6, pc}
+ 1646              	.L275:
+ 1647 0012 216D     		ldr	r1, [r4, #80]
+ 1648 0014 2068     		ldr	r0, [r4]
+ 1649 0016 0904     		lsls	r1, r1, #16
+ 1650 0018 FFF7FEFF 		bl	SDMMC_CmdSendStatus
+ 1651 001c 0646     		mov	r6, r0
+ 1652 001e C0B9     		cbnz	r0, .L267
+ 1653 0020 0146     		mov	r1, r0
+ 1654 0022 2068     		ldr	r0, [r4]
+ 1655 0024 FFF7FEFF 		bl	SDIO_GetResponse
+ 1656 0028 C0F34320 		ubfx	r0, r0, #9, #4
+ 1657 002c 0123     		movs	r3, #1
+ 1658 002e 0538     		subs	r0, r0, #5
+ 1659 0030 9842     		cmp	r0, r3
+ 1660 0032 A663     		str	r6, [r4, #56]
+ 1661 0034 84F83430 		strb	r3, [r4, #52]
+ 1662 0038 EAD8     		bhi	.L263
+ 1663 003a 2068     		ldr	r0, [r4]
+ 1664 003c FFF7FEFF 		bl	SDMMC_CmdStopTransfer
+ 1665 0040 A36B     		ldr	r3, [r4, #56]
+ 1666 0042 1843     		orrs	r0, r0, r3
+ 1667 0044 A063     		str	r0, [r4, #56]
+ 1668 0046 A36B     		ldr	r3, [r4, #56]
+ 1669 0048 2046     		mov	r0, r4
+ 1670 004a 53B1     		cbz	r3, .L270
+ 1671 004c FFF7FEFF 		bl	HAL_SD_AbortCallback
+ 1672 0050 70BD     		pop	{r4, r5, r6, pc}
+ 1673              	.L267:
+ 1674 0052 A36B     		ldr	r3, [r4, #56]
+ 1675 0054 0122     		movs	r2, #1
+ 1676 0056 1E43     		orrs	r6, r6, r3
+ 1677 0058 A663     		str	r6, [r4, #56]
+ 1678 005a A563     		str	r5, [r4, #56]
+ 1679 005c 84F83420 		strb	r2, [r4, #52]
+ 1680 0060 70BD     		pop	{r4, r5, r6, pc}
+ 1681              	.L270:
+ 1682 0062 FFF7FEFF 		bl	HAL_SD_ErrorCallback
+ 1683 0066 70BD     		pop	{r4, r5, r6, pc}
+ 1685              		.section	.text.HAL_SD_IRQHandler,"ax",%progbits
+ 1686              		.align	1
+ 1687              		.p2align 2,,3
+ 1688              		.global	HAL_SD_IRQHandler
+ 1689              		.syntax unified
+ 1690              		.thumb
+ 1691              		.thumb_func
+ 1692              		.fpu fpv4-sp-d16
+ 1694              	HAL_SD_IRQHandler:
+ 1695              		@ args = 0, pretend = 0, frame = 0
+ 1696              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1697 0000 70B5     		push	{r4, r5, r6, lr}
+ 1698 0002 0446     		mov	r4, r0
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 30
+
+
+ 1699 0004 0068     		ldr	r0, [r0]
+ 1700 0006 436B     		ldr	r3, [r0, #52]
+ 1701 0008 DA05     		lsls	r2, r3, #23
+ 1702 000a 40D5     		bpl	.L277
+ 1703 000c 4FF48073 		mov	r3, #256
+ 1704 0010 8363     		str	r3, [r0, #56]
+ 1705 0012 C36B     		ldr	r3, [r0, #60]
+ 1706 0014 23F44E73 		bic	r3, r3, #824
+ 1707 0018 23F00203 		bic	r3, r3, #2
+ 1708 001c C363     		str	r3, [r0, #60]
+ 1709 001e 236B     		ldr	r3, [r4, #48]
+ 1710 0020 13F0080F 		tst	r3, #8
+ 1711 0024 236B     		ldr	r3, [r4, #48]
+ 1712 0026 1AD0     		beq	.L278
+ 1713 0028 9B07     		lsls	r3, r3, #30
+ 1714 002a 02D4     		bmi	.L279
+ 1715 002c 236B     		ldr	r3, [r4, #48]
+ 1716 002e 9E06     		lsls	r6, r3, #26
+ 1717 0030 05D5     		bpl	.L280
+ 1718              	.L279:
+ 1719 0032 FFF7FEFF 		bl	SDMMC_CmdStopTransfer
+ 1720 0036 0028     		cmp	r0, #0
+ 1721 0038 40F0A080 		bne	.L281
+ 1722              	.L338:
+ 1723 003c 2068     		ldr	r0, [r4]
+ 1724              	.L280:
+ 1725 003e 0123     		movs	r3, #1
+ 1726 0040 40F2FF52 		movw	r2, #1535
+ 1727 0044 8263     		str	r2, [r0, #56]
+ 1728 0046 84F83430 		strb	r3, [r4, #52]
+ 1729 004a 236B     		ldr	r3, [r4, #48]
+ 1730 004c DD07     		lsls	r5, r3, #31
+ 1731 004e 2046     		mov	r0, r4
+ 1732 0050 02D4     		bmi	.L282
+ 1733 0052 236B     		ldr	r3, [r4, #48]
+ 1734 0054 9C07     		lsls	r4, r3, #30
+ 1735 0056 17D5     		bpl	.L339
+ 1736              	.L282:
+ 1737 0058 FFF7FEFF 		bl	HAL_SD_RxCpltCallback
+ 1738              	.L276:
+ 1739 005c 70BD     		pop	{r4, r5, r6, pc}
+ 1740              	.L278:
+ 1741 005e 1906     		lsls	r1, r3, #24
+ 1742 0060 FCD5     		bpl	.L276
+ 1743 0062 236B     		ldr	r3, [r4, #48]
+ 1744 0064 9A06     		lsls	r2, r3, #26
+ 1745 0066 00F19E80 		bmi	.L340
+ 1746              	.L287:
+ 1747 006a 236B     		ldr	r3, [r4, #48]
+ 1748 006c DB07     		lsls	r3, r3, #31
+ 1749 006e F5D4     		bmi	.L276
+ 1750 0070 236B     		ldr	r3, [r4, #48]
+ 1751 0072 9E07     		lsls	r6, r3, #30
+ 1752 0074 F2D4     		bmi	.L276
+ 1753 0076 2268     		ldr	r2, [r4]
+ 1754 0078 D36A     		ldr	r3, [r2, #44]
+ 1755 007a 0121     		movs	r1, #1
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 31
+
+
+ 1756 007c 23F00803 		bic	r3, r3, #8
+ 1757 0080 D362     		str	r3, [r2, #44]
+ 1758 0082 2046     		mov	r0, r4
+ 1759 0084 84F83410 		strb	r1, [r4, #52]
+ 1760              	.L339:
+ 1761 0088 FFF7FEFF 		bl	HAL_SD_TxCpltCallback
+ 1762 008c 70BD     		pop	{r4, r5, r6, pc}
+ 1763              	.L277:
+ 1764 008e 436B     		ldr	r3, [r0, #52]
+ 1765 0090 5D04     		lsls	r5, r3, #17
+ 1766 0092 44D4     		bmi	.L341
+ 1767 0094 436B     		ldr	r3, [r0, #52]
+ 1768 0096 1904     		lsls	r1, r3, #16
+ 1769 0098 53D4     		bmi	.L342
+ 1770 009a 426B     		ldr	r2, [r0, #52]
+ 1771 009c 40F23A23 		movw	r3, #570
+ 1772 00a0 1A42     		tst	r2, r3
+ 1773 00a2 DBD0     		beq	.L276
+ 1774 00a4 436B     		ldr	r3, [r0, #52]
+ 1775 00a6 9A07     		lsls	r2, r3, #30
+ 1776 00a8 03D5     		bpl	.L296
+ 1777 00aa A36B     		ldr	r3, [r4, #56]
+ 1778 00ac 43F00203 		orr	r3, r3, #2
+ 1779 00b0 A363     		str	r3, [r4, #56]
+ 1780              	.L296:
+ 1781 00b2 436B     		ldr	r3, [r0, #52]
+ 1782 00b4 1B07     		lsls	r3, r3, #28
+ 1783 00b6 03D5     		bpl	.L297
+ 1784 00b8 A36B     		ldr	r3, [r4, #56]
+ 1785 00ba 43F00803 		orr	r3, r3, #8
+ 1786 00be A363     		str	r3, [r4, #56]
+ 1787              	.L297:
+ 1788 00c0 436B     		ldr	r3, [r0, #52]
+ 1789 00c2 9E06     		lsls	r6, r3, #26
+ 1790 00c4 03D5     		bpl	.L298
+ 1791 00c6 A36B     		ldr	r3, [r4, #56]
+ 1792 00c8 43F02003 		orr	r3, r3, #32
+ 1793 00cc A363     		str	r3, [r4, #56]
+ 1794              	.L298:
+ 1795 00ce 436B     		ldr	r3, [r0, #52]
+ 1796 00d0 DD06     		lsls	r5, r3, #27
+ 1797 00d2 03D5     		bpl	.L299
+ 1798 00d4 A36B     		ldr	r3, [r4, #56]
+ 1799 00d6 43F01003 		orr	r3, r3, #16
+ 1800 00da A363     		str	r3, [r4, #56]
+ 1801              	.L299:
+ 1802 00dc 436B     		ldr	r3, [r0, #52]
+ 1803 00de 9905     		lsls	r1, r3, #22
+ 1804 00e0 03D5     		bpl	.L300
+ 1805 00e2 A36B     		ldr	r3, [r4, #56]
+ 1806 00e4 43F00803 		orr	r3, r3, #8
+ 1807 00e8 A363     		str	r3, [r4, #56]
+ 1808              	.L300:
+ 1809 00ea 40F2FF73 		movw	r3, #2047
+ 1810 00ee 8363     		str	r3, [r0, #56]
+ 1811 00f0 C36B     		ldr	r3, [r0, #60]
+ 1812 00f2 23F44E73 		bic	r3, r3, #824
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 32
+
+
+ 1813 00f6 23F00203 		bic	r3, r3, #2
+ 1814 00fa C363     		str	r3, [r0, #60]
+ 1815 00fc 236B     		ldr	r3, [r4, #48]
+ 1816 00fe 1A06     		lsls	r2, r3, #24
+ 1817 0100 31D5     		bpl	.L301
+ 1818 0102 206C     		ldr	r0, [r4, #64]
+ 1819 0104 0028     		cmp	r0, #0
+ 1820 0106 40D0     		beq	.L302
+ 1821 0108 314B     		ldr	r3, .L345
+ 1822 010a 0365     		str	r3, [r0, #80]
+ 1823 010c FFF7FEFF 		bl	HAL_DMA_Abort_IT
+ 1824 0110 0028     		cmp	r0, #0
+ 1825 0112 A3D0     		beq	.L276
+ 1826 0114 206C     		ldr	r0, [r4, #64]
+ 1827 0116 BDE87040 		pop	{r4, r5, r6, lr}
+ 1828 011a FFF7FEBF 		b	SD_DMATxAbort
+ 1829              	.L341:
+ 1830 011e 256A     		ldr	r5, [r4, #32]
+ 1831 0120 4FF48043 		mov	r3, #16384
+ 1832 0124 05F12006 		add	r6, r5, #32
+ 1833 0128 8363     		str	r3, [r0, #56]
+ 1834 012a 00E0     		b	.L292
+ 1835              	.L343:
+ 1836 012c 2068     		ldr	r0, [r4]
+ 1837              	.L292:
+ 1838 012e 2946     		mov	r1, r5
+ 1839 0130 0435     		adds	r5, r5, #4
+ 1840 0132 FFF7FEFF 		bl	SDIO_WriteFIFO
+ 1841 0136 AE42     		cmp	r6, r5
+ 1842 0138 F8D1     		bne	.L343
+ 1843 013a 236A     		ldr	r3, [r4, #32]
+ 1844 013c 2033     		adds	r3, r3, #32
+ 1845 013e 2362     		str	r3, [r4, #32]
+ 1846 0140 70BD     		pop	{r4, r5, r6, pc}
+ 1847              	.L342:
+ 1848 0142 A66A     		ldr	r6, [r4, #40]
+ 1849 0144 4FF40043 		mov	r3, #32768
+ 1850 0148 351F     		subs	r5, r6, #4
+ 1851 014a 8363     		str	r3, [r0, #56]
+ 1852 014c 1C36     		adds	r6, r6, #28
+ 1853 014e 00E0     		b	.L295
+ 1854              	.L344:
+ 1855 0150 2068     		ldr	r0, [r4]
+ 1856              	.L295:
+ 1857 0152 FFF7FEFF 		bl	SDIO_ReadFIFO
+ 1858 0156 45F8040F 		str	r0, [r5, #4]!
+ 1859 015a B542     		cmp	r5, r6
+ 1860 015c F8D1     		bne	.L344
+ 1861 015e A36A     		ldr	r3, [r4, #40]
+ 1862 0160 2033     		adds	r3, r3, #32
+ 1863 0162 A362     		str	r3, [r4, #40]
+ 1864 0164 70BD     		pop	{r4, r5, r6, pc}
+ 1865              	.L301:
+ 1866 0166 236B     		ldr	r3, [r4, #48]
+ 1867 0168 1B07     		lsls	r3, r3, #28
+ 1868 016a 7FF577AF 		bpl	.L276
+ 1869 016e 0123     		movs	r3, #1
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 33
+
+
+ 1870 0170 84F83430 		strb	r3, [r4, #52]
+ 1871 0174 2046     		mov	r0, r4
+ 1872 0176 FFF7FEFF 		bl	HAL_SD_ErrorCallback
+ 1873 017a 70BD     		pop	{r4, r5, r6, pc}
+ 1874              	.L281:
+ 1875 017c A36B     		ldr	r3, [r4, #56]
+ 1876 017e 1843     		orrs	r0, r0, r3
+ 1877 0180 A063     		str	r0, [r4, #56]
+ 1878 0182 2046     		mov	r0, r4
+ 1879 0184 FFF7FEFF 		bl	HAL_SD_ErrorCallback
+ 1880 0188 58E7     		b	.L338
+ 1881              	.L302:
+ 1882 018a E06B     		ldr	r0, [r4, #60]
+ 1883 018c B8B1     		cbz	r0, .L303
+ 1884 018e 114B     		ldr	r3, .L345+4
+ 1885 0190 0365     		str	r3, [r0, #80]
+ 1886 0192 FFF7FEFF 		bl	HAL_DMA_Abort_IT
+ 1887 0196 0028     		cmp	r0, #0
+ 1888 0198 3FF460AF 		beq	.L276
+ 1889 019c E06B     		ldr	r0, [r4, #60]
+ 1890 019e BDE87040 		pop	{r4, r5, r6, lr}
+ 1891 01a2 FFF7FEBF 		b	SD_DMARxAbort
+ 1892              	.L340:
+ 1893 01a6 FFF7FEFF 		bl	SDMMC_CmdStopTransfer
+ 1894 01aa 0028     		cmp	r0, #0
+ 1895 01ac 3FF45DAF 		beq	.L287
+ 1896 01b0 A36B     		ldr	r3, [r4, #56]
+ 1897 01b2 0343     		orrs	r3, r3, r0
+ 1898 01b4 A363     		str	r3, [r4, #56]
+ 1899 01b6 2046     		mov	r0, r4
+ 1900 01b8 FFF7FEFF 		bl	HAL_SD_ErrorCallback
+ 1901 01bc 55E7     		b	.L287
+ 1902              	.L303:
+ 1903 01be 0123     		movs	r3, #1
+ 1904 01c0 A063     		str	r0, [r4, #56]
+ 1905 01c2 2046     		mov	r0, r4
+ 1906 01c4 84F83430 		strb	r3, [r4, #52]
+ 1907 01c8 FFF7FEFF 		bl	HAL_SD_AbortCallback
+ 1908 01cc 70BD     		pop	{r4, r5, r6, pc}
+ 1909              	.L346:
+ 1910 01ce 00BF     		.align	2
+ 1911              	.L345:
+ 1912 01d0 00000000 		.word	SD_DMATxAbort
+ 1913 01d4 00000000 		.word	SD_DMARxAbort
+ 1915              		.section	.text.HAL_SD_GetCardCID,"ax",%progbits
+ 1916              		.align	1
+ 1917              		.p2align 2,,3
+ 1918              		.global	HAL_SD_GetCardCID
+ 1919              		.syntax unified
+ 1920              		.thumb
+ 1921              		.thumb_func
+ 1922              		.fpu fpv4-sp-d16
+ 1924              	HAL_SD_GetCardCID:
+ 1925              		@ args = 0, pretend = 0, frame = 0
+ 1926              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1927              		@ link register save eliminated.
+ 1928 0000 426F     		ldr	r2, [r0, #116]
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 34
+
+
+ 1929 0002 C2F30743 		ubfx	r3, r2, #16, #8
+ 1930 0006 30B4     		push	{r4, r5}
+ 1931 0008 1B02     		lsls	r3, r3, #8
+ 1932 000a 140E     		lsrs	r4, r2, #24
+ 1933 000c 0C70     		strb	r4, [r1]
+ 1934 000e 4B80     		strh	r3, [r1, #2]	@ movhi
+ 1935 0010 4D88     		ldrh	r5, [r1, #2]
+ 1936 0012 836F     		ldr	r3, [r0, #120]
+ 1937 0014 C2F30724 		ubfx	r4, r2, #8, #8
+ 1938 0018 2C43     		orrs	r4, r4, r5
+ 1939 001a 1206     		lsls	r2, r2, #24
+ 1940 001c 4C80     		strh	r4, [r1, #2]	@ movhi
+ 1941 001e 4A60     		str	r2, [r1, #4]
+ 1942 0020 4A68     		ldr	r2, [r1, #4]
+ 1943 0022 1C0E     		lsrs	r4, r3, #24
+ 1944 0024 42EA0442 		orr	r2, r2, r4, lsl #16
+ 1945 0028 4A60     		str	r2, [r1, #4]
+ 1946 002a 4C68     		ldr	r4, [r1, #4]
+ 1947 002c 1A0A     		lsrs	r2, r3, #8
+ 1948 002e 02F47F42 		and	r2, r2, #65280
+ 1949 0032 2243     		orrs	r2, r2, r4
+ 1950 0034 4A60     		str	r2, [r1, #4]
+ 1951 0036 4C68     		ldr	r4, [r1, #4]
+ 1952 0038 C3F30722 		ubfx	r2, r3, #8, #8
+ 1953 003c 2243     		orrs	r2, r2, r4
+ 1954 003e DBB2     		uxtb	r3, r3
+ 1955 0040 4A60     		str	r2, [r1, #4]
+ 1956 0042 0B72     		strb	r3, [r1, #8]
+ 1957 0044 C36F     		ldr	r3, [r0, #124]
+ 1958 0046 1A0C     		lsrs	r2, r3, #16
+ 1959 0048 1C0E     		lsrs	r4, r3, #24
+ 1960 004a 1206     		lsls	r2, r2, #24
+ 1961 004c 4C72     		strb	r4, [r1, #9]
+ 1962 004e CA60     		str	r2, [r1, #12]
+ 1963 0050 CC68     		ldr	r4, [r1, #12]
+ 1964 0052 D0F88020 		ldr	r2, [r0, #128]
+ 1965 0056 1802     		lsls	r0, r3, #8
+ 1966 0058 00F47F00 		and	r0, r0, #16711680
+ 1967 005c 2043     		orrs	r0, r0, r4
+ 1968 005e C860     		str	r0, [r1, #12]
+ 1969 0060 C868     		ldr	r0, [r1, #12]
+ 1970 0062 1B02     		lsls	r3, r3, #8
+ 1971 0064 9BB2     		uxth	r3, r3
+ 1972 0066 0343     		orrs	r3, r3, r0
+ 1973 0068 CB60     		str	r3, [r1, #12]
+ 1974 006a CB68     		ldr	r3, [r1, #12]
+ 1975 006c 43EA1263 		orr	r3, r3, r2, lsr #24
+ 1976 0070 CB60     		str	r3, [r1, #12]
+ 1977 0072 087C     		ldrb	r0, [r1, #16]	@ zero_extendqisi2
+ 1978 0074 C2F30354 		ubfx	r4, r2, #20, #4
+ 1979 0078 130A     		lsrs	r3, r2, #8
+ 1980 007a 2043     		orrs	r0, r0, r4
+ 1981 007c 03F47063 		and	r3, r3, #3840
+ 1982 0080 0874     		strb	r0, [r1, #16]
+ 1983 0082 4B82     		strh	r3, [r1, #18]	@ movhi
+ 1984 0084 488A     		ldrh	r0, [r1, #18]
+ 1985 0086 C2F30723 		ubfx	r3, r2, #8, #8
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 35
+
+
+ 1986 008a 0343     		orrs	r3, r3, r0
+ 1987 008c 0124     		movs	r4, #1
+ 1988 008e C2F34602 		ubfx	r2, r2, #1, #7
+ 1989 0092 4B82     		strh	r3, [r1, #18]	@ movhi
+ 1990 0094 0020     		movs	r0, #0
+ 1991 0096 0A75     		strb	r2, [r1, #20]
+ 1992 0098 4C75     		strb	r4, [r1, #21]
+ 1993 009a 30BC     		pop	{r4, r5}
+ 1994 009c 7047     		bx	lr
+ 1996 009e 00BF     		.section	.text.HAL_SD_GetCardCSD,"ax",%progbits
+ 1997              		.align	1
+ 1998              		.p2align 2,,3
+ 1999              		.global	HAL_SD_GetCardCSD
+ 2000              		.syntax unified
+ 2001              		.thumb
+ 2002              		.thumb_func
+ 2003              		.fpu fpv4-sp-d16
+ 2005              	HAL_SD_GetCardCSD:
+ 2006              		@ args = 0, pretend = 0, frame = 0
+ 2007              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2008              		@ link register save eliminated.
+ 2009 0000 436E     		ldr	r3, [r0, #100]
+ 2010 0002 F0B4     		push	{r4, r5, r6, r7}
+ 2011 0004 C3F38362 		ubfx	r2, r3, #26, #4
+ 2012 0008 0446     		mov	r4, r0
+ 2013 000a 980F     		lsrs	r0, r3, #30
+ 2014 000c 0870     		strb	r0, [r1]
+ 2015 000e C3F30165 		ubfx	r5, r3, #24, #2
+ 2016 0012 4A70     		strb	r2, [r1, #1]
+ 2017 0014 C3F30740 		ubfx	r0, r3, #16, #8
+ 2018 0018 C3F30722 		ubfx	r2, r3, #8, #8
+ 2019 001c DBB2     		uxtb	r3, r3
+ 2020 001e 8D70     		strb	r5, [r1, #2]
+ 2021 0020 C870     		strb	r0, [r1, #3]
+ 2022 0022 0A71     		strb	r2, [r1, #4]
+ 2023 0024 4B71     		strb	r3, [r1, #5]
+ 2024 0026 A36E     		ldr	r3, [r4, #104]
+ 2025 0028 1A0E     		lsrs	r2, r3, #24
+ 2026 002a 1201     		lsls	r2, r2, #4
+ 2027 002c CA80     		strh	r2, [r1, #6]	@ movhi
+ 2028 002e CD88     		ldrh	r5, [r1, #6]
+ 2029 0030 C3F30350 		ubfx	r0, r3, #20, #4
+ 2030 0034 C3F30722 		ubfx	r2, r3, #8, #8
+ 2031 0038 2843     		orrs	r0, r0, r5
+ 2032 003a C880     		strh	r0, [r1, #6]	@ movhi
+ 2033 003c C3F30345 		ubfx	r5, r3, #16, #4
+ 2034 0040 D009     		lsrs	r0, r2, #7
+ 2035 0042 0D72     		strb	r5, [r1, #8]
+ 2036 0044 4872     		strb	r0, [r1, #9]
+ 2037 0046 C2F38015 		ubfx	r5, r2, #6, #1
+ 2038 004a C2F34010 		ubfx	r0, r2, #5, #1
+ 2039 004e 8D72     		strb	r5, [r1, #10]
+ 2040 0050 C872     		strb	r0, [r1, #11]
+ 2041 0052 C2F30015 		ubfx	r5, r2, #4, #1
+ 2042 0056 0020     		movs	r0, #0
+ 2043 0058 0D73     		strb	r5, [r1, #12]
+ 2044 005a 4873     		strb	r0, [r1, #13]
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 36
+
+
+ 2045 005c 606C     		ldr	r0, [r4, #68]
+ 2046 005e 0028     		cmp	r0, #0
+ 2047 0060 40F08480 		bne	.L350
+ 2048 0064 9202     		lsls	r2, r2, #10
+ 2049 0066 02F44062 		and	r2, r2, #3072
+ 2050 006a 0A61     		str	r2, [r1, #16]
+ 2051 006c 0869     		ldr	r0, [r1, #16]
+ 2052 006e 9A00     		lsls	r2, r3, #2
+ 2053 0070 02F47F72 		and	r2, r2, #1020
+ 2054 0074 0243     		orrs	r2, r2, r0
+ 2055 0076 E36E     		ldr	r3, [r4, #108]
+ 2056 0078 0A61     		str	r2, [r1, #16]
+ 2057 007a 0869     		ldr	r0, [r1, #16]
+ 2058 007c DA0B     		lsrs	r2, r3, #15
+ 2059 007e 40EA9370 		orr	r0, r0, r3, lsr #30
+ 2060 0082 0861     		str	r0, [r1, #16]
+ 2061 0084 02F00602 		and	r2, r2, #6
+ 2062 0088 C3F34255 		ubfx	r5, r3, #21, #3
+ 2063 008c C3F38240 		ubfx	r0, r3, #18, #3
+ 2064 0090 C3F3C267 		ubfx	r7, r3, #27, #3
+ 2065 0094 C3F30266 		ubfx	r6, r3, #24, #3
+ 2066 0098 0F75     		strb	r7, [r1, #20]
+ 2067 009a 4E75     		strb	r6, [r1, #21]
+ 2068 009c 8D75     		strb	r5, [r1, #22]
+ 2069 009e C875     		strb	r0, [r1, #23]
+ 2070 00a0 0A76     		strb	r2, [r1, #24]
+ 2071 00a2 0A7E     		ldrb	r2, [r1, #24]	@ zero_extendqisi2
+ 2072 00a4 C3F3C030 		ubfx	r0, r3, #15, #1
+ 2073 00a8 0243     		orrs	r2, r2, r0
+ 2074 00aa 0A76     		strb	r2, [r1, #24]
+ 2075 00ac 0A69     		ldr	r2, [r1, #16]
+ 2076 00ae 087E     		ldrb	r0, [r1, #24]	@ zero_extendqisi2
+ 2077 00b0 0132     		adds	r2, r2, #1
+ 2078 00b2 0230     		adds	r0, r0, #2
+ 2079 00b4 8240     		lsls	r2, r2, r0
+ 2080 00b6 6265     		str	r2, [r4, #84]
+ 2081 00b8 0D7A     		ldrb	r5, [r1, #8]	@ zero_extendqisi2
+ 2082 00ba 0120     		movs	r0, #1
+ 2083 00bc A840     		lsls	r0, r0, r5
+ 2084 00be 450A     		lsrs	r5, r0, #9
+ 2085 00c0 02FB05F2 		mul	r2, r2, r5
+ 2086 00c4 4FF40075 		mov	r5, #512
+ 2087 00c8 C4E91602 		strd	r0, r2, [r4, #88]
+ 2088 00cc 2566     		str	r5, [r4, #96]
+ 2089 00ce C3F30722 		ubfx	r2, r3, #8, #8
+ 2090              	.L351:
+ 2091 00d2 5000     		lsls	r0, r2, #1
+ 2092 00d4 00F07E00 		and	r0, r0, #126
+ 2093 00d8 C2F38012 		ubfx	r2, r2, #6, #1
+ 2094 00dc 4A76     		strb	r2, [r1, #25]
+ 2095 00de 8876     		strb	r0, [r1, #26]
+ 2096 00e0 8A7E     		ldrb	r2, [r1, #26]	@ zero_extendqisi2
+ 2097 00e2 C3F3C010 		ubfx	r0, r3, #7, #1
+ 2098 00e6 0243     		orrs	r2, r2, r0
+ 2099 00e8 03F07F03 		and	r3, r3, #127
+ 2100 00ec 8A76     		strb	r2, [r1, #26]
+ 2101 00ee CB76     		strb	r3, [r1, #27]
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 37
+
+
+ 2102 00f0 236F     		ldr	r3, [r4, #112]
+ 2103 00f2 9A0D     		lsrs	r2, r3, #22
+ 2104 00f4 DD0F     		lsrs	r5, r3, #31
+ 2105 00f6 C3F34174 		ubfx	r4, r3, #29, #2
+ 2106 00fa C3F38260 		ubfx	r0, r3, #26, #3
+ 2107 00fe 02F00C02 		and	r2, r2, #12
+ 2108 0102 0D77     		strb	r5, [r1, #28]
+ 2109 0104 4C77     		strb	r4, [r1, #29]
+ 2110 0106 8877     		strb	r0, [r1, #30]
+ 2111 0108 CA77     		strb	r2, [r1, #31]
+ 2112 010a CA7F     		ldrb	r2, [r1, #31]	@ zero_extendqisi2
+ 2113 010c C3F38150 		ubfx	r0, r3, #22, #2
+ 2114 0110 0243     		orrs	r2, r2, r0
+ 2115 0112 CA77     		strb	r2, [r1, #31]
+ 2116 0114 C3F34055 		ubfx	r5, r3, #21, #1
+ 2117 0118 C3F30044 		ubfx	r4, r3, #16, #1
+ 2118 011c C3F3C032 		ubfx	r2, r3, #15, #1
+ 2119 0120 0020     		movs	r0, #0
+ 2120 0122 81F82050 		strb	r5, [r1, #32]
+ 2121 0126 81F82100 		strb	r0, [r1, #33]
+ 2122 012a C3F38035 		ubfx	r5, r3, #14, #1
+ 2123 012e 81F82240 		strb	r4, [r1, #34]
+ 2124 0132 81F82320 		strb	r2, [r1, #35]
+ 2125 0136 C3F34034 		ubfx	r4, r3, #13, #1
+ 2126 013a C3F30032 		ubfx	r2, r3, #12, #1
+ 2127 013e 81F82450 		strb	r5, [r1, #36]
+ 2128 0142 81F82540 		strb	r4, [r1, #37]
+ 2129 0146 C3F38125 		ubfx	r5, r3, #10, #2
+ 2130 014a 81F82620 		strb	r2, [r1, #38]
+ 2131 014e C3F30124 		ubfx	r4, r3, #8, #2
+ 2132 0152 0122     		movs	r2, #1
+ 2133 0154 C3F34603 		ubfx	r3, r3, #1, #7
+ 2134 0158 81F82750 		strb	r5, [r1, #39]
+ 2135 015c 81F82840 		strb	r4, [r1, #40]
+ 2136 0160 81F82930 		strb	r3, [r1, #41]
+ 2137 0164 F0BC     		pop	{r4, r5, r6, r7}
+ 2138 0166 81F82A20 		strb	r2, [r1, #42]
+ 2139 016a 7047     		bx	lr
+ 2140              	.L350:
+ 2141 016c 0128     		cmp	r0, #1
+ 2142 016e 1AD1     		bne	.L352
+ 2143 0170 1B04     		lsls	r3, r3, #16
+ 2144 0172 03F47C13 		and	r3, r3, #4128768
+ 2145 0176 0B61     		str	r3, [r1, #16]
+ 2146 0178 E36E     		ldr	r3, [r4, #108]
+ 2147 017a 0A69     		ldr	r2, [r1, #16]
+ 2148 017c 180E     		lsrs	r0, r3, #24
+ 2149 017e 42EA0022 		orr	r2, r2, r0, lsl #8
+ 2150 0182 0A61     		str	r2, [r1, #16]
+ 2151 0184 0869     		ldr	r0, [r1, #16]
+ 2152 0186 C3F30742 		ubfx	r2, r3, #16, #8
+ 2153 018a 0243     		orrs	r2, r2, r0
+ 2154 018c 0A61     		str	r2, [r1, #16]
+ 2155 018e 0A69     		ldr	r2, [r1, #16]
+ 2156 0190 0132     		adds	r2, r2, #1
+ 2157 0192 9202     		lsls	r2, r2, #10
+ 2158 0194 4FF40070 		mov	r0, #512
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 38
+
+
+ 2159 0198 6265     		str	r2, [r4, #84]
+ 2160 019a E265     		str	r2, [r4, #92]
+ 2161 019c A065     		str	r0, [r4, #88]
+ 2162 019e C3F30722 		ubfx	r2, r3, #8, #8
+ 2163 01a2 2066     		str	r0, [r4, #96]
+ 2164 01a4 95E7     		b	.L351
+ 2165              	.L352:
+ 2166 01a6 2368     		ldr	r3, [r4]
+ 2167 01a8 40F2FF52 		movw	r2, #1535
+ 2168 01ac 9A63     		str	r2, [r3, #56]
+ 2169 01ae A36B     		ldr	r3, [r4, #56]
+ 2170 01b0 0122     		movs	r2, #1
+ 2171 01b2 43F08053 		orr	r3, r3, #268435456
+ 2172 01b6 A363     		str	r3, [r4, #56]
+ 2173 01b8 1046     		mov	r0, r2
+ 2174 01ba 84F83420 		strb	r2, [r4, #52]
+ 2175 01be F0BC     		pop	{r4, r5, r6, r7}
+ 2176 01c0 7047     		bx	lr
+ 2178 01c2 00BF     		.section	.text.HAL_SD_InitCard,"ax",%progbits
+ 2179              		.align	1
+ 2180              		.p2align 2,,3
+ 2181              		.global	HAL_SD_InitCard
+ 2182              		.syntax unified
+ 2183              		.thumb
+ 2184              		.thumb_func
+ 2185              		.fpu fpv4-sp-d16
+ 2187              	HAL_SD_InitCard:
+ 2188              		@ args = 0, pretend = 0, frame = 80
+ 2189              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2190 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 2191 0002 0022     		movs	r2, #0
+ 2192 0004 99B0     		sub	sp, sp, #100
+ 2193 0006 0026     		movs	r6, #0
+ 2194 0008 0027     		movs	r7, #0
+ 2195 000a 7623     		movs	r3, #118
+ 2196 000c CDE90867 		strd	r6, [sp, #32]
+ 2197 0010 CDE90A23 		strd	r2, [sp, #40]
+ 2198 0014 09AB     		add	r3, sp, #36
+ 2199 0016 0446     		mov	r4, r0
+ 2200 0018 93E80700 		ldm	r3, {r0, r1, r2}
+ 2201 001c 8DE80700 		stm	sp, {r0, r1, r2}
+ 2202 0020 CDE90667 		strd	r6, [sp, #24]
+ 2203 0024 06AB     		add	r3, sp, #24
+ 2204 0026 744E     		ldr	r6, .L388
+ 2205 0028 2068     		ldr	r0, [r4]
+ 2206 002a 0ECB     		ldm	r3, {r1, r2, r3}
+ 2207 002c 0025     		movs	r5, #0
+ 2208 002e FFF7FEFF 		bl	SDIO_Init
+ 2209 0032 0127     		movs	r7, #1
+ 2210 0034 2068     		ldr	r0, [r4]
+ 2211 0036 3560     		str	r5, [r6]
+ 2212 0038 FFF7FEFF 		bl	SDIO_PowerState_ON
+ 2213 003c 0220     		movs	r0, #2
+ 2214 003e 3760     		str	r7, [r6]
+ 2215 0040 FFF7FEFF 		bl	HAL_Delay
+ 2216 0044 2068     		ldr	r0, [r4]
+ 2217 0046 0595     		str	r5, [sp, #20]
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 39
+
+
+ 2218 0048 FFF7FEFF 		bl	SDMMC_CmdGoIdleState
+ 2219 004c 0546     		mov	r5, r0
+ 2220 004e 38B1     		cbz	r0, .L386
+ 2221              	.L356:
+ 2222 0050 0120     		movs	r0, #1
+ 2223 0052 84F83400 		strb	r0, [r4, #52]
+ 2224 0056 A36B     		ldr	r3, [r4, #56]
+ 2225 0058 1D43     		orrs	r5, r5, r3
+ 2226 005a A563     		str	r5, [r4, #56]
+ 2227              	.L384:
+ 2228 005c 19B0     		add	sp, sp, #100
+ 2229              		@ sp needed
+ 2230 005e F0BD     		pop	{r4, r5, r6, r7, pc}
+ 2231              	.L386:
+ 2232 0060 2068     		ldr	r0, [r4]
+ 2233 0062 FFF7FEFF 		bl	SDMMC_CmdOperCond
+ 2234 0066 0028     		cmp	r0, #0
+ 2235 0068 4CD0     		beq	.L357
+ 2236 006a A564     		str	r5, [r4, #72]
+ 2237 006c 4FF6FF75 		movw	r5, #65535
+ 2238              	.L361:
+ 2239 0070 059B     		ldr	r3, [sp, #20]
+ 2240 0072 5A1C     		adds	r2, r3, #1
+ 2241 0074 AB42     		cmp	r3, r5
+ 2242 0076 4FF00001 		mov	r1, #0
+ 2243 007a 0592     		str	r2, [sp, #20]
+ 2244 007c 00F0B380 		beq	.L363
+ 2245 0080 2068     		ldr	r0, [r4]
+ 2246 0082 FFF7FEFF 		bl	SDMMC_CmdAppCommand
+ 2247 0086 0146     		mov	r1, r0
+ 2248 0088 0028     		cmp	r0, #0
+ 2249 008a 40F0AF80 		bne	.L360
+ 2250 008e 2068     		ldr	r0, [r4]
+ 2251 0090 FFF7FEFF 		bl	SDMMC_CmdAppOperCommand
+ 2252 0094 0146     		mov	r1, r0
+ 2253 0096 0028     		cmp	r0, #0
+ 2254 0098 40F0A880 		bne	.L360
+ 2255 009c 2068     		ldr	r0, [r4]
+ 2256 009e FFF7FEFF 		bl	SDIO_GetResponse
+ 2257 00a2 0028     		cmp	r0, #0
+ 2258 00a4 E4DA     		bge	.L361
+ 2259              	.L365:
+ 2260 00a6 0023     		movs	r3, #0
+ 2261 00a8 6364     		str	r3, [r4, #68]
+ 2262              	.L362:
+ 2263 00aa 0123     		movs	r3, #1
+ 2264 00ac 2068     		ldr	r0, [r4]
+ 2265 00ae ADF81230 		strh	r3, [sp, #18]	@ movhi
+ 2266 00b2 FFF7FEFF 		bl	SDIO_GetPowerState
+ 2267 00b6 0028     		cmp	r0, #0
+ 2268 00b8 00F09B80 		beq	.L366
+ 2269 00bc 626C     		ldr	r2, [r4, #68]
+ 2270 00be 2368     		ldr	r3, [r4]
+ 2271 00c0 032A     		cmp	r2, #3
+ 2272 00c2 41D1     		bne	.L387
+ 2273              	.L370:
+ 2274 00c4 1846     		mov	r0, r3
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 40
+
+
+ 2275 00c6 0421     		movs	r1, #4
+ 2276 00c8 FFF7FEFF 		bl	SDIO_GetResponse
+ 2277 00cc 000D     		lsrs	r0, r0, #20
+ 2278 00ce E064     		str	r0, [r4, #76]
+ 2279 00d0 0DA9     		add	r1, sp, #52
+ 2280 00d2 2046     		mov	r0, r4
+ 2281 00d4 FFF7FEFF 		bl	HAL_SD_GetCardCSD
+ 2282 00d8 226D     		ldr	r2, [r4, #80]
+ 2283 00da 2068     		ldr	r0, [r4]
+ 2284 00dc 1204     		lsls	r2, r2, #16
+ 2285 00de 0023     		movs	r3, #0
+ 2286 00e0 FFF7FEFF 		bl	SDMMC_CmdSelDesel
+ 2287 00e4 0546     		mov	r5, r0
+ 2288 00e6 0028     		cmp	r0, #0
+ 2289 00e8 B2D1     		bne	.L356
+ 2290 00ea 231D     		adds	r3, r4, #4
+ 2291 00ec 54F8106B 		ldr	r6, [r4], #16
+ 2292 00f0 94E80700 		ldm	r4, {r0, r1, r2}
+ 2293 00f4 8DE80700 		stm	sp, {r0, r1, r2}
+ 2294 00f8 3046     		mov	r0, r6
+ 2295 00fa 0ECB     		ldm	r3, {r1, r2, r3}
+ 2296 00fc FFF7FEFF 		bl	SDIO_Init
+ 2297 0100 2846     		mov	r0, r5
+ 2298 0102 ABE7     		b	.L384
+ 2299              	.L357:
+ 2300 0104 A764     		str	r7, [r4, #72]
+ 2301 0106 4FF6FF76 		movw	r6, #65535
+ 2302              	.L364:
+ 2303 010a 059B     		ldr	r3, [sp, #20]
+ 2304 010c 5A1C     		adds	r2, r3, #1
+ 2305 010e B342     		cmp	r3, r6
+ 2306 0110 4FF00001 		mov	r1, #0
+ 2307 0114 0592     		str	r2, [sp, #20]
+ 2308 0116 66D0     		beq	.L363
+ 2309 0118 2068     		ldr	r0, [r4]
+ 2310 011a FFF7FEFF 		bl	SDMMC_CmdAppCommand
+ 2311 011e 4FF08041 		mov	r1, #1073741824
+ 2312 0122 0546     		mov	r5, r0
+ 2313 0124 0028     		cmp	r0, #0
+ 2314 0126 93D1     		bne	.L356
+ 2315 0128 2068     		ldr	r0, [r4]
+ 2316 012a FFF7FEFF 		bl	SDMMC_CmdAppOperCommand
+ 2317 012e 0546     		mov	r5, r0
+ 2318 0130 0146     		mov	r1, r0
+ 2319 0132 0028     		cmp	r0, #0
+ 2320 0134 8CD1     		bne	.L356
+ 2321 0136 2068     		ldr	r0, [r4]
+ 2322 0138 FFF7FEFF 		bl	SDIO_GetResponse
+ 2323 013c C30F     		lsrs	r3, r0, #31
+ 2324 013e E4D0     		beq	.L364
+ 2325 0140 4200     		lsls	r2, r0, #1
+ 2326 0142 B0D5     		bpl	.L365
+ 2327 0144 6364     		str	r3, [r4, #68]
+ 2328 0146 B0E7     		b	.L362
+ 2329              	.L387:
+ 2330 0148 1846     		mov	r0, r3
+ 2331 014a FFF7FEFF 		bl	SDMMC_CmdSendCID
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 41
+
+
+ 2332 014e 0546     		mov	r5, r0
+ 2333 0150 0028     		cmp	r0, #0
+ 2334 0152 7FF47DAF 		bne	.L356
+ 2335 0156 0146     		mov	r1, r0
+ 2336 0158 2068     		ldr	r0, [r4]
+ 2337 015a FFF7FEFF 		bl	SDIO_GetResponse
+ 2338 015e 0421     		movs	r1, #4
+ 2339 0160 6067     		str	r0, [r4, #116]
+ 2340 0162 2068     		ldr	r0, [r4]
+ 2341 0164 FFF7FEFF 		bl	SDIO_GetResponse
+ 2342 0168 0821     		movs	r1, #8
+ 2343 016a A067     		str	r0, [r4, #120]
+ 2344 016c 2068     		ldr	r0, [r4]
+ 2345 016e FFF7FEFF 		bl	SDIO_GetResponse
+ 2346 0172 0C21     		movs	r1, #12
+ 2347 0174 E067     		str	r0, [r4, #124]
+ 2348 0176 2068     		ldr	r0, [r4]
+ 2349 0178 FFF7FEFF 		bl	SDIO_GetResponse
+ 2350 017c 636C     		ldr	r3, [r4, #68]
+ 2351 017e C4F88000 		str	r0, [r4, #128]
+ 2352 0182 032B     		cmp	r3, #3
+ 2353 0184 08BF     		it	eq
+ 2354 0186 2368     		ldreq	r3, [r4]
+ 2355 0188 9CD0     		beq	.L370
+ 2356 018a 0DF11201 		add	r1, sp, #18
+ 2357 018e 2068     		ldr	r0, [r4]
+ 2358 0190 FFF7FEFF 		bl	SDMMC_CmdSetRelAdd
+ 2359 0194 0546     		mov	r5, r0
+ 2360 0196 0028     		cmp	r0, #0
+ 2361 0198 7FF45AAF 		bne	.L356
+ 2362 019c 626C     		ldr	r2, [r4, #68]
+ 2363 019e 2368     		ldr	r3, [r4]
+ 2364 01a0 032A     		cmp	r2, #3
+ 2365 01a2 8FD0     		beq	.L370
+ 2366 01a4 BDF81210 		ldrh	r1, [sp, #18]
+ 2367 01a8 2165     		str	r1, [r4, #80]
+ 2368 01aa 1846     		mov	r0, r3
+ 2369 01ac 0904     		lsls	r1, r1, #16
+ 2370 01ae FFF7FEFF 		bl	SDMMC_CmdSendCSD
+ 2371 01b2 0546     		mov	r5, r0
+ 2372 01b4 0028     		cmp	r0, #0
+ 2373 01b6 7FF44BAF 		bne	.L356
+ 2374 01ba 0146     		mov	r1, r0
+ 2375 01bc 2068     		ldr	r0, [r4]
+ 2376 01be FFF7FEFF 		bl	SDIO_GetResponse
+ 2377 01c2 0421     		movs	r1, #4
+ 2378 01c4 6066     		str	r0, [r4, #100]
+ 2379 01c6 2068     		ldr	r0, [r4]
+ 2380 01c8 FFF7FEFF 		bl	SDIO_GetResponse
+ 2381 01cc 0821     		movs	r1, #8
+ 2382 01ce A066     		str	r0, [r4, #104]
+ 2383 01d0 2068     		ldr	r0, [r4]
+ 2384 01d2 FFF7FEFF 		bl	SDIO_GetResponse
+ 2385 01d6 0C21     		movs	r1, #12
+ 2386 01d8 E066     		str	r0, [r4, #108]
+ 2387 01da 2068     		ldr	r0, [r4]
+ 2388 01dc FFF7FEFF 		bl	SDIO_GetResponse
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 42
+
+
+ 2389 01e0 2368     		ldr	r3, [r4]
+ 2390 01e2 2067     		str	r0, [r4, #112]
+ 2391 01e4 6EE7     		b	.L370
+ 2392              	.L363:
+ 2393 01e6 4FF08075 		mov	r5, #16777216
+ 2394 01ea 31E7     		b	.L356
+ 2395              	.L360:
+ 2396 01ec 4FF08055 		mov	r5, #268435456
+ 2397 01f0 2EE7     		b	.L356
+ 2398              	.L366:
+ 2399 01f2 4FF08065 		mov	r5, #67108864
+ 2400 01f6 2BE7     		b	.L356
+ 2401              	.L389:
+ 2402              		.align	2
+ 2403              	.L388:
+ 2404 01f8 A0802542 		.word	1109754016
+ 2406              		.section	.text.HAL_SD_Init,"ax",%progbits
+ 2407              		.align	1
+ 2408              		.p2align 2,,3
+ 2409              		.global	HAL_SD_Init
+ 2410              		.syntax unified
+ 2411              		.thumb
+ 2412              		.thumb_func
+ 2413              		.fpu fpv4-sp-d16
+ 2415              	HAL_SD_Init:
+ 2416              		@ args = 0, pretend = 0, frame = 0
+ 2417              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2418 0000 C0B1     		cbz	r0, .L393
+ 2419 0002 90F83430 		ldrb	r3, [r0, #52]	@ zero_extendqisi2
+ 2420 0006 10B5     		push	{r4, lr}
+ 2421 0008 03F0FF02 		and	r2, r3, #255
+ 2422 000c 0446     		mov	r4, r0
+ 2423 000e 6BB1     		cbz	r3, .L398
+ 2424              	.L392:
+ 2425 0010 0323     		movs	r3, #3
+ 2426 0012 84F83430 		strb	r3, [r4, #52]
+ 2427 0016 2046     		mov	r0, r4
+ 2428 0018 FFF7FEFF 		bl	HAL_SD_InitCard
+ 2429 001c 0023     		movs	r3, #0
+ 2430 001e 0122     		movs	r2, #1
+ 2431 0020 A363     		str	r3, [r4, #56]
+ 2432 0022 1846     		mov	r0, r3
+ 2433 0024 2363     		str	r3, [r4, #48]
+ 2434 0026 84F83420 		strb	r2, [r4, #52]
+ 2435 002a 10BD     		pop	{r4, pc}
+ 2436              	.L398:
+ 2437 002c 0277     		strb	r2, [r0, #28]
+ 2438 002e FFF7FEFF 		bl	HAL_SD_MspInit
+ 2439 0032 EDE7     		b	.L392
+ 2440              	.L393:
+ 2441 0034 0120     		movs	r0, #1
+ 2442 0036 7047     		bx	lr
+ 2444              		.section	.text.HAL_SD_GetCardStatus,"ax",%progbits
+ 2445              		.align	1
+ 2446              		.p2align 2,,3
+ 2447              		.global	HAL_SD_GetCardStatus
+ 2448              		.syntax unified
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 43
+
+
+ 2449              		.thumb
+ 2450              		.thumb_func
+ 2451              		.fpu fpv4-sp-d16
+ 2453              	HAL_SD_GetCardStatus:
+ 2454              		@ args = 0, pretend = 0, frame = 88
+ 2455              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2456 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 2457 0004 96B0     		sub	sp, sp, #88
+ 2458 0006 0546     		mov	r5, r0
+ 2459 0008 0C46     		mov	r4, r1
+ 2460 000a FFF7FEFF 		bl	HAL_GetTick
+ 2461 000e 0021     		movs	r1, #0
+ 2462 0010 0746     		mov	r7, r0
+ 2463 0012 2868     		ldr	r0, [r5]
+ 2464 0014 FFF7FEFF 		bl	SDIO_GetResponse
+ 2465 0018 8201     		lsls	r2, r0, #6
+ 2466 001a 55D4     		bmi	.L435
+ 2467 001c 4021     		movs	r1, #64
+ 2468 001e 2868     		ldr	r0, [r5]
+ 2469 0020 FFF7FEFF 		bl	SDMMC_CmdBlockLength
+ 2470 0024 0346     		mov	r3, r0
+ 2471 0026 78B1     		cbz	r0, .L402
+ 2472              	.L434:
+ 2473 0028 AA6B     		ldr	r2, [r5, #56]
+ 2474 002a AA63     		str	r2, [r5, #56]
+ 2475              	.L403:
+ 2476 002c 2868     		ldr	r0, [r5]
+ 2477              	.L401:
+ 2478 002e 40F2FF52 		movw	r2, #1535
+ 2479 0032 8263     		str	r2, [r0, #56]
+ 2480 0034 A86B     		ldr	r0, [r5, #56]
+ 2481 0036 0122     		movs	r2, #1
+ 2482 0038 1843     		orrs	r0, r0, r3
+ 2483 003a A863     		str	r0, [r5, #56]
+ 2484 003c 1046     		mov	r0, r2
+ 2485 003e 85F83420 		strb	r2, [r5, #52]
+ 2486 0042 16B0     		add	sp, sp, #88
+ 2487              		@ sp needed
+ 2488 0044 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 2489              	.L402:
+ 2490 0048 296D     		ldr	r1, [r5, #80]
+ 2491 004a 2868     		ldr	r0, [r5]
+ 2492 004c 0904     		lsls	r1, r1, #16
+ 2493 004e FFF7FEFF 		bl	SDMMC_CmdAppCommand
+ 2494 0052 0346     		mov	r3, r0
+ 2495 0054 0028     		cmp	r0, #0
+ 2496 0056 E7D1     		bne	.L434
+ 2497 0058 4FF0FF32 		mov	r2, #-1
+ 2498 005c 4023     		movs	r3, #64
+ 2499 005e CDE90023 		strd	r2, [sp]
+ 2500 0062 6022     		movs	r2, #96
+ 2501 0064 0223     		movs	r3, #2
+ 2502 0066 CDE90223 		strd	r2, [sp, #8]
+ 2503 006a 6946     		mov	r1, sp
+ 2504 006c 0123     		movs	r3, #1
+ 2505 006e 0022     		movs	r2, #0
+ 2506 0070 2868     		ldr	r0, [r5]
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 44
+
+
+ 2507 0072 CDE90423 		strd	r2, [sp, #16]
+ 2508 0076 FFF7FEFF 		bl	SDIO_ConfigData
+ 2509 007a 2868     		ldr	r0, [r5]
+ 2510 007c FFF7FEFF 		bl	SDMMC_CmdStatusRegister
+ 2511 0080 0346     		mov	r3, r0
+ 2512 0082 0028     		cmp	r0, #0
+ 2513 0084 D0D1     		bne	.L434
+ 2514 0086 0DF11808 		add	r8, sp, #24
+ 2515 008a 40F22A49 		movw	r9, #1066
+ 2516 008e 04E0     		b	.L405
+ 2517              	.L406:
+ 2518 0090 FFF7FEFF 		bl	HAL_GetTick
+ 2519 0094 C01B     		subs	r0, r0, r7
+ 2520 0096 0130     		adds	r0, r0, #1
+ 2521 0098 1AD0     		beq	.L409
+ 2522              	.L405:
+ 2523 009a 2868     		ldr	r0, [r5]
+ 2524 009c 436B     		ldr	r3, [r0, #52]
+ 2525 009e 13EA090F 		tst	r3, r9
+ 2526 00a2 436B     		ldr	r3, [r0, #52]
+ 2527 00a4 17D1     		bne	.L436
+ 2528 00a6 1B04     		lsls	r3, r3, #16
+ 2529 00a8 F2D5     		bpl	.L406
+ 2530 00aa A8F10406 		sub	r6, r8, #4
+ 2531 00ae 08F11C0A 		add	r10, r8, #28
+ 2532 00b2 00E0     		b	.L408
+ 2533              	.L437:
+ 2534 00b4 2868     		ldr	r0, [r5]
+ 2535              	.L408:
+ 2536 00b6 FFF7FEFF 		bl	SDIO_ReadFIFO
+ 2537 00ba 46F8040F 		str	r0, [r6, #4]!
+ 2538 00be 5645     		cmp	r6, r10
+ 2539 00c0 F8D1     		bne	.L437
+ 2540 00c2 08F12008 		add	r8, r8, #32
+ 2541 00c6 E3E7     		b	.L406
+ 2542              	.L435:
+ 2543 00c8 2868     		ldr	r0, [r5]
+ 2544 00ca 4FF40063 		mov	r3, #2048
+ 2545 00ce AEE7     		b	.L401
+ 2546              	.L409:
+ 2547 00d0 4FF00043 		mov	r3, #-2147483648
+ 2548 00d4 AAE7     		b	.L403
+ 2549              	.L436:
+ 2550 00d6 1E07     		lsls	r6, r3, #28
+ 2551 00d8 53D4     		bmi	.L411
+ 2552 00da 436B     		ldr	r3, [r0, #52]
+ 2553 00dc 9907     		lsls	r1, r3, #30
+ 2554 00de 52D4     		bmi	.L412
+ 2555 00e0 436B     		ldr	r3, [r0, #52]
+ 2556 00e2 9A06     		lsls	r2, r3, #26
+ 2557 00e4 51D4     		bmi	.L413
+ 2558 00e6 09E0     		b	.L433
+ 2559              	.L415:
+ 2560 00e8 FFF7FEFF 		bl	SDIO_ReadFIFO
+ 2561 00ec 48F8040B 		str	r0, [r8], #4
+ 2562 00f0 FFF7FEFF 		bl	HAL_GetTick
+ 2563 00f4 C01B     		subs	r0, r0, r7
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 45
+
+
+ 2564 00f6 0130     		adds	r0, r0, #1
+ 2565 00f8 EAD0     		beq	.L409
+ 2566 00fa 2868     		ldr	r0, [r5]
+ 2567              	.L433:
+ 2568 00fc 436B     		ldr	r3, [r0, #52]
+ 2569 00fe 9B02     		lsls	r3, r3, #10
+ 2570 0100 F2D4     		bmi	.L415
+ 2571 0102 DDE90615 		ldrd	r1, r5, [sp, #24]
+ 2572 0106 40F2FF53 		movw	r3, #1535
+ 2573 010a 8363     		str	r3, [r0, #56]
+ 2574 010c C1F30743 		ubfx	r3, r1, #16, #8
+ 2575 0110 C1F38116 		ubfx	r6, r1, #6, #2
+ 2576 0114 C1F34012 		ubfx	r2, r1, #5, #1
+ 2577 0118 1B02     		lsls	r3, r3, #8
+ 2578 011a 2670     		strb	r6, [r4]
+ 2579 011c 6270     		strb	r2, [r4, #1]
+ 2580 011e 6380     		strh	r3, [r4, #2]	@ movhi
+ 2581 0120 6088     		ldrh	r0, [r4, #2]
+ 2582 0122 40EA1161 		orr	r1, r0, r1, lsr #24
+ 2583 0126 2806     		lsls	r0, r5, #24
+ 2584 0128 6180     		strh	r1, [r4, #2]	@ movhi
+ 2585 012a 6060     		str	r0, [r4, #4]
+ 2586 012c 6068     		ldr	r0, [r4, #4]
+ 2587 012e 2902     		lsls	r1, r5, #8
+ 2588 0130 01F47F01 		and	r1, r1, #16711680
+ 2589 0134 0143     		orrs	r1, r1, r0
+ 2590 0136 6160     		str	r1, [r4, #4]
+ 2591 0138 6068     		ldr	r0, [r4, #4]
+ 2592 013a 290A     		lsrs	r1, r5, #8
+ 2593 013c 01F47F41 		and	r1, r1, #65280
+ 2594 0140 DDE90832 		ldrd	r3, r2, [sp, #32]
+ 2595 0144 0143     		orrs	r1, r1, r0
+ 2596 0146 6160     		str	r1, [r4, #4]
+ 2597 0148 6068     		ldr	r0, [r4, #4]
+ 2598 014a 190E     		lsrs	r1, r3, #24
+ 2599 014c 40EA1565 		orr	r5, r0, r5, lsr #24
+ 2600 0150 DEB2     		uxtb	r6, r3
+ 2601 0152 C3F30720 		ubfx	r0, r3, #8, #8
+ 2602 0156 0902     		lsls	r1, r1, #8
+ 2603 0158 C3F30353 		ubfx	r3, r3, #20, #4
+ 2604 015c 6560     		str	r5, [r4, #4]
+ 2605 015e 2672     		strb	r6, [r4, #8]
+ 2606 0160 6072     		strb	r0, [r4, #9]
+ 2607 0162 A372     		strb	r3, [r4, #10]
+ 2608 0164 A181     		strh	r1, [r4, #12]	@ movhi
+ 2609 0166 A189     		ldrh	r1, [r4, #12]
+ 2610 0168 D3B2     		uxtb	r3, r2
+ 2611 016a 0B43     		orrs	r3, r3, r1
+ 2612 016c 0020     		movs	r0, #0
+ 2613 016e C2F38521 		ubfx	r1, r2, #10, #6
+ 2614 0172 C2F30122 		ubfx	r2, r2, #8, #2
+ 2615 0176 A381     		strh	r3, [r4, #12]	@ movhi
+ 2616 0178 A173     		strb	r1, [r4, #14]
+ 2617 017a E273     		strb	r2, [r4, #15]
+ 2618 017c 16B0     		add	sp, sp, #88
+ 2619              		@ sp needed
+ 2620 017e BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 46
+
+
+ 2621              	.L411:
+ 2622 0182 0823     		movs	r3, #8
+ 2623 0184 53E7     		b	.L401
+ 2624              	.L412:
+ 2625 0186 0223     		movs	r3, #2
+ 2626 0188 51E7     		b	.L401
+ 2627              	.L413:
+ 2628 018a 2023     		movs	r3, #32
+ 2629 018c 4FE7     		b	.L401
+ 2631 018e 00BF     		.section	.text.HAL_SD_GetCardInfo,"ax",%progbits
+ 2632              		.align	1
+ 2633              		.p2align 2,,3
+ 2634              		.global	HAL_SD_GetCardInfo
+ 2635              		.syntax unified
+ 2636              		.thumb
+ 2637              		.thumb_func
+ 2638              		.fpu fpv4-sp-d16
+ 2640              	HAL_SD_GetCardInfo:
+ 2641              		@ args = 0, pretend = 0, frame = 0
+ 2642              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2643              		@ link register save eliminated.
+ 2644 0000 F0B4     		push	{r4, r5, r6, r7}
+ 2645 0002 D0E911C7 		ldrd	ip, r7, [r0, #68]
+ 2646 0006 D0E91365 		ldrd	r6, r5, [r0, #76]
+ 2647 000a D0E91542 		ldrd	r4, r2, [r0, #84]
+ 2648 000e D0E91730 		ldrd	r3, r0, [r0, #92]
+ 2649 0012 C1E900C7 		strd	ip, r7, [r1]
+ 2650 0016 C861     		str	r0, [r1, #28]
+ 2651 0018 C1E90265 		strd	r6, r5, [r1, #8]
+ 2652 001c C1E90442 		strd	r4, r2, [r1, #16]
+ 2653 0020 0020     		movs	r0, #0
+ 2654 0022 8B61     		str	r3, [r1, #24]
+ 2655 0024 F0BC     		pop	{r4, r5, r6, r7}
+ 2656 0026 7047     		bx	lr
+ 2658              		.section	.text.HAL_SD_ConfigWideBusOperation,"ax",%progbits
+ 2659              		.align	1
+ 2660              		.p2align 2,,3
+ 2661              		.global	HAL_SD_ConfigWideBusOperation
+ 2662              		.syntax unified
+ 2663              		.thumb
+ 2664              		.thumb_func
+ 2665              		.fpu fpv4-sp-d16
+ 2667              	HAL_SD_ConfigWideBusOperation:
+ 2668              		@ args = 0, pretend = 0, frame = 24
+ 2669              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2670 0000 70B5     		push	{r4, r5, r6, lr}
+ 2671 0002 426C     		ldr	r2, [r0, #68]
+ 2672 0004 0323     		movs	r3, #3
+ 2673 0006 032A     		cmp	r2, #3
+ 2674 0008 80F83430 		strb	r3, [r0, #52]
+ 2675 000c 8AB0     		sub	sp, sp, #40
+ 2676 000e 0446     		mov	r4, r0
+ 2677 0010 0368     		ldr	r3, [r0]
+ 2678 0012 0E46     		mov	r6, r1
+ 2679 0014 29D0     		beq	.L441
+ 2680 0016 B1F5805F 		cmp	r1, #4096
+ 2681 001a 26D0     		beq	.L441
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 47
+
+
+ 2682 001c B1F5006F 		cmp	r1, #2048
+ 2683 0020 54D0     		beq	.L464
+ 2684 0022 0029     		cmp	r1, #0
+ 2685 0024 31D0     		beq	.L465
+ 2686 0026 826B     		ldr	r2, [r0, #56]
+ 2687 0028 42F00062 		orr	r2, r2, #134217728
+ 2688 002c 8263     		str	r2, [r0, #56]
+ 2689 002e A56B     		ldr	r5, [r4, #56]
+ 2690 0030 15BB     		cbnz	r5, .L466
+ 2691              	.L454:
+ 2692 0032 D4E90512 		ldrd	r1, r2, [r4, #20]
+ 2693 0036 CDE90761 		strd	r6, r1, [sp, #28]
+ 2694 003a 0992     		str	r2, [sp, #36]
+ 2695 003c 0AAA     		add	r2, sp, #40
+ 2696 003e 12E90700 		ldmdb	r2, {r0, r1, r2}
+ 2697 0042 6668     		ldr	r6, [r4, #4]
+ 2698 0044 0496     		str	r6, [sp, #16]
+ 2699 0046 A668     		ldr	r6, [r4, #8]
+ 2700 0048 0596     		str	r6, [sp, #20]
+ 2701 004a E668     		ldr	r6, [r4, #12]
+ 2702 004c 0696     		str	r6, [sp, #24]
+ 2703 004e 8DE80700 		stm	sp, {r0, r1, r2}
+ 2704 0052 04AE     		add	r6, sp, #16
+ 2705 0054 1846     		mov	r0, r3
+ 2706 0056 96E80E00 		ldm	r6, {r1, r2, r3}
+ 2707 005a FFF7FEFF 		bl	SDIO_Init
+ 2708 005e 0123     		movs	r3, #1
+ 2709 0060 2846     		mov	r0, r5
+ 2710 0062 84F83430 		strb	r3, [r4, #52]
+ 2711 0066 0AB0     		add	sp, sp, #40
+ 2712              		@ sp needed
+ 2713 0068 70BD     		pop	{r4, r5, r6, pc}
+ 2714              	.L441:
+ 2715 006a A26B     		ldr	r2, [r4, #56]
+ 2716 006c 42F08052 		orr	r2, r2, #268435456
+ 2717 0070 A263     		str	r2, [r4, #56]
+ 2718              	.L443:
+ 2719 0072 A56B     		ldr	r5, [r4, #56]
+ 2720 0074 002D     		cmp	r5, #0
+ 2721 0076 DCD0     		beq	.L454
+ 2722              	.L466:
+ 2723 0078 0122     		movs	r2, #1
+ 2724 007a 40F2FF51 		movw	r1, #1535
+ 2725 007e 1046     		mov	r0, r2
+ 2726 0080 9963     		str	r1, [r3, #56]
+ 2727 0082 84F83420 		strb	r2, [r4, #52]
+ 2728 0086 0AB0     		add	sp, sp, #40
+ 2729              		@ sp needed
+ 2730 0088 70BD     		pop	{r4, r5, r6, pc}
+ 2731              	.L465:
+ 2732 008a 1846     		mov	r0, r3
+ 2733 008c 0022     		movs	r2, #0
+ 2734 008e 0023     		movs	r3, #0
+ 2735 0090 CDE90423 		strd	r2, [sp, #16]
+ 2736 0094 FFF7FEFF 		bl	SDIO_GetResponse
+ 2737 0098 8101     		lsls	r1, r0, #6
+ 2738 009a 37D4     		bmi	.L463
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 48
+
+
+ 2739 009c 04A9     		add	r1, sp, #16
+ 2740 009e 2046     		mov	r0, r4
+ 2741 00a0 FFF7FEFF 		bl	SD_FindSCR
+ 2742 00a4 68B9     		cbnz	r0, .L462
+ 2743 00a6 059A     		ldr	r2, [sp, #20]
+ 2744 00a8 2368     		ldr	r3, [r4]
+ 2745 00aa D203     		lsls	r2, r2, #15
+ 2746 00ac 32D5     		bpl	.L457
+ 2747 00ae 216D     		ldr	r1, [r4, #80]
+ 2748 00b0 1846     		mov	r0, r3
+ 2749 00b2 0904     		lsls	r1, r1, #16
+ 2750 00b4 FFF7FEFF 		bl	SDMMC_CmdAppCommand
+ 2751 00b8 18B9     		cbnz	r0, .L462
+ 2752 00ba 0146     		mov	r1, r0
+ 2753 00bc 2068     		ldr	r0, [r4]
+ 2754 00be FFF7FEFF 		bl	SDMMC_CmdBusWidth
+ 2755              	.L462:
+ 2756 00c2 2368     		ldr	r3, [r4]
+ 2757              	.L451:
+ 2758 00c4 A26B     		ldr	r2, [r4, #56]
+ 2759 00c6 0243     		orrs	r2, r2, r0
+ 2760 00c8 A263     		str	r2, [r4, #56]
+ 2761 00ca D2E7     		b	.L443
+ 2762              	.L464:
+ 2763 00cc 1846     		mov	r0, r3
+ 2764 00ce 0022     		movs	r2, #0
+ 2765 00d0 0023     		movs	r3, #0
+ 2766 00d2 0021     		movs	r1, #0
+ 2767 00d4 CDE90423 		strd	r2, [sp, #16]
+ 2768 00d8 FFF7FEFF 		bl	SDIO_GetResponse
+ 2769 00dc 8501     		lsls	r5, r0, #6
+ 2770 00de 15D4     		bmi	.L463
+ 2771 00e0 04A9     		add	r1, sp, #16
+ 2772 00e2 2046     		mov	r0, r4
+ 2773 00e4 FFF7FEFF 		bl	SD_FindSCR
+ 2774 00e8 0028     		cmp	r0, #0
+ 2775 00ea EAD1     		bne	.L462
+ 2776 00ec 059A     		ldr	r2, [sp, #20]
+ 2777 00ee 2368     		ldr	r3, [r4]
+ 2778 00f0 5003     		lsls	r0, r2, #13
+ 2779 00f2 0FD5     		bpl	.L457
+ 2780 00f4 216D     		ldr	r1, [r4, #80]
+ 2781 00f6 1846     		mov	r0, r3
+ 2782 00f8 0904     		lsls	r1, r1, #16
+ 2783 00fa FFF7FEFF 		bl	SDMMC_CmdAppCommand
+ 2784 00fe 0028     		cmp	r0, #0
+ 2785 0100 DFD1     		bne	.L462
+ 2786 0102 0221     		movs	r1, #2
+ 2787 0104 2068     		ldr	r0, [r4]
+ 2788 0106 FFF7FEFF 		bl	SDMMC_CmdBusWidth
+ 2789 010a DAE7     		b	.L462
+ 2790              	.L463:
+ 2791 010c 2368     		ldr	r3, [r4]
+ 2792 010e 4FF40060 		mov	r0, #2048
+ 2793 0112 D7E7     		b	.L451
+ 2794              	.L457:
+ 2795 0114 4FF08060 		mov	r0, #67108864
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 49
+
+
+ 2796 0118 D4E7     		b	.L451
+ 2798 011a 00BF     		.section	.text.HAL_SD_GetCardState,"ax",%progbits
+ 2799              		.align	1
+ 2800              		.p2align 2,,3
+ 2801              		.global	HAL_SD_GetCardState
+ 2802              		.syntax unified
+ 2803              		.thumb
+ 2804              		.thumb_func
+ 2805              		.fpu fpv4-sp-d16
+ 2807              	HAL_SD_GetCardState:
+ 2808              		@ args = 0, pretend = 0, frame = 0
+ 2809              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2810 0000 016D     		ldr	r1, [r0, #80]
+ 2811 0002 10B5     		push	{r4, lr}
+ 2812 0004 0904     		lsls	r1, r1, #16
+ 2813 0006 0446     		mov	r4, r0
+ 2814 0008 0068     		ldr	r0, [r0]
+ 2815 000a FFF7FEFF 		bl	SDMMC_CmdSendStatus
+ 2816 000e 20B1     		cbz	r0, .L471
+ 2817 0010 A36B     		ldr	r3, [r4, #56]
+ 2818 0012 1843     		orrs	r0, r0, r3
+ 2819 0014 A063     		str	r0, [r4, #56]
+ 2820 0016 0020     		movs	r0, #0
+ 2821 0018 10BD     		pop	{r4, pc}
+ 2822              	.L471:
+ 2823 001a 0146     		mov	r1, r0
+ 2824 001c 2068     		ldr	r0, [r4]
+ 2825 001e FFF7FEFF 		bl	SDIO_GetResponse
+ 2826 0022 C0F34320 		ubfx	r0, r0, #9, #4
+ 2827 0026 10BD     		pop	{r4, pc}
+ 2829              		.section	.text.HAL_SD_Abort,"ax",%progbits
+ 2830              		.align	1
+ 2831              		.p2align 2,,3
+ 2832              		.global	HAL_SD_Abort
+ 2833              		.syntax unified
+ 2834              		.thumb
+ 2835              		.thumb_func
+ 2836              		.fpu fpv4-sp-d16
+ 2838              	HAL_SD_Abort:
+ 2839              		@ args = 0, pretend = 0, frame = 0
+ 2840              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2841 0000 0368     		ldr	r3, [r0]
+ 2842 0002 DA6B     		ldr	r2, [r3, #60]
+ 2843 0004 10B5     		push	{r4, lr}
+ 2844 0006 0446     		mov	r4, r0
+ 2845 0008 006C     		ldr	r0, [r0, #64]
+ 2846 000a 40F2FF51 		movw	r1, #1535
+ 2847 000e 22F49D72 		bic	r2, r2, #314
+ 2848 0012 DA63     		str	r2, [r3, #60]
+ 2849 0014 9963     		str	r1, [r3, #56]
+ 2850 0016 C8B1     		cbz	r0, .L483
+ 2851 0018 DA6A     		ldr	r2, [r3, #44]
+ 2852 001a 22F00802 		bic	r2, r2, #8
+ 2853 001e DA62     		str	r2, [r3, #44]
+ 2854 0020 FFF7FEFF 		bl	HAL_DMA_Abort
+ 2855 0024 E06B     		ldr	r0, [r4, #60]
+ 2856 0026 C0B9     		cbnz	r0, .L479
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 50
+
+
+ 2857              	.L482:
+ 2858 0028 2368     		ldr	r3, [r4]
+ 2859              	.L475:
+ 2860 002a 216D     		ldr	r1, [r4, #80]
+ 2861 002c 0122     		movs	r2, #1
+ 2862 002e 1846     		mov	r0, r3
+ 2863 0030 0904     		lsls	r1, r1, #16
+ 2864 0032 84F83420 		strb	r2, [r4, #52]
+ 2865 0036 FFF7FEFF 		bl	SDMMC_CmdSendStatus
+ 2866 003a 88B1     		cbz	r0, .L484
+ 2867 003c A36B     		ldr	r3, [r4, #56]
+ 2868 003e 1843     		orrs	r0, r0, r3
+ 2869 0040 A063     		str	r0, [r4, #56]
+ 2870              	.L478:
+ 2871 0042 A06B     		ldr	r0, [r4, #56]
+ 2872 0044 0030     		adds	r0, r0, #0
+ 2873 0046 18BF     		it	ne
+ 2874 0048 0120     		movne	r0, #1
+ 2875 004a 10BD     		pop	{r4, pc}
+ 2876              	.L483:
+ 2877 004c E06B     		ldr	r0, [r4, #60]
+ 2878 004e 0028     		cmp	r0, #0
+ 2879 0050 EBD0     		beq	.L475
+ 2880 0052 DA6A     		ldr	r2, [r3, #44]
+ 2881 0054 22F00802 		bic	r2, r2, #8
+ 2882 0058 DA62     		str	r2, [r3, #44]
+ 2883              	.L479:
+ 2884 005a FFF7FEFF 		bl	HAL_DMA_Abort
+ 2885 005e E3E7     		b	.L482
+ 2886              	.L484:
+ 2887 0060 0146     		mov	r1, r0
+ 2888 0062 2068     		ldr	r0, [r4]
+ 2889 0064 FFF7FEFF 		bl	SDIO_GetResponse
+ 2890 0068 C0F34320 		ubfx	r0, r0, #9, #4
+ 2891 006c 0538     		subs	r0, r0, #5
+ 2892 006e 0128     		cmp	r0, #1
+ 2893 0070 E7D8     		bhi	.L478
+ 2894 0072 2068     		ldr	r0, [r4]
+ 2895 0074 FFF7FEFF 		bl	SDMMC_CmdStopTransfer
+ 2896 0078 A063     		str	r0, [r4, #56]
+ 2897 007a A06B     		ldr	r0, [r4, #56]
+ 2898 007c 0030     		adds	r0, r0, #0
+ 2899 007e 18BF     		it	ne
+ 2900 0080 0120     		movne	r0, #1
+ 2901 0082 10BD     		pop	{r4, pc}
+ 2903              		.section	.text.HAL_SD_Abort_IT,"ax",%progbits
+ 2904              		.align	1
+ 2905              		.p2align 2,,3
+ 2906              		.global	HAL_SD_Abort_IT
+ 2907              		.syntax unified
+ 2908              		.thumb
+ 2909              		.thumb_func
+ 2910              		.fpu fpv4-sp-d16
+ 2912              	HAL_SD_Abort_IT:
+ 2913              		@ args = 0, pretend = 0, frame = 0
+ 2914              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2915 0000 38B5     		push	{r3, r4, r5, lr}
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 51
+
+
+ 2916 0002 0446     		mov	r4, r0
+ 2917 0004 40F2FF50 		movw	r0, #1535
+ 2918 0008 2368     		ldr	r3, [r4]
+ 2919 000a 216C     		ldr	r1, [r4, #64]
+ 2920 000c DA6B     		ldr	r2, [r3, #60]
+ 2921 000e 22F49D72 		bic	r2, r2, #314
+ 2922 0012 DA63     		str	r2, [r3, #60]
+ 2923 0014 9863     		str	r0, [r3, #56]
+ 2924 0016 D9B1     		cbz	r1, .L510
+ 2925 0018 DA6A     		ldr	r2, [r3, #44]
+ 2926 001a 2A4D     		ldr	r5, .L513
+ 2927 001c 22F00802 		bic	r2, r2, #8
+ 2928 0020 DA62     		str	r2, [r3, #44]
+ 2929 0022 0846     		mov	r0, r1
+ 2930 0024 0D65     		str	r5, [r1, #80]
+ 2931 0026 FFF7FEFF 		bl	HAL_DMA_Abort_IT
+ 2932 002a 28B9     		cbnz	r0, .L498
+ 2933 002c E06B     		ldr	r0, [r4, #60]
+ 2934 002e 38B9     		cbnz	r0, .L489
+ 2935              	.L490:
+ 2936 0030 236C     		ldr	r3, [r4, #64]
+ 2937 0032 FBB1     		cbz	r3, .L509
+ 2938              	.L494:
+ 2939 0034 0020     		movs	r0, #0
+ 2940 0036 38BD     		pop	{r3, r4, r5, pc}
+ 2941              	.L498:
+ 2942 0038 E06B     		ldr	r0, [r4, #60]
+ 2943 003a 0023     		movs	r3, #0
+ 2944 003c 2364     		str	r3, [r4, #64]
+ 2945 003e C8B1     		cbz	r0, .L509
+ 2946              	.L489:
+ 2947 0040 214B     		ldr	r3, .L513+4
+ 2948 0042 0365     		str	r3, [r0, #80]
+ 2949 0044 FFF7FEFF 		bl	HAL_DMA_Abort_IT
+ 2950 0048 70B1     		cbz	r0, .L491
+ 2951              	.L511:
+ 2952 004a 0023     		movs	r3, #0
+ 2953 004c E363     		str	r3, [r4, #60]
+ 2954 004e EFE7     		b	.L490
+ 2955              	.L510:
+ 2956 0050 E06B     		ldr	r0, [r4, #60]
+ 2957 0052 80B1     		cbz	r0, .L488
+ 2958 0054 DA6A     		ldr	r2, [r3, #44]
+ 2959 0056 22F00802 		bic	r2, r2, #8
+ 2960 005a DA62     		str	r2, [r3, #44]
+ 2961 005c 1A4B     		ldr	r3, .L513+4
+ 2962 005e 0365     		str	r3, [r0, #80]
+ 2963 0060 FFF7FEFF 		bl	HAL_DMA_Abort_IT
+ 2964 0064 0028     		cmp	r0, #0
+ 2965 0066 F0D1     		bne	.L511
+ 2966              	.L491:
+ 2967 0068 236C     		ldr	r3, [r4, #64]
+ 2968 006a 002B     		cmp	r3, #0
+ 2969 006c E2D1     		bne	.L494
+ 2970 006e E36B     		ldr	r3, [r4, #60]
+ 2971 0070 002B     		cmp	r3, #0
+ 2972 0072 DFD1     		bne	.L494
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 52
+
+
+ 2973              	.L509:
+ 2974 0074 2368     		ldr	r3, [r4]
+ 2975              	.L488:
+ 2976 0076 216D     		ldr	r1, [r4, #80]
+ 2977 0078 1846     		mov	r0, r3
+ 2978 007a 0904     		lsls	r1, r1, #16
+ 2979 007c FFF7FEFF 		bl	SDMMC_CmdSendStatus
+ 2980 0080 60B1     		cbz	r0, .L512
+ 2981 0082 A36B     		ldr	r3, [r4, #56]
+ 2982 0084 0122     		movs	r2, #1
+ 2983 0086 1843     		orrs	r0, r0, r3
+ 2984 0088 A063     		str	r0, [r4, #56]
+ 2985 008a 84F83420 		strb	r2, [r4, #52]
+ 2986              	.L497:
+ 2987 008e A56B     		ldr	r5, [r4, #56]
+ 2988 0090 ADB9     		cbnz	r5, .L500
+ 2989 0092 2046     		mov	r0, r4
+ 2990 0094 FFF7FEFF 		bl	HAL_SD_AbortCallback
+ 2991 0098 2846     		mov	r0, r5
+ 2992 009a 38BD     		pop	{r3, r4, r5, pc}
+ 2993              	.L512:
+ 2994 009c 0146     		mov	r1, r0
+ 2995 009e 2068     		ldr	r0, [r4]
+ 2996 00a0 FFF7FEFF 		bl	SDIO_GetResponse
+ 2997 00a4 C0F34320 		ubfx	r0, r0, #9, #4
+ 2998 00a8 0123     		movs	r3, #1
+ 2999 00aa 0538     		subs	r0, r0, #5
+ 3000 00ac 9842     		cmp	r0, r3
+ 3001 00ae 84F83430 		strb	r3, [r4, #52]
+ 3002 00b2 ECD8     		bhi	.L497
+ 3003 00b4 2068     		ldr	r0, [r4]
+ 3004 00b6 FFF7FEFF 		bl	SDMMC_CmdStopTransfer
+ 3005 00ba A063     		str	r0, [r4, #56]
+ 3006 00bc E7E7     		b	.L497
+ 3007              	.L500:
+ 3008 00be 0120     		movs	r0, #1
+ 3009 00c0 38BD     		pop	{r3, r4, r5, pc}
+ 3010              	.L514:
+ 3011 00c2 00BF     		.align	2
+ 3012              	.L513:
+ 3013 00c4 00000000 		.word	SD_DMATxAbort
+ 3014 00c8 00000000 		.word	SD_DMARxAbort
+ 3016              		.ident	"GCC: (GNU Tools for Arm Embedded Processors 8-2018-q4-major) 8.2.1 20181213 (release) [gcc
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 53
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f4xx_hal_sd.c
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:16     .text.SD_DMATransmitCplt:00000000 $t
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:24     .text.SD_DMATransmitCplt:00000000 SD_DMATransmitCplt
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:36     .text.SD_FindSCR:00000000 $t
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:43     .text.SD_FindSCR:00000000 SD_FindSCR
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:148    .text.HAL_SD_MspInit:00000000 $t
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:156    .text.HAL_SD_MspInit:00000000 HAL_SD_MspInit
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:163    .text.HAL_SD_MspDeInit:00000000 $t
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:171    .text.HAL_SD_MspDeInit:00000000 HAL_SD_MspDeInit
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:178    .text.HAL_SD_DeInit:00000000 $t
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:186    .text.HAL_SD_DeInit:00000000 HAL_SD_DeInit
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:208    .text.HAL_SD_ReadBlocks:00000000 $t
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:216    .text.HAL_SD_ReadBlocks:00000000 HAL_SD_ReadBlocks
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:480    .text.HAL_SD_WriteBlocks:00000000 $t
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:488    .text.HAL_SD_WriteBlocks:00000000 HAL_SD_WriteBlocks
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:710    .text.HAL_SD_ReadBlocks_IT:00000000 $t
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:718    .text.HAL_SD_ReadBlocks_IT:00000000 HAL_SD_ReadBlocks_IT
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:831    .text.HAL_SD_WriteBlocks_IT:00000000 $t
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:839    .text.HAL_SD_WriteBlocks_IT:00000000 HAL_SD_WriteBlocks_IT
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:956    .text.HAL_SD_ReadBlocks_DMA:00000000 $t
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:964    .text.HAL_SD_ReadBlocks_DMA:00000000 HAL_SD_ReadBlocks_DMA
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:1088   .text.HAL_SD_ReadBlocks_DMA:00000124 $d
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:1498   .text.SD_DMAError:00000000 SD_DMAError
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:1455   .text.SD_DMAReceiveCplt:00000000 SD_DMAReceiveCplt
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:1093   .text.HAL_SD_WriteBlocks_DMA:00000000 $t
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:1101   .text.HAL_SD_WriteBlocks_DMA:00000000 HAL_SD_WriteBlocks_DMA
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:1233   .text.HAL_SD_WriteBlocks_DMA:00000120 $d
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:1238   .text.HAL_SD_Erase:00000000 $t
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:1246   .text.HAL_SD_Erase:00000000 HAL_SD_Erase
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:1371   .text.HAL_SD_GetState:00000000 $t
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:1379   .text.HAL_SD_GetState:00000000 HAL_SD_GetState
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:1387   .text.HAL_SD_GetError:00000000 $t
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:1395   .text.HAL_SD_GetError:00000000 HAL_SD_GetError
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:1403   .text.HAL_SD_TxCpltCallback:00000000 $t
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:1411   .text.HAL_SD_TxCpltCallback:00000000 HAL_SD_TxCpltCallback
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:1418   .text.HAL_SD_RxCpltCallback:00000000 $t
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:1426   .text.HAL_SD_RxCpltCallback:00000000 HAL_SD_RxCpltCallback
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:1433   .text.HAL_SD_ErrorCallback:00000000 $t
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:1441   .text.HAL_SD_ErrorCallback:00000000 HAL_SD_ErrorCallback
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:1448   .text.SD_DMAReceiveCplt:00000000 $t
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:1491   .text.SD_DMAError:00000000 $t
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:1549   .text.HAL_SD_AbortCallback:00000000 $t
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:1557   .text.HAL_SD_AbortCallback:00000000 HAL_SD_AbortCallback
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:1564   .text.SD_DMATxAbort:00000000 $t
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:1571   .text.SD_DMATxAbort:00000000 SD_DMATxAbort
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:1625   .text.SD_DMARxAbort:00000000 $t
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:1632   .text.SD_DMARxAbort:00000000 SD_DMARxAbort
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:1686   .text.HAL_SD_IRQHandler:00000000 $t
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:1694   .text.HAL_SD_IRQHandler:00000000 HAL_SD_IRQHandler
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:1912   .text.HAL_SD_IRQHandler:000001d0 $d
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:1916   .text.HAL_SD_GetCardCID:00000000 $t
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:1924   .text.HAL_SD_GetCardCID:00000000 HAL_SD_GetCardCID
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:1997   .text.HAL_SD_GetCardCSD:00000000 $t
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:2005   .text.HAL_SD_GetCardCSD:00000000 HAL_SD_GetCardCSD
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:2179   .text.HAL_SD_InitCard:00000000 $t
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:2187   .text.HAL_SD_InitCard:00000000 HAL_SD_InitCard
+ARM GAS  D:\Programs\cygwin64\tmp\ccNW3Yhb.s 			page 54
+
+
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:2404   .text.HAL_SD_InitCard:000001f8 $d
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:2407   .text.HAL_SD_Init:00000000 $t
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:2415   .text.HAL_SD_Init:00000000 HAL_SD_Init
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:2445   .text.HAL_SD_GetCardStatus:00000000 $t
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:2453   .text.HAL_SD_GetCardStatus:00000000 HAL_SD_GetCardStatus
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:2632   .text.HAL_SD_GetCardInfo:00000000 $t
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:2640   .text.HAL_SD_GetCardInfo:00000000 HAL_SD_GetCardInfo
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:2659   .text.HAL_SD_ConfigWideBusOperation:00000000 $t
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:2667   .text.HAL_SD_ConfigWideBusOperation:00000000 HAL_SD_ConfigWideBusOperation
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:2799   .text.HAL_SD_GetCardState:00000000 $t
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:2807   .text.HAL_SD_GetCardState:00000000 HAL_SD_GetCardState
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:2830   .text.HAL_SD_Abort:00000000 $t
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:2838   .text.HAL_SD_Abort:00000000 HAL_SD_Abort
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:2904   .text.HAL_SD_Abort_IT:00000000 $t
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:2912   .text.HAL_SD_Abort_IT:00000000 HAL_SD_Abort_IT
+D:\Programs\cygwin64\tmp\ccNW3Yhb.s:3013   .text.HAL_SD_Abort_IT:000000c4 $d
+
+UNDEFINED SYMBOLS
+HAL_GetTick
+SDMMC_CmdBlockLength
+SDMMC_CmdAppCommand
+SDIO_ConfigData
+SDMMC_CmdSendSCR
+SDIO_ReadFIFO
+SDIO_PowerState_OFF
+SDMMC_CmdReadMultiBlock
+SDMMC_CmdStopTransfer
+SDMMC_CmdReadSingleBlock
+SDMMC_CmdWriteMultiBlock
+SDIO_WriteFIFO
+SDMMC_CmdWriteSingleBlock
+HAL_DMA_Start_IT
+SDIO_GetResponse
+SDMMC_CmdErase
+SDMMC_CmdSDEraseStartAdd
+SDMMC_CmdSDEraseEndAdd
+SDMMC_CmdSendStatus
+HAL_DMA_Abort_IT
+SDIO_Init
+SDIO_PowerState_ON
+HAL_Delay
+SDMMC_CmdGoIdleState
+SDMMC_CmdOperCond
+SDMMC_CmdAppOperCommand
+SDIO_GetPowerState
+SDMMC_CmdSelDesel
+SDMMC_CmdSendCID
+SDMMC_CmdSetRelAdd
+SDMMC_CmdSendCSD
+SDMMC_CmdStatusRegister
+SDMMC_CmdBusWidth
+HAL_DMA_Abort

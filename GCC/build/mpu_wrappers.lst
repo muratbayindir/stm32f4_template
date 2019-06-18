@@ -1,0 +1,2464 @@
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"mpu_wrappers.c"
+  14              		.text
+  15              		.section	.text.xPortRaisePrivilege,"ax",%progbits
+  16              		.align	1
+  17              		.p2align 2,,3
+  18              		.global	xPortRaisePrivilege
+  19              		.arch armv7e-m
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	xPortRaisePrivilege:
+  26              		@ args = 0, pretend = 0, frame = 0
+  27              		@ frame_needed = 0, uses_anonymous_args = 0
+  28 0000 10B5     		push	{r4, lr}
+  29 0002 FFF7FEFF 		bl	portIS_PRIVILEGED
+  30 0006 0128     		cmp	r0, #1
+  31 0008 0446     		mov	r4, r0
+  32 000a 01D0     		beq	.L1
+  33 000c FFF7FEFF 		bl	portRAISE_PRIVILEGE
+  34              	.L1:
+  35 0010 2046     		mov	r0, r4
+  36 0012 10BD     		pop	{r4, pc}
+  38              		.section	.text.vPortResetPrivilege,"ax",%progbits
+  39              		.align	1
+  40              		.p2align 2,,3
+  41              		.global	vPortResetPrivilege
+  42              		.syntax unified
+  43              		.thumb
+  44              		.thumb_func
+  45              		.fpu fpv4-sp-d16
+  47              	vPortResetPrivilege:
+  48              		@ args = 0, pretend = 0, frame = 0
+  49              		@ frame_needed = 0, uses_anonymous_args = 0
+  50              		@ link register save eliminated.
+  51 0000 0128     		cmp	r0, #1
+  52 0002 00D1     		bne	.L10
+  53 0004 7047     		bx	lr
+  54              	.L10:
+  55 0006 FFF7FEBF 		b	portRESET_PRIVILEGE
+  57 000a 00BF     		.section	.text.MPU_xTaskCreateRestricted,"ax",%progbits
+  58              		.align	1
+  59              		.p2align 2,,3
+  60              		.global	MPU_xTaskCreateRestricted
+  61              		.syntax unified
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 2
+
+
+  62              		.thumb
+  63              		.thumb_func
+  64              		.fpu fpv4-sp-d16
+  66              	MPU_xTaskCreateRestricted:
+  67              		@ args = 0, pretend = 0, frame = 0
+  68              		@ frame_needed = 0, uses_anonymous_args = 0
+  69 0000 38B5     		push	{r3, r4, r5, lr}
+  70 0002 0446     		mov	r4, r0
+  71 0004 0D46     		mov	r5, r1
+  72 0006 FFF7FEFF 		bl	portIS_PRIVILEGED
+  73 000a 0128     		cmp	r0, #1
+  74 000c 05D1     		bne	.L14
+  75 000e 2946     		mov	r1, r5
+  76 0010 2046     		mov	r0, r4
+  77 0012 BDE83840 		pop	{r3, r4, r5, lr}
+  78 0016 FFF7FEBF 		b	xTaskCreateRestricted
+  79              	.L14:
+  80 001a FFF7FEFF 		bl	portRAISE_PRIVILEGE
+  81 001e 2946     		mov	r1, r5
+  82 0020 2046     		mov	r0, r4
+  83 0022 FFF7FEFF 		bl	xTaskCreateRestricted
+  84 0026 0446     		mov	r4, r0
+  85 0028 FFF7FEFF 		bl	portRESET_PRIVILEGE
+  86 002c 2046     		mov	r0, r4
+  87 002e 38BD     		pop	{r3, r4, r5, pc}
+  89              		.section	.text.MPU_xTaskCreate,"ax",%progbits
+  90              		.align	1
+  91              		.p2align 2,,3
+  92              		.global	MPU_xTaskCreate
+  93              		.syntax unified
+  94              		.thumb
+  95              		.thumb_func
+  96              		.fpu fpv4-sp-d16
+  98              	MPU_xTaskCreate:
+  99              		@ args = 8, pretend = 0, frame = 0
+ 100              		@ frame_needed = 0, uses_anonymous_args = 0
+ 101 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+ 102 0004 83B0     		sub	sp, sp, #12
+ 103 0006 0446     		mov	r4, r0
+ 104 0008 0D46     		mov	r5, r1
+ 105 000a 1646     		mov	r6, r2
+ 106 000c 1F46     		mov	r7, r3
+ 107 000e DDE90A89 		ldrd	r8, r9, [sp, #40]
+ 108 0012 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 109 0016 0128     		cmp	r0, #1
+ 110 0018 0AD1     		bne	.L19
+ 111 001a 3B46     		mov	r3, r7
+ 112 001c 3246     		mov	r2, r6
+ 113 001e 2946     		mov	r1, r5
+ 114 0020 2046     		mov	r0, r4
+ 115 0022 CDE90A89 		strd	r8, r9, [sp, #40]
+ 116 0026 03B0     		add	sp, sp, #12
+ 117              		@ sp needed
+ 118 0028 BDE8F043 		pop	{r4, r5, r6, r7, r8, r9, lr}
+ 119 002c FFF7FEBF 		b	xTaskCreate
+ 120              	.L19:
+ 121 0030 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 3
+
+
+ 122 0034 3B46     		mov	r3, r7
+ 123 0036 3246     		mov	r2, r6
+ 124 0038 2946     		mov	r1, r5
+ 125 003a CDE90089 		strd	r8, r9, [sp]
+ 126 003e 2046     		mov	r0, r4
+ 127 0040 FFF7FEFF 		bl	xTaskCreate
+ 128 0044 0446     		mov	r4, r0
+ 129 0046 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 130 004a 2046     		mov	r0, r4
+ 131 004c 03B0     		add	sp, sp, #12
+ 132              		@ sp needed
+ 133 004e BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 135 0052 00BF     		.section	.text.MPU_vTaskAllocateMPURegions,"ax",%progbits
+ 136              		.align	1
+ 137              		.p2align 2,,3
+ 138              		.global	MPU_vTaskAllocateMPURegions
+ 139              		.syntax unified
+ 140              		.thumb
+ 141              		.thumb_func
+ 142              		.fpu fpv4-sp-d16
+ 144              	MPU_vTaskAllocateMPURegions:
+ 145              		@ args = 0, pretend = 0, frame = 0
+ 146              		@ frame_needed = 0, uses_anonymous_args = 0
+ 147 0000 38B5     		push	{r3, r4, r5, lr}
+ 148 0002 0446     		mov	r4, r0
+ 149 0004 0D46     		mov	r5, r1
+ 150 0006 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 151 000a 0128     		cmp	r0, #1
+ 152 000c 05D1     		bne	.L24
+ 153 000e 2946     		mov	r1, r5
+ 154 0010 2046     		mov	r0, r4
+ 155 0012 BDE83840 		pop	{r3, r4, r5, lr}
+ 156 0016 FFF7FEBF 		b	vTaskAllocateMPURegions
+ 157              	.L24:
+ 158 001a FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 159 001e 2946     		mov	r1, r5
+ 160 0020 2046     		mov	r0, r4
+ 161 0022 FFF7FEFF 		bl	vTaskAllocateMPURegions
+ 162 0026 BDE83840 		pop	{r3, r4, r5, lr}
+ 163 002a FFF7FEBF 		b	portRESET_PRIVILEGE
+ 165 002e 00BF     		.section	.text.MPU_vTaskDelete,"ax",%progbits
+ 166              		.align	1
+ 167              		.p2align 2,,3
+ 168              		.global	MPU_vTaskDelete
+ 169              		.syntax unified
+ 170              		.thumb
+ 171              		.thumb_func
+ 172              		.fpu fpv4-sp-d16
+ 174              	MPU_vTaskDelete:
+ 175              		@ args = 0, pretend = 0, frame = 0
+ 176              		@ frame_needed = 0, uses_anonymous_args = 0
+ 177 0000 10B5     		push	{r4, lr}
+ 178 0002 0446     		mov	r4, r0
+ 179 0004 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 180 0008 0128     		cmp	r0, #1
+ 181 000a 04D1     		bne	.L28
+ 182 000c 2046     		mov	r0, r4
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 4
+
+
+ 183 000e BDE81040 		pop	{r4, lr}
+ 184 0012 FFF7FEBF 		b	vTaskDelete
+ 185              	.L28:
+ 186 0016 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 187 001a 2046     		mov	r0, r4
+ 188 001c FFF7FEFF 		bl	vTaskDelete
+ 189 0020 BDE81040 		pop	{r4, lr}
+ 190 0024 FFF7FEBF 		b	portRESET_PRIVILEGE
+ 192              		.section	.text.MPU_vTaskDelayUntil,"ax",%progbits
+ 193              		.align	1
+ 194              		.p2align 2,,3
+ 195              		.global	MPU_vTaskDelayUntil
+ 196              		.syntax unified
+ 197              		.thumb
+ 198              		.thumb_func
+ 199              		.fpu fpv4-sp-d16
+ 201              	MPU_vTaskDelayUntil:
+ 202              		@ args = 0, pretend = 0, frame = 0
+ 203              		@ frame_needed = 0, uses_anonymous_args = 0
+ 204 0000 38B5     		push	{r3, r4, r5, lr}
+ 205 0002 0446     		mov	r4, r0
+ 206 0004 0D46     		mov	r5, r1
+ 207 0006 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 208 000a 0128     		cmp	r0, #1
+ 209 000c 05D1     		bne	.L32
+ 210 000e 2946     		mov	r1, r5
+ 211 0010 2046     		mov	r0, r4
+ 212 0012 BDE83840 		pop	{r3, r4, r5, lr}
+ 213 0016 FFF7FEBF 		b	vTaskDelayUntil
+ 214              	.L32:
+ 215 001a FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 216 001e 2946     		mov	r1, r5
+ 217 0020 2046     		mov	r0, r4
+ 218 0022 FFF7FEFF 		bl	vTaskDelayUntil
+ 219 0026 BDE83840 		pop	{r3, r4, r5, lr}
+ 220 002a FFF7FEBF 		b	portRESET_PRIVILEGE
+ 222 002e 00BF     		.section	.text.MPU_vTaskDelay,"ax",%progbits
+ 223              		.align	1
+ 224              		.p2align 2,,3
+ 225              		.global	MPU_vTaskDelay
+ 226              		.syntax unified
+ 227              		.thumb
+ 228              		.thumb_func
+ 229              		.fpu fpv4-sp-d16
+ 231              	MPU_vTaskDelay:
+ 232              		@ args = 0, pretend = 0, frame = 0
+ 233              		@ frame_needed = 0, uses_anonymous_args = 0
+ 234 0000 10B5     		push	{r4, lr}
+ 235 0002 0446     		mov	r4, r0
+ 236 0004 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 237 0008 0128     		cmp	r0, #1
+ 238 000a 04D1     		bne	.L36
+ 239 000c 2046     		mov	r0, r4
+ 240 000e BDE81040 		pop	{r4, lr}
+ 241 0012 FFF7FEBF 		b	vTaskDelay
+ 242              	.L36:
+ 243 0016 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 5
+
+
+ 244 001a 2046     		mov	r0, r4
+ 245 001c FFF7FEFF 		bl	vTaskDelay
+ 246 0020 BDE81040 		pop	{r4, lr}
+ 247 0024 FFF7FEBF 		b	portRESET_PRIVILEGE
+ 249              		.section	.text.MPU_uxTaskPriorityGet,"ax",%progbits
+ 250              		.align	1
+ 251              		.p2align 2,,3
+ 252              		.global	MPU_uxTaskPriorityGet
+ 253              		.syntax unified
+ 254              		.thumb
+ 255              		.thumb_func
+ 256              		.fpu fpv4-sp-d16
+ 258              	MPU_uxTaskPriorityGet:
+ 259              		@ args = 0, pretend = 0, frame = 0
+ 260              		@ frame_needed = 0, uses_anonymous_args = 0
+ 261 0000 10B5     		push	{r4, lr}
+ 262 0002 0446     		mov	r4, r0
+ 263 0004 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 264 0008 0128     		cmp	r0, #1
+ 265 000a 04D1     		bne	.L40
+ 266 000c 2046     		mov	r0, r4
+ 267 000e BDE81040 		pop	{r4, lr}
+ 268 0012 FFF7FEBF 		b	uxTaskPriorityGet
+ 269              	.L40:
+ 270 0016 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 271 001a 2046     		mov	r0, r4
+ 272 001c FFF7FEFF 		bl	uxTaskPriorityGet
+ 273 0020 0446     		mov	r4, r0
+ 274 0022 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 275 0026 2046     		mov	r0, r4
+ 276 0028 10BD     		pop	{r4, pc}
+ 278 002a 00BF     		.section	.text.MPU_vTaskPrioritySet,"ax",%progbits
+ 279              		.align	1
+ 280              		.p2align 2,,3
+ 281              		.global	MPU_vTaskPrioritySet
+ 282              		.syntax unified
+ 283              		.thumb
+ 284              		.thumb_func
+ 285              		.fpu fpv4-sp-d16
+ 287              	MPU_vTaskPrioritySet:
+ 288              		@ args = 0, pretend = 0, frame = 0
+ 289              		@ frame_needed = 0, uses_anonymous_args = 0
+ 290 0000 38B5     		push	{r3, r4, r5, lr}
+ 291 0002 0446     		mov	r4, r0
+ 292 0004 0D46     		mov	r5, r1
+ 293 0006 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 294 000a 0128     		cmp	r0, #1
+ 295 000c 05D1     		bne	.L45
+ 296 000e 2946     		mov	r1, r5
+ 297 0010 2046     		mov	r0, r4
+ 298 0012 BDE83840 		pop	{r3, r4, r5, lr}
+ 299 0016 FFF7FEBF 		b	vTaskPrioritySet
+ 300              	.L45:
+ 301 001a FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 302 001e 2946     		mov	r1, r5
+ 303 0020 2046     		mov	r0, r4
+ 304 0022 FFF7FEFF 		bl	vTaskPrioritySet
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 6
+
+
+ 305 0026 BDE83840 		pop	{r3, r4, r5, lr}
+ 306 002a FFF7FEBF 		b	portRESET_PRIVILEGE
+ 308 002e 00BF     		.section	.text.MPU_vTaskGetInfo,"ax",%progbits
+ 309              		.align	1
+ 310              		.p2align 2,,3
+ 311              		.global	MPU_vTaskGetInfo
+ 312              		.syntax unified
+ 313              		.thumb
+ 314              		.thumb_func
+ 315              		.fpu fpv4-sp-d16
+ 317              	MPU_vTaskGetInfo:
+ 318              		@ args = 0, pretend = 0, frame = 0
+ 319              		@ frame_needed = 0, uses_anonymous_args = 0
+ 320 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 321 0004 0446     		mov	r4, r0
+ 322 0006 0D46     		mov	r5, r1
+ 323 0008 1646     		mov	r6, r2
+ 324 000a 1F46     		mov	r7, r3
+ 325 000c FFF7FEFF 		bl	portIS_PRIVILEGED
+ 326 0010 0128     		cmp	r0, #1
+ 327 0012 07D1     		bne	.L49
+ 328 0014 3B46     		mov	r3, r7
+ 329 0016 3246     		mov	r2, r6
+ 330 0018 2946     		mov	r1, r5
+ 331 001a 2046     		mov	r0, r4
+ 332 001c BDE8F041 		pop	{r4, r5, r6, r7, r8, lr}
+ 333 0020 FFF7FEBF 		b	vTaskGetInfo
+ 334              	.L49:
+ 335 0024 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 336 0028 3B46     		mov	r3, r7
+ 337 002a 3246     		mov	r2, r6
+ 338 002c 2946     		mov	r1, r5
+ 339 002e 2046     		mov	r0, r4
+ 340 0030 FFF7FEFF 		bl	vTaskGetInfo
+ 341 0034 BDE8F041 		pop	{r4, r5, r6, r7, r8, lr}
+ 342 0038 FFF7FEBF 		b	portRESET_PRIVILEGE
+ 344              		.section	.text.MPU_vTaskSuspend,"ax",%progbits
+ 345              		.align	1
+ 346              		.p2align 2,,3
+ 347              		.global	MPU_vTaskSuspend
+ 348              		.syntax unified
+ 349              		.thumb
+ 350              		.thumb_func
+ 351              		.fpu fpv4-sp-d16
+ 353              	MPU_vTaskSuspend:
+ 354              		@ args = 0, pretend = 0, frame = 0
+ 355              		@ frame_needed = 0, uses_anonymous_args = 0
+ 356 0000 10B5     		push	{r4, lr}
+ 357 0002 0446     		mov	r4, r0
+ 358 0004 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 359 0008 0128     		cmp	r0, #1
+ 360 000a 04D1     		bne	.L53
+ 361 000c 2046     		mov	r0, r4
+ 362 000e BDE81040 		pop	{r4, lr}
+ 363 0012 FFF7FEBF 		b	vTaskSuspend
+ 364              	.L53:
+ 365 0016 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 7
+
+
+ 366 001a 2046     		mov	r0, r4
+ 367 001c FFF7FEFF 		bl	vTaskSuspend
+ 368 0020 BDE81040 		pop	{r4, lr}
+ 369 0024 FFF7FEBF 		b	portRESET_PRIVILEGE
+ 371              		.section	.text.MPU_vTaskResume,"ax",%progbits
+ 372              		.align	1
+ 373              		.p2align 2,,3
+ 374              		.global	MPU_vTaskResume
+ 375              		.syntax unified
+ 376              		.thumb
+ 377              		.thumb_func
+ 378              		.fpu fpv4-sp-d16
+ 380              	MPU_vTaskResume:
+ 381              		@ args = 0, pretend = 0, frame = 0
+ 382              		@ frame_needed = 0, uses_anonymous_args = 0
+ 383 0000 10B5     		push	{r4, lr}
+ 384 0002 0446     		mov	r4, r0
+ 385 0004 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 386 0008 0128     		cmp	r0, #1
+ 387 000a 04D1     		bne	.L57
+ 388 000c 2046     		mov	r0, r4
+ 389 000e BDE81040 		pop	{r4, lr}
+ 390 0012 FFF7FEBF 		b	vTaskResume
+ 391              	.L57:
+ 392 0016 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 393 001a 2046     		mov	r0, r4
+ 394 001c FFF7FEFF 		bl	vTaskResume
+ 395 0020 BDE81040 		pop	{r4, lr}
+ 396 0024 FFF7FEBF 		b	portRESET_PRIVILEGE
+ 398              		.section	.text.MPU_vTaskSuspendAll,"ax",%progbits
+ 399              		.align	1
+ 400              		.p2align 2,,3
+ 401              		.global	MPU_vTaskSuspendAll
+ 402              		.syntax unified
+ 403              		.thumb
+ 404              		.thumb_func
+ 405              		.fpu fpv4-sp-d16
+ 407              	MPU_vTaskSuspendAll:
+ 408              		@ args = 0, pretend = 0, frame = 0
+ 409              		@ frame_needed = 0, uses_anonymous_args = 0
+ 410 0000 08B5     		push	{r3, lr}
+ 411 0002 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 412 0006 0128     		cmp	r0, #1
+ 413 0008 03D1     		bne	.L61
+ 414 000a BDE80840 		pop	{r3, lr}
+ 415 000e FFF7FEBF 		b	vTaskSuspendAll
+ 416              	.L61:
+ 417 0012 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 418 0016 FFF7FEFF 		bl	vTaskSuspendAll
+ 419 001a BDE80840 		pop	{r3, lr}
+ 420 001e FFF7FEBF 		b	portRESET_PRIVILEGE
+ 422 0022 00BF     		.section	.text.MPU_xTaskResumeAll,"ax",%progbits
+ 423              		.align	1
+ 424              		.p2align 2,,3
+ 425              		.global	MPU_xTaskResumeAll
+ 426              		.syntax unified
+ 427              		.thumb
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 8
+
+
+ 428              		.thumb_func
+ 429              		.fpu fpv4-sp-d16
+ 431              	MPU_xTaskResumeAll:
+ 432              		@ args = 0, pretend = 0, frame = 0
+ 433              		@ frame_needed = 0, uses_anonymous_args = 0
+ 434 0000 10B5     		push	{r4, lr}
+ 435 0002 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 436 0006 0128     		cmp	r0, #1
+ 437 0008 03D1     		bne	.L65
+ 438 000a BDE81040 		pop	{r4, lr}
+ 439 000e FFF7FEBF 		b	xTaskResumeAll
+ 440              	.L65:
+ 441 0012 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 442 0016 FFF7FEFF 		bl	xTaskResumeAll
+ 443 001a 0446     		mov	r4, r0
+ 444 001c FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 445 0020 2046     		mov	r0, r4
+ 446 0022 10BD     		pop	{r4, pc}
+ 448              		.section	.text.MPU_xTaskGetTickCount,"ax",%progbits
+ 449              		.align	1
+ 450              		.p2align 2,,3
+ 451              		.global	MPU_xTaskGetTickCount
+ 452              		.syntax unified
+ 453              		.thumb
+ 454              		.thumb_func
+ 455              		.fpu fpv4-sp-d16
+ 457              	MPU_xTaskGetTickCount:
+ 458              		@ args = 0, pretend = 0, frame = 0
+ 459              		@ frame_needed = 0, uses_anonymous_args = 0
+ 460 0000 10B5     		push	{r4, lr}
+ 461 0002 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 462 0006 0128     		cmp	r0, #1
+ 463 0008 03D1     		bne	.L70
+ 464 000a BDE81040 		pop	{r4, lr}
+ 465 000e FFF7FEBF 		b	xTaskGetTickCount
+ 466              	.L70:
+ 467 0012 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 468 0016 FFF7FEFF 		bl	xTaskGetTickCount
+ 469 001a 0446     		mov	r4, r0
+ 470 001c FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 471 0020 2046     		mov	r0, r4
+ 472 0022 10BD     		pop	{r4, pc}
+ 474              		.section	.text.MPU_uxTaskGetNumberOfTasks,"ax",%progbits
+ 475              		.align	1
+ 476              		.p2align 2,,3
+ 477              		.global	MPU_uxTaskGetNumberOfTasks
+ 478              		.syntax unified
+ 479              		.thumb
+ 480              		.thumb_func
+ 481              		.fpu fpv4-sp-d16
+ 483              	MPU_uxTaskGetNumberOfTasks:
+ 484              		@ args = 0, pretend = 0, frame = 0
+ 485              		@ frame_needed = 0, uses_anonymous_args = 0
+ 486 0000 10B5     		push	{r4, lr}
+ 487 0002 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 488 0006 0128     		cmp	r0, #1
+ 489 0008 03D1     		bne	.L75
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 9
+
+
+ 490 000a BDE81040 		pop	{r4, lr}
+ 491 000e FFF7FEBF 		b	uxTaskGetNumberOfTasks
+ 492              	.L75:
+ 493 0012 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 494 0016 FFF7FEFF 		bl	uxTaskGetNumberOfTasks
+ 495 001a 0446     		mov	r4, r0
+ 496 001c FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 497 0020 2046     		mov	r0, r4
+ 498 0022 10BD     		pop	{r4, pc}
+ 500              		.section	.text.MPU_pcTaskGetName,"ax",%progbits
+ 501              		.align	1
+ 502              		.p2align 2,,3
+ 503              		.global	MPU_pcTaskGetName
+ 504              		.syntax unified
+ 505              		.thumb
+ 506              		.thumb_func
+ 507              		.fpu fpv4-sp-d16
+ 509              	MPU_pcTaskGetName:
+ 510              		@ args = 0, pretend = 0, frame = 0
+ 511              		@ frame_needed = 0, uses_anonymous_args = 0
+ 512 0000 10B5     		push	{r4, lr}
+ 513 0002 0446     		mov	r4, r0
+ 514 0004 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 515 0008 0128     		cmp	r0, #1
+ 516 000a 04D1     		bne	.L80
+ 517 000c 2046     		mov	r0, r4
+ 518 000e BDE81040 		pop	{r4, lr}
+ 519 0012 FFF7FEBF 		b	pcTaskGetName
+ 520              	.L80:
+ 521 0016 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 522 001a 2046     		mov	r0, r4
+ 523 001c FFF7FEFF 		bl	pcTaskGetName
+ 524 0020 0446     		mov	r4, r0
+ 525 0022 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 526 0026 2046     		mov	r0, r4
+ 527 0028 10BD     		pop	{r4, pc}
+ 529 002a 00BF     		.section	.text.MPU_uxTaskGetSystemState,"ax",%progbits
+ 530              		.align	1
+ 531              		.p2align 2,,3
+ 532              		.global	MPU_uxTaskGetSystemState
+ 533              		.syntax unified
+ 534              		.thumb
+ 535              		.thumb_func
+ 536              		.fpu fpv4-sp-d16
+ 538              	MPU_uxTaskGetSystemState:
+ 539              		@ args = 0, pretend = 0, frame = 0
+ 540              		@ frame_needed = 0, uses_anonymous_args = 0
+ 541 0000 70B5     		push	{r4, r5, r6, lr}
+ 542 0002 0446     		mov	r4, r0
+ 543 0004 0D46     		mov	r5, r1
+ 544 0006 1646     		mov	r6, r2
+ 545 0008 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 546 000c 0128     		cmp	r0, #1
+ 547 000e 06D1     		bne	.L85
+ 548 0010 3246     		mov	r2, r6
+ 549 0012 2946     		mov	r1, r5
+ 550 0014 2046     		mov	r0, r4
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 10
+
+
+ 551 0016 BDE87040 		pop	{r4, r5, r6, lr}
+ 552 001a FFF7FEBF 		b	uxTaskGetSystemState
+ 553              	.L85:
+ 554 001e FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 555 0022 3246     		mov	r2, r6
+ 556 0024 2946     		mov	r1, r5
+ 557 0026 2046     		mov	r0, r4
+ 558 0028 FFF7FEFF 		bl	uxTaskGetSystemState
+ 559 002c 0446     		mov	r4, r0
+ 560 002e FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 561 0032 2046     		mov	r0, r4
+ 562 0034 70BD     		pop	{r4, r5, r6, pc}
+ 564 0036 00BF     		.section	.text.MPU_xTaskGetSchedulerState,"ax",%progbits
+ 565              		.align	1
+ 566              		.p2align 2,,3
+ 567              		.global	MPU_xTaskGetSchedulerState
+ 568              		.syntax unified
+ 569              		.thumb
+ 570              		.thumb_func
+ 571              		.fpu fpv4-sp-d16
+ 573              	MPU_xTaskGetSchedulerState:
+ 574              		@ args = 0, pretend = 0, frame = 0
+ 575              		@ frame_needed = 0, uses_anonymous_args = 0
+ 576 0000 10B5     		push	{r4, lr}
+ 577 0002 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 578 0006 0128     		cmp	r0, #1
+ 579 0008 03D1     		bne	.L90
+ 580 000a BDE81040 		pop	{r4, lr}
+ 581 000e FFF7FEBF 		b	xTaskGetSchedulerState
+ 582              	.L90:
+ 583 0012 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 584 0016 FFF7FEFF 		bl	xTaskGetSchedulerState
+ 585 001a 0446     		mov	r4, r0
+ 586 001c FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 587 0020 2046     		mov	r0, r4
+ 588 0022 10BD     		pop	{r4, pc}
+ 590              		.section	.text.MPU_vTaskSetTimeOutState,"ax",%progbits
+ 591              		.align	1
+ 592              		.p2align 2,,3
+ 593              		.global	MPU_vTaskSetTimeOutState
+ 594              		.syntax unified
+ 595              		.thumb
+ 596              		.thumb_func
+ 597              		.fpu fpv4-sp-d16
+ 599              	MPU_vTaskSetTimeOutState:
+ 600              		@ args = 0, pretend = 0, frame = 0
+ 601              		@ frame_needed = 0, uses_anonymous_args = 0
+ 602 0000 10B5     		push	{r4, lr}
+ 603 0002 0446     		mov	r4, r0
+ 604 0004 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 605 0008 0128     		cmp	r0, #1
+ 606 000a 04D1     		bne	.L95
+ 607 000c 2046     		mov	r0, r4
+ 608 000e BDE81040 		pop	{r4, lr}
+ 609 0012 FFF7FEBF 		b	vTaskSetTimeOutState
+ 610              	.L95:
+ 611 0016 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 11
+
+
+ 612 001a 2046     		mov	r0, r4
+ 613 001c FFF7FEFF 		bl	vTaskSetTimeOutState
+ 614 0020 BDE81040 		pop	{r4, lr}
+ 615 0024 FFF7FEBF 		b	portRESET_PRIVILEGE
+ 617              		.section	.text.MPU_xTaskCheckForTimeOut,"ax",%progbits
+ 618              		.align	1
+ 619              		.p2align 2,,3
+ 620              		.global	MPU_xTaskCheckForTimeOut
+ 621              		.syntax unified
+ 622              		.thumb
+ 623              		.thumb_func
+ 624              		.fpu fpv4-sp-d16
+ 626              	MPU_xTaskCheckForTimeOut:
+ 627              		@ args = 0, pretend = 0, frame = 0
+ 628              		@ frame_needed = 0, uses_anonymous_args = 0
+ 629 0000 38B5     		push	{r3, r4, r5, lr}
+ 630 0002 0446     		mov	r4, r0
+ 631 0004 0D46     		mov	r5, r1
+ 632 0006 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 633 000a 0128     		cmp	r0, #1
+ 634 000c 05D1     		bne	.L99
+ 635 000e 2946     		mov	r1, r5
+ 636 0010 2046     		mov	r0, r4
+ 637 0012 BDE83840 		pop	{r3, r4, r5, lr}
+ 638 0016 FFF7FEBF 		b	xTaskCheckForTimeOut
+ 639              	.L99:
+ 640 001a FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 641 001e 2946     		mov	r1, r5
+ 642 0020 2046     		mov	r0, r4
+ 643 0022 FFF7FEFF 		bl	xTaskCheckForTimeOut
+ 644 0026 0446     		mov	r4, r0
+ 645 0028 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 646 002c 2046     		mov	r0, r4
+ 647 002e 38BD     		pop	{r3, r4, r5, pc}
+ 649              		.section	.text.MPU_xTaskGenericNotify,"ax",%progbits
+ 650              		.align	1
+ 651              		.p2align 2,,3
+ 652              		.global	MPU_xTaskGenericNotify
+ 653              		.syntax unified
+ 654              		.thumb
+ 655              		.thumb_func
+ 656              		.fpu fpv4-sp-d16
+ 658              	MPU_xTaskGenericNotify:
+ 659              		@ args = 0, pretend = 0, frame = 0
+ 660              		@ frame_needed = 0, uses_anonymous_args = 0
+ 661 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 662 0004 0446     		mov	r4, r0
+ 663 0006 0D46     		mov	r5, r1
+ 664 0008 1646     		mov	r6, r2
+ 665 000a 1F46     		mov	r7, r3
+ 666 000c FFF7FEFF 		bl	portIS_PRIVILEGED
+ 667 0010 0128     		cmp	r0, #1
+ 668 0012 07D1     		bne	.L104
+ 669 0014 3B46     		mov	r3, r7
+ 670 0016 3246     		mov	r2, r6
+ 671 0018 2946     		mov	r1, r5
+ 672 001a 2046     		mov	r0, r4
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 12
+
+
+ 673 001c BDE8F041 		pop	{r4, r5, r6, r7, r8, lr}
+ 674 0020 FFF7FEBF 		b	xTaskGenericNotify
+ 675              	.L104:
+ 676 0024 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 677 0028 3B46     		mov	r3, r7
+ 678 002a 3246     		mov	r2, r6
+ 679 002c 2946     		mov	r1, r5
+ 680 002e 2046     		mov	r0, r4
+ 681 0030 FFF7FEFF 		bl	xTaskGenericNotify
+ 682 0034 0446     		mov	r4, r0
+ 683 0036 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 684 003a 2046     		mov	r0, r4
+ 685 003c BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 687              		.section	.text.MPU_xTaskNotifyWait,"ax",%progbits
+ 688              		.align	1
+ 689              		.p2align 2,,3
+ 690              		.global	MPU_xTaskNotifyWait
+ 691              		.syntax unified
+ 692              		.thumb
+ 693              		.thumb_func
+ 694              		.fpu fpv4-sp-d16
+ 696              	MPU_xTaskNotifyWait:
+ 697              		@ args = 0, pretend = 0, frame = 0
+ 698              		@ frame_needed = 0, uses_anonymous_args = 0
+ 699 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 700 0004 0446     		mov	r4, r0
+ 701 0006 0D46     		mov	r5, r1
+ 702 0008 1646     		mov	r6, r2
+ 703 000a 1F46     		mov	r7, r3
+ 704 000c FFF7FEFF 		bl	portIS_PRIVILEGED
+ 705 0010 0128     		cmp	r0, #1
+ 706 0012 07D1     		bne	.L109
+ 707 0014 3B46     		mov	r3, r7
+ 708 0016 3246     		mov	r2, r6
+ 709 0018 2946     		mov	r1, r5
+ 710 001a 2046     		mov	r0, r4
+ 711 001c BDE8F041 		pop	{r4, r5, r6, r7, r8, lr}
+ 712 0020 FFF7FEBF 		b	xTaskNotifyWait
+ 713              	.L109:
+ 714 0024 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 715 0028 3B46     		mov	r3, r7
+ 716 002a 3246     		mov	r2, r6
+ 717 002c 2946     		mov	r1, r5
+ 718 002e 2046     		mov	r0, r4
+ 719 0030 FFF7FEFF 		bl	xTaskNotifyWait
+ 720 0034 0446     		mov	r4, r0
+ 721 0036 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 722 003a 2046     		mov	r0, r4
+ 723 003c BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 725              		.section	.text.MPU_ulTaskNotifyTake,"ax",%progbits
+ 726              		.align	1
+ 727              		.p2align 2,,3
+ 728              		.global	MPU_ulTaskNotifyTake
+ 729              		.syntax unified
+ 730              		.thumb
+ 731              		.thumb_func
+ 732              		.fpu fpv4-sp-d16
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 13
+
+
+ 734              	MPU_ulTaskNotifyTake:
+ 735              		@ args = 0, pretend = 0, frame = 0
+ 736              		@ frame_needed = 0, uses_anonymous_args = 0
+ 737 0000 38B5     		push	{r3, r4, r5, lr}
+ 738 0002 0446     		mov	r4, r0
+ 739 0004 0D46     		mov	r5, r1
+ 740 0006 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 741 000a 0128     		cmp	r0, #1
+ 742 000c 05D1     		bne	.L114
+ 743 000e 2946     		mov	r1, r5
+ 744 0010 2046     		mov	r0, r4
+ 745 0012 BDE83840 		pop	{r3, r4, r5, lr}
+ 746 0016 FFF7FEBF 		b	ulTaskNotifyTake
+ 747              	.L114:
+ 748 001a FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 749 001e 2946     		mov	r1, r5
+ 750 0020 2046     		mov	r0, r4
+ 751 0022 FFF7FEFF 		bl	ulTaskNotifyTake
+ 752 0026 0446     		mov	r4, r0
+ 753 0028 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 754 002c 2046     		mov	r0, r4
+ 755 002e 38BD     		pop	{r3, r4, r5, pc}
+ 757              		.section	.text.MPU_xTaskNotifyStateClear,"ax",%progbits
+ 758              		.align	1
+ 759              		.p2align 2,,3
+ 760              		.global	MPU_xTaskNotifyStateClear
+ 761              		.syntax unified
+ 762              		.thumb
+ 763              		.thumb_func
+ 764              		.fpu fpv4-sp-d16
+ 766              	MPU_xTaskNotifyStateClear:
+ 767              		@ args = 0, pretend = 0, frame = 0
+ 768              		@ frame_needed = 0, uses_anonymous_args = 0
+ 769 0000 10B5     		push	{r4, lr}
+ 770 0002 0446     		mov	r4, r0
+ 771 0004 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 772 0008 0128     		cmp	r0, #1
+ 773 000a 04D1     		bne	.L119
+ 774 000c 2046     		mov	r0, r4
+ 775 000e BDE81040 		pop	{r4, lr}
+ 776 0012 FFF7FEBF 		b	xTaskNotifyStateClear
+ 777              	.L119:
+ 778 0016 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 779 001a 2046     		mov	r0, r4
+ 780 001c FFF7FEFF 		bl	xTaskNotifyStateClear
+ 781 0020 0446     		mov	r4, r0
+ 782 0022 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 783 0026 2046     		mov	r0, r4
+ 784 0028 10BD     		pop	{r4, pc}
+ 786 002a 00BF     		.section	.text.MPU_xQueueGenericCreate,"ax",%progbits
+ 787              		.align	1
+ 788              		.p2align 2,,3
+ 789              		.global	MPU_xQueueGenericCreate
+ 790              		.syntax unified
+ 791              		.thumb
+ 792              		.thumb_func
+ 793              		.fpu fpv4-sp-d16
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 14
+
+
+ 795              	MPU_xQueueGenericCreate:
+ 796              		@ args = 0, pretend = 0, frame = 0
+ 797              		@ frame_needed = 0, uses_anonymous_args = 0
+ 798 0000 70B5     		push	{r4, r5, r6, lr}
+ 799 0002 0446     		mov	r4, r0
+ 800 0004 0D46     		mov	r5, r1
+ 801 0006 1646     		mov	r6, r2
+ 802 0008 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 803 000c 0128     		cmp	r0, #1
+ 804 000e 06D1     		bne	.L124
+ 805 0010 3246     		mov	r2, r6
+ 806 0012 2946     		mov	r1, r5
+ 807 0014 2046     		mov	r0, r4
+ 808 0016 BDE87040 		pop	{r4, r5, r6, lr}
+ 809 001a FFF7FEBF 		b	xQueueGenericCreate
+ 810              	.L124:
+ 811 001e FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 812 0022 3246     		mov	r2, r6
+ 813 0024 2946     		mov	r1, r5
+ 814 0026 2046     		mov	r0, r4
+ 815 0028 FFF7FEFF 		bl	xQueueGenericCreate
+ 816 002c 0446     		mov	r4, r0
+ 817 002e FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 818 0032 2046     		mov	r0, r4
+ 819 0034 70BD     		pop	{r4, r5, r6, pc}
+ 821 0036 00BF     		.section	.text.MPU_xQueueGenericReset,"ax",%progbits
+ 822              		.align	1
+ 823              		.p2align 2,,3
+ 824              		.global	MPU_xQueueGenericReset
+ 825              		.syntax unified
+ 826              		.thumb
+ 827              		.thumb_func
+ 828              		.fpu fpv4-sp-d16
+ 830              	MPU_xQueueGenericReset:
+ 831              		@ args = 0, pretend = 0, frame = 0
+ 832              		@ frame_needed = 0, uses_anonymous_args = 0
+ 833 0000 38B5     		push	{r3, r4, r5, lr}
+ 834 0002 0446     		mov	r4, r0
+ 835 0004 0D46     		mov	r5, r1
+ 836 0006 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 837 000a 0128     		cmp	r0, #1
+ 838 000c 05D1     		bne	.L129
+ 839 000e 2946     		mov	r1, r5
+ 840 0010 2046     		mov	r0, r4
+ 841 0012 BDE83840 		pop	{r3, r4, r5, lr}
+ 842 0016 FFF7FEBF 		b	xQueueGenericReset
+ 843              	.L129:
+ 844 001a FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 845 001e 2946     		mov	r1, r5
+ 846 0020 2046     		mov	r0, r4
+ 847 0022 FFF7FEFF 		bl	xQueueGenericReset
+ 848 0026 0446     		mov	r4, r0
+ 849 0028 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 850 002c 2046     		mov	r0, r4
+ 851 002e 38BD     		pop	{r3, r4, r5, pc}
+ 853              		.section	.text.MPU_xQueueGenericSend,"ax",%progbits
+ 854              		.align	1
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 15
+
+
+ 855              		.p2align 2,,3
+ 856              		.global	MPU_xQueueGenericSend
+ 857              		.syntax unified
+ 858              		.thumb
+ 859              		.thumb_func
+ 860              		.fpu fpv4-sp-d16
+ 862              	MPU_xQueueGenericSend:
+ 863              		@ args = 0, pretend = 0, frame = 0
+ 864              		@ frame_needed = 0, uses_anonymous_args = 0
+ 865 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 866 0004 0446     		mov	r4, r0
+ 867 0006 0D46     		mov	r5, r1
+ 868 0008 1646     		mov	r6, r2
+ 869 000a 1F46     		mov	r7, r3
+ 870 000c FFF7FEFF 		bl	portIS_PRIVILEGED
+ 871 0010 0128     		cmp	r0, #1
+ 872 0012 07D1     		bne	.L134
+ 873 0014 3B46     		mov	r3, r7
+ 874 0016 3246     		mov	r2, r6
+ 875 0018 2946     		mov	r1, r5
+ 876 001a 2046     		mov	r0, r4
+ 877 001c BDE8F041 		pop	{r4, r5, r6, r7, r8, lr}
+ 878 0020 FFF7FEBF 		b	xQueueGenericSend
+ 879              	.L134:
+ 880 0024 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 881 0028 3B46     		mov	r3, r7
+ 882 002a 3246     		mov	r2, r6
+ 883 002c 2946     		mov	r1, r5
+ 884 002e 2046     		mov	r0, r4
+ 885 0030 FFF7FEFF 		bl	xQueueGenericSend
+ 886 0034 0446     		mov	r4, r0
+ 887 0036 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 888 003a 2046     		mov	r0, r4
+ 889 003c BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 891              		.section	.text.MPU_uxQueueMessagesWaiting,"ax",%progbits
+ 892              		.align	1
+ 893              		.p2align 2,,3
+ 894              		.global	MPU_uxQueueMessagesWaiting
+ 895              		.syntax unified
+ 896              		.thumb
+ 897              		.thumb_func
+ 898              		.fpu fpv4-sp-d16
+ 900              	MPU_uxQueueMessagesWaiting:
+ 901              		@ args = 0, pretend = 0, frame = 0
+ 902              		@ frame_needed = 0, uses_anonymous_args = 0
+ 903 0000 10B5     		push	{r4, lr}
+ 904 0002 0446     		mov	r4, r0
+ 905 0004 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 906 0008 0128     		cmp	r0, #1
+ 907 000a 04D1     		bne	.L139
+ 908 000c 2046     		mov	r0, r4
+ 909 000e BDE81040 		pop	{r4, lr}
+ 910 0012 FFF7FEBF 		b	uxQueueMessagesWaiting
+ 911              	.L139:
+ 912 0016 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 913 001a 2046     		mov	r0, r4
+ 914 001c FFF7FEFF 		bl	uxQueueMessagesWaiting
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 16
+
+
+ 915 0020 0446     		mov	r4, r0
+ 916 0022 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 917 0026 2046     		mov	r0, r4
+ 918 0028 10BD     		pop	{r4, pc}
+ 920 002a 00BF     		.section	.text.MPU_uxQueueSpacesAvailable,"ax",%progbits
+ 921              		.align	1
+ 922              		.p2align 2,,3
+ 923              		.global	MPU_uxQueueSpacesAvailable
+ 924              		.syntax unified
+ 925              		.thumb
+ 926              		.thumb_func
+ 927              		.fpu fpv4-sp-d16
+ 929              	MPU_uxQueueSpacesAvailable:
+ 930              		@ args = 0, pretend = 0, frame = 0
+ 931              		@ frame_needed = 0, uses_anonymous_args = 0
+ 932 0000 10B5     		push	{r4, lr}
+ 933 0002 0446     		mov	r4, r0
+ 934 0004 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 935 0008 0128     		cmp	r0, #1
+ 936 000a 04D1     		bne	.L144
+ 937 000c 2046     		mov	r0, r4
+ 938 000e BDE81040 		pop	{r4, lr}
+ 939 0012 FFF7FEBF 		b	uxQueueSpacesAvailable
+ 940              	.L144:
+ 941 0016 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 942 001a 2046     		mov	r0, r4
+ 943 001c FFF7FEFF 		bl	uxQueueSpacesAvailable
+ 944 0020 0446     		mov	r4, r0
+ 945 0022 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 946 0026 2046     		mov	r0, r4
+ 947 0028 10BD     		pop	{r4, pc}
+ 949 002a 00BF     		.section	.text.MPU_xQueueReceive,"ax",%progbits
+ 950              		.align	1
+ 951              		.p2align 2,,3
+ 952              		.global	MPU_xQueueReceive
+ 953              		.syntax unified
+ 954              		.thumb
+ 955              		.thumb_func
+ 956              		.fpu fpv4-sp-d16
+ 958              	MPU_xQueueReceive:
+ 959              		@ args = 0, pretend = 0, frame = 0
+ 960              		@ frame_needed = 0, uses_anonymous_args = 0
+ 961 0000 70B5     		push	{r4, r5, r6, lr}
+ 962 0002 0446     		mov	r4, r0
+ 963 0004 0D46     		mov	r5, r1
+ 964 0006 1646     		mov	r6, r2
+ 965 0008 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 966 000c 0128     		cmp	r0, #1
+ 967 000e 06D1     		bne	.L149
+ 968 0010 3246     		mov	r2, r6
+ 969 0012 2946     		mov	r1, r5
+ 970 0014 2046     		mov	r0, r4
+ 971 0016 BDE87040 		pop	{r4, r5, r6, lr}
+ 972 001a FFF7FEBF 		b	xQueueReceive
+ 973              	.L149:
+ 974 001e FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 975 0022 3246     		mov	r2, r6
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 17
+
+
+ 976 0024 2946     		mov	r1, r5
+ 977 0026 2046     		mov	r0, r4
+ 978 0028 FFF7FEFF 		bl	xQueueReceive
+ 979 002c 0446     		mov	r4, r0
+ 980 002e FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 981 0032 2046     		mov	r0, r4
+ 982 0034 70BD     		pop	{r4, r5, r6, pc}
+ 984 0036 00BF     		.section	.text.MPU_xQueuePeek,"ax",%progbits
+ 985              		.align	1
+ 986              		.p2align 2,,3
+ 987              		.global	MPU_xQueuePeek
+ 988              		.syntax unified
+ 989              		.thumb
+ 990              		.thumb_func
+ 991              		.fpu fpv4-sp-d16
+ 993              	MPU_xQueuePeek:
+ 994              		@ args = 0, pretend = 0, frame = 0
+ 995              		@ frame_needed = 0, uses_anonymous_args = 0
+ 996 0000 70B5     		push	{r4, r5, r6, lr}
+ 997 0002 0446     		mov	r4, r0
+ 998 0004 0D46     		mov	r5, r1
+ 999 0006 1646     		mov	r6, r2
+ 1000 0008 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 1001 000c 0128     		cmp	r0, #1
+ 1002 000e 06D1     		bne	.L154
+ 1003 0010 3246     		mov	r2, r6
+ 1004 0012 2946     		mov	r1, r5
+ 1005 0014 2046     		mov	r0, r4
+ 1006 0016 BDE87040 		pop	{r4, r5, r6, lr}
+ 1007 001a FFF7FEBF 		b	xQueuePeek
+ 1008              	.L154:
+ 1009 001e FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 1010 0022 3246     		mov	r2, r6
+ 1011 0024 2946     		mov	r1, r5
+ 1012 0026 2046     		mov	r0, r4
+ 1013 0028 FFF7FEFF 		bl	xQueuePeek
+ 1014 002c 0446     		mov	r4, r0
+ 1015 002e FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 1016 0032 2046     		mov	r0, r4
+ 1017 0034 70BD     		pop	{r4, r5, r6, pc}
+ 1019 0036 00BF     		.section	.text.MPU_xQueueSemaphoreTake,"ax",%progbits
+ 1020              		.align	1
+ 1021              		.p2align 2,,3
+ 1022              		.global	MPU_xQueueSemaphoreTake
+ 1023              		.syntax unified
+ 1024              		.thumb
+ 1025              		.thumb_func
+ 1026              		.fpu fpv4-sp-d16
+ 1028              	MPU_xQueueSemaphoreTake:
+ 1029              		@ args = 0, pretend = 0, frame = 0
+ 1030              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1031 0000 38B5     		push	{r3, r4, r5, lr}
+ 1032 0002 0446     		mov	r4, r0
+ 1033 0004 0D46     		mov	r5, r1
+ 1034 0006 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 1035 000a 0128     		cmp	r0, #1
+ 1036 000c 05D1     		bne	.L159
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 18
+
+
+ 1037 000e 2946     		mov	r1, r5
+ 1038 0010 2046     		mov	r0, r4
+ 1039 0012 BDE83840 		pop	{r3, r4, r5, lr}
+ 1040 0016 FFF7FEBF 		b	xQueueSemaphoreTake
+ 1041              	.L159:
+ 1042 001a FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 1043 001e 2946     		mov	r1, r5
+ 1044 0020 2046     		mov	r0, r4
+ 1045 0022 FFF7FEFF 		bl	xQueueSemaphoreTake
+ 1046 0026 0446     		mov	r4, r0
+ 1047 0028 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 1048 002c 2046     		mov	r0, r4
+ 1049 002e 38BD     		pop	{r3, r4, r5, pc}
+ 1051              		.section	.text.MPU_xQueueCreateMutex,"ax",%progbits
+ 1052              		.align	1
+ 1053              		.p2align 2,,3
+ 1054              		.global	MPU_xQueueCreateMutex
+ 1055              		.syntax unified
+ 1056              		.thumb
+ 1057              		.thumb_func
+ 1058              		.fpu fpv4-sp-d16
+ 1060              	MPU_xQueueCreateMutex:
+ 1061              		@ args = 0, pretend = 0, frame = 0
+ 1062              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1063 0000 10B5     		push	{r4, lr}
+ 1064 0002 0446     		mov	r4, r0
+ 1065 0004 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 1066 0008 0128     		cmp	r0, #1
+ 1067 000a 04D1     		bne	.L164
+ 1068 000c 2046     		mov	r0, r4
+ 1069 000e BDE81040 		pop	{r4, lr}
+ 1070 0012 FFF7FEBF 		b	xQueueCreateMutex
+ 1071              	.L164:
+ 1072 0016 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 1073 001a 2046     		mov	r0, r4
+ 1074 001c FFF7FEFF 		bl	xQueueCreateMutex
+ 1075 0020 0446     		mov	r4, r0
+ 1076 0022 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 1077 0026 2046     		mov	r0, r4
+ 1078 0028 10BD     		pop	{r4, pc}
+ 1080 002a 00BF     		.section	.text.MPU_xQueueCreateCountingSemaphore,"ax",%progbits
+ 1081              		.align	1
+ 1082              		.p2align 2,,3
+ 1083              		.global	MPU_xQueueCreateCountingSemaphore
+ 1084              		.syntax unified
+ 1085              		.thumb
+ 1086              		.thumb_func
+ 1087              		.fpu fpv4-sp-d16
+ 1089              	MPU_xQueueCreateCountingSemaphore:
+ 1090              		@ args = 0, pretend = 0, frame = 0
+ 1091              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1092 0000 38B5     		push	{r3, r4, r5, lr}
+ 1093 0002 0446     		mov	r4, r0
+ 1094 0004 0D46     		mov	r5, r1
+ 1095 0006 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 1096 000a 0128     		cmp	r0, #1
+ 1097 000c 05D1     		bne	.L169
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 19
+
+
+ 1098 000e 2946     		mov	r1, r5
+ 1099 0010 2046     		mov	r0, r4
+ 1100 0012 BDE83840 		pop	{r3, r4, r5, lr}
+ 1101 0016 FFF7FEBF 		b	xQueueCreateCountingSemaphore
+ 1102              	.L169:
+ 1103 001a FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 1104 001e 2946     		mov	r1, r5
+ 1105 0020 2046     		mov	r0, r4
+ 1106 0022 FFF7FEFF 		bl	xQueueCreateCountingSemaphore
+ 1107 0026 0446     		mov	r4, r0
+ 1108 0028 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 1109 002c 2046     		mov	r0, r4
+ 1110 002e 38BD     		pop	{r3, r4, r5, pc}
+ 1112              		.section	.text.MPU_xQueueTakeMutexRecursive,"ax",%progbits
+ 1113              		.align	1
+ 1114              		.p2align 2,,3
+ 1115              		.global	MPU_xQueueTakeMutexRecursive
+ 1116              		.syntax unified
+ 1117              		.thumb
+ 1118              		.thumb_func
+ 1119              		.fpu fpv4-sp-d16
+ 1121              	MPU_xQueueTakeMutexRecursive:
+ 1122              		@ args = 0, pretend = 0, frame = 0
+ 1123              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1124 0000 38B5     		push	{r3, r4, r5, lr}
+ 1125 0002 0446     		mov	r4, r0
+ 1126 0004 0D46     		mov	r5, r1
+ 1127 0006 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 1128 000a 0128     		cmp	r0, #1
+ 1129 000c 05D1     		bne	.L174
+ 1130 000e 2946     		mov	r1, r5
+ 1131 0010 2046     		mov	r0, r4
+ 1132 0012 BDE83840 		pop	{r3, r4, r5, lr}
+ 1133 0016 FFF7FEBF 		b	xQueueTakeMutexRecursive
+ 1134              	.L174:
+ 1135 001a FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 1136 001e 2946     		mov	r1, r5
+ 1137 0020 2046     		mov	r0, r4
+ 1138 0022 FFF7FEFF 		bl	xQueueTakeMutexRecursive
+ 1139 0026 0446     		mov	r4, r0
+ 1140 0028 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 1141 002c 2046     		mov	r0, r4
+ 1142 002e 38BD     		pop	{r3, r4, r5, pc}
+ 1144              		.section	.text.MPU_xQueueGiveMutexRecursive,"ax",%progbits
+ 1145              		.align	1
+ 1146              		.p2align 2,,3
+ 1147              		.global	MPU_xQueueGiveMutexRecursive
+ 1148              		.syntax unified
+ 1149              		.thumb
+ 1150              		.thumb_func
+ 1151              		.fpu fpv4-sp-d16
+ 1153              	MPU_xQueueGiveMutexRecursive:
+ 1154              		@ args = 0, pretend = 0, frame = 0
+ 1155              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1156 0000 10B5     		push	{r4, lr}
+ 1157 0002 0446     		mov	r4, r0
+ 1158 0004 FFF7FEFF 		bl	portIS_PRIVILEGED
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 20
+
+
+ 1159 0008 0128     		cmp	r0, #1
+ 1160 000a 04D1     		bne	.L179
+ 1161 000c 2046     		mov	r0, r4
+ 1162 000e BDE81040 		pop	{r4, lr}
+ 1163 0012 FFF7FEBF 		b	xQueueGiveMutexRecursive
+ 1164              	.L179:
+ 1165 0016 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 1166 001a 2046     		mov	r0, r4
+ 1167 001c FFF7FEFF 		bl	xQueueGiveMutexRecursive
+ 1168 0020 0446     		mov	r4, r0
+ 1169 0022 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 1170 0026 2046     		mov	r0, r4
+ 1171 0028 10BD     		pop	{r4, pc}
+ 1173 002a 00BF     		.section	.text.MPU_vQueueAddToRegistry,"ax",%progbits
+ 1174              		.align	1
+ 1175              		.p2align 2,,3
+ 1176              		.global	MPU_vQueueAddToRegistry
+ 1177              		.syntax unified
+ 1178              		.thumb
+ 1179              		.thumb_func
+ 1180              		.fpu fpv4-sp-d16
+ 1182              	MPU_vQueueAddToRegistry:
+ 1183              		@ args = 0, pretend = 0, frame = 0
+ 1184              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1185 0000 38B5     		push	{r3, r4, r5, lr}
+ 1186 0002 0446     		mov	r4, r0
+ 1187 0004 0D46     		mov	r5, r1
+ 1188 0006 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 1189 000a 0128     		cmp	r0, #1
+ 1190 000c 05D1     		bne	.L184
+ 1191 000e 2946     		mov	r1, r5
+ 1192 0010 2046     		mov	r0, r4
+ 1193 0012 BDE83840 		pop	{r3, r4, r5, lr}
+ 1194 0016 FFF7FEBF 		b	vQueueAddToRegistry
+ 1195              	.L184:
+ 1196 001a FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 1197 001e 2946     		mov	r1, r5
+ 1198 0020 2046     		mov	r0, r4
+ 1199 0022 FFF7FEFF 		bl	vQueueAddToRegistry
+ 1200 0026 BDE83840 		pop	{r3, r4, r5, lr}
+ 1201 002a FFF7FEBF 		b	portRESET_PRIVILEGE
+ 1203 002e 00BF     		.section	.text.MPU_vQueueUnregisterQueue,"ax",%progbits
+ 1204              		.align	1
+ 1205              		.p2align 2,,3
+ 1206              		.global	MPU_vQueueUnregisterQueue
+ 1207              		.syntax unified
+ 1208              		.thumb
+ 1209              		.thumb_func
+ 1210              		.fpu fpv4-sp-d16
+ 1212              	MPU_vQueueUnregisterQueue:
+ 1213              		@ args = 0, pretend = 0, frame = 0
+ 1214              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1215 0000 10B5     		push	{r4, lr}
+ 1216 0002 0446     		mov	r4, r0
+ 1217 0004 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 1218 0008 0128     		cmp	r0, #1
+ 1219 000a 04D1     		bne	.L188
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 21
+
+
+ 1220 000c 2046     		mov	r0, r4
+ 1221 000e BDE81040 		pop	{r4, lr}
+ 1222 0012 FFF7FEBF 		b	vQueueUnregisterQueue
+ 1223              	.L188:
+ 1224 0016 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 1225 001a 2046     		mov	r0, r4
+ 1226 001c FFF7FEFF 		bl	vQueueUnregisterQueue
+ 1227 0020 BDE81040 		pop	{r4, lr}
+ 1228 0024 FFF7FEBF 		b	portRESET_PRIVILEGE
+ 1230              		.section	.text.MPU_pcQueueGetName,"ax",%progbits
+ 1231              		.align	1
+ 1232              		.p2align 2,,3
+ 1233              		.global	MPU_pcQueueGetName
+ 1234              		.syntax unified
+ 1235              		.thumb
+ 1236              		.thumb_func
+ 1237              		.fpu fpv4-sp-d16
+ 1239              	MPU_pcQueueGetName:
+ 1240              		@ args = 0, pretend = 0, frame = 0
+ 1241              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1242 0000 10B5     		push	{r4, lr}
+ 1243 0002 0446     		mov	r4, r0
+ 1244 0004 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 1245 0008 0128     		cmp	r0, #1
+ 1246 000a 04D1     		bne	.L192
+ 1247 000c 2046     		mov	r0, r4
+ 1248 000e BDE81040 		pop	{r4, lr}
+ 1249 0012 FFF7FEBF 		b	pcQueueGetName
+ 1250              	.L192:
+ 1251 0016 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 1252 001a 2046     		mov	r0, r4
+ 1253 001c FFF7FEFF 		bl	pcQueueGetName
+ 1254 0020 0446     		mov	r4, r0
+ 1255 0022 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 1256 0026 2046     		mov	r0, r4
+ 1257 0028 10BD     		pop	{r4, pc}
+ 1259 002a 00BF     		.section	.text.MPU_vQueueDelete,"ax",%progbits
+ 1260              		.align	1
+ 1261              		.p2align 2,,3
+ 1262              		.global	MPU_vQueueDelete
+ 1263              		.syntax unified
+ 1264              		.thumb
+ 1265              		.thumb_func
+ 1266              		.fpu fpv4-sp-d16
+ 1268              	MPU_vQueueDelete:
+ 1269              		@ args = 0, pretend = 0, frame = 0
+ 1270              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1271 0000 10B5     		push	{r4, lr}
+ 1272 0002 0446     		mov	r4, r0
+ 1273 0004 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 1274 0008 0128     		cmp	r0, #1
+ 1275 000a 04D1     		bne	.L197
+ 1276 000c 2046     		mov	r0, r4
+ 1277 000e BDE81040 		pop	{r4, lr}
+ 1278 0012 FFF7FEBF 		b	vQueueDelete
+ 1279              	.L197:
+ 1280 0016 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 22
+
+
+ 1281 001a 2046     		mov	r0, r4
+ 1282 001c FFF7FEFF 		bl	vQueueDelete
+ 1283 0020 BDE81040 		pop	{r4, lr}
+ 1284 0024 FFF7FEBF 		b	portRESET_PRIVILEGE
+ 1286              		.section	.text.MPU_pvPortMalloc,"ax",%progbits
+ 1287              		.align	1
+ 1288              		.p2align 2,,3
+ 1289              		.global	MPU_pvPortMalloc
+ 1290              		.syntax unified
+ 1291              		.thumb
+ 1292              		.thumb_func
+ 1293              		.fpu fpv4-sp-d16
+ 1295              	MPU_pvPortMalloc:
+ 1296              		@ args = 0, pretend = 0, frame = 0
+ 1297              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1298 0000 10B5     		push	{r4, lr}
+ 1299 0002 0446     		mov	r4, r0
+ 1300 0004 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 1301 0008 0128     		cmp	r0, #1
+ 1302 000a 04D1     		bne	.L201
+ 1303 000c 2046     		mov	r0, r4
+ 1304 000e BDE81040 		pop	{r4, lr}
+ 1305 0012 FFF7FEBF 		b	pvPortMalloc
+ 1306              	.L201:
+ 1307 0016 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 1308 001a 2046     		mov	r0, r4
+ 1309 001c FFF7FEFF 		bl	pvPortMalloc
+ 1310 0020 0446     		mov	r4, r0
+ 1311 0022 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 1312 0026 2046     		mov	r0, r4
+ 1313 0028 10BD     		pop	{r4, pc}
+ 1315 002a 00BF     		.section	.text.MPU_vPortFree,"ax",%progbits
+ 1316              		.align	1
+ 1317              		.p2align 2,,3
+ 1318              		.global	MPU_vPortFree
+ 1319              		.syntax unified
+ 1320              		.thumb
+ 1321              		.thumb_func
+ 1322              		.fpu fpv4-sp-d16
+ 1324              	MPU_vPortFree:
+ 1325              		@ args = 0, pretend = 0, frame = 0
+ 1326              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1327 0000 10B5     		push	{r4, lr}
+ 1328 0002 0446     		mov	r4, r0
+ 1329 0004 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 1330 0008 0128     		cmp	r0, #1
+ 1331 000a 04D1     		bne	.L206
+ 1332 000c 2046     		mov	r0, r4
+ 1333 000e BDE81040 		pop	{r4, lr}
+ 1334 0012 FFF7FEBF 		b	vPortFree
+ 1335              	.L206:
+ 1336 0016 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 1337 001a 2046     		mov	r0, r4
+ 1338 001c FFF7FEFF 		bl	vPortFree
+ 1339 0020 BDE81040 		pop	{r4, lr}
+ 1340 0024 FFF7FEBF 		b	portRESET_PRIVILEGE
+ 1342              		.section	.text.MPU_vPortInitialiseBlocks,"ax",%progbits
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 23
+
+
+ 1343              		.align	1
+ 1344              		.p2align 2,,3
+ 1345              		.global	MPU_vPortInitialiseBlocks
+ 1346              		.syntax unified
+ 1347              		.thumb
+ 1348              		.thumb_func
+ 1349              		.fpu fpv4-sp-d16
+ 1351              	MPU_vPortInitialiseBlocks:
+ 1352              		@ args = 0, pretend = 0, frame = 0
+ 1353              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1354 0000 08B5     		push	{r3, lr}
+ 1355 0002 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 1356 0006 0128     		cmp	r0, #1
+ 1357 0008 03D1     		bne	.L210
+ 1358 000a BDE80840 		pop	{r3, lr}
+ 1359 000e FFF7FEBF 		b	vPortInitialiseBlocks
+ 1360              	.L210:
+ 1361 0012 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 1362 0016 FFF7FEFF 		bl	vPortInitialiseBlocks
+ 1363 001a BDE80840 		pop	{r3, lr}
+ 1364 001e FFF7FEBF 		b	portRESET_PRIVILEGE
+ 1366 0022 00BF     		.section	.text.MPU_xPortGetFreeHeapSize,"ax",%progbits
+ 1367              		.align	1
+ 1368              		.p2align 2,,3
+ 1369              		.global	MPU_xPortGetFreeHeapSize
+ 1370              		.syntax unified
+ 1371              		.thumb
+ 1372              		.thumb_func
+ 1373              		.fpu fpv4-sp-d16
+ 1375              	MPU_xPortGetFreeHeapSize:
+ 1376              		@ args = 0, pretend = 0, frame = 0
+ 1377              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1378 0000 10B5     		push	{r4, lr}
+ 1379 0002 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 1380 0006 0128     		cmp	r0, #1
+ 1381 0008 03D1     		bne	.L214
+ 1382 000a BDE81040 		pop	{r4, lr}
+ 1383 000e FFF7FEBF 		b	xPortGetFreeHeapSize
+ 1384              	.L214:
+ 1385 0012 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 1386 0016 FFF7FEFF 		bl	xPortGetFreeHeapSize
+ 1387 001a 0446     		mov	r4, r0
+ 1388 001c FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 1389 0020 2046     		mov	r0, r4
+ 1390 0022 10BD     		pop	{r4, pc}
+ 1392              		.section	.text.MPU_xTimerCreate,"ax",%progbits
+ 1393              		.align	1
+ 1394              		.p2align 2,,3
+ 1395              		.global	MPU_xTimerCreate
+ 1396              		.syntax unified
+ 1397              		.thumb
+ 1398              		.thumb_func
+ 1399              		.fpu fpv4-sp-d16
+ 1401              	MPU_xTimerCreate:
+ 1402              		@ args = 4, pretend = 0, frame = 0
+ 1403              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1404 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 24
+
+
+ 1405 0004 82B0     		sub	sp, sp, #8
+ 1406 0006 0446     		mov	r4, r0
+ 1407 0008 0D46     		mov	r5, r1
+ 1408 000a 1646     		mov	r6, r2
+ 1409 000c 1F46     		mov	r7, r3
+ 1410 000e DDF82080 		ldr	r8, [sp, #32]
+ 1411 0012 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 1412 0016 0128     		cmp	r0, #1
+ 1413 0018 0AD1     		bne	.L219
+ 1414 001a 3B46     		mov	r3, r7
+ 1415 001c 3246     		mov	r2, r6
+ 1416 001e 2946     		mov	r1, r5
+ 1417 0020 2046     		mov	r0, r4
+ 1418 0022 CDF82080 		str	r8, [sp, #32]
+ 1419 0026 02B0     		add	sp, sp, #8
+ 1420              		@ sp needed
+ 1421 0028 BDE8F041 		pop	{r4, r5, r6, r7, r8, lr}
+ 1422 002c FFF7FEBF 		b	xTimerCreate
+ 1423              	.L219:
+ 1424 0030 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 1425 0034 3B46     		mov	r3, r7
+ 1426 0036 3246     		mov	r2, r6
+ 1427 0038 2946     		mov	r1, r5
+ 1428 003a CDF80080 		str	r8, [sp]
+ 1429 003e 2046     		mov	r0, r4
+ 1430 0040 FFF7FEFF 		bl	xTimerCreate
+ 1431 0044 0446     		mov	r4, r0
+ 1432 0046 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 1433 004a 2046     		mov	r0, r4
+ 1434 004c 02B0     		add	sp, sp, #8
+ 1435              		@ sp needed
+ 1436 004e BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 1438 0052 00BF     		.section	.text.MPU_pvTimerGetTimerID,"ax",%progbits
+ 1439              		.align	1
+ 1440              		.p2align 2,,3
+ 1441              		.global	MPU_pvTimerGetTimerID
+ 1442              		.syntax unified
+ 1443              		.thumb
+ 1444              		.thumb_func
+ 1445              		.fpu fpv4-sp-d16
+ 1447              	MPU_pvTimerGetTimerID:
+ 1448              		@ args = 0, pretend = 0, frame = 0
+ 1449              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1450 0000 10B5     		push	{r4, lr}
+ 1451 0002 0446     		mov	r4, r0
+ 1452 0004 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 1453 0008 0128     		cmp	r0, #1
+ 1454 000a 04D1     		bne	.L224
+ 1455 000c 2046     		mov	r0, r4
+ 1456 000e BDE81040 		pop	{r4, lr}
+ 1457 0012 FFF7FEBF 		b	pvTimerGetTimerID
+ 1458              	.L224:
+ 1459 0016 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 1460 001a 2046     		mov	r0, r4
+ 1461 001c FFF7FEFF 		bl	pvTimerGetTimerID
+ 1462 0020 0446     		mov	r4, r0
+ 1463 0022 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 25
+
+
+ 1464 0026 2046     		mov	r0, r4
+ 1465 0028 10BD     		pop	{r4, pc}
+ 1467 002a 00BF     		.section	.text.MPU_vTimerSetTimerID,"ax",%progbits
+ 1468              		.align	1
+ 1469              		.p2align 2,,3
+ 1470              		.global	MPU_vTimerSetTimerID
+ 1471              		.syntax unified
+ 1472              		.thumb
+ 1473              		.thumb_func
+ 1474              		.fpu fpv4-sp-d16
+ 1476              	MPU_vTimerSetTimerID:
+ 1477              		@ args = 0, pretend = 0, frame = 0
+ 1478              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1479 0000 38B5     		push	{r3, r4, r5, lr}
+ 1480 0002 0446     		mov	r4, r0
+ 1481 0004 0D46     		mov	r5, r1
+ 1482 0006 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 1483 000a 0128     		cmp	r0, #1
+ 1484 000c 05D1     		bne	.L229
+ 1485 000e 2946     		mov	r1, r5
+ 1486 0010 2046     		mov	r0, r4
+ 1487 0012 BDE83840 		pop	{r3, r4, r5, lr}
+ 1488 0016 FFF7FEBF 		b	vTimerSetTimerID
+ 1489              	.L229:
+ 1490 001a FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 1491 001e 2946     		mov	r1, r5
+ 1492 0020 2046     		mov	r0, r4
+ 1493 0022 FFF7FEFF 		bl	vTimerSetTimerID
+ 1494 0026 BDE83840 		pop	{r3, r4, r5, lr}
+ 1495 002a FFF7FEBF 		b	portRESET_PRIVILEGE
+ 1497 002e 00BF     		.section	.text.MPU_xTimerIsTimerActive,"ax",%progbits
+ 1498              		.align	1
+ 1499              		.p2align 2,,3
+ 1500              		.global	MPU_xTimerIsTimerActive
+ 1501              		.syntax unified
+ 1502              		.thumb
+ 1503              		.thumb_func
+ 1504              		.fpu fpv4-sp-d16
+ 1506              	MPU_xTimerIsTimerActive:
+ 1507              		@ args = 0, pretend = 0, frame = 0
+ 1508              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1509 0000 10B5     		push	{r4, lr}
+ 1510 0002 0446     		mov	r4, r0
+ 1511 0004 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 1512 0008 0128     		cmp	r0, #1
+ 1513 000a 04D1     		bne	.L233
+ 1514 000c 2046     		mov	r0, r4
+ 1515 000e BDE81040 		pop	{r4, lr}
+ 1516 0012 FFF7FEBF 		b	xTimerIsTimerActive
+ 1517              	.L233:
+ 1518 0016 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 1519 001a 2046     		mov	r0, r4
+ 1520 001c FFF7FEFF 		bl	xTimerIsTimerActive
+ 1521 0020 0446     		mov	r4, r0
+ 1522 0022 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 1523 0026 2046     		mov	r0, r4
+ 1524 0028 10BD     		pop	{r4, pc}
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 26
+
+
+ 1526 002a 00BF     		.section	.text.MPU_xTimerGetTimerDaemonTaskHandle,"ax",%progbits
+ 1527              		.align	1
+ 1528              		.p2align 2,,3
+ 1529              		.global	MPU_xTimerGetTimerDaemonTaskHandle
+ 1530              		.syntax unified
+ 1531              		.thumb
+ 1532              		.thumb_func
+ 1533              		.fpu fpv4-sp-d16
+ 1535              	MPU_xTimerGetTimerDaemonTaskHandle:
+ 1536              		@ args = 0, pretend = 0, frame = 0
+ 1537              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1538 0000 10B5     		push	{r4, lr}
+ 1539 0002 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 1540 0006 0128     		cmp	r0, #1
+ 1541 0008 03D1     		bne	.L238
+ 1542 000a BDE81040 		pop	{r4, lr}
+ 1543 000e FFF7FEBF 		b	xTimerGetTimerDaemonTaskHandle
+ 1544              	.L238:
+ 1545 0012 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 1546 0016 FFF7FEFF 		bl	xTimerGetTimerDaemonTaskHandle
+ 1547 001a 0446     		mov	r4, r0
+ 1548 001c FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 1549 0020 2046     		mov	r0, r4
+ 1550 0022 10BD     		pop	{r4, pc}
+ 1552              		.section	.text.MPU_vTimerSetReloadMode,"ax",%progbits
+ 1553              		.align	1
+ 1554              		.p2align 2,,3
+ 1555              		.global	MPU_vTimerSetReloadMode
+ 1556              		.syntax unified
+ 1557              		.thumb
+ 1558              		.thumb_func
+ 1559              		.fpu fpv4-sp-d16
+ 1561              	MPU_vTimerSetReloadMode:
+ 1562              		@ args = 0, pretend = 0, frame = 0
+ 1563              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1564 0000 38B5     		push	{r3, r4, r5, lr}
+ 1565 0002 0446     		mov	r4, r0
+ 1566 0004 0D46     		mov	r5, r1
+ 1567 0006 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 1568 000a 0128     		cmp	r0, #1
+ 1569 000c 05D1     		bne	.L243
+ 1570 000e 2946     		mov	r1, r5
+ 1571 0010 2046     		mov	r0, r4
+ 1572 0012 BDE83840 		pop	{r3, r4, r5, lr}
+ 1573 0016 FFF7FEBF 		b	vTimerSetReloadMode
+ 1574              	.L243:
+ 1575 001a FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 1576 001e 2946     		mov	r1, r5
+ 1577 0020 2046     		mov	r0, r4
+ 1578 0022 FFF7FEFF 		bl	vTimerSetReloadMode
+ 1579 0026 BDE83840 		pop	{r3, r4, r5, lr}
+ 1580 002a FFF7FEBF 		b	portRESET_PRIVILEGE
+ 1582 002e 00BF     		.section	.text.MPU_pcTimerGetName,"ax",%progbits
+ 1583              		.align	1
+ 1584              		.p2align 2,,3
+ 1585              		.global	MPU_pcTimerGetName
+ 1586              		.syntax unified
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 27
+
+
+ 1587              		.thumb
+ 1588              		.thumb_func
+ 1589              		.fpu fpv4-sp-d16
+ 1591              	MPU_pcTimerGetName:
+ 1592              		@ args = 0, pretend = 0, frame = 0
+ 1593              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1594 0000 10B5     		push	{r4, lr}
+ 1595 0002 0446     		mov	r4, r0
+ 1596 0004 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 1597 0008 0128     		cmp	r0, #1
+ 1598 000a 04D1     		bne	.L247
+ 1599 000c 2046     		mov	r0, r4
+ 1600 000e BDE81040 		pop	{r4, lr}
+ 1601 0012 FFF7FEBF 		b	pcTimerGetName
+ 1602              	.L247:
+ 1603 0016 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 1604 001a 2046     		mov	r0, r4
+ 1605 001c FFF7FEFF 		bl	pcTimerGetName
+ 1606 0020 0446     		mov	r4, r0
+ 1607 0022 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 1608 0026 2046     		mov	r0, r4
+ 1609 0028 10BD     		pop	{r4, pc}
+ 1611 002a 00BF     		.section	.text.MPU_xTimerGetPeriod,"ax",%progbits
+ 1612              		.align	1
+ 1613              		.p2align 2,,3
+ 1614              		.global	MPU_xTimerGetPeriod
+ 1615              		.syntax unified
+ 1616              		.thumb
+ 1617              		.thumb_func
+ 1618              		.fpu fpv4-sp-d16
+ 1620              	MPU_xTimerGetPeriod:
+ 1621              		@ args = 0, pretend = 0, frame = 0
+ 1622              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1623 0000 10B5     		push	{r4, lr}
+ 1624 0002 0446     		mov	r4, r0
+ 1625 0004 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 1626 0008 0128     		cmp	r0, #1
+ 1627 000a 04D1     		bne	.L252
+ 1628 000c 2046     		mov	r0, r4
+ 1629 000e BDE81040 		pop	{r4, lr}
+ 1630 0012 FFF7FEBF 		b	xTimerGetPeriod
+ 1631              	.L252:
+ 1632 0016 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 1633 001a 2046     		mov	r0, r4
+ 1634 001c FFF7FEFF 		bl	xTimerGetPeriod
+ 1635 0020 0446     		mov	r4, r0
+ 1636 0022 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 1637 0026 2046     		mov	r0, r4
+ 1638 0028 10BD     		pop	{r4, pc}
+ 1640 002a 00BF     		.section	.text.MPU_xTimerGetExpiryTime,"ax",%progbits
+ 1641              		.align	1
+ 1642              		.p2align 2,,3
+ 1643              		.global	MPU_xTimerGetExpiryTime
+ 1644              		.syntax unified
+ 1645              		.thumb
+ 1646              		.thumb_func
+ 1647              		.fpu fpv4-sp-d16
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 28
+
+
+ 1649              	MPU_xTimerGetExpiryTime:
+ 1650              		@ args = 0, pretend = 0, frame = 0
+ 1651              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1652 0000 10B5     		push	{r4, lr}
+ 1653 0002 0446     		mov	r4, r0
+ 1654 0004 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 1655 0008 0128     		cmp	r0, #1
+ 1656 000a 04D1     		bne	.L257
+ 1657 000c 2046     		mov	r0, r4
+ 1658 000e BDE81040 		pop	{r4, lr}
+ 1659 0012 FFF7FEBF 		b	xTimerGetExpiryTime
+ 1660              	.L257:
+ 1661 0016 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 1662 001a 2046     		mov	r0, r4
+ 1663 001c FFF7FEFF 		bl	xTimerGetExpiryTime
+ 1664 0020 0446     		mov	r4, r0
+ 1665 0022 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 1666 0026 2046     		mov	r0, r4
+ 1667 0028 10BD     		pop	{r4, pc}
+ 1669 002a 00BF     		.section	.text.MPU_xTimerGenericCommand,"ax",%progbits
+ 1670              		.align	1
+ 1671              		.p2align 2,,3
+ 1672              		.global	MPU_xTimerGenericCommand
+ 1673              		.syntax unified
+ 1674              		.thumb
+ 1675              		.thumb_func
+ 1676              		.fpu fpv4-sp-d16
+ 1678              	MPU_xTimerGenericCommand:
+ 1679              		@ args = 4, pretend = 0, frame = 0
+ 1680              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1681 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 1682 0004 82B0     		sub	sp, sp, #8
+ 1683 0006 0446     		mov	r4, r0
+ 1684 0008 0D46     		mov	r5, r1
+ 1685 000a 1646     		mov	r6, r2
+ 1686 000c 1F46     		mov	r7, r3
+ 1687 000e DDF82080 		ldr	r8, [sp, #32]
+ 1688 0012 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 1689 0016 0128     		cmp	r0, #1
+ 1690 0018 0AD1     		bne	.L262
+ 1691 001a 3B46     		mov	r3, r7
+ 1692 001c 3246     		mov	r2, r6
+ 1693 001e 2946     		mov	r1, r5
+ 1694 0020 2046     		mov	r0, r4
+ 1695 0022 CDF82080 		str	r8, [sp, #32]
+ 1696 0026 02B0     		add	sp, sp, #8
+ 1697              		@ sp needed
+ 1698 0028 BDE8F041 		pop	{r4, r5, r6, r7, r8, lr}
+ 1699 002c FFF7FEBF 		b	xTimerGenericCommand
+ 1700              	.L262:
+ 1701 0030 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 1702 0034 3B46     		mov	r3, r7
+ 1703 0036 3246     		mov	r2, r6
+ 1704 0038 2946     		mov	r1, r5
+ 1705 003a CDF80080 		str	r8, [sp]
+ 1706 003e 2046     		mov	r0, r4
+ 1707 0040 FFF7FEFF 		bl	xTimerGenericCommand
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 29
+
+
+ 1708 0044 0446     		mov	r4, r0
+ 1709 0046 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 1710 004a 2046     		mov	r0, r4
+ 1711 004c 02B0     		add	sp, sp, #8
+ 1712              		@ sp needed
+ 1713 004e BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 1715 0052 00BF     		.section	.text.MPU_xEventGroupCreate,"ax",%progbits
+ 1716              		.align	1
+ 1717              		.p2align 2,,3
+ 1718              		.global	MPU_xEventGroupCreate
+ 1719              		.syntax unified
+ 1720              		.thumb
+ 1721              		.thumb_func
+ 1722              		.fpu fpv4-sp-d16
+ 1724              	MPU_xEventGroupCreate:
+ 1725              		@ args = 0, pretend = 0, frame = 0
+ 1726              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1727 0000 10B5     		push	{r4, lr}
+ 1728 0002 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 1729 0006 0128     		cmp	r0, #1
+ 1730 0008 03D1     		bne	.L267
+ 1731 000a BDE81040 		pop	{r4, lr}
+ 1732 000e FFF7FEBF 		b	xEventGroupCreate
+ 1733              	.L267:
+ 1734 0012 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 1735 0016 FFF7FEFF 		bl	xEventGroupCreate
+ 1736 001a 0446     		mov	r4, r0
+ 1737 001c FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 1738 0020 2046     		mov	r0, r4
+ 1739 0022 10BD     		pop	{r4, pc}
+ 1741              		.section	.text.MPU_xEventGroupWaitBits,"ax",%progbits
+ 1742              		.align	1
+ 1743              		.p2align 2,,3
+ 1744              		.global	MPU_xEventGroupWaitBits
+ 1745              		.syntax unified
+ 1746              		.thumb
+ 1747              		.thumb_func
+ 1748              		.fpu fpv4-sp-d16
+ 1750              	MPU_xEventGroupWaitBits:
+ 1751              		@ args = 4, pretend = 0, frame = 0
+ 1752              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1753 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 1754 0004 82B0     		sub	sp, sp, #8
+ 1755 0006 0446     		mov	r4, r0
+ 1756 0008 0D46     		mov	r5, r1
+ 1757 000a 1646     		mov	r6, r2
+ 1758 000c 1F46     		mov	r7, r3
+ 1759 000e DDF82080 		ldr	r8, [sp, #32]
+ 1760 0012 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 1761 0016 0128     		cmp	r0, #1
+ 1762 0018 0AD1     		bne	.L272
+ 1763 001a 3B46     		mov	r3, r7
+ 1764 001c 3246     		mov	r2, r6
+ 1765 001e 2946     		mov	r1, r5
+ 1766 0020 2046     		mov	r0, r4
+ 1767 0022 CDF82080 		str	r8, [sp, #32]
+ 1768 0026 02B0     		add	sp, sp, #8
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 30
+
+
+ 1769              		@ sp needed
+ 1770 0028 BDE8F041 		pop	{r4, r5, r6, r7, r8, lr}
+ 1771 002c FFF7FEBF 		b	xEventGroupWaitBits
+ 1772              	.L272:
+ 1773 0030 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 1774 0034 3B46     		mov	r3, r7
+ 1775 0036 3246     		mov	r2, r6
+ 1776 0038 2946     		mov	r1, r5
+ 1777 003a CDF80080 		str	r8, [sp]
+ 1778 003e 2046     		mov	r0, r4
+ 1779 0040 FFF7FEFF 		bl	xEventGroupWaitBits
+ 1780 0044 0446     		mov	r4, r0
+ 1781 0046 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 1782 004a 2046     		mov	r0, r4
+ 1783 004c 02B0     		add	sp, sp, #8
+ 1784              		@ sp needed
+ 1785 004e BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 1787 0052 00BF     		.section	.text.MPU_xEventGroupClearBits,"ax",%progbits
+ 1788              		.align	1
+ 1789              		.p2align 2,,3
+ 1790              		.global	MPU_xEventGroupClearBits
+ 1791              		.syntax unified
+ 1792              		.thumb
+ 1793              		.thumb_func
+ 1794              		.fpu fpv4-sp-d16
+ 1796              	MPU_xEventGroupClearBits:
+ 1797              		@ args = 0, pretend = 0, frame = 0
+ 1798              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1799 0000 38B5     		push	{r3, r4, r5, lr}
+ 1800 0002 0446     		mov	r4, r0
+ 1801 0004 0D46     		mov	r5, r1
+ 1802 0006 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 1803 000a 0128     		cmp	r0, #1
+ 1804 000c 05D1     		bne	.L277
+ 1805 000e 2946     		mov	r1, r5
+ 1806 0010 2046     		mov	r0, r4
+ 1807 0012 BDE83840 		pop	{r3, r4, r5, lr}
+ 1808 0016 FFF7FEBF 		b	xEventGroupClearBits
+ 1809              	.L277:
+ 1810 001a FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 1811 001e 2946     		mov	r1, r5
+ 1812 0020 2046     		mov	r0, r4
+ 1813 0022 FFF7FEFF 		bl	xEventGroupClearBits
+ 1814 0026 0446     		mov	r4, r0
+ 1815 0028 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 1816 002c 2046     		mov	r0, r4
+ 1817 002e 38BD     		pop	{r3, r4, r5, pc}
+ 1819              		.section	.text.MPU_xEventGroupSetBits,"ax",%progbits
+ 1820              		.align	1
+ 1821              		.p2align 2,,3
+ 1822              		.global	MPU_xEventGroupSetBits
+ 1823              		.syntax unified
+ 1824              		.thumb
+ 1825              		.thumb_func
+ 1826              		.fpu fpv4-sp-d16
+ 1828              	MPU_xEventGroupSetBits:
+ 1829              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 31
+
+
+ 1830              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1831 0000 38B5     		push	{r3, r4, r5, lr}
+ 1832 0002 0446     		mov	r4, r0
+ 1833 0004 0D46     		mov	r5, r1
+ 1834 0006 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 1835 000a 0128     		cmp	r0, #1
+ 1836 000c 05D1     		bne	.L282
+ 1837 000e 2946     		mov	r1, r5
+ 1838 0010 2046     		mov	r0, r4
+ 1839 0012 BDE83840 		pop	{r3, r4, r5, lr}
+ 1840 0016 FFF7FEBF 		b	xEventGroupSetBits
+ 1841              	.L282:
+ 1842 001a FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 1843 001e 2946     		mov	r1, r5
+ 1844 0020 2046     		mov	r0, r4
+ 1845 0022 FFF7FEFF 		bl	xEventGroupSetBits
+ 1846 0026 0446     		mov	r4, r0
+ 1847 0028 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 1848 002c 2046     		mov	r0, r4
+ 1849 002e 38BD     		pop	{r3, r4, r5, pc}
+ 1851              		.section	.text.MPU_xEventGroupSync,"ax",%progbits
+ 1852              		.align	1
+ 1853              		.p2align 2,,3
+ 1854              		.global	MPU_xEventGroupSync
+ 1855              		.syntax unified
+ 1856              		.thumb
+ 1857              		.thumb_func
+ 1858              		.fpu fpv4-sp-d16
+ 1860              	MPU_xEventGroupSync:
+ 1861              		@ args = 0, pretend = 0, frame = 0
+ 1862              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1863 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 1864 0004 0446     		mov	r4, r0
+ 1865 0006 0D46     		mov	r5, r1
+ 1866 0008 1646     		mov	r6, r2
+ 1867 000a 1F46     		mov	r7, r3
+ 1868 000c FFF7FEFF 		bl	portIS_PRIVILEGED
+ 1869 0010 0128     		cmp	r0, #1
+ 1870 0012 07D1     		bne	.L287
+ 1871 0014 3B46     		mov	r3, r7
+ 1872 0016 3246     		mov	r2, r6
+ 1873 0018 2946     		mov	r1, r5
+ 1874 001a 2046     		mov	r0, r4
+ 1875 001c BDE8F041 		pop	{r4, r5, r6, r7, r8, lr}
+ 1876 0020 FFF7FEBF 		b	xEventGroupSync
+ 1877              	.L287:
+ 1878 0024 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 1879 0028 3B46     		mov	r3, r7
+ 1880 002a 3246     		mov	r2, r6
+ 1881 002c 2946     		mov	r1, r5
+ 1882 002e 2046     		mov	r0, r4
+ 1883 0030 FFF7FEFF 		bl	xEventGroupSync
+ 1884 0034 0446     		mov	r4, r0
+ 1885 0036 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 1886 003a 2046     		mov	r0, r4
+ 1887 003c BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 1889              		.section	.text.MPU_vEventGroupDelete,"ax",%progbits
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 32
+
+
+ 1890              		.align	1
+ 1891              		.p2align 2,,3
+ 1892              		.global	MPU_vEventGroupDelete
+ 1893              		.syntax unified
+ 1894              		.thumb
+ 1895              		.thumb_func
+ 1896              		.fpu fpv4-sp-d16
+ 1898              	MPU_vEventGroupDelete:
+ 1899              		@ args = 0, pretend = 0, frame = 0
+ 1900              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1901 0000 10B5     		push	{r4, lr}
+ 1902 0002 0446     		mov	r4, r0
+ 1903 0004 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 1904 0008 0128     		cmp	r0, #1
+ 1905 000a 04D1     		bne	.L292
+ 1906 000c 2046     		mov	r0, r4
+ 1907 000e BDE81040 		pop	{r4, lr}
+ 1908 0012 FFF7FEBF 		b	vEventGroupDelete
+ 1909              	.L292:
+ 1910 0016 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 1911 001a 2046     		mov	r0, r4
+ 1912 001c FFF7FEFF 		bl	vEventGroupDelete
+ 1913 0020 BDE81040 		pop	{r4, lr}
+ 1914 0024 FFF7FEBF 		b	portRESET_PRIVILEGE
+ 1916              		.section	.text.MPU_xStreamBufferSend,"ax",%progbits
+ 1917              		.align	1
+ 1918              		.p2align 2,,3
+ 1919              		.global	MPU_xStreamBufferSend
+ 1920              		.syntax unified
+ 1921              		.thumb
+ 1922              		.thumb_func
+ 1923              		.fpu fpv4-sp-d16
+ 1925              	MPU_xStreamBufferSend:
+ 1926              		@ args = 0, pretend = 0, frame = 0
+ 1927              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1928 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 1929 0004 0446     		mov	r4, r0
+ 1930 0006 0D46     		mov	r5, r1
+ 1931 0008 1646     		mov	r6, r2
+ 1932 000a 1F46     		mov	r7, r3
+ 1933 000c FFF7FEFF 		bl	portIS_PRIVILEGED
+ 1934 0010 0128     		cmp	r0, #1
+ 1935 0012 07D1     		bne	.L296
+ 1936 0014 3B46     		mov	r3, r7
+ 1937 0016 3246     		mov	r2, r6
+ 1938 0018 2946     		mov	r1, r5
+ 1939 001a 2046     		mov	r0, r4
+ 1940 001c BDE8F041 		pop	{r4, r5, r6, r7, r8, lr}
+ 1941 0020 FFF7FEBF 		b	xStreamBufferSend
+ 1942              	.L296:
+ 1943 0024 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 1944 0028 3B46     		mov	r3, r7
+ 1945 002a 3246     		mov	r2, r6
+ 1946 002c 2946     		mov	r1, r5
+ 1947 002e 2046     		mov	r0, r4
+ 1948 0030 FFF7FEFF 		bl	xStreamBufferSend
+ 1949 0034 0446     		mov	r4, r0
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 33
+
+
+ 1950 0036 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 1951 003a 2046     		mov	r0, r4
+ 1952 003c BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 1954              		.section	.text.MPU_xStreamBufferNextMessageLengthBytes,"ax",%progbits
+ 1955              		.align	1
+ 1956              		.p2align 2,,3
+ 1957              		.global	MPU_xStreamBufferNextMessageLengthBytes
+ 1958              		.syntax unified
+ 1959              		.thumb
+ 1960              		.thumb_func
+ 1961              		.fpu fpv4-sp-d16
+ 1963              	MPU_xStreamBufferNextMessageLengthBytes:
+ 1964              		@ args = 0, pretend = 0, frame = 0
+ 1965              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1966 0000 10B5     		push	{r4, lr}
+ 1967 0002 0446     		mov	r4, r0
+ 1968 0004 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 1969 0008 0128     		cmp	r0, #1
+ 1970 000a 04D1     		bne	.L301
+ 1971 000c 2046     		mov	r0, r4
+ 1972 000e BDE81040 		pop	{r4, lr}
+ 1973 0012 FFF7FEBF 		b	xStreamBufferNextMessageLengthBytes
+ 1974              	.L301:
+ 1975 0016 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 1976 001a 2046     		mov	r0, r4
+ 1977 001c FFF7FEFF 		bl	xStreamBufferNextMessageLengthBytes
+ 1978 0020 0446     		mov	r4, r0
+ 1979 0022 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 1980 0026 2046     		mov	r0, r4
+ 1981 0028 10BD     		pop	{r4, pc}
+ 1983 002a 00BF     		.section	.text.MPU_xStreamBufferReceive,"ax",%progbits
+ 1984              		.align	1
+ 1985              		.p2align 2,,3
+ 1986              		.global	MPU_xStreamBufferReceive
+ 1987              		.syntax unified
+ 1988              		.thumb
+ 1989              		.thumb_func
+ 1990              		.fpu fpv4-sp-d16
+ 1992              	MPU_xStreamBufferReceive:
+ 1993              		@ args = 0, pretend = 0, frame = 0
+ 1994              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1995 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 1996 0004 0446     		mov	r4, r0
+ 1997 0006 0D46     		mov	r5, r1
+ 1998 0008 1646     		mov	r6, r2
+ 1999 000a 1F46     		mov	r7, r3
+ 2000 000c FFF7FEFF 		bl	portIS_PRIVILEGED
+ 2001 0010 0128     		cmp	r0, #1
+ 2002 0012 07D1     		bne	.L306
+ 2003 0014 3B46     		mov	r3, r7
+ 2004 0016 3246     		mov	r2, r6
+ 2005 0018 2946     		mov	r1, r5
+ 2006 001a 2046     		mov	r0, r4
+ 2007 001c BDE8F041 		pop	{r4, r5, r6, r7, r8, lr}
+ 2008 0020 FFF7FEBF 		b	xStreamBufferReceive
+ 2009              	.L306:
+ 2010 0024 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 34
+
+
+ 2011 0028 3B46     		mov	r3, r7
+ 2012 002a 3246     		mov	r2, r6
+ 2013 002c 2946     		mov	r1, r5
+ 2014 002e 2046     		mov	r0, r4
+ 2015 0030 FFF7FEFF 		bl	xStreamBufferReceive
+ 2016 0034 0446     		mov	r4, r0
+ 2017 0036 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 2018 003a 2046     		mov	r0, r4
+ 2019 003c BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 2021              		.section	.text.MPU_vStreamBufferDelete,"ax",%progbits
+ 2022              		.align	1
+ 2023              		.p2align 2,,3
+ 2024              		.global	MPU_vStreamBufferDelete
+ 2025              		.syntax unified
+ 2026              		.thumb
+ 2027              		.thumb_func
+ 2028              		.fpu fpv4-sp-d16
+ 2030              	MPU_vStreamBufferDelete:
+ 2031              		@ args = 0, pretend = 0, frame = 0
+ 2032              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2033 0000 10B5     		push	{r4, lr}
+ 2034 0002 0446     		mov	r4, r0
+ 2035 0004 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 2036 0008 0128     		cmp	r0, #1
+ 2037 000a 04D1     		bne	.L311
+ 2038 000c 2046     		mov	r0, r4
+ 2039 000e BDE81040 		pop	{r4, lr}
+ 2040 0012 FFF7FEBF 		b	vStreamBufferDelete
+ 2041              	.L311:
+ 2042 0016 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 2043 001a 2046     		mov	r0, r4
+ 2044 001c FFF7FEFF 		bl	vStreamBufferDelete
+ 2045 0020 BDE81040 		pop	{r4, lr}
+ 2046 0024 FFF7FEBF 		b	portRESET_PRIVILEGE
+ 2048              		.section	.text.MPU_xStreamBufferIsFull,"ax",%progbits
+ 2049              		.align	1
+ 2050              		.p2align 2,,3
+ 2051              		.global	MPU_xStreamBufferIsFull
+ 2052              		.syntax unified
+ 2053              		.thumb
+ 2054              		.thumb_func
+ 2055              		.fpu fpv4-sp-d16
+ 2057              	MPU_xStreamBufferIsFull:
+ 2058              		@ args = 0, pretend = 0, frame = 0
+ 2059              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2060 0000 10B5     		push	{r4, lr}
+ 2061 0002 0446     		mov	r4, r0
+ 2062 0004 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 2063 0008 0128     		cmp	r0, #1
+ 2064 000a 04D1     		bne	.L315
+ 2065 000c 2046     		mov	r0, r4
+ 2066 000e BDE81040 		pop	{r4, lr}
+ 2067 0012 FFF7FEBF 		b	xStreamBufferIsFull
+ 2068              	.L315:
+ 2069 0016 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 2070 001a 2046     		mov	r0, r4
+ 2071 001c FFF7FEFF 		bl	xStreamBufferIsFull
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 35
+
+
+ 2072 0020 0446     		mov	r4, r0
+ 2073 0022 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 2074 0026 2046     		mov	r0, r4
+ 2075 0028 10BD     		pop	{r4, pc}
+ 2077 002a 00BF     		.section	.text.MPU_xStreamBufferIsEmpty,"ax",%progbits
+ 2078              		.align	1
+ 2079              		.p2align 2,,3
+ 2080              		.global	MPU_xStreamBufferIsEmpty
+ 2081              		.syntax unified
+ 2082              		.thumb
+ 2083              		.thumb_func
+ 2084              		.fpu fpv4-sp-d16
+ 2086              	MPU_xStreamBufferIsEmpty:
+ 2087              		@ args = 0, pretend = 0, frame = 0
+ 2088              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2089 0000 10B5     		push	{r4, lr}
+ 2090 0002 0446     		mov	r4, r0
+ 2091 0004 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 2092 0008 0128     		cmp	r0, #1
+ 2093 000a 04D1     		bne	.L320
+ 2094 000c 2046     		mov	r0, r4
+ 2095 000e BDE81040 		pop	{r4, lr}
+ 2096 0012 FFF7FEBF 		b	xStreamBufferIsEmpty
+ 2097              	.L320:
+ 2098 0016 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 2099 001a 2046     		mov	r0, r4
+ 2100 001c FFF7FEFF 		bl	xStreamBufferIsEmpty
+ 2101 0020 0446     		mov	r4, r0
+ 2102 0022 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 2103 0026 2046     		mov	r0, r4
+ 2104 0028 10BD     		pop	{r4, pc}
+ 2106 002a 00BF     		.section	.text.MPU_xStreamBufferReset,"ax",%progbits
+ 2107              		.align	1
+ 2108              		.p2align 2,,3
+ 2109              		.global	MPU_xStreamBufferReset
+ 2110              		.syntax unified
+ 2111              		.thumb
+ 2112              		.thumb_func
+ 2113              		.fpu fpv4-sp-d16
+ 2115              	MPU_xStreamBufferReset:
+ 2116              		@ args = 0, pretend = 0, frame = 0
+ 2117              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2118 0000 10B5     		push	{r4, lr}
+ 2119 0002 0446     		mov	r4, r0
+ 2120 0004 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 2121 0008 0128     		cmp	r0, #1
+ 2122 000a 04D1     		bne	.L325
+ 2123 000c 2046     		mov	r0, r4
+ 2124 000e BDE81040 		pop	{r4, lr}
+ 2125 0012 FFF7FEBF 		b	xStreamBufferReset
+ 2126              	.L325:
+ 2127 0016 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 2128 001a 2046     		mov	r0, r4
+ 2129 001c FFF7FEFF 		bl	xStreamBufferReset
+ 2130 0020 0446     		mov	r4, r0
+ 2131 0022 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 2132 0026 2046     		mov	r0, r4
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 36
+
+
+ 2133 0028 10BD     		pop	{r4, pc}
+ 2135 002a 00BF     		.section	.text.MPU_xStreamBufferSpacesAvailable,"ax",%progbits
+ 2136              		.align	1
+ 2137              		.p2align 2,,3
+ 2138              		.global	MPU_xStreamBufferSpacesAvailable
+ 2139              		.syntax unified
+ 2140              		.thumb
+ 2141              		.thumb_func
+ 2142              		.fpu fpv4-sp-d16
+ 2144              	MPU_xStreamBufferSpacesAvailable:
+ 2145              		@ args = 0, pretend = 0, frame = 0
+ 2146              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2147 0000 10B5     		push	{r4, lr}
+ 2148 0002 0446     		mov	r4, r0
+ 2149 0004 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 2150 0008 0128     		cmp	r0, #1
+ 2151 000a 04D1     		bne	.L330
+ 2152 000c 2046     		mov	r0, r4
+ 2153 000e BDE81040 		pop	{r4, lr}
+ 2154 0012 FFF7FEBF 		b	xStreamBufferSpacesAvailable
+ 2155              	.L330:
+ 2156 0016 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 2157 001a 2046     		mov	r0, r4
+ 2158 001c FFF7FEFF 		bl	xStreamBufferSpacesAvailable
+ 2159 0020 0446     		mov	r4, r0
+ 2160 0022 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 2161 0026 2046     		mov	r0, r4
+ 2162 0028 10BD     		pop	{r4, pc}
+ 2164 002a 00BF     		.section	.text.MPU_xStreamBufferBytesAvailable,"ax",%progbits
+ 2165              		.align	1
+ 2166              		.p2align 2,,3
+ 2167              		.global	MPU_xStreamBufferBytesAvailable
+ 2168              		.syntax unified
+ 2169              		.thumb
+ 2170              		.thumb_func
+ 2171              		.fpu fpv4-sp-d16
+ 2173              	MPU_xStreamBufferBytesAvailable:
+ 2174              		@ args = 0, pretend = 0, frame = 0
+ 2175              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2176 0000 10B5     		push	{r4, lr}
+ 2177 0002 0446     		mov	r4, r0
+ 2178 0004 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 2179 0008 0128     		cmp	r0, #1
+ 2180 000a 04D1     		bne	.L335
+ 2181 000c 2046     		mov	r0, r4
+ 2182 000e BDE81040 		pop	{r4, lr}
+ 2183 0012 FFF7FEBF 		b	xStreamBufferBytesAvailable
+ 2184              	.L335:
+ 2185 0016 FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 2186 001a 2046     		mov	r0, r4
+ 2187 001c FFF7FEFF 		bl	xStreamBufferBytesAvailable
+ 2188 0020 0446     		mov	r4, r0
+ 2189 0022 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 2190 0026 2046     		mov	r0, r4
+ 2191 0028 10BD     		pop	{r4, pc}
+ 2193 002a 00BF     		.section	.text.MPU_xStreamBufferSetTriggerLevel,"ax",%progbits
+ 2194              		.align	1
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 37
+
+
+ 2195              		.p2align 2,,3
+ 2196              		.global	MPU_xStreamBufferSetTriggerLevel
+ 2197              		.syntax unified
+ 2198              		.thumb
+ 2199              		.thumb_func
+ 2200              		.fpu fpv4-sp-d16
+ 2202              	MPU_xStreamBufferSetTriggerLevel:
+ 2203              		@ args = 0, pretend = 0, frame = 0
+ 2204              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2205 0000 38B5     		push	{r3, r4, r5, lr}
+ 2206 0002 0446     		mov	r4, r0
+ 2207 0004 0D46     		mov	r5, r1
+ 2208 0006 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 2209 000a 0128     		cmp	r0, #1
+ 2210 000c 05D1     		bne	.L340
+ 2211 000e 2946     		mov	r1, r5
+ 2212 0010 2046     		mov	r0, r4
+ 2213 0012 BDE83840 		pop	{r3, r4, r5, lr}
+ 2214 0016 FFF7FEBF 		b	xStreamBufferSetTriggerLevel
+ 2215              	.L340:
+ 2216 001a FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 2217 001e 2946     		mov	r1, r5
+ 2218 0020 2046     		mov	r0, r4
+ 2219 0022 FFF7FEFF 		bl	xStreamBufferSetTriggerLevel
+ 2220 0026 0446     		mov	r4, r0
+ 2221 0028 FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 2222 002c 2046     		mov	r0, r4
+ 2223 002e 38BD     		pop	{r3, r4, r5, pc}
+ 2225              		.section	.text.MPU_xStreamBufferGenericCreate,"ax",%progbits
+ 2226              		.align	1
+ 2227              		.p2align 2,,3
+ 2228              		.global	MPU_xStreamBufferGenericCreate
+ 2229              		.syntax unified
+ 2230              		.thumb
+ 2231              		.thumb_func
+ 2232              		.fpu fpv4-sp-d16
+ 2234              	MPU_xStreamBufferGenericCreate:
+ 2235              		@ args = 0, pretend = 0, frame = 0
+ 2236              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2237 0000 70B5     		push	{r4, r5, r6, lr}
+ 2238 0002 0446     		mov	r4, r0
+ 2239 0004 0D46     		mov	r5, r1
+ 2240 0006 1646     		mov	r6, r2
+ 2241 0008 FFF7FEFF 		bl	portIS_PRIVILEGED
+ 2242 000c 0128     		cmp	r0, #1
+ 2243 000e 06D1     		bne	.L345
+ 2244 0010 3246     		mov	r2, r6
+ 2245 0012 2946     		mov	r1, r5
+ 2246 0014 2046     		mov	r0, r4
+ 2247 0016 BDE87040 		pop	{r4, r5, r6, lr}
+ 2248 001a FFF7FEBF 		b	xStreamBufferGenericCreate
+ 2249              	.L345:
+ 2250 001e FFF7FEFF 		bl	portRAISE_PRIVILEGE
+ 2251 0022 3246     		mov	r2, r6
+ 2252 0024 2946     		mov	r1, r5
+ 2253 0026 2046     		mov	r0, r4
+ 2254 0028 FFF7FEFF 		bl	xStreamBufferGenericCreate
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 38
+
+
+ 2255 002c 0446     		mov	r4, r0
+ 2256 002e FFF7FEFF 		bl	portRESET_PRIVILEGE
+ 2257 0032 2046     		mov	r0, r4
+ 2258 0034 70BD     		pop	{r4, r5, r6, pc}
+ 2260 0036 00BF     		.ident	"GCC: (GNU Tools for Arm Embedded Processors 8-2018-q4-major) 8.2.1 20181213 (release) [gcc
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 39
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 mpu_wrappers.c
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:16     .text.xPortRaisePrivilege:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:25     .text.xPortRaisePrivilege:00000000 xPortRaisePrivilege
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:39     .text.vPortResetPrivilege:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:47     .text.vPortResetPrivilege:00000000 vPortResetPrivilege
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:58     .text.MPU_xTaskCreateRestricted:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:66     .text.MPU_xTaskCreateRestricted:00000000 MPU_xTaskCreateRestricted
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:90     .text.MPU_xTaskCreate:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:98     .text.MPU_xTaskCreate:00000000 MPU_xTaskCreate
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:136    .text.MPU_vTaskAllocateMPURegions:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:144    .text.MPU_vTaskAllocateMPURegions:00000000 MPU_vTaskAllocateMPURegions
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:166    .text.MPU_vTaskDelete:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:174    .text.MPU_vTaskDelete:00000000 MPU_vTaskDelete
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:193    .text.MPU_vTaskDelayUntil:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:201    .text.MPU_vTaskDelayUntil:00000000 MPU_vTaskDelayUntil
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:223    .text.MPU_vTaskDelay:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:231    .text.MPU_vTaskDelay:00000000 MPU_vTaskDelay
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:250    .text.MPU_uxTaskPriorityGet:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:258    .text.MPU_uxTaskPriorityGet:00000000 MPU_uxTaskPriorityGet
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:279    .text.MPU_vTaskPrioritySet:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:287    .text.MPU_vTaskPrioritySet:00000000 MPU_vTaskPrioritySet
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:309    .text.MPU_vTaskGetInfo:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:317    .text.MPU_vTaskGetInfo:00000000 MPU_vTaskGetInfo
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:345    .text.MPU_vTaskSuspend:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:353    .text.MPU_vTaskSuspend:00000000 MPU_vTaskSuspend
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:372    .text.MPU_vTaskResume:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:380    .text.MPU_vTaskResume:00000000 MPU_vTaskResume
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:399    .text.MPU_vTaskSuspendAll:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:407    .text.MPU_vTaskSuspendAll:00000000 MPU_vTaskSuspendAll
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:423    .text.MPU_xTaskResumeAll:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:431    .text.MPU_xTaskResumeAll:00000000 MPU_xTaskResumeAll
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:449    .text.MPU_xTaskGetTickCount:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:457    .text.MPU_xTaskGetTickCount:00000000 MPU_xTaskGetTickCount
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:475    .text.MPU_uxTaskGetNumberOfTasks:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:483    .text.MPU_uxTaskGetNumberOfTasks:00000000 MPU_uxTaskGetNumberOfTasks
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:501    .text.MPU_pcTaskGetName:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:509    .text.MPU_pcTaskGetName:00000000 MPU_pcTaskGetName
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:530    .text.MPU_uxTaskGetSystemState:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:538    .text.MPU_uxTaskGetSystemState:00000000 MPU_uxTaskGetSystemState
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:565    .text.MPU_xTaskGetSchedulerState:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:573    .text.MPU_xTaskGetSchedulerState:00000000 MPU_xTaskGetSchedulerState
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:591    .text.MPU_vTaskSetTimeOutState:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:599    .text.MPU_vTaskSetTimeOutState:00000000 MPU_vTaskSetTimeOutState
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:618    .text.MPU_xTaskCheckForTimeOut:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:626    .text.MPU_xTaskCheckForTimeOut:00000000 MPU_xTaskCheckForTimeOut
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:650    .text.MPU_xTaskGenericNotify:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:658    .text.MPU_xTaskGenericNotify:00000000 MPU_xTaskGenericNotify
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:688    .text.MPU_xTaskNotifyWait:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:696    .text.MPU_xTaskNotifyWait:00000000 MPU_xTaskNotifyWait
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:726    .text.MPU_ulTaskNotifyTake:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:734    .text.MPU_ulTaskNotifyTake:00000000 MPU_ulTaskNotifyTake
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:758    .text.MPU_xTaskNotifyStateClear:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:766    .text.MPU_xTaskNotifyStateClear:00000000 MPU_xTaskNotifyStateClear
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:787    .text.MPU_xQueueGenericCreate:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:795    .text.MPU_xQueueGenericCreate:00000000 MPU_xQueueGenericCreate
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:822    .text.MPU_xQueueGenericReset:00000000 $t
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 40
+
+
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:830    .text.MPU_xQueueGenericReset:00000000 MPU_xQueueGenericReset
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:854    .text.MPU_xQueueGenericSend:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:862    .text.MPU_xQueueGenericSend:00000000 MPU_xQueueGenericSend
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:892    .text.MPU_uxQueueMessagesWaiting:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:900    .text.MPU_uxQueueMessagesWaiting:00000000 MPU_uxQueueMessagesWaiting
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:921    .text.MPU_uxQueueSpacesAvailable:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:929    .text.MPU_uxQueueSpacesAvailable:00000000 MPU_uxQueueSpacesAvailable
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:950    .text.MPU_xQueueReceive:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:958    .text.MPU_xQueueReceive:00000000 MPU_xQueueReceive
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:985    .text.MPU_xQueuePeek:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:993    .text.MPU_xQueuePeek:00000000 MPU_xQueuePeek
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1020   .text.MPU_xQueueSemaphoreTake:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1028   .text.MPU_xQueueSemaphoreTake:00000000 MPU_xQueueSemaphoreTake
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1052   .text.MPU_xQueueCreateMutex:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1060   .text.MPU_xQueueCreateMutex:00000000 MPU_xQueueCreateMutex
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1081   .text.MPU_xQueueCreateCountingSemaphore:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1089   .text.MPU_xQueueCreateCountingSemaphore:00000000 MPU_xQueueCreateCountingSemaphore
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1113   .text.MPU_xQueueTakeMutexRecursive:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1121   .text.MPU_xQueueTakeMutexRecursive:00000000 MPU_xQueueTakeMutexRecursive
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1145   .text.MPU_xQueueGiveMutexRecursive:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1153   .text.MPU_xQueueGiveMutexRecursive:00000000 MPU_xQueueGiveMutexRecursive
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1174   .text.MPU_vQueueAddToRegistry:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1182   .text.MPU_vQueueAddToRegistry:00000000 MPU_vQueueAddToRegistry
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1204   .text.MPU_vQueueUnregisterQueue:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1212   .text.MPU_vQueueUnregisterQueue:00000000 MPU_vQueueUnregisterQueue
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1231   .text.MPU_pcQueueGetName:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1239   .text.MPU_pcQueueGetName:00000000 MPU_pcQueueGetName
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1260   .text.MPU_vQueueDelete:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1268   .text.MPU_vQueueDelete:00000000 MPU_vQueueDelete
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1287   .text.MPU_pvPortMalloc:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1295   .text.MPU_pvPortMalloc:00000000 MPU_pvPortMalloc
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1316   .text.MPU_vPortFree:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1324   .text.MPU_vPortFree:00000000 MPU_vPortFree
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1343   .text.MPU_vPortInitialiseBlocks:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1351   .text.MPU_vPortInitialiseBlocks:00000000 MPU_vPortInitialiseBlocks
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1367   .text.MPU_xPortGetFreeHeapSize:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1375   .text.MPU_xPortGetFreeHeapSize:00000000 MPU_xPortGetFreeHeapSize
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1393   .text.MPU_xTimerCreate:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1401   .text.MPU_xTimerCreate:00000000 MPU_xTimerCreate
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1439   .text.MPU_pvTimerGetTimerID:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1447   .text.MPU_pvTimerGetTimerID:00000000 MPU_pvTimerGetTimerID
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1468   .text.MPU_vTimerSetTimerID:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1476   .text.MPU_vTimerSetTimerID:00000000 MPU_vTimerSetTimerID
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1498   .text.MPU_xTimerIsTimerActive:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1506   .text.MPU_xTimerIsTimerActive:00000000 MPU_xTimerIsTimerActive
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1527   .text.MPU_xTimerGetTimerDaemonTaskHandle:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1535   .text.MPU_xTimerGetTimerDaemonTaskHandle:00000000 MPU_xTimerGetTimerDaemonTaskHandle
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1553   .text.MPU_vTimerSetReloadMode:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1561   .text.MPU_vTimerSetReloadMode:00000000 MPU_vTimerSetReloadMode
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1583   .text.MPU_pcTimerGetName:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1591   .text.MPU_pcTimerGetName:00000000 MPU_pcTimerGetName
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1612   .text.MPU_xTimerGetPeriod:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1620   .text.MPU_xTimerGetPeriod:00000000 MPU_xTimerGetPeriod
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1641   .text.MPU_xTimerGetExpiryTime:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1649   .text.MPU_xTimerGetExpiryTime:00000000 MPU_xTimerGetExpiryTime
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1670   .text.MPU_xTimerGenericCommand:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1678   .text.MPU_xTimerGenericCommand:00000000 MPU_xTimerGenericCommand
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 41
+
+
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1716   .text.MPU_xEventGroupCreate:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1724   .text.MPU_xEventGroupCreate:00000000 MPU_xEventGroupCreate
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1742   .text.MPU_xEventGroupWaitBits:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1750   .text.MPU_xEventGroupWaitBits:00000000 MPU_xEventGroupWaitBits
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1788   .text.MPU_xEventGroupClearBits:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1796   .text.MPU_xEventGroupClearBits:00000000 MPU_xEventGroupClearBits
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1820   .text.MPU_xEventGroupSetBits:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1828   .text.MPU_xEventGroupSetBits:00000000 MPU_xEventGroupSetBits
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1852   .text.MPU_xEventGroupSync:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1860   .text.MPU_xEventGroupSync:00000000 MPU_xEventGroupSync
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1890   .text.MPU_vEventGroupDelete:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1898   .text.MPU_vEventGroupDelete:00000000 MPU_vEventGroupDelete
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1917   .text.MPU_xStreamBufferSend:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1925   .text.MPU_xStreamBufferSend:00000000 MPU_xStreamBufferSend
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1955   .text.MPU_xStreamBufferNextMessageLengthBytes:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1963   .text.MPU_xStreamBufferNextMessageLengthBytes:00000000 MPU_xStreamBufferNextMessageLengthBytes
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1984   .text.MPU_xStreamBufferReceive:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:1992   .text.MPU_xStreamBufferReceive:00000000 MPU_xStreamBufferReceive
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:2022   .text.MPU_vStreamBufferDelete:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:2030   .text.MPU_vStreamBufferDelete:00000000 MPU_vStreamBufferDelete
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:2049   .text.MPU_xStreamBufferIsFull:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:2057   .text.MPU_xStreamBufferIsFull:00000000 MPU_xStreamBufferIsFull
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:2078   .text.MPU_xStreamBufferIsEmpty:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:2086   .text.MPU_xStreamBufferIsEmpty:00000000 MPU_xStreamBufferIsEmpty
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:2107   .text.MPU_xStreamBufferReset:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:2115   .text.MPU_xStreamBufferReset:00000000 MPU_xStreamBufferReset
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:2136   .text.MPU_xStreamBufferSpacesAvailable:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:2144   .text.MPU_xStreamBufferSpacesAvailable:00000000 MPU_xStreamBufferSpacesAvailable
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:2165   .text.MPU_xStreamBufferBytesAvailable:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:2173   .text.MPU_xStreamBufferBytesAvailable:00000000 MPU_xStreamBufferBytesAvailable
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:2194   .text.MPU_xStreamBufferSetTriggerLevel:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:2202   .text.MPU_xStreamBufferSetTriggerLevel:00000000 MPU_xStreamBufferSetTriggerLevel
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:2226   .text.MPU_xStreamBufferGenericCreate:00000000 $t
+D:\Programs\cygwin64\tmp\cc2DG0Ch.s:2234   .text.MPU_xStreamBufferGenericCreate:00000000 MPU_xStreamBufferGenericCreate
+
+UNDEFINED SYMBOLS
+portIS_PRIVILEGED
+portRAISE_PRIVILEGE
+portRESET_PRIVILEGE
+xTaskCreateRestricted
+xTaskCreate
+vTaskAllocateMPURegions
+vTaskDelete
+vTaskDelayUntil
+vTaskDelay
+uxTaskPriorityGet
+vTaskPrioritySet
+vTaskGetInfo
+vTaskSuspend
+vTaskResume
+vTaskSuspendAll
+xTaskResumeAll
+xTaskGetTickCount
+uxTaskGetNumberOfTasks
+pcTaskGetName
+uxTaskGetSystemState
+xTaskGetSchedulerState
+ARM GAS  D:\Programs\cygwin64\tmp\cc2DG0Ch.s 			page 42
+
+
+vTaskSetTimeOutState
+xTaskCheckForTimeOut
+xTaskGenericNotify
+xTaskNotifyWait
+ulTaskNotifyTake
+xTaskNotifyStateClear
+xQueueGenericCreate
+xQueueGenericReset
+xQueueGenericSend
+uxQueueMessagesWaiting
+uxQueueSpacesAvailable
+xQueueReceive
+xQueuePeek
+xQueueSemaphoreTake
+xQueueCreateMutex
+xQueueCreateCountingSemaphore
+xQueueTakeMutexRecursive
+xQueueGiveMutexRecursive
+vQueueAddToRegistry
+vQueueUnregisterQueue
+pcQueueGetName
+vQueueDelete
+pvPortMalloc
+vPortFree
+vPortInitialiseBlocks
+xPortGetFreeHeapSize
+xTimerCreate
+pvTimerGetTimerID
+vTimerSetTimerID
+xTimerIsTimerActive
+xTimerGetTimerDaemonTaskHandle
+vTimerSetReloadMode
+pcTimerGetName
+xTimerGetPeriod
+xTimerGetExpiryTime
+xTimerGenericCommand
+xEventGroupCreate
+xEventGroupWaitBits
+xEventGroupClearBits
+xEventGroupSetBits
+xEventGroupSync
+vEventGroupDelete
+xStreamBufferSend
+xStreamBufferNextMessageLengthBytes
+xStreamBufferReceive
+vStreamBufferDelete
+xStreamBufferIsFull
+xStreamBufferIsEmpty
+xStreamBufferReset
+xStreamBufferSpacesAvailable
+xStreamBufferBytesAvailable
+xStreamBufferSetTriggerLevel
+xStreamBufferGenericCreate

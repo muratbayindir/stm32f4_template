@@ -1,0 +1,1053 @@
+ARM GAS  D:\Programs\cygwin64\tmp\ccTIksN0.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"usbh_ctlreq.c"
+  14              		.text
+  15              		.section	.text.USBH_CtlReq.part.0,"ax",%progbits
+  16              		.align	1
+  17              		.p2align 2,,3
+  18              		.arch armv7e-m
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu fpv4-sp-d16
+  24              	USBH_CtlReq.part.0:
+  25              		@ args = 0, pretend = 0, frame = 0
+  26              		@ frame_needed = 0, uses_anonymous_args = 0
+  27 0000 30B5     		push	{r4, r5, lr}
+  28 0002 037E     		ldrb	r3, [r0, #24]	@ zero_extendqisi2
+  29 0004 013B     		subs	r3, r3, #1
+  30 0006 83B0     		sub	sp, sp, #12
+  31 0008 0446     		mov	r4, r0
+  32 000a 0A2B     		cmp	r3, #10
+  33 000c 2AD8     		bhi	.L68
+  34 000e DFE803F0 		tbb	[pc, r3]
+  35              	.L4:
+  36 0012 18       		.byte	(.L14-.L4)/2
+  37 0013 22       		.byte	(.L13-.L4)/2
+  38 0014 2C       		.byte	(.L12-.L4)/2
+  39 0015 38       		.byte	(.L11-.L4)/2
+  40 0016 40       		.byte	(.L10-.L4)/2
+  41 0017 4E       		.byte	(.L9-.L4)/2
+  42 0018 5C       		.byte	(.L8-.L4)/2
+  43 0019 68       		.byte	(.L7-.L4)/2
+  44 001a 73       		.byte	(.L6-.L4)/2
+  45 001b 81       		.byte	(.L5-.L4)/2
+  46 001c 06       		.byte	(.L3-.L4)/2
+  47 001d 00       		.p2align 1
+  48              	.L3:
+  49 001e 437E     		ldrb	r3, [r0, #25]	@ zero_extendqisi2
+  50 0020 0133     		adds	r3, r3, #1
+  51 0022 DBB2     		uxtb	r3, r3
+  52 0024 022B     		cmp	r3, #2
+  53 0026 4376     		strb	r3, [r0, #25]
+  54 0028 40F28880 		bls	.L70
+  55 002c D0F8C432 		ldr	r3, [r0, #708]
+  56 0030 0621     		movs	r1, #6
+  57 0032 9847     		blx	r3
+  58 0034 0023     		movs	r3, #0
+ARM GAS  D:\Programs\cygwin64\tmp\ccTIksN0.s 			page 2
+
+
+  59 0036 6376     		strb	r3, [r4, #25]
+  60              	.L24:
+  61 0038 0123     		movs	r3, #1
+  62 003a 0220     		movs	r0, #2
+  63 003c A370     		strb	r3, [r4, #2]
+  64 003e 03B0     		add	sp, sp, #12
+  65              		@ sp needed
+  66 0040 30BD     		pop	{r4, r5, pc}
+  67              	.L14:
+  68 0042 4279     		ldrb	r2, [r0, #5]	@ zero_extendqisi2
+  69 0044 00F11001 		add	r1, r0, #16
+  70 0048 FFF7FEFF 		bl	USBH_CtlSendSetup
+  71 004c 0223     		movs	r3, #2
+  72 004e 2376     		strb	r3, [r4, #24]
+  73 0050 0120     		movs	r0, #1
+  74              	.L63:
+  75 0052 03B0     		add	sp, sp, #12
+  76              		@ sp needed
+  77 0054 30BD     		pop	{r4, r5, pc}
+  78              	.L13:
+  79 0056 4179     		ldrb	r1, [r0, #5]	@ zero_extendqisi2
+  80 0058 FFF7FEFF 		bl	USBH_LL_GetURBState
+  81 005c 0128     		cmp	r0, #1
+  82 005e 7DD0     		beq	.L71
+  83              	.L15:
+  84 0060 0428     		cmp	r0, #4
+  85 0062 62D0     		beq	.L19
+  86              	.L68:
+  87 0064 0120     		movs	r0, #1
+  88 0066 03B0     		add	sp, sp, #12
+  89              		@ sp needed
+  90 0068 30BD     		pop	{r4, r5, pc}
+  91              	.L12:
+  92 006a D0F8B832 		ldr	r3, [r0, #696]
+  93 006e C381     		strh	r3, [r0, #14]	@ movhi
+  94 0070 8289     		ldrh	r2, [r0, #12]
+  95 0072 0379     		ldrb	r3, [r0, #4]	@ zero_extendqisi2
+  96 0074 8168     		ldr	r1, [r0, #8]
+  97 0076 FFF7FEFF 		bl	USBH_CtlReceiveData
+  98 007a 0423     		movs	r3, #4
+  99 007c 2376     		strb	r3, [r4, #24]
+ 100 007e 0120     		movs	r0, #1
+ 101 0080 E7E7     		b	.L63
+ 102              	.L11:
+ 103 0082 0179     		ldrb	r1, [r0, #4]	@ zero_extendqisi2
+ 104 0084 FFF7FEFF 		bl	USBH_LL_GetURBState
+ 105 0088 0128     		cmp	r0, #1
+ 106 008a 4AD0     		beq	.L20
+ 107 008c 0528     		cmp	r0, #5
+ 108 008e E7D1     		bne	.L15
+ 109 0090 30E0     		b	.L27
+ 110              	.L10:
+ 111 0092 0125     		movs	r5, #1
+ 112 0094 0095     		str	r5, [sp]
+ 113 0096 4379     		ldrb	r3, [r0, #5]	@ zero_extendqisi2
+ 114 0098 8289     		ldrh	r2, [r0, #12]
+ 115 009a 8168     		ldr	r1, [r0, #8]
+ARM GAS  D:\Programs\cygwin64\tmp\ccTIksN0.s 			page 3
+
+
+ 116 009c FFF7FEFF 		bl	USBH_CtlSendData
+ 117 00a0 D4F8B832 		ldr	r3, [r4, #696]
+ 118 00a4 E381     		strh	r3, [r4, #14]	@ movhi
+ 119 00a6 0623     		movs	r3, #6
+ 120 00a8 2846     		mov	r0, r5
+ 121 00aa 2376     		strb	r3, [r4, #24]
+ 122 00ac D1E7     		b	.L63
+ 123              	.L9:
+ 124 00ae 4179     		ldrb	r1, [r0, #5]	@ zero_extendqisi2
+ 125 00b0 FFF7FEFF 		bl	USBH_LL_GetURBState
+ 126 00b4 0128     		cmp	r0, #1
+ 127 00b6 4DD0     		beq	.L18
+ 128 00b8 0528     		cmp	r0, #5
+ 129 00ba 45D0     		beq	.L72
+ 130 00bc 0228     		cmp	r0, #2
+ 131 00be 54D0     		beq	.L17
+ 132 00c0 0428     		cmp	r0, #4
+ 133 00c2 CFD1     		bne	.L68
+ 134 00c4 0B23     		movs	r3, #11
+ 135 00c6 2376     		strb	r3, [r4, #24]
+ 136 00c8 B6E7     		b	.L24
+ 137              	.L8:
+ 138 00ca 0022     		movs	r2, #0
+ 139 00cc 0379     		ldrb	r3, [r0, #4]	@ zero_extendqisi2
+ 140 00ce 1146     		mov	r1, r2
+ 141 00d0 FFF7FEFF 		bl	USBH_CtlReceiveData
+ 142 00d4 D4F8B832 		ldr	r3, [r4, #696]
+ 143 00d8 E381     		strh	r3, [r4, #14]	@ movhi
+ 144 00da 0823     		movs	r3, #8
+ 145 00dc 2376     		strb	r3, [r4, #24]
+ 146 00de 0120     		movs	r0, #1
+ 147 00e0 B7E7     		b	.L63
+ 148              	.L7:
+ 149 00e2 0179     		ldrb	r1, [r0, #4]	@ zero_extendqisi2
+ 150 00e4 FFF7FEFF 		bl	USBH_LL_GetURBState
+ 151 00e8 0128     		cmp	r0, #1
+ 152 00ea 21D0     		beq	.L25
+ 153 00ec 0428     		cmp	r0, #4
+ 154 00ee 1CD0     		beq	.L19
+ 155 00f0 0528     		cmp	r0, #5
+ 156 00f2 B7D1     		bne	.L68
+ 157              	.L27:
+ 158 00f4 0320     		movs	r0, #3
+ 159 00f6 ACE7     		b	.L63
+ 160              	.L6:
+ 161 00f8 0125     		movs	r5, #1
+ 162 00fa 0022     		movs	r2, #0
+ 163 00fc 0095     		str	r5, [sp]
+ 164 00fe 4379     		ldrb	r3, [r0, #5]	@ zero_extendqisi2
+ 165 0100 1146     		mov	r1, r2
+ 166 0102 FFF7FEFF 		bl	USBH_CtlSendData
+ 167 0106 D4F8B832 		ldr	r3, [r4, #696]
+ 168 010a E381     		strh	r3, [r4, #14]	@ movhi
+ 169 010c 0A23     		movs	r3, #10
+ 170 010e 2846     		mov	r0, r5
+ 171 0110 2376     		strb	r3, [r4, #24]
+ 172 0112 9EE7     		b	.L63
+ARM GAS  D:\Programs\cygwin64\tmp\ccTIksN0.s 			page 4
+
+
+ 173              	.L5:
+ 174 0114 4179     		ldrb	r1, [r0, #5]	@ zero_extendqisi2
+ 175 0116 FFF7FEFF 		bl	USBH_LL_GetURBState
+ 176 011a 0128     		cmp	r0, #1
+ 177 011c 08D0     		beq	.L25
+ 178 011e 0228     		cmp	r0, #2
+ 179 0120 9ED1     		bne	.L15
+ 180              	.L20:
+ 181 0122 0923     		movs	r3, #9
+ 182 0124 2376     		strb	r3, [r4, #24]
+ 183 0126 0120     		movs	r0, #1
+ 184 0128 93E7     		b	.L63
+ 185              	.L19:
+ 186 012a 0B23     		movs	r3, #11
+ 187 012c 2376     		strb	r3, [r4, #24]
+ 188 012e 99E7     		b	.L68
+ 189              	.L25:
+ 190 0130 0020     		movs	r0, #0
+ 191 0132 0123     		movs	r3, #1
+ 192 0134 A370     		strb	r3, [r4, #2]
+ 193 0136 2076     		strb	r0, [r4, #24]
+ 194 0138 03B0     		add	sp, sp, #12
+ 195              		@ sp needed
+ 196 013a 30BD     		pop	{r4, r5, pc}
+ 197              	.L70:
+ 198 013c FFF7FEFF 		bl	USBH_LL_Stop
+ 199 0140 0120     		movs	r0, #1
+ 200 0142 2076     		strb	r0, [r4, #24]
+ 201 0144 A070     		strb	r0, [r4, #2]
+ 202 0146 84E7     		b	.L63
+ 203              	.L72:
+ 204 0148 0C23     		movs	r3, #12
+ 205 014a 2376     		strb	r3, [r4, #24]
+ 206 014c 0320     		movs	r0, #3
+ 207 014e 80E7     		b	.L63
+ 208              	.L16:
+ 209 0150 002B     		cmp	r3, #0
+ 210 0152 E6DB     		blt	.L20
+ 211              	.L18:
+ 212 0154 0723     		movs	r3, #7
+ 213 0156 2376     		strb	r3, [r4, #24]
+ 214 0158 0120     		movs	r0, #1
+ 215 015a 7AE7     		b	.L63
+ 216              	.L71:
+ 217 015c E28A     		ldrh	r2, [r4, #22]
+ 218 015e 94F91030 		ldrsb	r3, [r4, #16]
+ 219 0162 002A     		cmp	r2, #0
+ 220 0164 F4D0     		beq	.L16
+ 221 0166 002B     		cmp	r3, #0
+ 222 0168 03DB     		blt	.L73
+ 223              	.L17:
+ 224 016a 0523     		movs	r3, #5
+ 225 016c 2376     		strb	r3, [r4, #24]
+ 226 016e 0120     		movs	r0, #1
+ 227 0170 6FE7     		b	.L63
+ 228              	.L73:
+ 229 0172 0323     		movs	r3, #3
+ARM GAS  D:\Programs\cygwin64\tmp\ccTIksN0.s 			page 5
+
+
+ 230 0174 2376     		strb	r3, [r4, #24]
+ 231 0176 6CE7     		b	.L63
+ 233              		.section	.text.USBH_Get_DevDesc,"ax",%progbits
+ 234              		.align	1
+ 235              		.p2align 2,,3
+ 236              		.global	USBH_Get_DevDesc
+ 237              		.syntax unified
+ 238              		.thumb
+ 239              		.thumb_func
+ 240              		.fpu fpv4-sp-d16
+ 242              	USBH_Get_DevDesc:
+ 243              		@ args = 0, pretend = 0, frame = 0
+ 244              		@ frame_needed = 0, uses_anonymous_args = 0
+ 245 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 246 0002 8378     		ldrb	r3, [r0, #2]	@ zero_extendqisi2
+ 247 0004 012B     		cmp	r3, #1
+ 248 0006 0446     		mov	r4, r0
+ 249 0008 35D0     		beq	.L79
+ 250 000a 022B     		cmp	r3, #2
+ 251 000c 31D1     		bne	.L77
+ 252 000e 0D46     		mov	r5, r1
+ 253 0010 FFF7FEFF 		bl	USBH_CtlReq.part.0
+ 254 0014 60BB     		cbnz	r0, .L76
+ 255 0016 E27F     		ldrb	r2, [r4, #31]	@ zero_extendqisi2
+ 256 0018 A37F     		ldrb	r3, [r4, #30]	@ zero_extendqisi2
+ 257 001a 217F     		ldrb	r1, [r4, #28]	@ zero_extendqisi2
+ 258 001c 84F82012 		strb	r1, [r4, #544]
+ 259 0020 03EB0223 		add	r3, r3, r2, lsl #8
+ 260 0024 617F     		ldrb	r1, [r4, #29]	@ zero_extendqisi2
+ 261 0026 226A     		ldr	r2, [r4, #32]	@ unaligned
+ 262 0028 A4F82232 		strh	r3, [r4, #546]	@ movhi
+ 263 002c 082D     		cmp	r5, #8
+ 264 002e 84F82112 		strb	r1, [r4, #545]
+ 265 0032 C4F82422 		str	r2, [r4, #548]	@ unaligned
+ 266 0036 1BD9     		bls	.L76
+ 267 0038 94F82950 		ldrb	r5, [r4, #41]	@ zero_extendqisi2
+ 268 003c 94F82570 		ldrb	r7, [r4, #37]	@ zero_extendqisi2
+ 269 0040 94F82410 		ldrb	r1, [r4, #36]	@ zero_extendqisi2
+ 270 0044 94F82760 		ldrb	r6, [r4, #39]	@ zero_extendqisi2
+ 271 0048 94F82620 		ldrb	r2, [r4, #38]	@ zero_extendqisi2
+ 272 004c 94F82830 		ldrb	r3, [r4, #40]	@ zero_extendqisi2
+ 273 0050 01EB0721 		add	r1, r1, r7, lsl #8
+ 274 0054 03EB0523 		add	r3, r3, r5, lsl #8
+ 275 0058 02EB0622 		add	r2, r2, r6, lsl #8
+ 276 005c D4F82A50 		ldr	r5, [r4, #42]	@ unaligned
+ 277 0060 A4F82812 		strh	r1, [r4, #552]	@ movhi
+ 278 0064 A4F82A22 		strh	r2, [r4, #554]	@ movhi
+ 279 0068 A4F82C32 		strh	r3, [r4, #556]	@ movhi
+ 280 006c C4F82E52 		str	r5, [r4, #558]	@ unaligned
+ 281              	.L76:
+ 282 0070 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 283              	.L77:
+ 284 0072 0120     		movs	r0, #1
+ 285 0074 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 286              	.L79:
+ 287 0076 00F11C05 		add	r5, r0, #28
+ 288 007a 064F     		ldr	r7, .L80
+ARM GAS  D:\Programs\cygwin64\tmp\ccTIksN0.s 			page 6
+
+
+ 289 007c C182     		strh	r1, [r0, #22]	@ movhi
+ 290 007e 0026     		movs	r6, #0
+ 291 0080 0222     		movs	r2, #2
+ 292 0082 8181     		strh	r1, [r0, #12]	@ movhi
+ 293 0084 0376     		strb	r3, [r0, #24]
+ 294 0086 1846     		mov	r0, r3
+ 295 0088 2761     		str	r7, [r4, #16]
+ 296 008a A682     		strh	r6, [r4, #20]	@ movhi
+ 297 008c A560     		str	r5, [r4, #8]
+ 298 008e A270     		strb	r2, [r4, #2]
+ 299 0090 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 300              	.L81:
+ 301 0092 00BF     		.align	2
+ 302              	.L80:
+ 303 0094 80060001 		.word	16778880
+ 305              		.section	.text.USBH_Get_CfgDesc,"ax",%progbits
+ 306              		.align	1
+ 307              		.p2align 2,,3
+ 308              		.global	USBH_Get_CfgDesc
+ 309              		.syntax unified
+ 310              		.thumb
+ 311              		.thumb_func
+ 312              		.fpu fpv4-sp-d16
+ 314              	USBH_Get_CfgDesc:
+ 315              		@ args = 0, pretend = 0, frame = 0
+ 316              		@ frame_needed = 0, uses_anonymous_args = 0
+ 317 0000 8278     		ldrb	r2, [r0, #2]	@ zero_extendqisi2
+ 318 0002 012A     		cmp	r2, #1
+ 319 0004 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 320 0008 0346     		mov	r3, r0
+ 321 000a 00F11C04 		add	r4, r0, #28
+ 322 000e 00F08C80 		beq	.L109
+ 323 0012 022A     		cmp	r2, #2
+ 324 0014 02D0     		beq	.L110
+ 325 0016 0120     		movs	r0, #1
+ 326              	.L84:
+ 327 0018 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 328              	.L110:
+ 329 001c 0F46     		mov	r7, r1
+ 330 001e 0546     		mov	r5, r0
+ 331 0020 FFF7FEFF 		bl	USBH_CtlReq.part.0
+ 332 0024 0028     		cmp	r0, #0
+ 333 0026 F7D1     		bne	.L84
+ 334 0028 EB7F     		ldrb	r3, [r5, #31]	@ zero_extendqisi2
+ 335 002a AE7F     		ldrb	r6, [r5, #30]	@ zero_extendqisi2
+ 336 002c 2A7F     		ldrb	r2, [r5, #28]	@ zero_extendqisi2
+ 337 002e 85F83222 		strb	r2, [r5, #562]
+ 338 0032 06EB0326 		add	r6, r6, r3, lsl #8
+ 339 0036 6B7F     		ldrb	r3, [r5, #29]	@ zero_extendqisi2
+ 340 0038 2A6A     		ldr	r2, [r5, #32]	@ unaligned
+ 341 003a 85F83332 		strb	r3, [r5, #563]
+ 342 003e B6B2     		uxth	r6, r6
+ 343 0040 95F82430 		ldrb	r3, [r5, #36]	@ zero_extendqisi2
+ 344 0044 A5F83462 		strh	r6, [r5, #564]	@ movhi
+ 345 0048 092F     		cmp	r7, #9
+ 346 004a C5F83622 		str	r2, [r5, #566]	@ unaligned
+ 347 004e 85F83A32 		strb	r3, [r5, #570]
+ARM GAS  D:\Programs\cygwin64\tmp\ccTIksN0.s 			page 7
+
+
+ 348 0052 E1D9     		bls	.L84
+ 349 0054 092E     		cmp	r6, #9
+ 350 0056 DFD9     		bls	.L84
+ 351 0058 2946     		mov	r1, r5
+ 352 005a 0746     		mov	r7, r0
+ 353 005c 0923     		movs	r3, #9
+ 354 005e 4FF01A0C 		mov	ip, #26
+ 355              	.L86:
+ 356 0062 2278     		ldrb	r2, [r4]	@ zero_extendqisi2
+ 357 0064 1444     		add	r4, r4, r2
+ 358 0066 1344     		add	r3, r3, r2
+ 359 0068 6278     		ldrb	r2, [r4, #1]	@ zero_extendqisi2
+ 360 006a 042A     		cmp	r2, #4
+ 361 006c 9BB2     		uxth	r3, r3
+ 362 006e 0BD0     		beq	.L93
+ 363 0070 9E42     		cmp	r6, r3
+ 364 0072 02D8     		bhi	.L88
+ 365 0074 D0E7     		b	.L84
+ 366              	.L111:
+ 367 0076 B342     		cmp	r3, r6
+ 368 0078 CED2     		bcs	.L84
+ 369              	.L88:
+ 370 007a 2278     		ldrb	r2, [r4]	@ zero_extendqisi2
+ 371 007c 1444     		add	r4, r4, r2
+ 372 007e 1344     		add	r3, r3, r2
+ 373 0080 6278     		ldrb	r2, [r4, #1]	@ zero_extendqisi2
+ 374 0082 042A     		cmp	r2, #4
+ 375 0084 9BB2     		uxth	r3, r3
+ 376 0086 F6D1     		bne	.L111
+ 377              	.L93:
+ 378 0088 2278     		ldrb	r2, [r4]	@ zero_extendqisi2
+ 379 008a 81F83C22 		strb	r2, [r1, #572]
+ 380 008e 6278     		ldrb	r2, [r4, #1]	@ zero_extendqisi2
+ 381 0090 81F83D22 		strb	r2, [r1, #573]
+ 382 0094 A278     		ldrb	r2, [r4, #2]	@ zero_extendqisi2
+ 383 0096 81F83E22 		strb	r2, [r1, #574]
+ 384 009a E278     		ldrb	r2, [r4, #3]	@ zero_extendqisi2
+ 385 009c 81F83F22 		strb	r2, [r1, #575]
+ 386 00a0 94F80490 		ldrb	r9, [r4, #4]	@ zero_extendqisi2
+ 387 00a4 81F84092 		strb	r9, [r1, #576]
+ 388 00a8 6279     		ldrb	r2, [r4, #5]	@ zero_extendqisi2
+ 389 00aa 81F84122 		strb	r2, [r1, #577]
+ 390 00ae A279     		ldrb	r2, [r4, #6]	@ zero_extendqisi2
+ 391 00b0 81F84222 		strb	r2, [r1, #578]
+ 392 00b4 E279     		ldrb	r2, [r4, #7]	@ zero_extendqisi2
+ 393 00b6 81F84322 		strb	r2, [r1, #579]
+ 394 00ba 227A     		ldrb	r2, [r4, #8]	@ zero_extendqisi2
+ 395 00bc 81F84422 		strb	r2, [r1, #580]
+ 396 00c0 4FF0000E 		mov	lr, #0
+ 397 00c4 0CFB07F8 		mul	r8, ip, r7
+ 398              	.L89:
+ 399 00c8 CE45     		cmp	lr, r9
+ 400 00ca 3BDA     		bge	.L91
+ 401 00cc 9E42     		cmp	r6, r3
+ 402 00ce 39D9     		bls	.L91
+ 403 00d0 2278     		ldrb	r2, [r4]	@ zero_extendqisi2
+ 404 00d2 1444     		add	r4, r4, r2
+ARM GAS  D:\Programs\cygwin64\tmp\ccTIksN0.s 			page 8
+
+
+ 405 00d4 1344     		add	r3, r3, r2
+ 406 00d6 6278     		ldrb	r2, [r4, #1]	@ zero_extendqisi2
+ 407 00d8 052A     		cmp	r2, #5
+ 408 00da 9BB2     		uxth	r3, r3
+ 409 00dc F4D1     		bne	.L89
+ 410 00de 0EF1010E 		add	lr, lr, #1
+ 411 00e2 08EBCE02 		add	r2, r8, lr, lsl #3
+ 412 00e6 2A44     		add	r2, r2, r5
+ 413 00e8 94F80090 		ldrb	r9, [r4]	@ zero_extendqisi2
+ 414 00ec 82F83E92 		strb	r9, [r2, #574]
+ 415 00f0 94F80190 		ldrb	r9, [r4, #1]	@ zero_extendqisi2
+ 416 00f4 82F83F92 		strb	r9, [r2, #575]
+ 417 00f8 94F80290 		ldrb	r9, [r4, #2]	@ zero_extendqisi2
+ 418 00fc 82F84092 		strb	r9, [r2, #576]
+ 419 0100 94F80390 		ldrb	r9, [r4, #3]	@ zero_extendqisi2
+ 420 0104 82F84192 		strb	r9, [r2, #577]
+ 421 0108 94F805A0 		ldrb	r10, [r4, #5]	@ zero_extendqisi2
+ 422 010c 94F80490 		ldrb	r9, [r4, #4]	@ zero_extendqisi2
+ 423 0110 09EB0A29 		add	r9, r9, r10, lsl #8
+ 424 0114 A2F84292 		strh	r9, [r2, #578]	@ movhi
+ 425 0118 94F80690 		ldrb	r9, [r4, #6]	@ zero_extendqisi2
+ 426 011c 82F84492 		strb	r9, [r2, #580]
+ 427 0120 91F84092 		ldrb	r9, [r1, #576]	@ zero_extendqisi2
+ 428 0124 4FFA8EFE 		sxtb	lr, lr
+ 429 0128 CEE7     		b	.L89
+ 430              	.L109:
+ 431 012a 8460     		str	r4, [r0, #8]
+ 432 012c 0A4E     		ldr	r6, .L112
+ 433 012e C182     		strh	r1, [r0, #22]	@ movhi
+ 434 0130 0025     		movs	r5, #0
+ 435 0132 0224     		movs	r4, #2
+ 436 0134 8181     		strh	r1, [r0, #12]	@ movhi
+ 437 0136 0276     		strb	r2, [r0, #24]
+ 438 0138 1046     		mov	r0, r2
+ 439 013a 1E61     		str	r6, [r3, #16]
+ 440 013c 9D82     		strh	r5, [r3, #20]	@ movhi
+ 441 013e 9C70     		strb	r4, [r3, #2]
+ 442 0140 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 443              	.L91:
+ 444 0144 002F     		cmp	r7, #0
+ 445 0146 7FF467AF 		bne	.L84
+ 446 014a 9E42     		cmp	r6, r3
+ 447 014c 01F11A01 		add	r1, r1, #26
+ 448 0150 4FF00107 		mov	r7, #1
+ 449 0154 85D8     		bhi	.L86
+ 450 0156 5FE7     		b	.L84
+ 451              	.L113:
+ 452              		.align	2
+ 453              	.L112:
+ 454 0158 80060002 		.word	33556096
+ 456              		.section	.text.USBH_Get_StringDesc,"ax",%progbits
+ 457              		.align	1
+ 458              		.p2align 2,,3
+ 459              		.global	USBH_Get_StringDesc
+ 460              		.syntax unified
+ 461              		.thumb
+ 462              		.thumb_func
+ARM GAS  D:\Programs\cygwin64\tmp\ccTIksN0.s 			page 9
+
+
+ 463              		.fpu fpv4-sp-d16
+ 465              	USBH_Get_StringDesc:
+ 466              		@ args = 0, pretend = 0, frame = 0
+ 467              		@ frame_needed = 0, uses_anonymous_args = 0
+ 468 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 469 0004 8578     		ldrb	r5, [r0, #2]	@ zero_extendqisi2
+ 470 0006 012D     		cmp	r5, #1
+ 471 0008 0446     		mov	r4, r0
+ 472 000a 9846     		mov	r8, r3
+ 473 000c 00F11C07 		add	r7, r0, #28
+ 474 0010 0DD0     		beq	.L125
+ 475 0012 022D     		cmp	r5, #2
+ 476 0014 08D1     		bne	.L119
+ 477 0016 1646     		mov	r6, r2
+ 478 0018 FFF7FEFF 		bl	USBH_CtlReq.part.0
+ 479 001c 10B9     		cbnz	r0, .L116
+ 480 001e 637F     		ldrb	r3, [r4, #29]	@ zero_extendqisi2
+ 481 0020 032B     		cmp	r3, #3
+ 482 0022 17D0     		beq	.L126
+ 483              	.L116:
+ 484 0024 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 485              	.L119:
+ 486 0028 0120     		movs	r0, #1
+ 487 002a BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 488              	.L125:
+ 489 002e 41F44072 		orr	r2, r1, #768
+ 490 0032 4282     		strh	r2, [r0, #18]	@ movhi
+ 491 0034 4FF4D061 		mov	r1, #1664
+ 492 0038 E382     		strh	r3, [r4, #22]	@ movhi
+ 493 003a 40F20942 		movw	r2, #1033
+ 494 003e 0223     		movs	r3, #2
+ 495 0040 8760     		str	r7, [r0, #8]
+ 496 0042 A0F80C80 		strh	r8, [r0, #12]	@ movhi
+ 497 0046 0576     		strb	r5, [r0, #24]
+ 498 0048 2846     		mov	r0, r5
+ 499 004a 2182     		strh	r1, [r4, #16]	@ movhi
+ 500 004c A282     		strh	r2, [r4, #20]	@ movhi
+ 501 004e A370     		strb	r3, [r4, #2]
+ 502 0050 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 503              	.L126:
+ 504 0054 227F     		ldrb	r2, [r4, #28]	@ zero_extendqisi2
+ 505 0056 911E     		subs	r1, r2, #2
+ 506 0058 4145     		cmp	r1, r8
+ 507 005a A8BF     		it	ge
+ 508 005c 4146     		movge	r1, r8
+ 509 005e 89B2     		uxth	r1, r1
+ 510 0060 41B1     		cbz	r1, .L117
+ 511 0062 0346     		mov	r3, r0
+ 512              	.L118:
+ 513 0064 FA18     		adds	r2, r7, r3
+ 514 0066 0233     		adds	r3, r3, #2
+ 515 0068 9BB2     		uxth	r3, r3
+ 516 006a 9278     		ldrb	r2, [r2, #2]	@ zero_extendqisi2
+ 517 006c 06F8012B 		strb	r2, [r6], #1
+ 518 0070 9942     		cmp	r1, r3
+ 519 0072 F7D8     		bhi	.L118
+ 520              	.L117:
+ARM GAS  D:\Programs\cygwin64\tmp\ccTIksN0.s 			page 10
+
+
+ 521 0074 0023     		movs	r3, #0
+ 522 0076 3370     		strb	r3, [r6]
+ 523 0078 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 525              		.section	.text.USBH_GetDescriptor,"ax",%progbits
+ 526              		.align	1
+ 527              		.p2align 2,,3
+ 528              		.global	USBH_GetDescriptor
+ 529              		.syntax unified
+ 530              		.thumb
+ 531              		.thumb_func
+ 532              		.fpu fpv4-sp-d16
+ 534              	USBH_GetDescriptor:
+ 535              		@ args = 4, pretend = 0, frame = 0
+ 536              		@ frame_needed = 0, uses_anonymous_args = 0
+ 537              		@ link register save eliminated.
+ 538 0000 70B4     		push	{r4, r5, r6}
+ 539 0002 8578     		ldrb	r5, [r0, #2]	@ zero_extendqisi2
+ 540 0004 BDF80C60 		ldrh	r6, [sp, #12]
+ 541 0008 012D     		cmp	r5, #1
+ 542 000a 07D0     		beq	.L134
+ 543 000c 022D     		cmp	r5, #2
+ 544 000e 02D0     		beq	.L135
+ 545 0010 0120     		movs	r0, #1
+ 546 0012 70BC     		pop	{r4, r5, r6}
+ 547 0014 7047     		bx	lr
+ 548              	.L135:
+ 549 0016 70BC     		pop	{r4, r5, r6}
+ 550 0018 FFF7FEBF 		b	USBH_CtlReq.part.0
+ 551              	.L134:
+ 552 001c 0446     		mov	r4, r0
+ 553 001e 02F47F40 		and	r0, r2, #65280
+ 554 0022 B0F5407F 		cmp	r0, #768
+ 555 0026 61F07F01 		orn	r1, r1, #127
+ 556 002a 40F20940 		movw	r0, #1033
+ 557 002e 2174     		strb	r1, [r4, #16]
+ 558 0030 18BF     		it	ne
+ 559 0032 0020     		movne	r0, #0
+ 560 0034 6282     		strh	r2, [r4, #18]	@ movhi
+ 561 0036 0621     		movs	r1, #6
+ 562 0038 0222     		movs	r2, #2
+ 563 003a A082     		strh	r0, [r4, #20]	@ movhi
+ 564 003c E682     		strh	r6, [r4, #22]	@ movhi
+ 565 003e A360     		str	r3, [r4, #8]
+ 566 0040 A681     		strh	r6, [r4, #12]	@ movhi
+ 567 0042 2576     		strb	r5, [r4, #24]
+ 568 0044 6174     		strb	r1, [r4, #17]
+ 569 0046 A270     		strb	r2, [r4, #2]
+ 570 0048 0120     		movs	r0, #1
+ 571 004a 70BC     		pop	{r4, r5, r6}
+ 572 004c 7047     		bx	lr
+ 574 004e 00BF     		.section	.text.USBH_SetAddress,"ax",%progbits
+ 575              		.align	1
+ 576              		.p2align 2,,3
+ 577              		.global	USBH_SetAddress
+ 578              		.syntax unified
+ 579              		.thumb
+ 580              		.thumb_func
+ARM GAS  D:\Programs\cygwin64\tmp\ccTIksN0.s 			page 11
+
+
+ 581              		.fpu fpv4-sp-d16
+ 583              	USBH_SetAddress:
+ 584              		@ args = 0, pretend = 0, frame = 0
+ 585              		@ frame_needed = 0, uses_anonymous_args = 0
+ 586              		@ link register save eliminated.
+ 587 0000 8278     		ldrb	r2, [r0, #2]	@ zero_extendqisi2
+ 588 0002 012A     		cmp	r2, #1
+ 589 0004 05D0     		beq	.L144
+ 590 0006 022A     		cmp	r2, #2
+ 591 0008 01D0     		beq	.L145
+ 592 000a 0120     		movs	r0, #1
+ 593 000c 7047     		bx	lr
+ 594              	.L145:
+ 595 000e FFF7FEBF 		b	USBH_CtlReq.part.0
+ 596              	.L144:
+ 597 0012 30B4     		push	{r4, r5}
+ 598 0014 0346     		mov	r3, r0
+ 599 0016 4FF4A065 		mov	r5, #1280
+ 600 001a 0020     		movs	r0, #0
+ 601 001c 0224     		movs	r4, #2
+ 602 001e 1D82     		strh	r5, [r3, #16]	@ movhi
+ 603 0020 9860     		str	r0, [r3, #8]
+ 604 0022 9881     		strh	r0, [r3, #12]	@ movhi
+ 605 0024 5861     		str	r0, [r3, #20]
+ 606 0026 9C70     		strb	r4, [r3, #2]
+ 607 0028 0120     		movs	r0, #1
+ 608 002a 5982     		strh	r1, [r3, #18]	@ movhi
+ 609 002c 1A76     		strb	r2, [r3, #24]
+ 610 002e 30BC     		pop	{r4, r5}
+ 611 0030 7047     		bx	lr
+ 613 0032 00BF     		.section	.text.USBH_SetCfg,"ax",%progbits
+ 614              		.align	1
+ 615              		.p2align 2,,3
+ 616              		.global	USBH_SetCfg
+ 617              		.syntax unified
+ 618              		.thumb
+ 619              		.thumb_func
+ 620              		.fpu fpv4-sp-d16
+ 622              	USBH_SetCfg:
+ 623              		@ args = 0, pretend = 0, frame = 0
+ 624              		@ frame_needed = 0, uses_anonymous_args = 0
+ 625              		@ link register save eliminated.
+ 626 0000 8278     		ldrb	r2, [r0, #2]	@ zero_extendqisi2
+ 627 0002 012A     		cmp	r2, #1
+ 628 0004 05D0     		beq	.L154
+ 629 0006 022A     		cmp	r2, #2
+ 630 0008 01D0     		beq	.L155
+ 631 000a 0120     		movs	r0, #1
+ 632 000c 7047     		bx	lr
+ 633              	.L155:
+ 634 000e FFF7FEBF 		b	USBH_CtlReq.part.0
+ 635              	.L154:
+ 636 0012 30B4     		push	{r4, r5}
+ 637 0014 0346     		mov	r3, r0
+ 638 0016 4FF41065 		mov	r5, #2304
+ 639 001a 0020     		movs	r0, #0
+ 640 001c 0224     		movs	r4, #2
+ARM GAS  D:\Programs\cygwin64\tmp\ccTIksN0.s 			page 12
+
+
+ 641 001e 1D82     		strh	r5, [r3, #16]	@ movhi
+ 642 0020 9860     		str	r0, [r3, #8]
+ 643 0022 9881     		strh	r0, [r3, #12]	@ movhi
+ 644 0024 5861     		str	r0, [r3, #20]
+ 645 0026 9C70     		strb	r4, [r3, #2]
+ 646 0028 0120     		movs	r0, #1
+ 647 002a 5982     		strh	r1, [r3, #18]	@ movhi
+ 648 002c 1A76     		strb	r2, [r3, #24]
+ 649 002e 30BC     		pop	{r4, r5}
+ 650 0030 7047     		bx	lr
+ 652 0032 00BF     		.section	.text.USBH_SetInterface,"ax",%progbits
+ 653              		.align	1
+ 654              		.p2align 2,,3
+ 655              		.global	USBH_SetInterface
+ 656              		.syntax unified
+ 657              		.thumb
+ 658              		.thumb_func
+ 659              		.fpu fpv4-sp-d16
+ 661              	USBH_SetInterface:
+ 662              		@ args = 0, pretend = 0, frame = 0
+ 663              		@ frame_needed = 0, uses_anonymous_args = 0
+ 664              		@ link register save eliminated.
+ 665 0000 30B4     		push	{r4, r5}
+ 666 0002 8478     		ldrb	r4, [r0, #2]	@ zero_extendqisi2
+ 667 0004 012C     		cmp	r4, #1
+ 668 0006 07D0     		beq	.L161
+ 669 0008 022C     		cmp	r4, #2
+ 670 000a 02D0     		beq	.L162
+ 671 000c 0120     		movs	r0, #1
+ 672 000e 30BC     		pop	{r4, r5}
+ 673 0010 7047     		bx	lr
+ 674              	.L162:
+ 675 0012 30BC     		pop	{r4, r5}
+ 676 0014 FFF7FEBF 		b	USBH_CtlReq.part.0
+ 677              	.L161:
+ 678 0018 0346     		mov	r3, r0
+ 679 001a 40F60135 		movw	r5, #2817
+ 680 001e 0020     		movs	r0, #0
+ 681 0020 5A82     		strh	r2, [r3, #18]	@ movhi
+ 682 0022 0222     		movs	r2, #2
+ 683 0024 1C76     		strb	r4, [r3, #24]
+ 684 0026 1D82     		strh	r5, [r3, #16]	@ movhi
+ 685 0028 D882     		strh	r0, [r3, #22]	@ movhi
+ 686 002a 9860     		str	r0, [r3, #8]
+ 687 002c 9881     		strh	r0, [r3, #12]	@ movhi
+ 688 002e 9982     		strh	r1, [r3, #20]	@ movhi
+ 689 0030 0120     		movs	r0, #1
+ 690 0032 9A70     		strb	r2, [r3, #2]
+ 691 0034 30BC     		pop	{r4, r5}
+ 692 0036 7047     		bx	lr
+ 694              		.section	.text.USBH_ClrFeature,"ax",%progbits
+ 695              		.align	1
+ 696              		.p2align 2,,3
+ 697              		.global	USBH_ClrFeature
+ 698              		.syntax unified
+ 699              		.thumb
+ 700              		.thumb_func
+ARM GAS  D:\Programs\cygwin64\tmp\ccTIksN0.s 			page 13
+
+
+ 701              		.fpu fpv4-sp-d16
+ 703              	USBH_ClrFeature:
+ 704              		@ args = 0, pretend = 0, frame = 0
+ 705              		@ frame_needed = 0, uses_anonymous_args = 0
+ 706              		@ link register save eliminated.
+ 707 0000 8278     		ldrb	r2, [r0, #2]	@ zero_extendqisi2
+ 708 0002 012A     		cmp	r2, #1
+ 709 0004 05D0     		beq	.L171
+ 710 0006 022A     		cmp	r2, #2
+ 711 0008 01D0     		beq	.L172
+ 712 000a 0120     		movs	r0, #1
+ 713 000c 7047     		bx	lr
+ 714              	.L172:
+ 715 000e FFF7FEBF 		b	USBH_CtlReq.part.0
+ 716              	.L171:
+ 717 0012 30B4     		push	{r4, r5}
+ 718 0014 0346     		mov	r3, r0
+ 719 0016 4FF48175 		mov	r5, #258
+ 720 001a 0020     		movs	r0, #0
+ 721 001c 0224     		movs	r4, #2
+ 722 001e 1D61     		str	r5, [r3, #16]
+ 723 0020 D882     		strh	r0, [r3, #22]	@ movhi
+ 724 0022 9860     		str	r0, [r3, #8]
+ 725 0024 9881     		strh	r0, [r3, #12]	@ movhi
+ 726 0026 9C70     		strb	r4, [r3, #2]
+ 727 0028 0120     		movs	r0, #1
+ 728 002a 9982     		strh	r1, [r3, #20]	@ movhi
+ 729 002c 1A76     		strb	r2, [r3, #24]
+ 730 002e 30BC     		pop	{r4, r5}
+ 731 0030 7047     		bx	lr
+ 733 0032 00BF     		.section	.text.USBH_GetNextDesc,"ax",%progbits
+ 734              		.align	1
+ 735              		.p2align 2,,3
+ 736              		.global	USBH_GetNextDesc
+ 737              		.syntax unified
+ 738              		.thumb
+ 739              		.thumb_func
+ 740              		.fpu fpv4-sp-d16
+ 742              	USBH_GetNextDesc:
+ 743              		@ args = 0, pretend = 0, frame = 0
+ 744              		@ frame_needed = 0, uses_anonymous_args = 0
+ 745              		@ link register save eliminated.
+ 746 0000 0278     		ldrb	r2, [r0]	@ zero_extendqisi2
+ 747 0002 0B88     		ldrh	r3, [r1]
+ 748 0004 1344     		add	r3, r3, r2
+ 749 0006 1044     		add	r0, r0, r2
+ 750 0008 0B80     		strh	r3, [r1]	@ movhi
+ 751 000a 7047     		bx	lr
+ 753              		.section	.text.USBH_CtlReq,"ax",%progbits
+ 754              		.align	1
+ 755              		.p2align 2,,3
+ 756              		.global	USBH_CtlReq
+ 757              		.syntax unified
+ 758              		.thumb
+ 759              		.thumb_func
+ 760              		.fpu fpv4-sp-d16
+ 762              	USBH_CtlReq:
+ARM GAS  D:\Programs\cygwin64\tmp\ccTIksN0.s 			page 14
+
+
+ 763              		@ args = 0, pretend = 0, frame = 0
+ 764              		@ frame_needed = 0, uses_anonymous_args = 0
+ 765 0000 30B5     		push	{r4, r5, lr}
+ 766 0002 8378     		ldrb	r3, [r0, #2]	@ zero_extendqisi2
+ 767 0004 012B     		cmp	r3, #1
+ 768 0006 83B0     		sub	sp, sp, #12
+ 769 0008 19D0     		beq	.L175
+ 770 000a 022B     		cmp	r3, #2
+ 771 000c 13D1     		bne	.L243
+ 772 000e 037E     		ldrb	r3, [r0, #24]	@ zero_extendqisi2
+ 773 0010 013B     		subs	r3, r3, #1
+ 774 0012 0546     		mov	r5, r0
+ 775 0014 0A2B     		cmp	r3, #10
+ 776 0016 0ED8     		bhi	.L243
+ 777 0018 DFE803F0 		tbb	[pc, r3]
+ 778              	.L179:
+ 779 001c 06       		.byte	(.L189-.L179)/2
+ 780 001d 8B       		.byte	(.L188-.L179)/2
+ 781 001e 7F       		.byte	(.L187-.L179)/2
+ 782 001f 77       		.byte	(.L186-.L179)/2
+ 783 0020 69       		.byte	(.L185-.L179)/2
+ 784 0021 58       		.byte	(.L184-.L179)/2
+ 785 0022 4C       		.byte	(.L183-.L179)/2
+ 786 0023 41       		.byte	(.L182-.L179)/2
+ 787 0024 33       		.byte	(.L181-.L179)/2
+ 788 0025 26       		.byte	(.L180-.L179)/2
+ 789 0026 19       		.byte	(.L178-.L179)/2
+ 790 0027 00       		.p2align 1
+ 791              	.L189:
+ 792 0028 4279     		ldrb	r2, [r0, #5]	@ zero_extendqisi2
+ 793 002a 00F11001 		add	r1, r0, #16
+ 794 002e FFF7FEFF 		bl	USBH_CtlSendSetup
+ 795 0032 0223     		movs	r3, #2
+ 796 0034 2B76     		strb	r3, [r5, #24]
+ 797              	.L243:
+ 798 0036 0123     		movs	r3, #1
+ 799              	.L238:
+ 800 0038 1846     		mov	r0, r3
+ 801 003a 03B0     		add	sp, sp, #12
+ 802              		@ sp needed
+ 803 003c 30BD     		pop	{r4, r5, pc}
+ 804              	.L175:
+ 805 003e 0224     		movs	r4, #2
+ 806 0040 8160     		str	r1, [r0, #8]
+ 807 0042 8281     		strh	r2, [r0, #12]	@ movhi
+ 808 0044 0376     		strb	r3, [r0, #24]
+ 809 0046 8470     		strb	r4, [r0, #2]
+ 810 0048 1846     		mov	r0, r3
+ 811 004a 03B0     		add	sp, sp, #12
+ 812              		@ sp needed
+ 813 004c 30BD     		pop	{r4, r5, pc}
+ 814              	.L178:
+ 815 004e 437E     		ldrb	r3, [r0, #25]	@ zero_extendqisi2
+ 816 0050 0133     		adds	r3, r3, #1
+ 817 0052 DBB2     		uxtb	r3, r3
+ 818 0054 022B     		cmp	r3, #2
+ 819 0056 4376     		strb	r3, [r0, #25]
+ARM GAS  D:\Programs\cygwin64\tmp\ccTIksN0.s 			page 15
+
+
+ 820 0058 00F28780 		bhi	.L201
+ 821 005c FFF7FEFF 		bl	USBH_LL_Stop
+ 822 0060 0123     		movs	r3, #1
+ 823 0062 2B76     		strb	r3, [r5, #24]
+ 824 0064 AB70     		strb	r3, [r5, #2]
+ 825 0066 E7E7     		b	.L238
+ 826              	.L180:
+ 827 0068 4179     		ldrb	r1, [r0, #5]	@ zero_extendqisi2
+ 828 006a FFF7FEFF 		bl	USBH_LL_GetURBState
+ 829 006e 0128     		cmp	r0, #1
+ 830 0070 6ED0     		beq	.L200
+ 831 0072 0228     		cmp	r0, #2
+ 832 0074 75D0     		beq	.L195
+ 833              	.L190:
+ 834 0076 0428     		cmp	r0, #4
+ 835 0078 DDD1     		bne	.L243
+ 836              	.L194:
+ 837 007a 0B23     		movs	r3, #11
+ 838 007c 2B76     		strb	r3, [r5, #24]
+ 839 007e 0123     		movs	r3, #1
+ 840 0080 DAE7     		b	.L238
+ 841              	.L181:
+ 842 0082 0124     		movs	r4, #1
+ 843 0084 0022     		movs	r2, #0
+ 844 0086 0094     		str	r4, [sp]
+ 845 0088 1146     		mov	r1, r2
+ 846 008a 4379     		ldrb	r3, [r0, #5]	@ zero_extendqisi2
+ 847 008c FFF7FEFF 		bl	USBH_CtlSendData
+ 848 0090 D5F8B832 		ldr	r3, [r5, #696]
+ 849 0094 EB81     		strh	r3, [r5, #14]	@ movhi
+ 850 0096 0A22     		movs	r2, #10
+ 851 0098 2346     		mov	r3, r4
+ 852 009a 2A76     		strb	r2, [r5, #24]
+ 853 009c CCE7     		b	.L238
+ 854              	.L182:
+ 855 009e 0179     		ldrb	r1, [r0, #4]	@ zero_extendqisi2
+ 856 00a0 FFF7FEFF 		bl	USBH_LL_GetURBState
+ 857 00a4 0128     		cmp	r0, #1
+ 858 00a6 53D0     		beq	.L200
+ 859 00a8 0428     		cmp	r0, #4
+ 860 00aa E6D0     		beq	.L194
+ 861 00ac 0528     		cmp	r0, #5
+ 862 00ae C2D1     		bne	.L243
+ 863              	.L202:
+ 864 00b0 0323     		movs	r3, #3
+ 865 00b2 C1E7     		b	.L238
+ 866              	.L183:
+ 867 00b4 0022     		movs	r2, #0
+ 868 00b6 0379     		ldrb	r3, [r0, #4]	@ zero_extendqisi2
+ 869 00b8 1146     		mov	r1, r2
+ 870 00ba FFF7FEFF 		bl	USBH_CtlReceiveData
+ 871 00be D5F8B832 		ldr	r3, [r5, #696]
+ 872 00c2 EB81     		strh	r3, [r5, #14]	@ movhi
+ 873 00c4 0823     		movs	r3, #8
+ 874 00c6 2B76     		strb	r3, [r5, #24]
+ 875 00c8 0123     		movs	r3, #1
+ 876 00ca B5E7     		b	.L238
+ARM GAS  D:\Programs\cygwin64\tmp\ccTIksN0.s 			page 16
+
+
+ 877              	.L184:
+ 878 00cc 4179     		ldrb	r1, [r0, #5]	@ zero_extendqisi2
+ 879 00ce FFF7FEFF 		bl	USBH_LL_GetURBState
+ 880 00d2 0128     		cmp	r0, #1
+ 881 00d4 50D0     		beq	.L193
+ 882 00d6 0528     		cmp	r0, #5
+ 883 00d8 52D0     		beq	.L244
+ 884 00da 0228     		cmp	r0, #2
+ 885 00dc 34D0     		beq	.L192
+ 886 00de 0428     		cmp	r0, #4
+ 887 00e0 A9D1     		bne	.L243
+ 888 00e2 0B23     		movs	r3, #11
+ 889 00e4 2B76     		strb	r3, [r5, #24]
+ 890              	.L199:
+ 891 00e6 0123     		movs	r3, #1
+ 892 00e8 AB70     		strb	r3, [r5, #2]
+ 893 00ea 0223     		movs	r3, #2
+ 894 00ec A4E7     		b	.L238
+ 895              	.L185:
+ 896 00ee 0124     		movs	r4, #1
+ 897 00f0 0094     		str	r4, [sp]
+ 898 00f2 4379     		ldrb	r3, [r0, #5]	@ zero_extendqisi2
+ 899 00f4 8289     		ldrh	r2, [r0, #12]
+ 900 00f6 8168     		ldr	r1, [r0, #8]
+ 901 00f8 FFF7FEFF 		bl	USBH_CtlSendData
+ 902 00fc D5F8B832 		ldr	r3, [r5, #696]
+ 903 0100 EB81     		strh	r3, [r5, #14]	@ movhi
+ 904 0102 0622     		movs	r2, #6
+ 905 0104 2346     		mov	r3, r4
+ 906 0106 2A76     		strb	r2, [r5, #24]
+ 907 0108 96E7     		b	.L238
+ 908              	.L186:
+ 909 010a 0179     		ldrb	r1, [r0, #4]	@ zero_extendqisi2
+ 910 010c FFF7FEFF 		bl	USBH_LL_GetURBState
+ 911 0110 0128     		cmp	r0, #1
+ 912 0112 26D0     		beq	.L195
+ 913 0114 0528     		cmp	r0, #5
+ 914 0116 AED1     		bne	.L190
+ 915 0118 CAE7     		b	.L202
+ 916              	.L187:
+ 917 011a D0F8B832 		ldr	r3, [r0, #696]
+ 918 011e C381     		strh	r3, [r0, #14]	@ movhi
+ 919 0120 8289     		ldrh	r2, [r0, #12]
+ 920 0122 0379     		ldrb	r3, [r0, #4]	@ zero_extendqisi2
+ 921 0124 8168     		ldr	r1, [r0, #8]
+ 922 0126 FFF7FEFF 		bl	USBH_CtlReceiveData
+ 923 012a 0423     		movs	r3, #4
+ 924 012c 2B76     		strb	r3, [r5, #24]
+ 925 012e 0123     		movs	r3, #1
+ 926 0130 82E7     		b	.L238
+ 927              	.L188:
+ 928 0132 4179     		ldrb	r1, [r0, #5]	@ zero_extendqisi2
+ 929 0134 FFF7FEFF 		bl	USBH_LL_GetURBState
+ 930 0138 0128     		cmp	r0, #1
+ 931 013a 9CD1     		bne	.L190
+ 932 013c EB8A     		ldrh	r3, [r5, #22]
+ 933 013e 95F91020 		ldrsb	r2, [r5, #16]
+ARM GAS  D:\Programs\cygwin64\tmp\ccTIksN0.s 			page 17
+
+
+ 934 0142 63B1     		cbz	r3, .L191
+ 935 0144 002A     		cmp	r2, #0
+ 936 0146 1FDB     		blt	.L245
+ 937              	.L192:
+ 938 0148 0523     		movs	r3, #5
+ 939 014a 2B76     		strb	r3, [r5, #24]
+ 940 014c 0123     		movs	r3, #1
+ 941 014e 73E7     		b	.L238
+ 942              	.L200:
+ 943 0150 0023     		movs	r3, #0
+ 944 0152 0122     		movs	r2, #1
+ 945 0154 1846     		mov	r0, r3
+ 946 0156 AA70     		strb	r2, [r5, #2]
+ 947 0158 2B76     		strb	r3, [r5, #24]
+ 948 015a 03B0     		add	sp, sp, #12
+ 949              		@ sp needed
+ 950 015c 30BD     		pop	{r4, r5, pc}
+ 951              	.L191:
+ 952 015e 002A     		cmp	r2, #0
+ 953 0160 0ADA     		bge	.L193
+ 954              	.L195:
+ 955 0162 0923     		movs	r3, #9
+ 956 0164 2B76     		strb	r3, [r5, #24]
+ 957 0166 0123     		movs	r3, #1
+ 958 0168 66E7     		b	.L238
+ 959              	.L201:
+ 960 016a D0F8C432 		ldr	r3, [r0, #708]
+ 961 016e 0621     		movs	r1, #6
+ 962 0170 9847     		blx	r3
+ 963 0172 0023     		movs	r3, #0
+ 964 0174 6B76     		strb	r3, [r5, #25]
+ 965 0176 B6E7     		b	.L199
+ 966              	.L193:
+ 967 0178 0723     		movs	r3, #7
+ 968 017a 2B76     		strb	r3, [r5, #24]
+ 969 017c 0123     		movs	r3, #1
+ 970 017e 5BE7     		b	.L238
+ 971              	.L244:
+ 972 0180 0C23     		movs	r3, #12
+ 973 0182 2B76     		strb	r3, [r5, #24]
+ 974 0184 0323     		movs	r3, #3
+ 975 0186 57E7     		b	.L238
+ 976              	.L245:
+ 977 0188 0322     		movs	r2, #3
+ 978 018a 0346     		mov	r3, r0
+ 979 018c 2A76     		strb	r2, [r5, #24]
+ 980 018e 53E7     		b	.L238
+ 982              		.ident	"GCC: (GNU Tools for Arm Embedded Processors 8-2018-q4-major) 8.2.1 20181213 (release) [gcc
+ARM GAS  D:\Programs\cygwin64\tmp\ccTIksN0.s 			page 18
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 usbh_ctlreq.c
+D:\Programs\cygwin64\tmp\ccTIksN0.s:16     .text.USBH_CtlReq.part.0:00000000 $t
+D:\Programs\cygwin64\tmp\ccTIksN0.s:24     .text.USBH_CtlReq.part.0:00000000 USBH_CtlReq.part.0
+D:\Programs\cygwin64\tmp\ccTIksN0.s:36     .text.USBH_CtlReq.part.0:00000012 $d
+D:\Programs\cygwin64\tmp\ccTIksN0.s:234    .text.USBH_Get_DevDesc:00000000 $t
+D:\Programs\cygwin64\tmp\ccTIksN0.s:242    .text.USBH_Get_DevDesc:00000000 USBH_Get_DevDesc
+D:\Programs\cygwin64\tmp\ccTIksN0.s:303    .text.USBH_Get_DevDesc:00000094 $d
+D:\Programs\cygwin64\tmp\ccTIksN0.s:306    .text.USBH_Get_CfgDesc:00000000 $t
+D:\Programs\cygwin64\tmp\ccTIksN0.s:314    .text.USBH_Get_CfgDesc:00000000 USBH_Get_CfgDesc
+D:\Programs\cygwin64\tmp\ccTIksN0.s:454    .text.USBH_Get_CfgDesc:00000158 $d
+D:\Programs\cygwin64\tmp\ccTIksN0.s:457    .text.USBH_Get_StringDesc:00000000 $t
+D:\Programs\cygwin64\tmp\ccTIksN0.s:465    .text.USBH_Get_StringDesc:00000000 USBH_Get_StringDesc
+D:\Programs\cygwin64\tmp\ccTIksN0.s:526    .text.USBH_GetDescriptor:00000000 $t
+D:\Programs\cygwin64\tmp\ccTIksN0.s:534    .text.USBH_GetDescriptor:00000000 USBH_GetDescriptor
+D:\Programs\cygwin64\tmp\ccTIksN0.s:575    .text.USBH_SetAddress:00000000 $t
+D:\Programs\cygwin64\tmp\ccTIksN0.s:583    .text.USBH_SetAddress:00000000 USBH_SetAddress
+D:\Programs\cygwin64\tmp\ccTIksN0.s:614    .text.USBH_SetCfg:00000000 $t
+D:\Programs\cygwin64\tmp\ccTIksN0.s:622    .text.USBH_SetCfg:00000000 USBH_SetCfg
+D:\Programs\cygwin64\tmp\ccTIksN0.s:653    .text.USBH_SetInterface:00000000 $t
+D:\Programs\cygwin64\tmp\ccTIksN0.s:661    .text.USBH_SetInterface:00000000 USBH_SetInterface
+D:\Programs\cygwin64\tmp\ccTIksN0.s:695    .text.USBH_ClrFeature:00000000 $t
+D:\Programs\cygwin64\tmp\ccTIksN0.s:703    .text.USBH_ClrFeature:00000000 USBH_ClrFeature
+D:\Programs\cygwin64\tmp\ccTIksN0.s:734    .text.USBH_GetNextDesc:00000000 $t
+D:\Programs\cygwin64\tmp\ccTIksN0.s:742    .text.USBH_GetNextDesc:00000000 USBH_GetNextDesc
+D:\Programs\cygwin64\tmp\ccTIksN0.s:754    .text.USBH_CtlReq:00000000 $t
+D:\Programs\cygwin64\tmp\ccTIksN0.s:762    .text.USBH_CtlReq:00000000 USBH_CtlReq
+D:\Programs\cygwin64\tmp\ccTIksN0.s:779    .text.USBH_CtlReq:0000001c $d
+D:\Programs\cygwin64\tmp\ccTIksN0.s:47     .text.USBH_CtlReq.part.0:0000001d $d
+D:\Programs\cygwin64\tmp\ccTIksN0.s:47     .text.USBH_CtlReq.part.0:0000001e $t
+D:\Programs\cygwin64\tmp\ccTIksN0.s:790    .text.USBH_CtlReq:00000027 $d
+D:\Programs\cygwin64\tmp\ccTIksN0.s:790    .text.USBH_CtlReq:00000028 $t
+
+UNDEFINED SYMBOLS
+USBH_CtlSendSetup
+USBH_LL_GetURBState
+USBH_CtlReceiveData
+USBH_CtlSendData
+USBH_LL_Stop

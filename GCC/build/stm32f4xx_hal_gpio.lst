@@ -1,0 +1,589 @@
+ARM GAS  D:\Programs\cygwin64\tmp\ccSIiFwx.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"stm32f4xx_hal_gpio.c"
+  14              		.text
+  15              		.section	.text.HAL_GPIO_Init,"ax",%progbits
+  16              		.align	1
+  17              		.p2align 2,,3
+  18              		.global	HAL_GPIO_Init
+  19              		.arch armv7e-m
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	HAL_GPIO_Init:
+  26              		@ args = 0, pretend = 0, frame = 8
+  27              		@ frame_needed = 0, uses_anonymous_args = 0
+  28 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+  29 0004 DFF864C2 		ldr	ip, .L43+24
+  30 0008 DFF86482 		ldr	r8, .L43+28
+  31 000c D1F800E0 		ldr	lr, [r1]
+  32 0010 83B0     		sub	sp, sp, #12
+  33 0012 0023     		movs	r3, #0
+  34 0014 03E0     		b	.L26
+  35              	.L3:
+  36 0016 0133     		adds	r3, r3, #1
+  37 0018 102B     		cmp	r3, #16
+  38 001a 00F0A480 		beq	.L33
+  39              	.L26:
+  40 001e 0122     		movs	r2, #1
+  41 0020 9A40     		lsls	r2, r2, r3
+  42 0022 0EEA0205 		and	r5, lr, r2
+  43 0026 AA42     		cmp	r2, r5
+  44 0028 F5D1     		bne	.L3
+  45 002a 4E68     		ldr	r6, [r1, #4]
+  46 002c 26F0100A 		bic	r10, r6, #16
+  47 0030 BAF1020F 		cmp	r10, #2
+  48 0034 00F09A80 		beq	.L34
+  49 0038 4FEA4309 		lsl	r9, r3, #1
+  50 003c 0324     		movs	r4, #3
+  51 003e D0F800B0 		ldr	fp, [r0]
+  52 0042 04FA09F4 		lsl	r4, r4, r9
+  53 0046 E443     		mvns	r4, r4
+  54 0048 06F00307 		and	r7, r6, #3
+  55 004c 04EA0B0B 		and	fp, r4, fp
+  56 0050 07FA09F7 		lsl	r7, r7, r9
+  57 0054 0AF1FF3A 		add	r10, r10, #-1
+  58 0058 47EA0B07 		orr	r7, r7, fp
+ARM GAS  D:\Programs\cygwin64\tmp\ccSIiFwx.s 			page 2
+
+
+  59 005c BAF1010F 		cmp	r10, #1
+  60 0060 0760     		str	r7, [r0]
+  61 0062 40F2A980 		bls	.L5
+  62              	.L6:
+  63 0066 C768     		ldr	r7, [r0, #12]
+  64 0068 8A68     		ldr	r2, [r1, #8]
+  65 006a 3C40     		ands	r4, r4, r7
+  66 006c 02FA09F2 		lsl	r2, r2, r9
+  67 0070 1443     		orrs	r4, r4, r2
+  68 0072 F200     		lsls	r2, r6, #3
+  69 0074 C460     		str	r4, [r0, #12]
+  70 0076 CED5     		bpl	.L3
+  71 0078 0022     		movs	r2, #0
+  72 007a 0192     		str	r2, [sp, #4]
+  73 007c D8F84420 		ldr	r2, [r8, #68]
+  74 0080 42F48042 		orr	r2, r2, #16384
+  75 0084 C8F84420 		str	r2, [r8, #68]
+  76 0088 D8F84420 		ldr	r2, [r8, #68]
+  77 008c 23F00304 		bic	r4, r3, #3
+  78 0090 04F18044 		add	r4, r4, #1073741824
+  79 0094 02F48042 		and	r2, r2, #16384
+  80 0098 04F59C34 		add	r4, r4, #79872
+  81 009c 0192     		str	r2, [sp, #4]
+  82 009e 03F00307 		and	r7, r3, #3
+  83 00a2 019A     		ldr	r2, [sp, #4]
+  84 00a4 D4F80890 		ldr	r9, [r4, #8]
+  85 00a8 BF00     		lsls	r7, r7, #2
+  86 00aa 0F22     		movs	r2, #15
+  87 00ac BA40     		lsls	r2, r2, r7
+  88 00ae 29EA020A 		bic	r10, r9, r2
+  89 00b2 684A     		ldr	r2, .L43
+  90 00b4 9042     		cmp	r0, r2
+  91 00b6 2ED0     		beq	.L8
+  92 00b8 02F58062 		add	r2, r2, #1024
+  93 00bc 9042     		cmp	r0, r2
+  94 00be 00F09080 		beq	.L35
+  95 00c2 654A     		ldr	r2, .L43+4
+  96 00c4 9042     		cmp	r0, r2
+  97 00c6 00F09380 		beq	.L36
+  98 00ca 644A     		ldr	r2, .L43+8
+  99 00cc 9042     		cmp	r0, r2
+ 100 00ce 00F09680 		beq	.L37
+ 101 00d2 634A     		ldr	r2, .L43+12
+ 102 00d4 9042     		cmp	r0, r2
+ 103 00d6 00F09980 		beq	.L38
+ 104 00da 624A     		ldr	r2, .L43+16
+ 105 00dc 9042     		cmp	r0, r2
+ 106 00de 00F0A380 		beq	.L39
+ 107 00e2 614A     		ldr	r2, .L43+20
+ 108 00e4 9042     		cmp	r0, r2
+ 109 00e6 00F0A680 		beq	.L40
+ 110 00ea DFF88891 		ldr	r9, .L43+32
+ 111 00ee 4845     		cmp	r0, r9
+ 112 00f0 00F09380 		beq	.L41
+ 113 00f4 DFF88091 		ldr	r9, .L43+36
+ 114 00f8 4845     		cmp	r0, r9
+ 115 00fa 00F0A380 		beq	.L42
+ARM GAS  D:\Programs\cygwin64\tmp\ccSIiFwx.s 			page 3
+
+
+ 116 00fe DFF87C91 		ldr	r9, .L43+40
+ 117 0102 4845     		cmp	r0, r9
+ 118 0104 0CBF     		ite	eq
+ 119 0106 4FF00909 		moveq	r9, #9
+ 120 010a 4FF00A09 		movne	r9, #10
+ 121 010e 09FA07F7 		lsl	r7, r9, r7
+ 122 0112 4AEA070A 		orr	r10, r10, r7
+ 123              	.L8:
+ 124 0116 C4F808A0 		str	r10, [r4, #8]
+ 125 011a DCF80020 		ldr	r2, [ip]
+ 126 011e EC43     		mvns	r4, r5
+ 127 0120 F703     		lsls	r7, r6, #15
+ 128 0122 54BF     		ite	pl
+ 129 0124 2240     		andpl	r2, r2, r4
+ 130 0126 2A43     		orrmi	r2, r2, r5
+ 131 0128 CCF80020 		str	r2, [ip]
+ 132 012c DCF80420 		ldr	r2, [ip, #4]
+ 133 0130 B703     		lsls	r7, r6, #14
+ 134 0132 54BF     		ite	pl
+ 135 0134 2240     		andpl	r2, r2, r4
+ 136 0136 2A43     		orrmi	r2, r2, r5
+ 137 0138 CCF80420 		str	r2, [ip, #4]
+ 138 013c DCF80820 		ldr	r2, [ip, #8]
+ 139 0140 F702     		lsls	r7, r6, #11
+ 140 0142 54BF     		ite	pl
+ 141 0144 2240     		andpl	r2, r2, r4
+ 142 0146 2A43     		orrmi	r2, r2, r5
+ 143 0148 CCF80820 		str	r2, [ip, #8]
+ 144 014c DCF80C20 		ldr	r2, [ip, #12]
+ 145 0150 B602     		lsls	r6, r6, #10
+ 146 0152 03F10103 		add	r3, r3, #1
+ 147 0156 54BF     		ite	pl
+ 148 0158 2240     		andpl	r2, r2, r4
+ 149 015a 2A43     		orrmi	r2, r2, r5
+ 150 015c 102B     		cmp	r3, #16
+ 151 015e CCF80C20 		str	r2, [ip, #12]
+ 152 0162 7FF45CAF 		bne	.L26
+ 153              	.L33:
+ 154 0166 03B0     		add	sp, sp, #12
+ 155              		@ sp needed
+ 156 0168 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 157              	.L34:
+ 158 016c 4FEAD309 		lsr	r9, r3, #3
+ 159 0170 00EB8909 		add	r9, r0, r9, lsl #2
+ 160 0174 03F00707 		and	r7, r3, #7
+ 161 0178 D9F82040 		ldr	r4, [r9, #32]
+ 162 017c BF00     		lsls	r7, r7, #2
+ 163 017e 4FF00F0B 		mov	fp, #15
+ 164 0182 0BFA07FB 		lsl	fp, fp, r7
+ 165 0186 24EA0B0A 		bic	r10, r4, fp
+ 166 018a 0C69     		ldr	r4, [r1, #16]
+ 167 018c BC40     		lsls	r4, r4, r7
+ 168 018e 44EA0A04 		orr	r4, r4, r10
+ 169 0192 C9F82040 		str	r4, [r9, #32]
+ 170 0196 4FEA4309 		lsl	r9, r3, #1
+ 171 019a 0324     		movs	r4, #3
+ 172 019c D0F800A0 		ldr	r10, [r0]
+ARM GAS  D:\Programs\cygwin64\tmp\ccSIiFwx.s 			page 4
+
+
+ 173 01a0 04FA09F4 		lsl	r4, r4, r9
+ 174 01a4 E443     		mvns	r4, r4
+ 175 01a6 06F00307 		and	r7, r6, #3
+ 176 01aa 04EA0A0A 		and	r10, r4, r10
+ 177 01ae 07FA09F7 		lsl	r7, r7, r9
+ 178 01b2 47EA0A07 		orr	r7, r7, r10
+ 179 01b6 0760     		str	r7, [r0]
+ 180              	.L5:
+ 181 01b8 8768     		ldr	r7, [r0, #8]
+ 182 01ba 07EA040A 		and	r10, r7, r4
+ 183 01be CF68     		ldr	r7, [r1, #12]
+ 184 01c0 07FA09F7 		lsl	r7, r7, r9
+ 185 01c4 47EA0A07 		orr	r7, r7, r10
+ 186 01c8 8760     		str	r7, [r0, #8]
+ 187 01ca D0F804A0 		ldr	r10, [r0, #4]
+ 188 01ce C6F30017 		ubfx	r7, r6, #4, #1
+ 189 01d2 2AEA020A 		bic	r10, r10, r2
+ 190 01d6 3A46     		mov	r2, r7
+ 191 01d8 9A40     		lsls	r2, r2, r3
+ 192 01da 42EA0A02 		orr	r2, r2, r10
+ 193 01de 4260     		str	r2, [r0, #4]
+ 194 01e0 41E7     		b	.L6
+ 195              	.L35:
+ 196 01e2 4FF00109 		mov	r9, #1
+ 197 01e6 09FA07F7 		lsl	r7, r9, r7
+ 198 01ea 4AEA070A 		orr	r10, r10, r7
+ 199 01ee 92E7     		b	.L8
+ 200              	.L36:
+ 201 01f0 4FF00209 		mov	r9, #2
+ 202 01f4 09FA07F7 		lsl	r7, r9, r7
+ 203 01f8 4AEA070A 		orr	r10, r10, r7
+ 204 01fc 8BE7     		b	.L8
+ 205              	.L37:
+ 206 01fe 4FF00309 		mov	r9, #3
+ 207 0202 09FA07F7 		lsl	r7, r9, r7
+ 208 0206 4AEA070A 		orr	r10, r10, r7
+ 209 020a 84E7     		b	.L8
+ 210              	.L38:
+ 211 020c 4FF00409 		mov	r9, #4
+ 212 0210 09FA07F7 		lsl	r7, r9, r7
+ 213 0214 4AEA070A 		orr	r10, r10, r7
+ 214 0218 7DE7     		b	.L8
+ 215              	.L41:
+ 216 021a 4FF00709 		mov	r9, #7
+ 217 021e 09FA07F7 		lsl	r7, r9, r7
+ 218 0222 4AEA070A 		orr	r10, r10, r7
+ 219 0226 76E7     		b	.L8
+ 220              	.L39:
+ 221 0228 4FF00509 		mov	r9, #5
+ 222 022c 09FA07F7 		lsl	r7, r9, r7
+ 223 0230 4AEA070A 		orr	r10, r10, r7
+ 224 0234 6FE7     		b	.L8
+ 225              	.L40:
+ 226 0236 4FF00609 		mov	r9, #6
+ 227 023a 09FA07F7 		lsl	r7, r9, r7
+ 228 023e 4AEA070A 		orr	r10, r10, r7
+ 229 0242 68E7     		b	.L8
+ARM GAS  D:\Programs\cygwin64\tmp\ccSIiFwx.s 			page 5
+
+
+ 230              	.L42:
+ 231 0244 4FF00809 		mov	r9, #8
+ 232 0248 09FA07F7 		lsl	r7, r9, r7
+ 233 024c 4AEA070A 		orr	r10, r10, r7
+ 234 0250 61E7     		b	.L8
+ 235              	.L44:
+ 236 0252 00BF     		.align	2
+ 237              	.L43:
+ 238 0254 00000240 		.word	1073872896
+ 239 0258 00080240 		.word	1073874944
+ 240 025c 000C0240 		.word	1073875968
+ 241 0260 00100240 		.word	1073876992
+ 242 0264 00140240 		.word	1073878016
+ 243 0268 00180240 		.word	1073879040
+ 244 026c 003C0140 		.word	1073822720
+ 245 0270 00380240 		.word	1073887232
+ 246 0274 001C0240 		.word	1073880064
+ 247 0278 00200240 		.word	1073881088
+ 248 027c 00240240 		.word	1073882112
+ 250              		.section	.text.HAL_GPIO_DeInit,"ax",%progbits
+ 251              		.align	1
+ 252              		.p2align 2,,3
+ 253              		.global	HAL_GPIO_DeInit
+ 254              		.syntax unified
+ 255              		.thumb
+ 256              		.thumb_func
+ 257              		.fpu fpv4-sp-d16
+ 259              	HAL_GPIO_DeInit:
+ 260              		@ args = 0, pretend = 0, frame = 0
+ 261              		@ frame_needed = 0, uses_anonymous_args = 0
+ 262 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 263 0004 0023     		movs	r3, #0
+ 264 0006 DFF85C81 		ldr	r8, .L71+28
+ 265 000a DFF85CE1 		ldr	lr, .L71+32
+ 266 000e DFF85C91 		ldr	r9, .L71+36
+ 267 0012 DFF85CA1 		ldr	r10, .L71+40
+ 268 0016 02E0     		b	.L58
+ 269              	.L46:
+ 270 0018 0133     		adds	r3, r3, #1
+ 271 001a 102B     		cmp	r3, #16
+ 272 001c 75D0     		beq	.L63
+ 273              	.L58:
+ 274 001e 0124     		movs	r4, #1
+ 275 0020 04FA03F5 		lsl	r5, r4, r3
+ 276 0024 05EA0106 		and	r6, r5, r1
+ 277 0028 B542     		cmp	r5, r6
+ 278 002a F5D1     		bne	.L46
+ 279 002c 23F00307 		bic	r7, r3, #3
+ 280 0030 07F18047 		add	r7, r7, #1073741824
+ 281 0034 07F59C37 		add	r7, r7, #79872
+ 282 0038 03F00302 		and	r2, r3, #3
+ 283 003c D7F808B0 		ldr	fp, [r7, #8]
+ 284 0040 9200     		lsls	r2, r2, #2
+ 285 0042 4FF00F0C 		mov	ip, #15
+ 286 0046 0CFA02FC 		lsl	ip, ip, r2
+ 287 004a 4045     		cmp	r0, r8
+ 288 004c 0CEA0B0B 		and	fp, ip, fp
+ARM GAS  D:\Programs\cygwin64\tmp\ccSIiFwx.s 			page 6
+
+
+ 289 0050 1DD0     		beq	.L59
+ 290 0052 4845     		cmp	r0, r9
+ 291 0054 5CD0     		beq	.L62
+ 292 0056 5045     		cmp	r0, r10
+ 293 0058 5DD0     		beq	.L64
+ 294 005a 3B4C     		ldr	r4, .L71
+ 295 005c A042     		cmp	r0, r4
+ 296 005e 5ED0     		beq	.L65
+ 297 0060 3A4C     		ldr	r4, .L71+4
+ 298 0062 A042     		cmp	r0, r4
+ 299 0064 5FD0     		beq	.L66
+ 300 0066 3A4C     		ldr	r4, .L71+8
+ 301 0068 A042     		cmp	r0, r4
+ 302 006a 60D0     		beq	.L67
+ 303 006c 394C     		ldr	r4, .L71+12
+ 304 006e A042     		cmp	r0, r4
+ 305 0070 4DD0     		beq	.L68
+ 306 0072 394C     		ldr	r4, .L71+16
+ 307 0074 A042     		cmp	r0, r4
+ 308 0076 5ED0     		beq	.L69
+ 309 0078 384C     		ldr	r4, .L71+20
+ 310 007a A042     		cmp	r0, r4
+ 311 007c 5FD0     		beq	.L70
+ 312 007e 384C     		ldr	r4, .L71+24
+ 313 0080 A042     		cmp	r0, r4
+ 314 0082 14BF     		ite	ne
+ 315 0084 0A24     		movne	r4, #10
+ 316 0086 0924     		moveq	r4, #9
+ 317 0088 04FA02F2 		lsl	r2, r4, r2
+ 318 008c 00E0     		b	.L47
+ 319              	.L59:
+ 320 008e 0022     		movs	r2, #0
+ 321              	.L47:
+ 322 0090 9345     		cmp	fp, r2
+ 323 0092 18D1     		bne	.L57
+ 324 0094 BA68     		ldr	r2, [r7, #8]
+ 325 0096 22EA0C02 		bic	r2, r2, ip
+ 326 009a BA60     		str	r2, [r7, #8]
+ 327 009c DEF80020 		ldr	r2, [lr]
+ 328 00a0 F643     		mvns	r6, r6
+ 329 00a2 3240     		ands	r2, r2, r6
+ 330 00a4 CEF80020 		str	r2, [lr]
+ 331 00a8 DEF80420 		ldr	r2, [lr, #4]
+ 332 00ac 3240     		ands	r2, r2, r6
+ 333 00ae CEF80420 		str	r2, [lr, #4]
+ 334 00b2 DEF80820 		ldr	r2, [lr, #8]
+ 335 00b6 3240     		ands	r2, r2, r6
+ 336 00b8 CEF80820 		str	r2, [lr, #8]
+ 337 00bc DEF80C20 		ldr	r2, [lr, #12]
+ 338 00c0 1640     		ands	r6, r6, r2
+ 339 00c2 CEF80C60 		str	r6, [lr, #12]
+ 340              	.L57:
+ 341 00c6 5C00     		lsls	r4, r3, #1
+ 342 00c8 0322     		movs	r2, #3
+ 343 00ca A240     		lsls	r2, r2, r4
+ 344 00cc 0468     		ldr	r4, [r0]
+ 345 00ce D243     		mvns	r2, r2
+ARM GAS  D:\Programs\cygwin64\tmp\ccSIiFwx.s 			page 7
+
+
+ 346 00d0 DE08     		lsrs	r6, r3, #3
+ 347 00d2 1440     		ands	r4, r4, r2
+ 348 00d4 00EB8606 		add	r6, r0, r6, lsl #2
+ 349 00d8 0460     		str	r4, [r0]
+ 350 00da 03F00704 		and	r4, r3, #7
+ 351 00de 376A     		ldr	r7, [r6, #32]
+ 352 00e0 A400     		lsls	r4, r4, #2
+ 353 00e2 4FF00F0C 		mov	ip, #15
+ 354 00e6 0CFA04F4 		lsl	r4, ip, r4
+ 355 00ea 27EA0404 		bic	r4, r7, r4
+ 356 00ee 3462     		str	r4, [r6, #32]
+ 357 00f0 8468     		ldr	r4, [r0, #8]
+ 358 00f2 1440     		ands	r4, r4, r2
+ 359 00f4 8460     		str	r4, [r0, #8]
+ 360 00f6 4468     		ldr	r4, [r0, #4]
+ 361 00f8 24EA0505 		bic	r5, r4, r5
+ 362 00fc 4560     		str	r5, [r0, #4]
+ 363 00fe C468     		ldr	r4, [r0, #12]
+ 364 0100 0133     		adds	r3, r3, #1
+ 365 0102 2240     		ands	r2, r2, r4
+ 366 0104 102B     		cmp	r3, #16
+ 367 0106 C260     		str	r2, [r0, #12]
+ 368 0108 89D1     		bne	.L58
+ 369              	.L63:
+ 370 010a BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 371              	.L68:
+ 372 010e 0624     		movs	r4, #6
+ 373              	.L62:
+ 374 0110 04FA02F2 		lsl	r2, r4, r2
+ 375 0114 BCE7     		b	.L47
+ 376              	.L64:
+ 377 0116 0224     		movs	r4, #2
+ 378 0118 04FA02F2 		lsl	r2, r4, r2
+ 379 011c B8E7     		b	.L47
+ 380              	.L65:
+ 381 011e 0324     		movs	r4, #3
+ 382 0120 04FA02F2 		lsl	r2, r4, r2
+ 383 0124 B4E7     		b	.L47
+ 384              	.L66:
+ 385 0126 0424     		movs	r4, #4
+ 386 0128 04FA02F2 		lsl	r2, r4, r2
+ 387 012c B0E7     		b	.L47
+ 388              	.L67:
+ 389 012e 0524     		movs	r4, #5
+ 390 0130 04FA02F2 		lsl	r2, r4, r2
+ 391 0134 ACE7     		b	.L47
+ 392              	.L69:
+ 393 0136 0724     		movs	r4, #7
+ 394 0138 04FA02F2 		lsl	r2, r4, r2
+ 395 013c A8E7     		b	.L47
+ 396              	.L70:
+ 397 013e 0824     		movs	r4, #8
+ 398 0140 04FA02F2 		lsl	r2, r4, r2
+ 399 0144 A4E7     		b	.L47
+ 400              	.L72:
+ 401 0146 00BF     		.align	2
+ 402              	.L71:
+ARM GAS  D:\Programs\cygwin64\tmp\ccSIiFwx.s 			page 8
+
+
+ 403 0148 000C0240 		.word	1073875968
+ 404 014c 00100240 		.word	1073876992
+ 405 0150 00140240 		.word	1073878016
+ 406 0154 00180240 		.word	1073879040
+ 407 0158 001C0240 		.word	1073880064
+ 408 015c 00200240 		.word	1073881088
+ 409 0160 00240240 		.word	1073882112
+ 410 0164 00000240 		.word	1073872896
+ 411 0168 003C0140 		.word	1073822720
+ 412 016c 00040240 		.word	1073873920
+ 413 0170 00080240 		.word	1073874944
+ 415              		.section	.text.HAL_GPIO_ReadPin,"ax",%progbits
+ 416              		.align	1
+ 417              		.p2align 2,,3
+ 418              		.global	HAL_GPIO_ReadPin
+ 419              		.syntax unified
+ 420              		.thumb
+ 421              		.thumb_func
+ 422              		.fpu fpv4-sp-d16
+ 424              	HAL_GPIO_ReadPin:
+ 425              		@ args = 0, pretend = 0, frame = 0
+ 426              		@ frame_needed = 0, uses_anonymous_args = 0
+ 427              		@ link register save eliminated.
+ 428 0000 0369     		ldr	r3, [r0, #16]
+ 429 0002 1942     		tst	r1, r3
+ 430 0004 14BF     		ite	ne
+ 431 0006 0120     		movne	r0, #1
+ 432 0008 0020     		moveq	r0, #0
+ 433 000a 7047     		bx	lr
+ 435              		.section	.text.HAL_GPIO_WritePin,"ax",%progbits
+ 436              		.align	1
+ 437              		.p2align 2,,3
+ 438              		.global	HAL_GPIO_WritePin
+ 439              		.syntax unified
+ 440              		.thumb
+ 441              		.thumb_func
+ 442              		.fpu fpv4-sp-d16
+ 444              	HAL_GPIO_WritePin:
+ 445              		@ args = 0, pretend = 0, frame = 0
+ 446              		@ frame_needed = 0, uses_anonymous_args = 0
+ 447              		@ link register save eliminated.
+ 448 0000 02B9     		cbnz	r2, .L77
+ 449 0002 0904     		lsls	r1, r1, #16
+ 450              	.L77:
+ 451 0004 8161     		str	r1, [r0, #24]
+ 452 0006 7047     		bx	lr
+ 454              		.section	.text.HAL_GPIO_TogglePin,"ax",%progbits
+ 455              		.align	1
+ 456              		.p2align 2,,3
+ 457              		.global	HAL_GPIO_TogglePin
+ 458              		.syntax unified
+ 459              		.thumb
+ 460              		.thumb_func
+ 461              		.fpu fpv4-sp-d16
+ 463              	HAL_GPIO_TogglePin:
+ 464              		@ args = 0, pretend = 0, frame = 0
+ 465              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  D:\Programs\cygwin64\tmp\ccSIiFwx.s 			page 9
+
+
+ 466              		@ link register save eliminated.
+ 467 0000 4369     		ldr	r3, [r0, #20]
+ 468 0002 31EA0303 		bics	r3, r1, r3
+ 469 0006 08BF     		it	eq
+ 470 0008 0904     		lsleq	r1, r1, #16
+ 471 000a 8161     		str	r1, [r0, #24]
+ 472 000c 7047     		bx	lr
+ 474 000e 00BF     		.section	.text.HAL_GPIO_LockPin,"ax",%progbits
+ 475              		.align	1
+ 476              		.p2align 2,,3
+ 477              		.global	HAL_GPIO_LockPin
+ 478              		.syntax unified
+ 479              		.thumb
+ 480              		.thumb_func
+ 481              		.fpu fpv4-sp-d16
+ 483              	HAL_GPIO_LockPin:
+ 484              		@ args = 0, pretend = 0, frame = 8
+ 485              		@ frame_needed = 0, uses_anonymous_args = 0
+ 486              		@ link register save eliminated.
+ 487 0000 82B0     		sub	sp, sp, #8
+ 488 0002 4FF48033 		mov	r3, #65536
+ 489 0006 0193     		str	r3, [sp, #4]
+ 490 0008 019B     		ldr	r3, [sp, #4]
+ 491 000a 0B43     		orrs	r3, r3, r1
+ 492 000c 0193     		str	r3, [sp, #4]
+ 493 000e 019B     		ldr	r3, [sp, #4]
+ 494 0010 C361     		str	r3, [r0, #28]
+ 495 0012 C161     		str	r1, [r0, #28]
+ 496 0014 019B     		ldr	r3, [sp, #4]
+ 497 0016 C361     		str	r3, [r0, #28]
+ 498 0018 C369     		ldr	r3, [r0, #28]
+ 499 001a 0193     		str	r3, [sp, #4]
+ 500 001c C069     		ldr	r0, [r0, #28]
+ 501 001e 80F48030 		eor	r0, r0, #65536
+ 502 0022 C0F30040 		ubfx	r0, r0, #16, #1
+ 503 0026 02B0     		add	sp, sp, #8
+ 504              		@ sp needed
+ 505 0028 7047     		bx	lr
+ 507 002a 00BF     		.section	.text.HAL_GPIO_EXTI_Callback,"ax",%progbits
+ 508              		.align	1
+ 509              		.p2align 2,,3
+ 510              		.weak	HAL_GPIO_EXTI_Callback
+ 511              		.syntax unified
+ 512              		.thumb
+ 513              		.thumb_func
+ 514              		.fpu fpv4-sp-d16
+ 516              	HAL_GPIO_EXTI_Callback:
+ 517              		@ args = 0, pretend = 0, frame = 0
+ 518              		@ frame_needed = 0, uses_anonymous_args = 0
+ 519              		@ link register save eliminated.
+ 520 0000 7047     		bx	lr
+ 522 0002 00BF     		.section	.text.HAL_GPIO_EXTI_IRQHandler,"ax",%progbits
+ 523              		.align	1
+ 524              		.p2align 2,,3
+ 525              		.global	HAL_GPIO_EXTI_IRQHandler
+ 526              		.syntax unified
+ 527              		.thumb
+ARM GAS  D:\Programs\cygwin64\tmp\ccSIiFwx.s 			page 10
+
+
+ 528              		.thumb_func
+ 529              		.fpu fpv4-sp-d16
+ 531              	HAL_GPIO_EXTI_IRQHandler:
+ 532              		@ args = 0, pretend = 0, frame = 0
+ 533              		@ frame_needed = 0, uses_anonymous_args = 0
+ 534 0000 044A     		ldr	r2, .L94
+ 535 0002 5169     		ldr	r1, [r2, #20]
+ 536 0004 0142     		tst	r1, r0
+ 537 0006 00D1     		bne	.L93
+ 538 0008 7047     		bx	lr
+ 539              	.L93:
+ 540 000a 08B5     		push	{r3, lr}
+ 541 000c 5061     		str	r0, [r2, #20]
+ 542 000e FFF7FEFF 		bl	HAL_GPIO_EXTI_Callback
+ 543 0012 08BD     		pop	{r3, pc}
+ 544              	.L95:
+ 545              		.align	2
+ 546              	.L94:
+ 547 0014 003C0140 		.word	1073822720
+ 549              		.ident	"GCC: (GNU Tools for Arm Embedded Processors 8-2018-q4-major) 8.2.1 20181213 (release) [gcc
+ARM GAS  D:\Programs\cygwin64\tmp\ccSIiFwx.s 			page 11
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f4xx_hal_gpio.c
+D:\Programs\cygwin64\tmp\ccSIiFwx.s:16     .text.HAL_GPIO_Init:00000000 $t
+D:\Programs\cygwin64\tmp\ccSIiFwx.s:25     .text.HAL_GPIO_Init:00000000 HAL_GPIO_Init
+D:\Programs\cygwin64\tmp\ccSIiFwx.s:238    .text.HAL_GPIO_Init:00000254 $d
+D:\Programs\cygwin64\tmp\ccSIiFwx.s:251    .text.HAL_GPIO_DeInit:00000000 $t
+D:\Programs\cygwin64\tmp\ccSIiFwx.s:259    .text.HAL_GPIO_DeInit:00000000 HAL_GPIO_DeInit
+D:\Programs\cygwin64\tmp\ccSIiFwx.s:403    .text.HAL_GPIO_DeInit:00000148 $d
+D:\Programs\cygwin64\tmp\ccSIiFwx.s:416    .text.HAL_GPIO_ReadPin:00000000 $t
+D:\Programs\cygwin64\tmp\ccSIiFwx.s:424    .text.HAL_GPIO_ReadPin:00000000 HAL_GPIO_ReadPin
+D:\Programs\cygwin64\tmp\ccSIiFwx.s:436    .text.HAL_GPIO_WritePin:00000000 $t
+D:\Programs\cygwin64\tmp\ccSIiFwx.s:444    .text.HAL_GPIO_WritePin:00000000 HAL_GPIO_WritePin
+D:\Programs\cygwin64\tmp\ccSIiFwx.s:455    .text.HAL_GPIO_TogglePin:00000000 $t
+D:\Programs\cygwin64\tmp\ccSIiFwx.s:463    .text.HAL_GPIO_TogglePin:00000000 HAL_GPIO_TogglePin
+D:\Programs\cygwin64\tmp\ccSIiFwx.s:475    .text.HAL_GPIO_LockPin:00000000 $t
+D:\Programs\cygwin64\tmp\ccSIiFwx.s:483    .text.HAL_GPIO_LockPin:00000000 HAL_GPIO_LockPin
+D:\Programs\cygwin64\tmp\ccSIiFwx.s:508    .text.HAL_GPIO_EXTI_Callback:00000000 $t
+D:\Programs\cygwin64\tmp\ccSIiFwx.s:516    .text.HAL_GPIO_EXTI_Callback:00000000 HAL_GPIO_EXTI_Callback
+D:\Programs\cygwin64\tmp\ccSIiFwx.s:523    .text.HAL_GPIO_EXTI_IRQHandler:00000000 $t
+D:\Programs\cygwin64\tmp\ccSIiFwx.s:531    .text.HAL_GPIO_EXTI_IRQHandler:00000000 HAL_GPIO_EXTI_IRQHandler
+D:\Programs\cygwin64\tmp\ccSIiFwx.s:547    .text.HAL_GPIO_EXTI_IRQHandler:00000014 $d
+
+NO UNDEFINED SYMBOLS

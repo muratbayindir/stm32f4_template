@@ -1,0 +1,862 @@
+ARM GAS  D:\Programs\cygwin64\tmp\cc3boO9j.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"usbh_core.c"
+  14              		.text
+  15              		.section	.text.USBH_Init,"ax",%progbits
+  16              		.align	1
+  17              		.p2align 2,,3
+  18              		.global	USBH_Init
+  19              		.arch armv7e-m
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	USBH_Init:
+  26              		@ args = 0, pretend = 0, frame = 0
+  27              		@ frame_needed = 0, uses_anonymous_args = 0
+  28 0000 48B3     		cbz	r0, .L4
+  29 0002 70B5     		push	{r4, r5, r6, lr}
+  30 0004 0025     		movs	r5, #0
+  31 0006 0446     		mov	r4, r0
+  32 0008 80F8BC22 		strb	r2, [r0, #700]
+  33 000c C0E99D55 		strd	r5, r5, [r0, #628]
+  34 0010 3C22     		movs	r2, #60
+  35 0012 0E46     		mov	r6, r1
+  36 0014 00F51F70 		add	r0, r0, #636
+  37 0018 2946     		mov	r1, r5
+  38 001a FFF7FEFF 		bl	memset
+  39 001e 2946     		mov	r1, r5
+  40 0020 4FF40072 		mov	r2, #512
+  41 0024 04F11C00 		add	r0, r4, #28
+  42 0028 FFF7FEFF 		bl	memset
+  43 002c 0123     		movs	r3, #1
+  44 002e 4021     		movs	r1, #64
+  45 0030 4FF48072 		mov	r2, #256
+  46 0034 2570     		strb	r5, [r4]
+  47 0036 6570     		strb	r5, [r4, #1]
+  48 0038 C4F8B852 		str	r5, [r4, #696]
+  49 003c A370     		strb	r3, [r4, #2]
+  50 003e 2383     		strh	r3, [r4, #24]	@ movhi
+  51 0040 A171     		strb	r1, [r4, #6]
+  52 0042 A4F81C22 		strh	r2, [r4, #540]	@ movhi
+  53 0046 0EB1     		cbz	r6, .L3
+  54 0048 C4F8C462 		str	r6, [r4, #708]
+  55              	.L3:
+  56 004c 2046     		mov	r0, r4
+  57 004e FFF7FEFF 		bl	USBH_LL_Init
+  58 0052 0020     		movs	r0, #0
+ARM GAS  D:\Programs\cygwin64\tmp\cc3boO9j.s 			page 2
+
+
+  59 0054 70BD     		pop	{r4, r5, r6, pc}
+  60              	.L4:
+  61 0056 0220     		movs	r0, #2
+  62 0058 7047     		bx	lr
+  64 005a 00BF     		.section	.text.USBH_DeInit,"ax",%progbits
+  65              		.align	1
+  66              		.p2align 2,,3
+  67              		.global	USBH_DeInit
+  68              		.syntax unified
+  69              		.thumb
+  70              		.thumb_func
+  71              		.fpu fpv4-sp-d16
+  73              	USBH_DeInit:
+  74              		@ args = 0, pretend = 0, frame = 0
+  75              		@ frame_needed = 0, uses_anonymous_args = 0
+  76 0000 38B5     		push	{r3, r4, r5, lr}
+  77 0002 3C22     		movs	r2, #60
+  78 0004 0446     		mov	r4, r0
+  79 0006 0021     		movs	r1, #0
+  80 0008 00F51F70 		add	r0, r0, #636
+  81 000c FFF7FEFF 		bl	memset
+  82 0010 4FF40072 		mov	r2, #512
+  83 0014 0021     		movs	r1, #0
+  84 0016 04F11C00 		add	r0, r4, #28
+  85 001a FFF7FEFF 		bl	memset
+  86 001e D4F8C012 		ldr	r1, [r4, #704]
+  87 0022 0023     		movs	r3, #0
+  88 0024 0122     		movs	r2, #1
+  89 0026 4025     		movs	r5, #64
+  90 0028 4FF48070 		mov	r0, #256
+  91 002c 2370     		strb	r3, [r4]
+  92 002e A571     		strb	r5, [r4, #6]
+  93 0030 A4F81C02 		strh	r0, [r4, #540]	@ movhi
+  94 0034 6370     		strb	r3, [r4, #1]
+  95 0036 C4F8B832 		str	r3, [r4, #696]
+  96 003a A270     		strb	r2, [r4, #2]
+  97 003c 2283     		strh	r2, [r4, #24]	@ movhi
+  98 003e 29B1     		cbz	r1, .L14
+  99 0040 D4F87422 		ldr	r2, [r4, #628]
+ 100 0044 2046     		mov	r0, r4
+ 101 0046 D361     		str	r3, [r2, #28]
+ 102 0048 FFF7FEFF 		bl	USBH_LL_Stop
+ 103              	.L14:
+ 104 004c 0020     		movs	r0, #0
+ 105 004e 38BD     		pop	{r3, r4, r5, pc}
+ 107              		.section	.text.USBH_RegisterClass,"ax",%progbits
+ 108              		.align	1
+ 109              		.p2align 2,,3
+ 110              		.global	USBH_RegisterClass
+ 111              		.syntax unified
+ 112              		.thumb
+ 113              		.thumb_func
+ 114              		.fpu fpv4-sp-d16
+ 116              	USBH_RegisterClass:
+ 117              		@ args = 0, pretend = 0, frame = 0
+ 118              		@ frame_needed = 0, uses_anonymous_args = 0
+ 119              		@ link register save eliminated.
+ARM GAS  D:\Programs\cygwin64\tmp\cc3boO9j.s 			page 3
+
+
+ 120 0000 49B1     		cbz	r1, .L22
+ 121 0002 D0F87832 		ldr	r3, [r0, #632]
+ 122 0006 33B9     		cbnz	r3, .L22
+ 123 0008 0122     		movs	r2, #1
+ 124 000a C0F87012 		str	r1, [r0, #624]
+ 125 000e C0F87822 		str	r2, [r0, #632]
+ 126 0012 1846     		mov	r0, r3
+ 127 0014 7047     		bx	lr
+ 128              	.L22:
+ 129 0016 0223     		movs	r3, #2
+ 130 0018 1846     		mov	r0, r3
+ 131 001a 7047     		bx	lr
+ 133              		.section	.text.USBH_SelectInterface,"ax",%progbits
+ 134              		.align	1
+ 135              		.p2align 2,,3
+ 136              		.global	USBH_SelectInterface
+ 137              		.syntax unified
+ 138              		.thumb
+ 139              		.thumb_func
+ 140              		.fpu fpv4-sp-d16
+ 142              	USBH_SelectInterface:
+ 143              		@ args = 0, pretend = 0, frame = 0
+ 144              		@ frame_needed = 0, uses_anonymous_args = 0
+ 145              		@ link register save eliminated.
+ 146 0000 90F83632 		ldrb	r3, [r0, #566]	@ zero_extendqisi2
+ 147 0004 8B42     		cmp	r3, r1
+ 148 0006 86BF     		itte	hi
+ 149 0008 80F81F12 		strbhi	r1, [r0, #543]
+ 150 000c 0020     		movhi	r0, #0
+ 151 000e 0220     		movls	r0, #2
+ 152 0010 7047     		bx	lr
+ 154 0012 00BF     		.section	.text.USBH_GetActiveClass,"ax",%progbits
+ 155              		.align	1
+ 156              		.p2align 2,,3
+ 157              		.global	USBH_GetActiveClass
+ 158              		.syntax unified
+ 159              		.thumb
+ 160              		.thumb_func
+ 161              		.fpu fpv4-sp-d16
+ 163              	USBH_GetActiveClass:
+ 164              		@ args = 0, pretend = 0, frame = 0
+ 165              		@ frame_needed = 0, uses_anonymous_args = 0
+ 166              		@ link register save eliminated.
+ 167 0000 90F84102 		ldrb	r0, [r0, #577]	@ zero_extendqisi2
+ 168 0004 7047     		bx	lr
+ 170 0006 00BF     		.section	.text.USBH_FindInterface,"ax",%progbits
+ 171              		.align	1
+ 172              		.p2align 2,,3
+ 173              		.global	USBH_FindInterface
+ 174              		.syntax unified
+ 175              		.thumb
+ 176              		.thumb_func
+ 177              		.fpu fpv4-sp-d16
+ 179              	USBH_FindInterface:
+ 180              		@ args = 0, pretend = 0, frame = 0
+ 181              		@ frame_needed = 0, uses_anonymous_args = 0
+ 182              		@ link register save eliminated.
+ARM GAS  D:\Programs\cygwin64\tmp\cc3boO9j.s 			page 4
+
+
+ 183 0000 10B4     		push	{r4}
+ 184 0002 90F84142 		ldrb	r4, [r0, #577]	@ zero_extendqisi2
+ 185 0006 8C42     		cmp	r4, r1
+ 186 0008 09D0     		beq	.L34
+ 187 000a FF29     		cmp	r1, #255
+ 188 000c 07D0     		beq	.L34
+ 189 000e 90F85B42 		ldrb	r4, [r0, #603]	@ zero_extendqisi2
+ 190 0012 8C42     		cmp	r4, r1
+ 191 0014 0FD0     		beq	.L36
+ 192              	.L56:
+ 193 0016 FF20     		movs	r0, #255
+ 194              	.L53:
+ 195 0018 5DF8044B 		ldr	r4, [sp], #4
+ 196 001c 7047     		bx	lr
+ 197              	.L34:
+ 198 001e 90F84242 		ldrb	r4, [r0, #578]	@ zero_extendqisi2
+ 199 0022 9442     		cmp	r4, r2
+ 200 0024 15D0     		beq	.L33
+ 201 0026 FF2A     		cmp	r2, #255
+ 202 0028 13D0     		beq	.L33
+ 203              	.L32:
+ 204 002a 90F85B42 		ldrb	r4, [r0, #603]	@ zero_extendqisi2
+ 205 002e 8C42     		cmp	r4, r1
+ 206 0030 01D0     		beq	.L36
+ 207 0032 FF29     		cmp	r1, #255
+ 208 0034 EFD1     		bne	.L56
+ 209              	.L36:
+ 210 0036 90F85C12 		ldrb	r1, [r0, #604]	@ zero_extendqisi2
+ 211 003a 9142     		cmp	r1, r2
+ 212 003c 01D0     		beq	.L38
+ 213 003e FF2A     		cmp	r2, #255
+ 214 0040 E9D1     		bne	.L56
+ 215              	.L38:
+ 216 0042 90F85D22 		ldrb	r2, [r0, #605]	@ zero_extendqisi2
+ 217 0046 9A42     		cmp	r2, r3
+ 218 0048 01D0     		beq	.L55
+ 219 004a FF2B     		cmp	r3, #255
+ 220 004c E3D1     		bne	.L56
+ 221              	.L55:
+ 222 004e 0120     		movs	r0, #1
+ 223 0050 06E0     		b	.L40
+ 224              	.L33:
+ 225 0052 90F84342 		ldrb	r4, [r0, #579]	@ zero_extendqisi2
+ 226 0056 9C42     		cmp	r4, r3
+ 227 0058 01D0     		beq	.L41
+ 228 005a FF2B     		cmp	r3, #255
+ 229 005c E5D1     		bne	.L32
+ 230              	.L41:
+ 231 005e 0020     		movs	r0, #0
+ 232              	.L40:
+ 233 0060 C0B2     		uxtb	r0, r0
+ 234 0062 D9E7     		b	.L53
+ 236              		.section	.text.USBH_FindInterfaceIndex,"ax",%progbits
+ 237              		.align	1
+ 238              		.p2align 2,,3
+ 239              		.global	USBH_FindInterfaceIndex
+ 240              		.syntax unified
+ARM GAS  D:\Programs\cygwin64\tmp\cc3boO9j.s 			page 5
+
+
+ 241              		.thumb
+ 242              		.thumb_func
+ 243              		.fpu fpv4-sp-d16
+ 245              	USBH_FindInterfaceIndex:
+ 246              		@ args = 0, pretend = 0, frame = 0
+ 247              		@ frame_needed = 0, uses_anonymous_args = 0
+ 248              		@ link register save eliminated.
+ 249 0000 90F83E32 		ldrb	r3, [r0, #574]	@ zero_extendqisi2
+ 250 0004 8B42     		cmp	r3, r1
+ 251 0006 05D0     		beq	.L64
+ 252              	.L58:
+ 253 0008 90F85832 		ldrb	r3, [r0, #600]	@ zero_extendqisi2
+ 254 000c 8B42     		cmp	r3, r1
+ 255 000e 07D0     		beq	.L65
+ 256 0010 FF20     		movs	r0, #255
+ 257 0012 7047     		bx	lr
+ 258              	.L64:
+ 259 0014 90F83F32 		ldrb	r3, [r0, #575]	@ zero_extendqisi2
+ 260 0018 9342     		cmp	r3, r2
+ 261 001a F5D1     		bne	.L58
+ 262 001c 0020     		movs	r0, #0
+ 263 001e 7047     		bx	lr
+ 264              	.L65:
+ 265 0020 90F85902 		ldrb	r0, [r0, #601]	@ zero_extendqisi2
+ 266 0024 9042     		cmp	r0, r2
+ 267 0026 14BF     		ite	ne
+ 268 0028 FF20     		movne	r0, #255
+ 269 002a 0120     		moveq	r0, #1
+ 270 002c 7047     		bx	lr
+ 272 002e 00BF     		.section	.text.USBH_Start,"ax",%progbits
+ 273              		.align	1
+ 274              		.p2align 2,,3
+ 275              		.global	USBH_Start
+ 276              		.syntax unified
+ 277              		.thumb
+ 278              		.thumb_func
+ 279              		.fpu fpv4-sp-d16
+ 281              	USBH_Start:
+ 282              		@ args = 0, pretend = 0, frame = 0
+ 283              		@ frame_needed = 0, uses_anonymous_args = 0
+ 284 0000 10B5     		push	{r4, lr}
+ 285 0002 0446     		mov	r4, r0
+ 286 0004 FFF7FEFF 		bl	USBH_LL_Start
+ 287 0008 2046     		mov	r0, r4
+ 288 000a 0121     		movs	r1, #1
+ 289 000c FFF7FEFF 		bl	USBH_LL_DriverVBUS
+ 290 0010 0020     		movs	r0, #0
+ 291 0012 10BD     		pop	{r4, pc}
+ 293              		.section	.text.USBH_Stop,"ax",%progbits
+ 294              		.align	1
+ 295              		.p2align 2,,3
+ 296              		.global	USBH_Stop
+ 297              		.syntax unified
+ 298              		.thumb
+ 299              		.thumb_func
+ 300              		.fpu fpv4-sp-d16
+ 302              	USBH_Stop:
+ARM GAS  D:\Programs\cygwin64\tmp\cc3boO9j.s 			page 6
+
+
+ 303              		@ args = 0, pretend = 0, frame = 0
+ 304              		@ frame_needed = 0, uses_anonymous_args = 0
+ 305 0000 10B5     		push	{r4, lr}
+ 306 0002 0446     		mov	r4, r0
+ 307 0004 FFF7FEFF 		bl	USBH_LL_Stop
+ 308 0008 2046     		mov	r0, r4
+ 309 000a 0021     		movs	r1, #0
+ 310 000c FFF7FEFF 		bl	USBH_LL_DriverVBUS
+ 311 0010 2179     		ldrb	r1, [r4, #4]	@ zero_extendqisi2
+ 312 0012 2046     		mov	r0, r4
+ 313 0014 FFF7FEFF 		bl	USBH_FreePipe
+ 314 0018 6179     		ldrb	r1, [r4, #5]	@ zero_extendqisi2
+ 315 001a 2046     		mov	r0, r4
+ 316 001c FFF7FEFF 		bl	USBH_FreePipe
+ 317 0020 0020     		movs	r0, #0
+ 318 0022 10BD     		pop	{r4, pc}
+ 320              		.section	.text.USBH_ReEnumerate,"ax",%progbits
+ 321              		.align	1
+ 322              		.p2align 2,,3
+ 323              		.global	USBH_ReEnumerate
+ 324              		.syntax unified
+ 325              		.thumb
+ 326              		.thumb_func
+ 327              		.fpu fpv4-sp-d16
+ 329              	USBH_ReEnumerate:
+ 330              		@ args = 0, pretend = 0, frame = 0
+ 331              		@ frame_needed = 0, uses_anonymous_args = 0
+ 332 0000 70B5     		push	{r4, r5, r6, lr}
+ 333 0002 0446     		mov	r4, r0
+ 334 0004 FFF7FEFF 		bl	USBH_LL_Stop
+ 335 0008 2046     		mov	r0, r4
+ 336 000a 0021     		movs	r1, #0
+ 337 000c FFF7FEFF 		bl	USBH_LL_DriverVBUS
+ 338 0010 2179     		ldrb	r1, [r4, #4]	@ zero_extendqisi2
+ 339 0012 2046     		mov	r0, r4
+ 340 0014 FFF7FEFF 		bl	USBH_FreePipe
+ 341 0018 6179     		ldrb	r1, [r4, #5]	@ zero_extendqisi2
+ 342 001a 2046     		mov	r0, r4
+ 343 001c FFF7FEFF 		bl	USBH_FreePipe
+ 344 0020 C820     		movs	r0, #200
+ 345 0022 FFF7FEFF 		bl	USBH_Delay
+ 346 0026 04F51F70 		add	r0, r4, #636
+ 347 002a 3C22     		movs	r2, #60
+ 348 002c 0021     		movs	r1, #0
+ 349 002e FFF7FEFF 		bl	memset
+ 350 0032 0021     		movs	r1, #0
+ 351 0034 04F11C00 		add	r0, r4, #28
+ 352 0038 4FF40072 		mov	r2, #512
+ 353 003c FFF7FEFF 		bl	memset
+ 354 0040 0025     		movs	r5, #0
+ 355 0042 4022     		movs	r2, #64
+ 356 0044 4FF48073 		mov	r3, #256
+ 357 0048 0126     		movs	r6, #1
+ 358 004a A271     		strb	r2, [r4, #6]
+ 359 004c A4F81C32 		strh	r3, [r4, #540]	@ movhi
+ 360 0050 2570     		strb	r5, [r4]
+ 361 0052 6570     		strb	r5, [r4, #1]
+ARM GAS  D:\Programs\cygwin64\tmp\cc3boO9j.s 			page 7
+
+
+ 362 0054 C4F8B852 		str	r5, [r4, #696]
+ 363 0058 A670     		strb	r6, [r4, #2]
+ 364 005a 2683     		strh	r6, [r4, #24]	@ movhi
+ 365 005c 2046     		mov	r0, r4
+ 366 005e FFF7FEFF 		bl	USBH_LL_Start
+ 367 0062 3146     		mov	r1, r6
+ 368 0064 2046     		mov	r0, r4
+ 369 0066 FFF7FEFF 		bl	USBH_LL_DriverVBUS
+ 370 006a 2846     		mov	r0, r5
+ 371 006c 70BD     		pop	{r4, r5, r6, pc}
+ 373 006e 00BF     		.section	.text.USBH_Process,"ax",%progbits
+ 374              		.align	1
+ 375              		.p2align 2,,3
+ 376              		.global	USBH_Process
+ 377              		.syntax unified
+ 378              		.thumb
+ 379              		.thumb_func
+ 380              		.fpu fpv4-sp-d16
+ 382              	USBH_Process:
+ 383              		@ args = 0, pretend = 0, frame = 8
+ 384              		@ frame_needed = 0, uses_anonymous_args = 0
+ 385 0000 30B5     		push	{r4, r5, lr}
+ 386 0002 87B0     		sub	sp, sp, #28
+ 387 0004 0223     		movs	r3, #2
+ 388 0006 8DF81730 		strb	r3, [sp, #23]
+ 389 000a 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+ 390 000c 0446     		mov	r4, r0
+ 391 000e 0A2B     		cmp	r3, #10
+ 392 0010 36D8     		bhi	.L118
+ 393 0012 DFE803F0 		tbb	[pc, r3]
+ 394              	.L75:
+ 395 0016 5B       		.byte	(.L83-.L75)/2
+ 396 0017 35       		.byte	(.L118-.L75)/2
+ 397 0018 06       		.byte	(.L82-.L75)/2
+ 398 0019 92       		.byte	(.L81-.L75)/2
+ 399 001a 35       		.byte	(.L118-.L75)/2
+ 400 001b 68       		.byte	(.L80-.L75)/2
+ 401 001c 71       		.byte	(.L79-.L75)/2
+ 402 001d 80       		.byte	(.L78-.L75)/2
+ 403 001e 89       		.byte	(.L77-.L75)/2
+ 404 001f 38       		.byte	(.L76-.L75)/2
+ 405 0020 54       		.byte	(.L74-.L75)/2
+ 406 0021 00       		.p2align 1
+ 407              	.L82:
+ 408 0022 6420     		movs	r0, #100
+ 409 0024 FFF7FEFF 		bl	USBH_Delay
+ 410 0028 2046     		mov	r0, r4
+ 411 002a FFF7FEFF 		bl	USBH_LL_GetSpeed
+ 412 002e 0523     		movs	r3, #5
+ 413 0030 2370     		strb	r3, [r4]
+ 414 0032 84F81D02 		strb	r0, [r4, #541]
+ 415 0036 0021     		movs	r1, #0
+ 416 0038 2046     		mov	r0, r4
+ 417 003a FFF7FEFF 		bl	USBH_AllocPipe
+ 418 003e 8021     		movs	r1, #128
+ 419 0040 6071     		strb	r0, [r4, #5]
+ 420 0042 2046     		mov	r0, r4
+ARM GAS  D:\Programs\cygwin64\tmp\cc3boO9j.s 			page 8
+
+
+ 421 0044 FFF7FEFF 		bl	USBH_AllocPipe
+ 422 0048 A279     		ldrb	r2, [r4, #6]	@ zero_extendqisi2
+ 423 004a 94F81D32 		ldrb	r3, [r4, #541]	@ zero_extendqisi2
+ 424 004e 2071     		strb	r0, [r4, #4]
+ 425 0050 0025     		movs	r5, #0
+ 426 0052 CDE90152 		strd	r5, r2, [sp, #4]
+ 427 0056 0093     		str	r3, [sp]
+ 428 0058 94F81C32 		ldrb	r3, [r4, #540]	@ zero_extendqisi2
+ 429 005c 0146     		mov	r1, r0
+ 430              	.L128:
+ 431 005e 8022     		movs	r2, #128
+ 432              	.L129:
+ 433 0060 2046     		mov	r0, r4
+ 434 0062 FFF7FEFF 		bl	USBH_OpenPipe
+ 435 0066 A179     		ldrb	r1, [r4, #6]	@ zero_extendqisi2
+ 436 0068 94F81D32 		ldrb	r3, [r4, #541]	@ zero_extendqisi2
+ 437 006c 0093     		str	r3, [sp]
+ 438 006e 0195     		str	r5, [sp, #4]
+ 439 0070 0291     		str	r1, [sp, #8]
+ 440 0072 2A46     		mov	r2, r5
+ 441 0074 94F81C32 		ldrb	r3, [r4, #540]	@ zero_extendqisi2
+ 442 0078 6179     		ldrb	r1, [r4, #5]	@ zero_extendqisi2
+ 443 007a 2046     		mov	r0, r4
+ 444 007c FFF7FEFF 		bl	USBH_OpenPipe
+ 445              	.L118:
+ 446 0080 0020     		movs	r0, #0
+ 447 0082 07B0     		add	sp, sp, #28
+ 448              		@ sp needed
+ 449 0084 30BD     		pop	{r4, r5, pc}
+ 450              	.L76:
+ 451 0086 D0F87832 		ldr	r3, [r0, #632]
+ 452 008a 002B     		cmp	r3, #0
+ 453 008c F8D0     		beq	.L118
+ 454 008e 0022     		movs	r2, #0
+ 455 0090 D0F87032 		ldr	r3, [r0, #624]
+ 456 0094 C0F87422 		str	r2, [r0, #628]
+ 457 0098 1979     		ldrb	r1, [r3, #4]	@ zero_extendqisi2
+ 458 009a 90F84122 		ldrb	r2, [r0, #577]	@ zero_extendqisi2
+ 459 009e 9142     		cmp	r1, r2
+ 460 00a0 70D1     		bne	.L101
+ 461 00a2 C0F87432 		str	r3, [r0, #628]
+ 462 00a6 9B68     		ldr	r3, [r3, #8]
+ 463 00a8 9847     		blx	r3
+ 464 00aa 0028     		cmp	r0, #0
+ 465 00ac 6AD1     		bne	.L101
+ 466 00ae 0623     		movs	r3, #6
+ 467 00b0 2370     		strb	r3, [r4]
+ 468 00b2 2046     		mov	r0, r4
+ 469 00b4 D4F8C432 		ldr	r3, [r4, #708]
+ 470 00b8 0321     		movs	r1, #3
+ 471 00ba 9847     		blx	r3
+ 472 00bc E0E7     		b	.L118
+ 473              	.L74:
+ 474 00be D0F87432 		ldr	r3, [r0, #628]
+ 475 00c2 002B     		cmp	r3, #0
+ 476 00c4 DCD0     		beq	.L118
+ 477 00c6 5B69     		ldr	r3, [r3, #20]
+ARM GAS  D:\Programs\cygwin64\tmp\cc3boO9j.s 			page 9
+
+
+ 478 00c8 9847     		blx	r3
+ 479 00ca D9E7     		b	.L118
+ 480              	.L83:
+ 481 00cc 90F81E32 		ldrb	r3, [r0, #542]	@ zero_extendqisi2
+ 482 00d0 002B     		cmp	r3, #0
+ 483 00d2 D5D0     		beq	.L118
+ 484 00d4 0123     		movs	r3, #1
+ 485 00d6 0370     		strb	r3, [r0]
+ 486 00d8 C820     		movs	r0, #200
+ 487 00da FFF7FEFF 		bl	USBH_Delay
+ 488 00de 2046     		mov	r0, r4
+ 489 00e0 FFF7FEFF 		bl	USBH_LL_ResetPort
+ 490 00e4 CCE7     		b	.L118
+ 491              	.L80:
+ 492 00e6 4378     		ldrb	r3, [r0, #1]	@ zero_extendqisi2
+ 493 00e8 072B     		cmp	r3, #7
+ 494 00ea C9D8     		bhi	.L118
+ 495 00ec DFE803F0 		tbb	[pc, r3]
+ 496              	.L86:
+ 497 00f0 5B       		.byte	(.L93-.L86)/2
+ 498 00f1 88       		.byte	(.L92-.L86)/2
+ 499 00f2 70       		.byte	(.L91-.L86)/2
+ 500 00f3 A7       		.byte	(.L90-.L86)/2
+ 501 00f4 9D       		.byte	(.L89-.L86)/2
+ 502 00f5 97       		.byte	(.L88-.L86)/2
+ 503 00f6 91       		.byte	(.L87-.L86)/2
+ 504 00f7 4D       		.byte	(.L85-.L86)/2
+ 505              		.p2align 1
+ 506              	.L79:
+ 507 00f8 D0F87432 		ldr	r3, [r0, #628]
+ 508 00fc 002B     		cmp	r3, #0
+ 509 00fe 41D0     		beq	.L101
+ 510 0100 1B69     		ldr	r3, [r3, #16]
+ 511 0102 9847     		blx	r3
+ 512 0104 8DF81700 		strb	r0, [sp, #23]
+ 513 0108 9DF81730 		ldrb	r3, [sp, #23]	@ zero_extendqisi2
+ 514 010c 002B     		cmp	r3, #0
+ 515 010e B7D1     		bne	.L118
+ 516 0110 0A23     		movs	r3, #10
+ 517 0112 2370     		strb	r3, [r4]
+ 518 0114 B4E7     		b	.L118
+ 519              	.L78:
+ 520 0116 D0F8C432 		ldr	r3, [r0, #708]
+ 521 011a 002B     		cmp	r3, #0
+ 522 011c B0D0     		beq	.L118
+ 523 011e 0121     		movs	r1, #1
+ 524 0120 9847     		blx	r3
+ 525              	.L130:
+ 526 0122 0823     		movs	r3, #8
+ 527 0124 2370     		strb	r3, [r4]
+ 528 0126 ABE7     		b	.L118
+ 529              	.L77:
+ 530 0128 90F83712 		ldrb	r1, [r0, #567]	@ zero_extendqisi2
+ 531 012c FFF7FEFF 		bl	USBH_SetCfg
+ 532 0130 0028     		cmp	r0, #0
+ 533 0132 A5D1     		bne	.L118
+ 534 0134 0923     		movs	r3, #9
+ARM GAS  D:\Programs\cygwin64\tmp\cc3boO9j.s 			page 10
+
+
+ 535 0136 2370     		strb	r3, [r4]
+ 536 0138 A2E7     		b	.L118
+ 537              	.L81:
+ 538 013a 3C22     		movs	r2, #60
+ 539 013c 0021     		movs	r1, #0
+ 540 013e 00F51F70 		add	r0, r0, #636
+ 541 0142 FFF7FEFF 		bl	memset
+ 542 0146 4FF40072 		mov	r2, #512
+ 543 014a 0021     		movs	r1, #0
+ 544 014c 04F11C00 		add	r0, r4, #28
+ 545 0150 FFF7FEFF 		bl	memset
+ 546 0154 D4F87422 		ldr	r2, [r4, #628]
+ 547 0158 0025     		movs	r5, #0
+ 548 015a 0123     		movs	r3, #1
+ 549 015c 4020     		movs	r0, #64
+ 550 015e 4FF48071 		mov	r1, #256
+ 551 0162 2570     		strb	r5, [r4]
+ 552 0164 6570     		strb	r5, [r4, #1]
+ 553 0166 C4F8B852 		str	r5, [r4, #696]
+ 554 016a A370     		strb	r3, [r4, #2]
+ 555 016c 2383     		strh	r3, [r4, #24]	@ movhi
+ 556 016e A071     		strb	r0, [r4, #6]
+ 557 0170 A4F81C12 		strh	r1, [r4, #540]	@ movhi
+ 558 0174 002A     		cmp	r2, #0
+ 559 0176 83D0     		beq	.L118
+ 560 0178 D368     		ldr	r3, [r2, #12]
+ 561 017a 2046     		mov	r0, r4
+ 562 017c 9847     		blx	r3
+ 563 017e C4F87452 		str	r5, [r4, #628]
+ 564 0182 7DE7     		b	.L118
+ 565              	.L101:
+ 566 0184 0C23     		movs	r3, #12
+ 567 0186 2370     		strb	r3, [r4]
+ 568 0188 7AE7     		b	.L118
+ 569              	.L85:
+ 570 018a 90F83012 		ldrb	r1, [r0, #560]	@ zero_extendqisi2
+ 571 018e 0029     		cmp	r1, #0
+ 572 0190 67D1     		bne	.L97
+ 573              	.L100:
+ 574 0192 94F83132 		ldrb	r3, [r4, #561]	@ zero_extendqisi2
+ 575 0196 0022     		movs	r2, #0
+ 576 0198 012B     		cmp	r3, #1
+ 577 019a 84F81F22 		strb	r2, [r4, #543]
+ 578 019e C0D0     		beq	.L130
+ 579 01a0 0723     		movs	r3, #7
+ 580 01a2 2370     		strb	r3, [r4]
+ 581 01a4 6CE7     		b	.L118
+ 582              	.L93:
+ 583 01a6 0821     		movs	r1, #8
+ 584 01a8 FFF7FEFF 		bl	USBH_Get_DevDesc
+ 585 01ac 0546     		mov	r5, r0
+ 586 01ae 0028     		cmp	r0, #0
+ 587 01b0 7FF466AF 		bne	.L118
+ 588 01b4 94F82732 		ldrb	r3, [r4, #551]	@ zero_extendqisi2
+ 589 01b8 94F81D22 		ldrb	r2, [r4, #541]	@ zero_extendqisi2
+ 590 01bc 0190     		str	r0, [sp, #4]
+ 591 01be 0121     		movs	r1, #1
+ARM GAS  D:\Programs\cygwin64\tmp\cc3boO9j.s 			page 11
+
+
+ 592 01c0 A371     		strb	r3, [r4, #6]
+ 593 01c2 0293     		str	r3, [sp, #8]
+ 594 01c4 6170     		strb	r1, [r4, #1]
+ 595 01c6 0092     		str	r2, [sp]
+ 596 01c8 94F81C32 		ldrb	r3, [r4, #540]	@ zero_extendqisi2
+ 597 01cc 2179     		ldrb	r1, [r4, #4]	@ zero_extendqisi2
+ 598 01ce 46E7     		b	.L128
+ 599              	.L91:
+ 600 01d0 0121     		movs	r1, #1
+ 601 01d2 FFF7FEFF 		bl	USBH_SetAddress
+ 602 01d6 0546     		mov	r5, r0
+ 603 01d8 0028     		cmp	r0, #0
+ 604 01da 7FF451AF 		bne	.L118
+ 605 01de 0220     		movs	r0, #2
+ 606 01e0 FFF7FEFF 		bl	USBH_Delay
+ 607 01e4 A179     		ldrb	r1, [r4, #6]	@ zero_extendqisi2
+ 608 01e6 94F81D22 		ldrb	r2, [r4, #541]	@ zero_extendqisi2
+ 609 01ea 0195     		str	r5, [sp, #4]
+ 610 01ec 0123     		movs	r3, #1
+ 611 01ee 0320     		movs	r0, #3
+ 612 01f0 84F81C32 		strb	r3, [r4, #540]
+ 613 01f4 6070     		strb	r0, [r4, #1]
+ 614 01f6 0092     		str	r2, [sp]
+ 615 01f8 0291     		str	r1, [sp, #8]
+ 616 01fa 8022     		movs	r2, #128
+ 617 01fc 2179     		ldrb	r1, [r4, #4]	@ zero_extendqisi2
+ 618 01fe 2FE7     		b	.L129
+ 619              	.L92:
+ 620 0200 1221     		movs	r1, #18
+ 621 0202 FFF7FEFF 		bl	USBH_Get_DevDesc
+ 622 0206 0028     		cmp	r0, #0
+ 623 0208 7FF43AAF 		bne	.L118
+ 624 020c 0223     		movs	r3, #2
+ 625 020e 6370     		strb	r3, [r4, #1]
+ 626 0210 36E7     		b	.L118
+ 627              	.L87:
+ 628 0212 90F82F12 		ldrb	r1, [r0, #559]	@ zero_extendqisi2
+ 629 0216 61BB     		cbnz	r1, .L131
+ 630              	.L96:
+ 631 0218 0723     		movs	r3, #7
+ 632 021a 6370     		strb	r3, [r4, #1]
+ 633 021c 30E7     		b	.L118
+ 634              	.L88:
+ 635 021e 90F82E12 		ldrb	r1, [r0, #558]	@ zero_extendqisi2
+ 636 0222 A9B9     		cbnz	r1, .L132
+ 637              	.L95:
+ 638 0224 0623     		movs	r3, #6
+ 639 0226 6370     		strb	r3, [r4, #1]
+ 640 0228 2AE7     		b	.L118
+ 641              	.L89:
+ 642 022a B0F83412 		ldrh	r1, [r0, #564]
+ 643 022e FFF7FEFF 		bl	USBH_Get_CfgDesc
+ 644 0232 0028     		cmp	r0, #0
+ 645 0234 7FF424AF 		bne	.L118
+ 646 0238 0523     		movs	r3, #5
+ 647 023a 6370     		strb	r3, [r4, #1]
+ 648 023c 20E7     		b	.L118
+ARM GAS  D:\Programs\cygwin64\tmp\cc3boO9j.s 			page 12
+
+
+ 649              	.L90:
+ 650 023e 0921     		movs	r1, #9
+ 651 0240 FFF7FEFF 		bl	USBH_Get_CfgDesc
+ 652 0244 0028     		cmp	r0, #0
+ 653 0246 7FF41BAF 		bne	.L118
+ 654 024a 0423     		movs	r3, #4
+ 655 024c 6370     		strb	r3, [r4, #1]
+ 656 024e 17E7     		b	.L118
+ 657              	.L132:
+ 658 0250 FF23     		movs	r3, #255
+ 659 0252 00F11C02 		add	r2, r0, #28
+ 660 0256 FFF7FEFF 		bl	USBH_Get_StringDesc
+ 661 025a 0028     		cmp	r0, #0
+ 662 025c 7FF410AF 		bne	.L118
+ 663 0260 E0E7     		b	.L95
+ 664              	.L97:
+ 665 0262 FF23     		movs	r3, #255
+ 666 0264 00F11C02 		add	r2, r0, #28
+ 667 0268 FFF7FEFF 		bl	USBH_Get_StringDesc
+ 668 026c 0028     		cmp	r0, #0
+ 669 026e 90D0     		beq	.L100
+ 670 0270 06E7     		b	.L118
+ 671              	.L131:
+ 672 0272 FF23     		movs	r3, #255
+ 673 0274 00F11C02 		add	r2, r0, #28
+ 674 0278 FFF7FEFF 		bl	USBH_Get_StringDesc
+ 675 027c 0028     		cmp	r0, #0
+ 676 027e 7FF4FFAE 		bne	.L118
+ 677 0282 C9E7     		b	.L96
+ 679              		.section	.text.USBH_LL_SetTimer,"ax",%progbits
+ 680              		.align	1
+ 681              		.p2align 2,,3
+ 682              		.global	USBH_LL_SetTimer
+ 683              		.syntax unified
+ 684              		.thumb
+ 685              		.thumb_func
+ 686              		.fpu fpv4-sp-d16
+ 688              	USBH_LL_SetTimer:
+ 689              		@ args = 0, pretend = 0, frame = 0
+ 690              		@ frame_needed = 0, uses_anonymous_args = 0
+ 691              		@ link register save eliminated.
+ 692 0000 C0F8B812 		str	r1, [r0, #696]
+ 693 0004 7047     		bx	lr
+ 695 0006 00BF     		.section	.text.USBH_LL_IncTimer,"ax",%progbits
+ 696              		.align	1
+ 697              		.p2align 2,,3
+ 698              		.global	USBH_LL_IncTimer
+ 699              		.syntax unified
+ 700              		.thumb
+ 701              		.thumb_func
+ 702              		.fpu fpv4-sp-d16
+ 704              	USBH_LL_IncTimer:
+ 705              		@ args = 0, pretend = 0, frame = 0
+ 706              		@ frame_needed = 0, uses_anonymous_args = 0
+ 707              		@ link register save eliminated.
+ 708 0000 D0F8B822 		ldr	r2, [r0, #696]
+ 709 0004 0132     		adds	r2, r2, #1
+ARM GAS  D:\Programs\cygwin64\tmp\cc3boO9j.s 			page 13
+
+
+ 710 0006 C0F8B822 		str	r2, [r0, #696]
+ 711 000a 0278     		ldrb	r2, [r0]	@ zero_extendqisi2
+ 712 000c 0A2A     		cmp	r2, #10
+ 713 000e 00D0     		beq	.L139
+ 714              	.L134:
+ 715 0010 7047     		bx	lr
+ 716              	.L139:
+ 717 0012 D0F87432 		ldr	r3, [r0, #628]
+ 718 0016 002B     		cmp	r3, #0
+ 719 0018 FAD0     		beq	.L134
+ 720 001a 9B69     		ldr	r3, [r3, #24]
+ 721 001c 1847     		bx	r3
+ 723 001e 00BF     		.section	.text.USBH_LL_Connect,"ax",%progbits
+ 724              		.align	1
+ 725              		.p2align 2,,3
+ 726              		.global	USBH_LL_Connect
+ 727              		.syntax unified
+ 728              		.thumb
+ 729              		.thumb_func
+ 730              		.fpu fpv4-sp-d16
+ 732              	USBH_LL_Connect:
+ 733              		@ args = 0, pretend = 0, frame = 0
+ 734              		@ frame_needed = 0, uses_anonymous_args = 0
+ 735 0000 0278     		ldrb	r2, [r0]	@ zero_extendqisi2
+ 736 0002 08B5     		push	{r3, lr}
+ 737 0004 4AB9     		cbnz	r2, .L141
+ 738 0006 D0F8C422 		ldr	r2, [r0, #708]
+ 739 000a 0121     		movs	r1, #1
+ 740 000c 80F81E12 		strb	r1, [r0, #542]
+ 741 0010 0AB1     		cbz	r2, .L143
+ 742 0012 0421     		movs	r1, #4
+ 743 0014 9047     		blx	r2
+ 744              	.L143:
+ 745 0016 0020     		movs	r0, #0
+ 746 0018 08BD     		pop	{r3, pc}
+ 747              	.L141:
+ 748 001a 0278     		ldrb	r2, [r0]	@ zero_extendqisi2
+ 749 001c 012A     		cmp	r2, #1
+ 750 001e 04BF     		itt	eq
+ 751 0020 0222     		moveq	r2, #2
+ 752 0022 0270     		strbeq	r2, [r0]
+ 753 0024 0020     		movs	r0, #0
+ 754 0026 08BD     		pop	{r3, pc}
+ 756              		.section	.text.USBH_LL_Disconnect,"ax",%progbits
+ 757              		.align	1
+ 758              		.p2align 2,,3
+ 759              		.global	USBH_LL_Disconnect
+ 760              		.syntax unified
+ 761              		.thumb
+ 762              		.thumb_func
+ 763              		.fpu fpv4-sp-d16
+ 765              	USBH_LL_Disconnect:
+ 766              		@ args = 0, pretend = 0, frame = 0
+ 767              		@ frame_needed = 0, uses_anonymous_args = 0
+ 768 0000 10B5     		push	{r4, lr}
+ 769 0002 0446     		mov	r4, r0
+ 770 0004 FFF7FEFF 		bl	USBH_LL_Stop
+ARM GAS  D:\Programs\cygwin64\tmp\cc3boO9j.s 			page 14
+
+
+ 771 0008 2179     		ldrb	r1, [r4, #4]	@ zero_extendqisi2
+ 772 000a 2046     		mov	r0, r4
+ 773 000c FFF7FEFF 		bl	USBH_FreePipe
+ 774 0010 6179     		ldrb	r1, [r4, #5]	@ zero_extendqisi2
+ 775 0012 2046     		mov	r0, r4
+ 776 0014 FFF7FEFF 		bl	USBH_FreePipe
+ 777 0018 D4F8C432 		ldr	r3, [r4, #708]
+ 778 001c 0022     		movs	r2, #0
+ 779 001e 84F81E22 		strb	r2, [r4, #542]
+ 780 0022 13B1     		cbz	r3, .L147
+ 781 0024 0521     		movs	r1, #5
+ 782 0026 2046     		mov	r0, r4
+ 783 0028 9847     		blx	r3
+ 784              	.L147:
+ 785 002a 2046     		mov	r0, r4
+ 786 002c FFF7FEFF 		bl	USBH_LL_Start
+ 787 0030 0323     		movs	r3, #3
+ 788 0032 2370     		strb	r3, [r4]
+ 789 0034 0020     		movs	r0, #0
+ 790 0036 10BD     		pop	{r4, pc}
+ 792              		.ident	"GCC: (GNU Tools for Arm Embedded Processors 8-2018-q4-major) 8.2.1 20181213 (release) [gcc
+ARM GAS  D:\Programs\cygwin64\tmp\cc3boO9j.s 			page 15
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 usbh_core.c
+D:\Programs\cygwin64\tmp\cc3boO9j.s:16     .text.USBH_Init:00000000 $t
+D:\Programs\cygwin64\tmp\cc3boO9j.s:25     .text.USBH_Init:00000000 USBH_Init
+D:\Programs\cygwin64\tmp\cc3boO9j.s:65     .text.USBH_DeInit:00000000 $t
+D:\Programs\cygwin64\tmp\cc3boO9j.s:73     .text.USBH_DeInit:00000000 USBH_DeInit
+D:\Programs\cygwin64\tmp\cc3boO9j.s:108    .text.USBH_RegisterClass:00000000 $t
+D:\Programs\cygwin64\tmp\cc3boO9j.s:116    .text.USBH_RegisterClass:00000000 USBH_RegisterClass
+D:\Programs\cygwin64\tmp\cc3boO9j.s:134    .text.USBH_SelectInterface:00000000 $t
+D:\Programs\cygwin64\tmp\cc3boO9j.s:142    .text.USBH_SelectInterface:00000000 USBH_SelectInterface
+D:\Programs\cygwin64\tmp\cc3boO9j.s:155    .text.USBH_GetActiveClass:00000000 $t
+D:\Programs\cygwin64\tmp\cc3boO9j.s:163    .text.USBH_GetActiveClass:00000000 USBH_GetActiveClass
+D:\Programs\cygwin64\tmp\cc3boO9j.s:171    .text.USBH_FindInterface:00000000 $t
+D:\Programs\cygwin64\tmp\cc3boO9j.s:179    .text.USBH_FindInterface:00000000 USBH_FindInterface
+D:\Programs\cygwin64\tmp\cc3boO9j.s:237    .text.USBH_FindInterfaceIndex:00000000 $t
+D:\Programs\cygwin64\tmp\cc3boO9j.s:245    .text.USBH_FindInterfaceIndex:00000000 USBH_FindInterfaceIndex
+D:\Programs\cygwin64\tmp\cc3boO9j.s:273    .text.USBH_Start:00000000 $t
+D:\Programs\cygwin64\tmp\cc3boO9j.s:281    .text.USBH_Start:00000000 USBH_Start
+D:\Programs\cygwin64\tmp\cc3boO9j.s:294    .text.USBH_Stop:00000000 $t
+D:\Programs\cygwin64\tmp\cc3boO9j.s:302    .text.USBH_Stop:00000000 USBH_Stop
+D:\Programs\cygwin64\tmp\cc3boO9j.s:321    .text.USBH_ReEnumerate:00000000 $t
+D:\Programs\cygwin64\tmp\cc3boO9j.s:329    .text.USBH_ReEnumerate:00000000 USBH_ReEnumerate
+D:\Programs\cygwin64\tmp\cc3boO9j.s:374    .text.USBH_Process:00000000 $t
+D:\Programs\cygwin64\tmp\cc3boO9j.s:382    .text.USBH_Process:00000000 USBH_Process
+D:\Programs\cygwin64\tmp\cc3boO9j.s:395    .text.USBH_Process:00000016 $d
+D:\Programs\cygwin64\tmp\cc3boO9j.s:497    .text.USBH_Process:000000f0 $d
+D:\Programs\cygwin64\tmp\cc3boO9j.s:505    .text.USBH_Process:000000f8 $t
+D:\Programs\cygwin64\tmp\cc3boO9j.s:680    .text.USBH_LL_SetTimer:00000000 $t
+D:\Programs\cygwin64\tmp\cc3boO9j.s:688    .text.USBH_LL_SetTimer:00000000 USBH_LL_SetTimer
+D:\Programs\cygwin64\tmp\cc3boO9j.s:696    .text.USBH_LL_IncTimer:00000000 $t
+D:\Programs\cygwin64\tmp\cc3boO9j.s:704    .text.USBH_LL_IncTimer:00000000 USBH_LL_IncTimer
+D:\Programs\cygwin64\tmp\cc3boO9j.s:724    .text.USBH_LL_Connect:00000000 $t
+D:\Programs\cygwin64\tmp\cc3boO9j.s:732    .text.USBH_LL_Connect:00000000 USBH_LL_Connect
+D:\Programs\cygwin64\tmp\cc3boO9j.s:757    .text.USBH_LL_Disconnect:00000000 $t
+D:\Programs\cygwin64\tmp\cc3boO9j.s:765    .text.USBH_LL_Disconnect:00000000 USBH_LL_Disconnect
+D:\Programs\cygwin64\tmp\cc3boO9j.s:406    .text.USBH_Process:00000021 $d
+D:\Programs\cygwin64\tmp\cc3boO9j.s:406    .text.USBH_Process:00000022 $t
+
+UNDEFINED SYMBOLS
+memset
+USBH_LL_Init
+USBH_LL_Stop
+USBH_LL_Start
+USBH_LL_DriverVBUS
+USBH_FreePipe
+USBH_Delay
+USBH_LL_GetSpeed
+USBH_AllocPipe
+USBH_OpenPipe
+USBH_LL_ResetPort
+USBH_SetCfg
+USBH_Get_DevDesc
+USBH_SetAddress
+USBH_Get_CfgDesc
+USBH_Get_StringDesc

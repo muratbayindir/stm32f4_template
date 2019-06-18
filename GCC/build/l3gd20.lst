@@ -1,0 +1,497 @@
+ARM GAS  D:\Programs\cygwin64\tmp\ccPrlMAE.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"l3gd20.c"
+  14              		.text
+  15              		.section	.text.L3GD20_DeInit,"ax",%progbits
+  16              		.align	1
+  17              		.p2align 2,,3
+  18              		.global	L3GD20_DeInit
+  19              		.arch armv7e-m
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	L3GD20_DeInit:
+  26              		@ args = 0, pretend = 0, frame = 0
+  27              		@ frame_needed = 0, uses_anonymous_args = 0
+  28              		@ link register save eliminated.
+  29 0000 7047     		bx	lr
+  31 0002 00BF     		.section	.text.L3GD20_Init,"ax",%progbits
+  32              		.align	1
+  33              		.p2align 2,,3
+  34              		.global	L3GD20_Init
+  35              		.syntax unified
+  36              		.thumb
+  37              		.thumb_func
+  38              		.fpu fpv4-sp-d16
+  40              	L3GD20_Init:
+  41              		@ args = 0, pretend = 0, frame = 8
+  42              		@ frame_needed = 0, uses_anonymous_args = 0
+  43 0000 10B5     		push	{r4, lr}
+  44 0002 82B0     		sub	sp, sp, #8
+  45 0004 0023     		movs	r3, #0
+  46 0006 0446     		mov	r4, r0
+  47 0008 8DF80730 		strb	r3, [sp, #7]
+  48 000c FFF7FEFF 		bl	GYRO_IO_Init
+  49 0010 0DF10700 		add	r0, sp, #7
+  50 0014 0122     		movs	r2, #1
+  51 0016 2021     		movs	r1, #32
+  52 0018 8DF80740 		strb	r4, [sp, #7]
+  53 001c FFF7FEFF 		bl	GYRO_IO_Write
+  54 0020 240A     		lsrs	r4, r4, #8
+  55 0022 0DF10700 		add	r0, sp, #7
+  56 0026 0122     		movs	r2, #1
+  57 0028 2321     		movs	r1, #35
+  58 002a 8DF80740 		strb	r4, [sp, #7]
+  59 002e FFF7FEFF 		bl	GYRO_IO_Write
+  60 0032 02B0     		add	sp, sp, #8
+ARM GAS  D:\Programs\cygwin64\tmp\ccPrlMAE.s 			page 2
+
+
+  61              		@ sp needed
+  62 0034 10BD     		pop	{r4, pc}
+  64 0036 00BF     		.section	.text.L3GD20_LowPower,"ax",%progbits
+  65              		.align	1
+  66              		.p2align 2,,3
+  67              		.global	L3GD20_LowPower
+  68              		.syntax unified
+  69              		.thumb
+  70              		.thumb_func
+  71              		.fpu fpv4-sp-d16
+  73              	L3GD20_LowPower:
+  74              		@ args = 0, pretend = 0, frame = 8
+  75              		@ frame_needed = 0, uses_anonymous_args = 0
+  76 0000 00B5     		push	{lr}
+  77 0002 83B0     		sub	sp, sp, #12
+  78 0004 0122     		movs	r2, #1
+  79 0006 8DF80700 		strb	r0, [sp, #7]
+  80 000a 2021     		movs	r1, #32
+  81 000c 0DF10700 		add	r0, sp, #7
+  82 0010 FFF7FEFF 		bl	GYRO_IO_Write
+  83 0014 03B0     		add	sp, sp, #12
+  84              		@ sp needed
+  85 0016 5DF804FB 		ldr	pc, [sp], #4
+  87 001a 00BF     		.section	.text.L3GD20_ReadID,"ax",%progbits
+  88              		.align	1
+  89              		.p2align 2,,3
+  90              		.global	L3GD20_ReadID
+  91              		.syntax unified
+  92              		.thumb
+  93              		.thumb_func
+  94              		.fpu fpv4-sp-d16
+  96              	L3GD20_ReadID:
+  97              		@ args = 0, pretend = 0, frame = 8
+  98              		@ frame_needed = 0, uses_anonymous_args = 0
+  99 0000 00B5     		push	{lr}
+ 100 0002 83B0     		sub	sp, sp, #12
+ 101 0004 FFF7FEFF 		bl	GYRO_IO_Init
+ 102 0008 0DF10700 		add	r0, sp, #7
+ 103 000c 0122     		movs	r2, #1
+ 104 000e 0F21     		movs	r1, #15
+ 105 0010 FFF7FEFF 		bl	GYRO_IO_Read
+ 106 0014 9DF80700 		ldrb	r0, [sp, #7]	@ zero_extendqisi2
+ 107 0018 03B0     		add	sp, sp, #12
+ 108              		@ sp needed
+ 109 001a 5DF804FB 		ldr	pc, [sp], #4
+ 111 001e 00BF     		.section	.text.L3GD20_RebootCmd,"ax",%progbits
+ 112              		.align	1
+ 113              		.p2align 2,,3
+ 114              		.global	L3GD20_RebootCmd
+ 115              		.syntax unified
+ 116              		.thumb
+ 117              		.thumb_func
+ 118              		.fpu fpv4-sp-d16
+ 120              	L3GD20_RebootCmd:
+ 121              		@ args = 0, pretend = 0, frame = 8
+ 122              		@ frame_needed = 0, uses_anonymous_args = 0
+ 123 0000 00B5     		push	{lr}
+ARM GAS  D:\Programs\cygwin64\tmp\ccPrlMAE.s 			page 3
+
+
+ 124 0002 83B0     		sub	sp, sp, #12
+ 125 0004 0DF10700 		add	r0, sp, #7
+ 126 0008 0122     		movs	r2, #1
+ 127 000a 2421     		movs	r1, #36
+ 128 000c FFF7FEFF 		bl	GYRO_IO_Read
+ 129 0010 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 130 0014 0DF10700 		add	r0, sp, #7
+ 131 0018 63F07F03 		orn	r3, r3, #127
+ 132 001c 0122     		movs	r2, #1
+ 133 001e 2421     		movs	r1, #36
+ 134 0020 8DF80730 		strb	r3, [sp, #7]
+ 135 0024 FFF7FEFF 		bl	GYRO_IO_Write
+ 136 0028 03B0     		add	sp, sp, #12
+ 137              		@ sp needed
+ 138 002a 5DF804FB 		ldr	pc, [sp], #4
+ 140 002e 00BF     		.section	.text.L3GD20_INT1InterruptConfig,"ax",%progbits
+ 141              		.align	1
+ 142              		.p2align 2,,3
+ 143              		.global	L3GD20_INT1InterruptConfig
+ 144              		.syntax unified
+ 145              		.thumb
+ 146              		.thumb_func
+ 147              		.fpu fpv4-sp-d16
+ 149              	L3GD20_INT1InterruptConfig:
+ 150              		@ args = 0, pretend = 0, frame = 8
+ 151              		@ frame_needed = 0, uses_anonymous_args = 0
+ 152 0000 30B5     		push	{r4, r5, lr}
+ 153 0002 83B0     		sub	sp, sp, #12
+ 154 0004 0546     		mov	r5, r0
+ 155 0006 0024     		movs	r4, #0
+ 156 0008 0DF10600 		add	r0, sp, #6
+ 157 000c 0122     		movs	r2, #1
+ 158 000e 3021     		movs	r1, #48
+ 159 0010 8DF80640 		strb	r4, [sp, #6]
+ 160 0014 8DF80740 		strb	r4, [sp, #7]
+ 161 0018 FFF7FEFF 		bl	GYRO_IO_Read
+ 162 001c 0DF10700 		add	r0, sp, #7
+ 163 0020 0122     		movs	r2, #1
+ 164 0022 2221     		movs	r1, #34
+ 165 0024 FFF7FEFF 		bl	GYRO_IO_Read
+ 166 0028 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 167 002c 9DF80640 		ldrb	r4, [sp, #6]	@ zero_extendqisi2
+ 168 0030 23F02003 		bic	r3, r3, #32
+ 169 0034 2B43     		orrs	r3, r3, r5
+ 170 0036 0DF10600 		add	r0, sp, #6
+ 171 003a 24F07F04 		bic	r4, r4, #127
+ 172 003e 0122     		movs	r2, #1
+ 173 0040 3021     		movs	r1, #48
+ 174 0042 8DF80730 		strb	r3, [sp, #7]
+ 175 0046 8DF80640 		strb	r4, [sp, #6]
+ 176 004a FFF7FEFF 		bl	GYRO_IO_Write
+ 177 004e 0DF10700 		add	r0, sp, #7
+ 178 0052 0122     		movs	r2, #1
+ 179 0054 2221     		movs	r1, #34
+ 180 0056 FFF7FEFF 		bl	GYRO_IO_Write
+ 181 005a 03B0     		add	sp, sp, #12
+ 182              		@ sp needed
+ARM GAS  D:\Programs\cygwin64\tmp\ccPrlMAE.s 			page 4
+
+
+ 183 005c 30BD     		pop	{r4, r5, pc}
+ 185 005e 00BF     		.section	.text.L3GD20_EnableIT,"ax",%progbits
+ 186              		.align	1
+ 187              		.p2align 2,,3
+ 188              		.global	L3GD20_EnableIT
+ 189              		.syntax unified
+ 190              		.thumb
+ 191              		.thumb_func
+ 192              		.fpu fpv4-sp-d16
+ 194              	L3GD20_EnableIT:
+ 195              		@ args = 0, pretend = 0, frame = 8
+ 196              		@ frame_needed = 0, uses_anonymous_args = 0
+ 197 0000 10B5     		push	{r4, lr}
+ 198 0002 82B0     		sub	sp, sp, #8
+ 199 0004 0446     		mov	r4, r0
+ 200 0006 0122     		movs	r2, #1
+ 201 0008 0DF10700 		add	r0, sp, #7
+ 202 000c 2221     		movs	r1, #34
+ 203 000e FFF7FEFF 		bl	GYRO_IO_Read
+ 204 0012 6CB9     		cbnz	r4, .L14
+ 205 0014 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 206 0018 63F07F03 		orn	r3, r3, #127
+ 207 001c 8DF80730 		strb	r3, [sp, #7]
+ 208              	.L15:
+ 209 0020 0DF10700 		add	r0, sp, #7
+ 210 0024 0122     		movs	r2, #1
+ 211 0026 2221     		movs	r1, #34
+ 212 0028 FFF7FEFF 		bl	GYRO_IO_Write
+ 213 002c 02B0     		add	sp, sp, #8
+ 214              		@ sp needed
+ 215 002e 10BD     		pop	{r4, pc}
+ 216              	.L14:
+ 217 0030 012C     		cmp	r4, #1
+ 218 0032 F5D1     		bne	.L15
+ 219 0034 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 220 0038 23F00803 		bic	r3, r3, #8
+ 221 003c 43F00803 		orr	r3, r3, #8
+ 222 0040 8DF80730 		strb	r3, [sp, #7]
+ 223 0044 ECE7     		b	.L15
+ 225 0046 00BF     		.section	.text.L3GD20_DisableIT,"ax",%progbits
+ 226              		.align	1
+ 227              		.p2align 2,,3
+ 228              		.global	L3GD20_DisableIT
+ 229              		.syntax unified
+ 230              		.thumb
+ 231              		.thumb_func
+ 232              		.fpu fpv4-sp-d16
+ 234              	L3GD20_DisableIT:
+ 235              		@ args = 0, pretend = 0, frame = 8
+ 236              		@ frame_needed = 0, uses_anonymous_args = 0
+ 237 0000 10B5     		push	{r4, lr}
+ 238 0002 82B0     		sub	sp, sp, #8
+ 239 0004 0446     		mov	r4, r0
+ 240 0006 0122     		movs	r2, #1
+ 241 0008 0DF10700 		add	r0, sp, #7
+ 242 000c 2221     		movs	r1, #34
+ 243 000e FFF7FEFF 		bl	GYRO_IO_Read
+ARM GAS  D:\Programs\cygwin64\tmp\ccPrlMAE.s 			page 5
+
+
+ 244 0012 6CB9     		cbnz	r4, .L18
+ 245 0014 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 246 0018 03F07F03 		and	r3, r3, #127
+ 247 001c 8DF80730 		strb	r3, [sp, #7]
+ 248              	.L19:
+ 249 0020 0DF10700 		add	r0, sp, #7
+ 250 0024 0122     		movs	r2, #1
+ 251 0026 2221     		movs	r1, #34
+ 252 0028 FFF7FEFF 		bl	GYRO_IO_Write
+ 253 002c 02B0     		add	sp, sp, #8
+ 254              		@ sp needed
+ 255 002e 10BD     		pop	{r4, pc}
+ 256              	.L18:
+ 257 0030 012C     		cmp	r4, #1
+ 258 0032 F5D1     		bne	.L19
+ 259 0034 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 260 0038 23F00803 		bic	r3, r3, #8
+ 261 003c 8DF80730 		strb	r3, [sp, #7]
+ 262 0040 EEE7     		b	.L19
+ 264 0042 00BF     		.section	.text.L3GD20_FilterConfig,"ax",%progbits
+ 265              		.align	1
+ 266              		.p2align 2,,3
+ 267              		.global	L3GD20_FilterConfig
+ 268              		.syntax unified
+ 269              		.thumb
+ 270              		.thumb_func
+ 271              		.fpu fpv4-sp-d16
+ 273              	L3GD20_FilterConfig:
+ 274              		@ args = 0, pretend = 0, frame = 8
+ 275              		@ frame_needed = 0, uses_anonymous_args = 0
+ 276 0000 10B5     		push	{r4, lr}
+ 277 0002 82B0     		sub	sp, sp, #8
+ 278 0004 0446     		mov	r4, r0
+ 279 0006 0122     		movs	r2, #1
+ 280 0008 0DF10700 		add	r0, sp, #7
+ 281 000c 2121     		movs	r1, #33
+ 282 000e FFF7FEFF 		bl	GYRO_IO_Read
+ 283 0012 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 284 0016 23F03F03 		bic	r3, r3, #63
+ 285 001a 1C43     		orrs	r4, r4, r3
+ 286 001c 0DF10700 		add	r0, sp, #7
+ 287 0020 0122     		movs	r2, #1
+ 288 0022 2121     		movs	r1, #33
+ 289 0024 8DF80740 		strb	r4, [sp, #7]
+ 290 0028 FFF7FEFF 		bl	GYRO_IO_Write
+ 291 002c 02B0     		add	sp, sp, #8
+ 292              		@ sp needed
+ 293 002e 10BD     		pop	{r4, pc}
+ 295              		.section	.text.L3GD20_FilterCmd,"ax",%progbits
+ 296              		.align	1
+ 297              		.p2align 2,,3
+ 298              		.global	L3GD20_FilterCmd
+ 299              		.syntax unified
+ 300              		.thumb
+ 301              		.thumb_func
+ 302              		.fpu fpv4-sp-d16
+ 304              	L3GD20_FilterCmd:
+ARM GAS  D:\Programs\cygwin64\tmp\ccPrlMAE.s 			page 6
+
+
+ 305              		@ args = 0, pretend = 0, frame = 8
+ 306              		@ frame_needed = 0, uses_anonymous_args = 0
+ 307 0000 10B5     		push	{r4, lr}
+ 308 0002 82B0     		sub	sp, sp, #8
+ 309 0004 0446     		mov	r4, r0
+ 310 0006 0122     		movs	r2, #1
+ 311 0008 0DF10700 		add	r0, sp, #7
+ 312 000c 2421     		movs	r1, #36
+ 313 000e FFF7FEFF 		bl	GYRO_IO_Read
+ 314 0012 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 315 0016 23F01003 		bic	r3, r3, #16
+ 316 001a 1C43     		orrs	r4, r4, r3
+ 317 001c 0DF10700 		add	r0, sp, #7
+ 318 0020 0122     		movs	r2, #1
+ 319 0022 2421     		movs	r1, #36
+ 320 0024 8DF80740 		strb	r4, [sp, #7]
+ 321 0028 FFF7FEFF 		bl	GYRO_IO_Write
+ 322 002c 02B0     		add	sp, sp, #8
+ 323              		@ sp needed
+ 324 002e 10BD     		pop	{r4, pc}
+ 326              		.section	.text.L3GD20_ReadXYZAngRate,"ax",%progbits
+ 327              		.align	1
+ 328              		.p2align 2,,3
+ 329              		.global	L3GD20_ReadXYZAngRate
+ 330              		.syntax unified
+ 331              		.thumb
+ 332              		.thumb_func
+ 333              		.fpu fpv4-sp-d16
+ 335              	L3GD20_ReadXYZAngRate:
+ 336              		@ args = 0, pretend = 0, frame = 24
+ 337              		@ frame_needed = 0, uses_anonymous_args = 0
+ 338 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 339 0002 87B0     		sub	sp, sp, #28
+ 340 0004 0023     		movs	r3, #0
+ 341 0006 0122     		movs	r2, #1
+ 342 0008 2321     		movs	r1, #35
+ 343 000a 0446     		mov	r4, r0
+ 344 000c 0DF10700 		add	r0, sp, #7
+ 345 0010 ADF80C30 		strh	r3, [sp, #12]	@ movhi
+ 346 0014 0293     		str	r3, [sp, #8]
+ 347 0016 8DF80730 		strb	r3, [sp, #7]
+ 348 001a FFF7FEFF 		bl	GYRO_IO_Read
+ 349 001e 0622     		movs	r2, #6
+ 350 0020 02A8     		add	r0, sp, #8
+ 351 0022 2821     		movs	r1, #40
+ 352 0024 FFF7FEFF 		bl	GYRO_IO_Read
+ 353 0028 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 354 002c 5A06     		lsls	r2, r3, #25
+ 355 002e 45D5     		bpl	.L26
+ 356 0030 9DF80870 		ldrb	r7, [sp, #8]	@ zero_extendqisi2
+ 357 0034 9DF80900 		ldrb	r0, [sp, #9]	@ zero_extendqisi2
+ 358 0038 9DF80A60 		ldrb	r6, [sp, #10]	@ zero_extendqisi2
+ 359 003c 9DF80B10 		ldrb	r1, [sp, #11]	@ zero_extendqisi2
+ 360 0040 9DF80C50 		ldrb	r5, [sp, #12]	@ zero_extendqisi2
+ 361 0044 9DF80D20 		ldrb	r2, [sp, #13]	@ zero_extendqisi2
+ 362              	.L33:
+ 363 0048 03F03003 		and	r3, r3, #48
+ARM GAS  D:\Programs\cygwin64\tmp\ccPrlMAE.s 			page 7
+
+
+ 364 004c 00EB0720 		add	r0, r0, r7, lsl #8
+ 365 0050 01EB0621 		add	r1, r1, r6, lsl #8
+ 366 0054 02EB0522 		add	r2, r2, r5, lsl #8
+ 367 0058 102B     		cmp	r3, #16
+ 368 005a ADF81000 		strh	r0, [sp, #16]	@ movhi
+ 369 005e ADF81210 		strh	r1, [sp, #18]	@ movhi
+ 370 0062 ADF81420 		strh	r2, [sp, #20]	@ movhi
+ 371 0066 39D0     		beq	.L29
+ 372 0068 202B     		cmp	r3, #32
+ 373 006a 34D0     		beq	.L30
+ 374 006c DFED1D7A 		vldr.32	s15, .L34
+ 375 0070 9FED1D7A 		vldr.32	s14, .L34+4
+ 376 0074 002B     		cmp	r3, #0
+ 377 0076 18BF     		it	ne
+ 378 0078 F0EE477A 		vmovne.f32	s15, s14
+ 379              	.L28:
+ 380 007c BDF91030 		ldrsh	r3, [sp, #16]
+ 381 0080 06EE103A 		vmov	s12, r3	@ int
+ 382 0084 BDF91230 		ldrsh	r3, [sp, #18]
+ 383 0088 06EE903A 		vmov	s13, r3	@ int
+ 384 008c BDF91430 		ldrsh	r3, [sp, #20]
+ 385 0090 07EE103A 		vmov	s14, r3	@ int
+ 386 0094 B8EEC66A 		vcvt.f32.s32	s12, s12
+ 387 0098 B8EEC77A 		vcvt.f32.s32	s14, s14
+ 388 009c F8EEE66A 		vcvt.f32.s32	s13, s13
+ 389 00a0 26EE276A 		vmul.f32	s12, s12, s15
+ 390 00a4 66EEA76A 		vmul.f32	s13, s13, s15
+ 391 00a8 67EE277A 		vmul.f32	s15, s14, s15
+ 392 00ac 84ED006A 		vstr.32	s12, [r4]
+ 393 00b0 C4ED016A 		vstr.32	s13, [r4, #4]
+ 394 00b4 C4ED027A 		vstr.32	s15, [r4, #8]
+ 395 00b8 07B0     		add	sp, sp, #28
+ 396              		@ sp needed
+ 397 00ba F0BD     		pop	{r4, r5, r6, r7, pc}
+ 398              	.L26:
+ 399 00bc 9DF80970 		ldrb	r7, [sp, #9]	@ zero_extendqisi2
+ 400 00c0 9DF80800 		ldrb	r0, [sp, #8]	@ zero_extendqisi2
+ 401 00c4 9DF80B60 		ldrb	r6, [sp, #11]	@ zero_extendqisi2
+ 402 00c8 9DF80A10 		ldrb	r1, [sp, #10]	@ zero_extendqisi2
+ 403 00cc 9DF80D50 		ldrb	r5, [sp, #13]	@ zero_extendqisi2
+ 404 00d0 9DF80C20 		ldrb	r2, [sp, #12]	@ zero_extendqisi2
+ 405 00d4 B8E7     		b	.L33
+ 406              	.L30:
+ 407 00d6 DFED057A 		vldr.32	s15, .L34+8
+ 408 00da CFE7     		b	.L28
+ 409              	.L29:
+ 410 00dc DFED047A 		vldr.32	s15, .L34+12
+ 411 00e0 CCE7     		b	.L28
+ 412              	.L35:
+ 413 00e2 00BF     		.align	2
+ 414              	.L34:
+ 415 00e4 00000C41 		.word	1091305472
+ 416 00e8 00000000 		.word	0
+ 417 00ec 00008C42 		.word	1116471296
+ 418 00f0 00008C41 		.word	1099694080
+ 420              		.section	.text.L3GD20_GetDataStatus,"ax",%progbits
+ 421              		.align	1
+ARM GAS  D:\Programs\cygwin64\tmp\ccPrlMAE.s 			page 8
+
+
+ 422              		.p2align 2,,3
+ 423              		.global	L3GD20_GetDataStatus
+ 424              		.syntax unified
+ 425              		.thumb
+ 426              		.thumb_func
+ 427              		.fpu fpv4-sp-d16
+ 429              	L3GD20_GetDataStatus:
+ 430              		@ args = 0, pretend = 0, frame = 8
+ 431              		@ frame_needed = 0, uses_anonymous_args = 0
+ 432 0000 00B5     		push	{lr}
+ 433 0002 83B0     		sub	sp, sp, #12
+ 434 0004 0DF10700 		add	r0, sp, #7
+ 435 0008 0122     		movs	r2, #1
+ 436 000a 2721     		movs	r1, #39
+ 437 000c FFF7FEFF 		bl	GYRO_IO_Read
+ 438 0010 9DF80700 		ldrb	r0, [sp, #7]	@ zero_extendqisi2
+ 439 0014 03B0     		add	sp, sp, #12
+ 440              		@ sp needed
+ 441 0016 5DF804FB 		ldr	pc, [sp], #4
+ 443              		.global	L3gd20Drv
+ 444 001a 00BF     		.section	.data.L3gd20Drv,"aw"
+ 445              		.align	2
+ 448              	L3gd20Drv:
+ 449 0000 00000000 		.word	L3GD20_Init
+ 450 0004 00000000 		.word	L3GD20_DeInit
+ 451 0008 00000000 		.word	L3GD20_ReadID
+ 452 000c 00000000 		.word	L3GD20_RebootCmd
+ 453 0010 00000000 		.word	L3GD20_LowPower
+ 454 0014 00000000 		.word	L3GD20_INT1InterruptConfig
+ 455 0018 00000000 		.word	L3GD20_EnableIT
+ 456 001c 00000000 		.word	L3GD20_DisableIT
+ 457 0020 00000000 		.word	0
+ 458 0024 00000000 		.word	0
+ 459 0028 00000000 		.word	L3GD20_FilterConfig
+ 460 002c 00000000 		.word	L3GD20_FilterCmd
+ 461 0030 00000000 		.word	L3GD20_ReadXYZAngRate
+ 462              		.ident	"GCC: (GNU Tools for Arm Embedded Processors 8-2018-q4-major) 8.2.1 20181213 (release) [gcc
+ARM GAS  D:\Programs\cygwin64\tmp\ccPrlMAE.s 			page 9
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 l3gd20.c
+D:\Programs\cygwin64\tmp\ccPrlMAE.s:16     .text.L3GD20_DeInit:00000000 $t
+D:\Programs\cygwin64\tmp\ccPrlMAE.s:25     .text.L3GD20_DeInit:00000000 L3GD20_DeInit
+D:\Programs\cygwin64\tmp\ccPrlMAE.s:32     .text.L3GD20_Init:00000000 $t
+D:\Programs\cygwin64\tmp\ccPrlMAE.s:40     .text.L3GD20_Init:00000000 L3GD20_Init
+D:\Programs\cygwin64\tmp\ccPrlMAE.s:65     .text.L3GD20_LowPower:00000000 $t
+D:\Programs\cygwin64\tmp\ccPrlMAE.s:73     .text.L3GD20_LowPower:00000000 L3GD20_LowPower
+D:\Programs\cygwin64\tmp\ccPrlMAE.s:88     .text.L3GD20_ReadID:00000000 $t
+D:\Programs\cygwin64\tmp\ccPrlMAE.s:96     .text.L3GD20_ReadID:00000000 L3GD20_ReadID
+D:\Programs\cygwin64\tmp\ccPrlMAE.s:112    .text.L3GD20_RebootCmd:00000000 $t
+D:\Programs\cygwin64\tmp\ccPrlMAE.s:120    .text.L3GD20_RebootCmd:00000000 L3GD20_RebootCmd
+D:\Programs\cygwin64\tmp\ccPrlMAE.s:141    .text.L3GD20_INT1InterruptConfig:00000000 $t
+D:\Programs\cygwin64\tmp\ccPrlMAE.s:149    .text.L3GD20_INT1InterruptConfig:00000000 L3GD20_INT1InterruptConfig
+D:\Programs\cygwin64\tmp\ccPrlMAE.s:186    .text.L3GD20_EnableIT:00000000 $t
+D:\Programs\cygwin64\tmp\ccPrlMAE.s:194    .text.L3GD20_EnableIT:00000000 L3GD20_EnableIT
+D:\Programs\cygwin64\tmp\ccPrlMAE.s:226    .text.L3GD20_DisableIT:00000000 $t
+D:\Programs\cygwin64\tmp\ccPrlMAE.s:234    .text.L3GD20_DisableIT:00000000 L3GD20_DisableIT
+D:\Programs\cygwin64\tmp\ccPrlMAE.s:265    .text.L3GD20_FilterConfig:00000000 $t
+D:\Programs\cygwin64\tmp\ccPrlMAE.s:273    .text.L3GD20_FilterConfig:00000000 L3GD20_FilterConfig
+D:\Programs\cygwin64\tmp\ccPrlMAE.s:296    .text.L3GD20_FilterCmd:00000000 $t
+D:\Programs\cygwin64\tmp\ccPrlMAE.s:304    .text.L3GD20_FilterCmd:00000000 L3GD20_FilterCmd
+D:\Programs\cygwin64\tmp\ccPrlMAE.s:327    .text.L3GD20_ReadXYZAngRate:00000000 $t
+D:\Programs\cygwin64\tmp\ccPrlMAE.s:335    .text.L3GD20_ReadXYZAngRate:00000000 L3GD20_ReadXYZAngRate
+D:\Programs\cygwin64\tmp\ccPrlMAE.s:415    .text.L3GD20_ReadXYZAngRate:000000e4 $d
+D:\Programs\cygwin64\tmp\ccPrlMAE.s:421    .text.L3GD20_GetDataStatus:00000000 $t
+D:\Programs\cygwin64\tmp\ccPrlMAE.s:429    .text.L3GD20_GetDataStatus:00000000 L3GD20_GetDataStatus
+D:\Programs\cygwin64\tmp\ccPrlMAE.s:448    .data.L3gd20Drv:00000000 L3gd20Drv
+D:\Programs\cygwin64\tmp\ccPrlMAE.s:445    .data.L3gd20Drv:00000000 $d
+
+UNDEFINED SYMBOLS
+GYRO_IO_Init
+GYRO_IO_Write
+GYRO_IO_Read

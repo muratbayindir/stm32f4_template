@@ -1,0 +1,1532 @@
+ARM GAS  D:\Programs\cygwin64\tmp\ccxwsXiS.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"stm32f429i_discovery.c"
+  14              		.text
+  15              		.section	.text.SPIx_Init.part.1,"ax",%progbits
+  16              		.align	1
+  17              		.p2align 2,,3
+  18              		.arch armv7e-m
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu fpv4-sp-d16
+  24              	SPIx_Init.part.1:
+  25              		@ args = 0, pretend = 0, frame = 32
+  26              		@ frame_needed = 0, uses_anonymous_args = 0
+  27 0000 70B5     		push	{r4, r5, r6, lr}
+  28 0002 1F4C     		ldr	r4, .L4
+  29 0004 1F4B     		ldr	r3, .L4+4
+  30 0006 204A     		ldr	r2, .L4+8
+  31 0008 2360     		str	r3, [r4]
+  32 000a 88B0     		sub	sp, sp, #32
+  33 000c 0023     		movs	r3, #0
+  34 000e 0193     		str	r3, [sp, #4]
+  35 0010 516C     		ldr	r1, [r2, #68]
+  36 0012 A360     		str	r3, [r4, #8]
+  37 0014 41F48011 		orr	r1, r1, #1048576
+  38 0018 5164     		str	r1, [r2, #68]
+  39 001a 516C     		ldr	r1, [r2, #68]
+  40 001c 6361     		str	r3, [r4, #20]
+  41 001e 01F48011 		and	r1, r1, #1048576
+  42 0022 0191     		str	r1, [sp, #4]
+  43 0024 0199     		ldr	r1, [sp, #4]
+  44 0026 0293     		str	r3, [sp, #8]
+  45 0028 116B     		ldr	r1, [r2, #48]
+  46 002a 2361     		str	r3, [r4, #16]
+  47 002c 41F02001 		orr	r1, r1, #32
+  48 0030 1163     		str	r1, [r2, #48]
+  49 0032 126B     		ldr	r2, [r2, #48]
+  50 0034 1548     		ldr	r0, .L4+12
+  51 0036 A362     		str	r3, [r4, #40]
+  52 0038 02F02002 		and	r2, r2, #32
+  53 003c 1825     		movs	r5, #24
+  54 003e 0721     		movs	r1, #7
+  55 0040 0292     		str	r2, [sp, #8]
+  56 0042 E561     		str	r5, [r4, #28]
+  57 0044 E162     		str	r1, [r4, #44]
+  58 0046 4FF40072 		mov	r2, #512
+ARM GAS  D:\Programs\cygwin64\tmp\ccxwsXiS.s 			page 2
+
+
+  59 004a 4FF48275 		mov	r5, #260
+  60 004e 4FF46071 		mov	r1, #896
+  61 0052 A261     		str	r2, [r4, #24]
+  62 0054 6560     		str	r5, [r4, #4]
+  63 0056 0222     		movs	r2, #2
+  64 0058 E360     		str	r3, [r4, #12]
+  65 005a C4E90833 		strd	r3, r3, [r4, #32]
+  66 005e 0391     		str	r1, [sp, #12]
+  67 0060 0523     		movs	r3, #5
+  68 0062 03A9     		add	r1, sp, #12
+  69 0064 0125     		movs	r5, #1
+  70 0066 CDE90422 		strd	r2, r2, [sp, #16]
+  71 006a CDE90653 		strd	r5, r3, [sp, #24]
+  72 006e 029E     		ldr	r6, [sp, #8]
+  73 0070 FFF7FEFF 		bl	HAL_GPIO_Init
+  74 0074 2046     		mov	r0, r4
+  75 0076 FFF7FEFF 		bl	HAL_SPI_Init
+  76 007a 08B0     		add	sp, sp, #32
+  77              		@ sp needed
+  78 007c 70BD     		pop	{r4, r5, r6, pc}
+  79              	.L5:
+  80 007e 00BF     		.align	2
+  81              	.L4:
+  82 0080 00000000 		.word	.LANCHOR0
+  83 0084 00500140 		.word	1073827840
+  84 0088 00380240 		.word	1073887232
+  85 008c 00140240 		.word	1073878016
+  87              		.section	.text.I2Cx_Init.part.3,"ax",%progbits
+  88              		.align	1
+  89              		.p2align 2,,3
+  90              		.syntax unified
+  91              		.thumb
+  92              		.thumb_func
+  93              		.fpu fpv4-sp-d16
+  95              	I2Cx_Init.part.3:
+  96              		@ args = 0, pretend = 0, frame = 32
+  97              		@ frame_needed = 0, uses_anonymous_args = 0
+  98 0000 70B5     		push	{r4, r5, r6, lr}
+  99 0002 88B0     		sub	sp, sp, #32
+ 100 0004 2F4C     		ldr	r4, .L8
+ 101 0006 304E     		ldr	r6, .L8+4
+ 102 0008 304B     		ldr	r3, .L8+8
+ 103 000a 3360     		str	r3, [r6]
+ 104 000c 0025     		movs	r5, #0
+ 105 000e 0095     		str	r5, [sp]
+ 106 0010 236B     		ldr	r3, [r4, #48]
+ 107 0012 2F4A     		ldr	r2, .L8+12
+ 108 0014 7260     		str	r2, [r6, #4]
+ 109 0016 43F00403 		orr	r3, r3, #4
+ 110 001a 2363     		str	r3, [r4, #48]
+ 111 001c 236B     		ldr	r3, [r4, #48]
+ 112 001e B560     		str	r5, [r6, #8]
+ 113 0020 03F00403 		and	r3, r3, #4
+ 114 0024 0093     		str	r3, [sp]
+ 115 0026 009B     		ldr	r3, [sp]
+ 116 0028 0195     		str	r5, [sp, #4]
+ 117 002a 236B     		ldr	r3, [r4, #48]
+ARM GAS  D:\Programs\cygwin64\tmp\ccxwsXiS.s 			page 3
+
+
+ 118 002c F560     		str	r5, [r6, #12]
+ 119 002e 43F00103 		orr	r3, r3, #1
+ 120 0032 2363     		str	r3, [r4, #48]
+ 121 0034 236B     		ldr	r3, [r4, #48]
+ 122 0036 7561     		str	r5, [r6, #20]
+ 123 0038 03F00103 		and	r3, r3, #1
+ 124 003c 0193     		str	r3, [sp, #4]
+ 125 003e 4FF48040 		mov	r0, #16384
+ 126 0042 4FF48072 		mov	r2, #256
+ 127 0046 1223     		movs	r3, #18
+ 128 0048 03A9     		add	r1, sp, #12
+ 129 004a 3061     		str	r0, [r6, #16]
+ 130 004c 0392     		str	r2, [sp, #12]
+ 131 004e 0198     		ldr	r0, [sp, #4]
+ 132 0050 0493     		str	r3, [sp, #16]
+ 133 0052 0222     		movs	r2, #2
+ 134 0054 0423     		movs	r3, #4
+ 135 0056 1F48     		ldr	r0, .L8+16
+ 136 0058 0692     		str	r2, [sp, #24]
+ 137 005a 0793     		str	r3, [sp, #28]
+ 138 005c C6E90655 		strd	r5, r5, [r6, #24]
+ 139 0060 3562     		str	r5, [r6, #32]
+ 140 0062 0595     		str	r5, [sp, #20]
+ 141 0064 FFF7FEFF 		bl	HAL_GPIO_Init
+ 142 0068 03A9     		add	r1, sp, #12
+ 143 006a 4FF40073 		mov	r3, #512
+ 144 006e 1A48     		ldr	r0, .L8+20
+ 145 0070 0393     		str	r3, [sp, #12]
+ 146 0072 FFF7FEFF 		bl	HAL_GPIO_Init
+ 147 0076 0295     		str	r5, [sp, #8]
+ 148 0078 236C     		ldr	r3, [r4, #64]
+ 149 007a 43F40003 		orr	r3, r3, #8388608
+ 150 007e 2364     		str	r3, [r4, #64]
+ 151 0080 236C     		ldr	r3, [r4, #64]
+ 152 0082 03F40003 		and	r3, r3, #8388608
+ 153 0086 0293     		str	r3, [sp, #8]
+ 154 0088 029B     		ldr	r3, [sp, #8]
+ 155 008a 236A     		ldr	r3, [r4, #32]
+ 156 008c 43F40003 		orr	r3, r3, #8388608
+ 157 0090 2362     		str	r3, [r4, #32]
+ 158 0092 236A     		ldr	r3, [r4, #32]
+ 159 0094 23F40003 		bic	r3, r3, #8388608
+ 160 0098 2362     		str	r3, [r4, #32]
+ 161 009a 2A46     		mov	r2, r5
+ 162 009c 0F21     		movs	r1, #15
+ 163 009e 4820     		movs	r0, #72
+ 164 00a0 FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 165 00a4 4820     		movs	r0, #72
+ 166 00a6 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 167 00aa 2A46     		mov	r2, r5
+ 168 00ac 0F21     		movs	r1, #15
+ 169 00ae 4920     		movs	r0, #73
+ 170 00b0 FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 171 00b4 4920     		movs	r0, #73
+ 172 00b6 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 173 00ba 3046     		mov	r0, r6
+ 174 00bc FFF7FEFF 		bl	HAL_I2C_Init
+ARM GAS  D:\Programs\cygwin64\tmp\ccxwsXiS.s 			page 4
+
+
+ 175 00c0 08B0     		add	sp, sp, #32
+ 176              		@ sp needed
+ 177 00c2 70BD     		pop	{r4, r5, r6, pc}
+ 178              	.L9:
+ 179              		.align	2
+ 180              	.L8:
+ 181 00c4 00380240 		.word	1073887232
+ 182 00c8 00000000 		.word	I2cHandle
+ 183 00cc 005C0040 		.word	1073765376
+ 184 00d0 A0860100 		.word	100000
+ 185 00d4 00000240 		.word	1073872896
+ 186 00d8 00080240 		.word	1073874944
+ 188              		.section	.text.BSP_GetVersion,"ax",%progbits
+ 189              		.align	1
+ 190              		.p2align 2,,3
+ 191              		.global	BSP_GetVersion
+ 192              		.syntax unified
+ 193              		.thumb
+ 194              		.thumb_func
+ 195              		.fpu fpv4-sp-d16
+ 197              	BSP_GetVersion:
+ 198              		@ args = 0, pretend = 0, frame = 0
+ 199              		@ frame_needed = 0, uses_anonymous_args = 0
+ 200              		@ link register save eliminated.
+ 201 0000 0048     		ldr	r0, .L11
+ 202 0002 7047     		bx	lr
+ 203              	.L12:
+ 204              		.align	2
+ 205              	.L11:
+ 206 0004 00060102 		.word	33621504
+ 208              		.section	.text.BSP_LED_Init,"ax",%progbits
+ 209              		.align	1
+ 210              		.p2align 2,,3
+ 211              		.global	BSP_LED_Init
+ 212              		.syntax unified
+ 213              		.thumb
+ 214              		.thumb_func
+ 215              		.fpu fpv4-sp-d16
+ 217              	BSP_LED_Init:
+ 218              		@ args = 0, pretend = 0, frame = 32
+ 219              		@ frame_needed = 0, uses_anonymous_args = 0
+ 220 0000 70B5     		push	{r4, r5, r6, lr}
+ 221 0002 0446     		mov	r4, r0
+ 222 0004 88B0     		sub	sp, sp, #32
+ 223 0006 08BB     		cbnz	r0, .L14
+ 224 0008 184B     		ldr	r3, .L17
+ 225 000a 0190     		str	r0, [sp, #4]
+ 226 000c 1A6B     		ldr	r2, [r3, #48]
+ 227 000e 42F04002 		orr	r2, r2, #64
+ 228 0012 1A63     		str	r2, [r3, #48]
+ 229 0014 1B6B     		ldr	r3, [r3, #48]
+ 230 0016 03F04003 		and	r3, r3, #64
+ 231 001a 0193     		str	r3, [sp, #4]
+ 232 001c 019B     		ldr	r3, [sp, #4]
+ 233              	.L15:
+ 234 001e 144B     		ldr	r3, .L17+4
+ 235 0020 144D     		ldr	r5, .L17+8
+ARM GAS  D:\Programs\cygwin64\tmp\ccxwsXiS.s 			page 5
+
+
+ 236 0022 33F81460 		ldrh	r6, [r3, r4, lsl #1]
+ 237 0026 55F82400 		ldr	r0, [r5, r4, lsl #2]
+ 238 002a 0396     		str	r6, [sp, #12]
+ 239 002c 0123     		movs	r3, #1
+ 240 002e 0222     		movs	r2, #2
+ 241 0030 03A9     		add	r1, sp, #12
+ 242 0032 CDE90433 		strd	r3, r3, [sp, #16]
+ 243 0036 0692     		str	r2, [sp, #24]
+ 244 0038 FFF7FEFF 		bl	HAL_GPIO_Init
+ 245 003c 3146     		mov	r1, r6
+ 246 003e 55F82400 		ldr	r0, [r5, r4, lsl #2]
+ 247 0042 0022     		movs	r2, #0
+ 248 0044 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 249 0048 08B0     		add	sp, sp, #32
+ 250              		@ sp needed
+ 251 004a 70BD     		pop	{r4, r5, r6, pc}
+ 252              	.L14:
+ 253 004c 0128     		cmp	r0, #1
+ 254 004e E6D1     		bne	.L15
+ 255 0050 064B     		ldr	r3, .L17
+ 256 0052 0022     		movs	r2, #0
+ 257 0054 0292     		str	r2, [sp, #8]
+ 258 0056 1A6B     		ldr	r2, [r3, #48]
+ 259 0058 42F04002 		orr	r2, r2, #64
+ 260 005c 1A63     		str	r2, [r3, #48]
+ 261 005e 1B6B     		ldr	r3, [r3, #48]
+ 262 0060 03F04003 		and	r3, r3, #64
+ 263 0064 0293     		str	r3, [sp, #8]
+ 264 0066 029B     		ldr	r3, [sp, #8]
+ 265 0068 D9E7     		b	.L15
+ 266              	.L18:
+ 267 006a 00BF     		.align	2
+ 268              	.L17:
+ 269 006c 00380240 		.word	1073887232
+ 270 0070 00000000 		.word	.LANCHOR1
+ 271 0074 00000000 		.word	.LANCHOR2
+ 273              		.section	.text.BSP_LED_On,"ax",%progbits
+ 274              		.align	1
+ 275              		.p2align 2,,3
+ 276              		.global	BSP_LED_On
+ 277              		.syntax unified
+ 278              		.thumb
+ 279              		.thumb_func
+ 280              		.fpu fpv4-sp-d16
+ 282              	BSP_LED_On:
+ 283              		@ args = 0, pretend = 0, frame = 0
+ 284              		@ frame_needed = 0, uses_anonymous_args = 0
+ 285              		@ link register save eliminated.
+ 286 0000 044A     		ldr	r2, .L20
+ 287 0002 054B     		ldr	r3, .L20+4
+ 288 0004 32F81010 		ldrh	r1, [r2, r0, lsl #1]
+ 289 0008 53F82000 		ldr	r0, [r3, r0, lsl #2]
+ 290 000c 0122     		movs	r2, #1
+ 291 000e FFF7FEBF 		b	HAL_GPIO_WritePin
+ 292              	.L21:
+ 293 0012 00BF     		.align	2
+ 294              	.L20:
+ARM GAS  D:\Programs\cygwin64\tmp\ccxwsXiS.s 			page 6
+
+
+ 295 0014 00000000 		.word	.LANCHOR1
+ 296 0018 00000000 		.word	.LANCHOR2
+ 298              		.section	.text.BSP_LED_Off,"ax",%progbits
+ 299              		.align	1
+ 300              		.p2align 2,,3
+ 301              		.global	BSP_LED_Off
+ 302              		.syntax unified
+ 303              		.thumb
+ 304              		.thumb_func
+ 305              		.fpu fpv4-sp-d16
+ 307              	BSP_LED_Off:
+ 308              		@ args = 0, pretend = 0, frame = 0
+ 309              		@ frame_needed = 0, uses_anonymous_args = 0
+ 310              		@ link register save eliminated.
+ 311 0000 044A     		ldr	r2, .L23
+ 312 0002 054B     		ldr	r3, .L23+4
+ 313 0004 32F81010 		ldrh	r1, [r2, r0, lsl #1]
+ 314 0008 53F82000 		ldr	r0, [r3, r0, lsl #2]
+ 315 000c 0022     		movs	r2, #0
+ 316 000e FFF7FEBF 		b	HAL_GPIO_WritePin
+ 317              	.L24:
+ 318 0012 00BF     		.align	2
+ 319              	.L23:
+ 320 0014 00000000 		.word	.LANCHOR1
+ 321 0018 00000000 		.word	.LANCHOR2
+ 323              		.section	.text.BSP_LED_Toggle,"ax",%progbits
+ 324              		.align	1
+ 325              		.p2align 2,,3
+ 326              		.global	BSP_LED_Toggle
+ 327              		.syntax unified
+ 328              		.thumb
+ 329              		.thumb_func
+ 330              		.fpu fpv4-sp-d16
+ 332              	BSP_LED_Toggle:
+ 333              		@ args = 0, pretend = 0, frame = 0
+ 334              		@ frame_needed = 0, uses_anonymous_args = 0
+ 335              		@ link register save eliminated.
+ 336 0000 034A     		ldr	r2, .L26
+ 337 0002 044B     		ldr	r3, .L26+4
+ 338 0004 32F81010 		ldrh	r1, [r2, r0, lsl #1]
+ 339 0008 53F82000 		ldr	r0, [r3, r0, lsl #2]
+ 340 000c FFF7FEBF 		b	HAL_GPIO_TogglePin
+ 341              	.L27:
+ 342              		.align	2
+ 343              	.L26:
+ 344 0010 00000000 		.word	.LANCHOR1
+ 345 0014 00000000 		.word	.LANCHOR2
+ 347              		.section	.text.BSP_PB_Init,"ax",%progbits
+ 348              		.align	1
+ 349              		.p2align 2,,3
+ 350              		.global	BSP_PB_Init
+ 351              		.syntax unified
+ 352              		.thumb
+ 353              		.thumb_func
+ 354              		.fpu fpv4-sp-d16
+ 356              	BSP_PB_Init:
+ 357              		@ args = 0, pretend = 0, frame = 32
+ARM GAS  D:\Programs\cygwin64\tmp\ccxwsXiS.s 			page 7
+
+
+ 358              		@ frame_needed = 0, uses_anonymous_args = 0
+ 359 0000 30B5     		push	{r4, r5, lr}
+ 360 0002 89B0     		sub	sp, sp, #36
+ 361 0004 50B9     		cbnz	r0, .L29
+ 362 0006 1B4B     		ldr	r3, .L35
+ 363 0008 0190     		str	r0, [sp, #4]
+ 364 000a 1A6B     		ldr	r2, [r3, #48]
+ 365 000c 42F00102 		orr	r2, r2, #1
+ 366 0010 1A63     		str	r2, [r3, #48]
+ 367 0012 1B6B     		ldr	r3, [r3, #48]
+ 368 0014 03F00103 		and	r3, r3, #1
+ 369 0018 0193     		str	r3, [sp, #4]
+ 370 001a 019B     		ldr	r3, [sp, #4]
+ 371              	.L29:
+ 372 001c C9B1     		cbz	r1, .L33
+ 373 001e 0129     		cmp	r1, #1
+ 374 0020 01D0     		beq	.L34
+ 375 0022 09B0     		add	sp, sp, #36
+ 376              		@ sp needed
+ 377 0024 30BD     		pop	{r4, r5, pc}
+ 378              	.L34:
+ 379 0026 144B     		ldr	r3, .L35+4
+ 380 0028 53F82000 		ldr	r0, [r3, r0, lsl #2]
+ 381 002c 134B     		ldr	r3, .L35+8
+ 382 002e 0024     		movs	r4, #0
+ 383 0030 0122     		movs	r2, #1
+ 384 0032 02A9     		add	r1, sp, #8
+ 385 0034 CDE90223 		strd	r2, [sp, #8]
+ 386 0038 0494     		str	r4, [sp, #16]
+ 387 003a FFF7FEFF 		bl	HAL_GPIO_Init
+ 388 003e 2246     		mov	r2, r4
+ 389 0040 0F21     		movs	r1, #15
+ 390 0042 0620     		movs	r0, #6
+ 391 0044 FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 392 0048 0620     		movs	r0, #6
+ 393 004a FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 394 004e 09B0     		add	sp, sp, #36
+ 395              		@ sp needed
+ 396 0050 30BD     		pop	{r4, r5, pc}
+ 397              	.L33:
+ 398 0052 094B     		ldr	r3, .L35+4
+ 399 0054 0222     		movs	r2, #2
+ 400 0056 53F82000 		ldr	r0, [r3, r0, lsl #2]
+ 401 005a 0124     		movs	r4, #1
+ 402 005c 0223     		movs	r3, #2
+ 403 005e 0025     		movs	r5, #0
+ 404 0060 02A9     		add	r1, sp, #8
+ 405 0062 CDE90245 		strd	r4, [sp, #8]
+ 406 0066 CDE90423 		strd	r2, [sp, #16]
+ 407 006a FFF7FEFF 		bl	HAL_GPIO_Init
+ 408 006e 09B0     		add	sp, sp, #36
+ 409              		@ sp needed
+ 410 0070 30BD     		pop	{r4, r5, pc}
+ 411              	.L36:
+ 412 0072 00BF     		.align	2
+ 413              	.L35:
+ 414 0074 00380240 		.word	1073887232
+ARM GAS  D:\Programs\cygwin64\tmp\ccxwsXiS.s 			page 8
+
+
+ 415 0078 00000000 		.word	.LANCHOR3
+ 416 007c 00001110 		.word	269549568
+ 418              		.section	.text.BSP_PB_GetState,"ax",%progbits
+ 419              		.align	1
+ 420              		.p2align 2,,3
+ 421              		.global	BSP_PB_GetState
+ 422              		.syntax unified
+ 423              		.thumb
+ 424              		.thumb_func
+ 425              		.fpu fpv4-sp-d16
+ 427              	BSP_PB_GetState:
+ 428              		@ args = 0, pretend = 0, frame = 0
+ 429              		@ frame_needed = 0, uses_anonymous_args = 0
+ 430 0000 08B5     		push	{r3, lr}
+ 431 0002 034B     		ldr	r3, .L39
+ 432 0004 0121     		movs	r1, #1
+ 433 0006 53F82000 		ldr	r0, [r3, r0, lsl #2]
+ 434 000a FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 435 000e 08BD     		pop	{r3, pc}
+ 436              	.L40:
+ 437              		.align	2
+ 438              	.L39:
+ 439 0010 00000000 		.word	.LANCHOR3
+ 441              		.section	.text.LCD_IO_Init,"ax",%progbits
+ 442              		.align	1
+ 443              		.p2align 2,,3
+ 444              		.global	LCD_IO_Init
+ 445              		.syntax unified
+ 446              		.thumb
+ 447              		.thumb_func
+ 448              		.fpu fpv4-sp-d16
+ 450              	LCD_IO_Init:
+ 451              		@ args = 0, pretend = 0, frame = 32
+ 452              		@ frame_needed = 0, uses_anonymous_args = 0
+ 453 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 454 0002 2C4B     		ldr	r3, .L47
+ 455 0004 1C78     		ldrb	r4, [r3]	@ zero_extendqisi2
+ 456 0006 89B0     		sub	sp, sp, #36
+ 457 0008 0CB1     		cbz	r4, .L46
+ 458              	.L41:
+ 459 000a 09B0     		add	sp, sp, #36
+ 460              		@ sp needed
+ 461 000c F0BD     		pop	{r4, r5, r6, r7, pc}
+ 462              	.L46:
+ 463 000e 2A4D     		ldr	r5, .L47+4
+ 464 0010 0094     		str	r4, [sp]
+ 465 0012 0126     		movs	r6, #1
+ 466 0014 1E70     		strb	r6, [r3]
+ 467 0016 2B6B     		ldr	r3, [r5, #48]
+ 468 0018 2848     		ldr	r0, .L47+8
+ 469 001a 43F00803 		orr	r3, r3, #8
+ 470 001e 2B63     		str	r3, [r5, #48]
+ 471 0020 2B6B     		ldr	r3, [r5, #48]
+ 472 0022 0496     		str	r6, [sp, #16]
+ 473 0024 03F00803 		and	r3, r3, #8
+ 474 0028 0093     		str	r3, [sp]
+ 475 002a 0227     		movs	r7, #2
+ARM GAS  D:\Programs\cygwin64\tmp\ccxwsXiS.s 			page 9
+
+
+ 476 002c 4FF40053 		mov	r3, #8192
+ 477 0030 03A9     		add	r1, sp, #12
+ 478 0032 009A     		ldr	r2, [sp]
+ 479 0034 0393     		str	r3, [sp, #12]
+ 480 0036 0594     		str	r4, [sp, #20]
+ 481 0038 0697     		str	r7, [sp, #24]
+ 482 003a FFF7FEFF 		bl	HAL_GPIO_Init
+ 483 003e 0194     		str	r4, [sp, #4]
+ 484 0040 2B6B     		ldr	r3, [r5, #48]
+ 485 0042 1E48     		ldr	r0, .L47+8
+ 486 0044 43F00803 		orr	r3, r3, #8
+ 487 0048 2B63     		str	r3, [r5, #48]
+ 488 004a 2B6B     		ldr	r3, [r5, #48]
+ 489 004c 0496     		str	r6, [sp, #16]
+ 490 004e 03F00803 		and	r3, r3, #8
+ 491 0052 0193     		str	r3, [sp, #4]
+ 492 0054 03A9     		add	r1, sp, #12
+ 493 0056 4FF48053 		mov	r3, #4096
+ 494 005a 019A     		ldr	r2, [sp, #4]
+ 495 005c 0393     		str	r3, [sp, #12]
+ 496 005e CDE90547 		strd	r4, r7, [sp, #20]
+ 497 0062 FFF7FEFF 		bl	HAL_GPIO_Init
+ 498 0066 0294     		str	r4, [sp, #8]
+ 499 0068 2B6B     		ldr	r3, [r5, #48]
+ 500 006a 1548     		ldr	r0, .L47+12
+ 501 006c 43F00403 		orr	r3, r3, #4
+ 502 0070 2B63     		str	r3, [r5, #48]
+ 503 0072 2B6B     		ldr	r3, [r5, #48]
+ 504 0074 0496     		str	r6, [sp, #16]
+ 505 0076 03F00403 		and	r3, r3, #4
+ 506 007a 0425     		movs	r5, #4
+ 507 007c 03A9     		add	r1, sp, #12
+ 508 007e 0293     		str	r3, [sp, #8]
+ 509 0080 029B     		ldr	r3, [sp, #8]
+ 510 0082 0395     		str	r5, [sp, #12]
+ 511 0084 CDE90547 		strd	r4, r7, [sp, #20]
+ 512 0088 FFF7FEFF 		bl	HAL_GPIO_Init
+ 513 008c 2246     		mov	r2, r4
+ 514 008e 2946     		mov	r1, r5
+ 515 0090 0B48     		ldr	r0, .L47+12
+ 516 0092 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 517 0096 0A48     		ldr	r0, .L47+12
+ 518 0098 3246     		mov	r2, r6
+ 519 009a 2946     		mov	r1, r5
+ 520 009c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 521 00a0 0848     		ldr	r0, .L47+16
+ 522 00a2 FFF7FEFF 		bl	HAL_SPI_GetState
+ 523 00a6 0028     		cmp	r0, #0
+ 524 00a8 AFD1     		bne	.L41
+ 525 00aa FFF7FEFF 		bl	SPIx_Init.part.1
+ 526 00ae 09B0     		add	sp, sp, #36
+ 527              		@ sp needed
+ 528 00b0 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 529              	.L48:
+ 530 00b2 00BF     		.align	2
+ 531              	.L47:
+ 532 00b4 00000000 		.word	.LANCHOR4
+ARM GAS  D:\Programs\cygwin64\tmp\ccxwsXiS.s 			page 10
+
+
+ 533 00b8 00380240 		.word	1073887232
+ 534 00bc 000C0240 		.word	1073875968
+ 535 00c0 00080240 		.word	1073874944
+ 536 00c4 00000000 		.word	.LANCHOR0
+ 538              		.section	.text.LCD_IO_WriteData,"ax",%progbits
+ 539              		.align	1
+ 540              		.p2align 2,,3
+ 541              		.global	LCD_IO_WriteData
+ 542              		.syntax unified
+ 543              		.thumb
+ 544              		.thumb_func
+ 545              		.fpu fpv4-sp-d16
+ 547              	LCD_IO_WriteData:
+ 548              		@ args = 0, pretend = 0, frame = 8
+ 549              		@ frame_needed = 0, uses_anonymous_args = 0
+ 550 0000 10B5     		push	{r4, lr}
+ 551 0002 0122     		movs	r2, #1
+ 552 0004 82B0     		sub	sp, sp, #8
+ 553 0006 0446     		mov	r4, r0
+ 554 0008 4FF40051 		mov	r1, #8192
+ 555 000c 1248     		ldr	r0, .L55
+ 556 000e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 557 0012 0022     		movs	r2, #0
+ 558 0014 0421     		movs	r1, #4
+ 559 0016 1148     		ldr	r0, .L55+4
+ 560 0018 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 561 001c 104B     		ldr	r3, .L55+8
+ 562 001e 1148     		ldr	r0, .L55+12
+ 563 0020 1B68     		ldr	r3, [r3]
+ 564 0022 ADF80640 		strh	r4, [sp, #6]	@ movhi
+ 565 0026 0122     		movs	r2, #1
+ 566 0028 0DF10601 		add	r1, sp, #6
+ 567 002c FFF7FEFF 		bl	HAL_SPI_Transmit
+ 568 0030 30B9     		cbnz	r0, .L54
+ 569              	.L51:
+ 570 0032 0122     		movs	r2, #1
+ 571 0034 0421     		movs	r1, #4
+ 572 0036 0948     		ldr	r0, .L55+4
+ 573 0038 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 574 003c 02B0     		add	sp, sp, #8
+ 575              		@ sp needed
+ 576 003e 10BD     		pop	{r4, pc}
+ 577              	.L54:
+ 578 0040 0848     		ldr	r0, .L55+12
+ 579 0042 FFF7FEFF 		bl	HAL_SPI_DeInit
+ 580 0046 0748     		ldr	r0, .L55+12
+ 581 0048 FFF7FEFF 		bl	HAL_SPI_GetState
+ 582 004c 0028     		cmp	r0, #0
+ 583 004e F0D1     		bne	.L51
+ 584 0050 FFF7FEFF 		bl	SPIx_Init.part.1
+ 585 0054 EDE7     		b	.L51
+ 586              	.L56:
+ 587 0056 00BF     		.align	2
+ 588              	.L55:
+ 589 0058 000C0240 		.word	1073875968
+ 590 005c 00080240 		.word	1073874944
+ 591 0060 00000000 		.word	.LANCHOR5
+ARM GAS  D:\Programs\cygwin64\tmp\ccxwsXiS.s 			page 11
+
+
+ 592 0064 00000000 		.word	.LANCHOR0
+ 594              		.section	.text.LCD_IO_WriteReg,"ax",%progbits
+ 595              		.align	1
+ 596              		.p2align 2,,3
+ 597              		.global	LCD_IO_WriteReg
+ 598              		.syntax unified
+ 599              		.thumb
+ 600              		.thumb_func
+ 601              		.fpu fpv4-sp-d16
+ 603              	LCD_IO_WriteReg:
+ 604              		@ args = 0, pretend = 0, frame = 8
+ 605              		@ frame_needed = 0, uses_anonymous_args = 0
+ 606 0000 10B5     		push	{r4, lr}
+ 607 0002 0022     		movs	r2, #0
+ 608 0004 82B0     		sub	sp, sp, #8
+ 609 0006 0446     		mov	r4, r0
+ 610 0008 4FF40051 		mov	r1, #8192
+ 611 000c 1248     		ldr	r0, .L63
+ 612 000e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 613 0012 0022     		movs	r2, #0
+ 614 0014 0421     		movs	r1, #4
+ 615 0016 1148     		ldr	r0, .L63+4
+ 616 0018 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 617 001c 104B     		ldr	r3, .L63+8
+ 618 001e 1148     		ldr	r0, .L63+12
+ 619 0020 1B68     		ldr	r3, [r3]
+ 620 0022 ADF80640 		strh	r4, [sp, #6]	@ movhi
+ 621 0026 0122     		movs	r2, #1
+ 622 0028 0DF10601 		add	r1, sp, #6
+ 623 002c FFF7FEFF 		bl	HAL_SPI_Transmit
+ 624 0030 30B9     		cbnz	r0, .L62
+ 625              	.L59:
+ 626 0032 0122     		movs	r2, #1
+ 627 0034 0421     		movs	r1, #4
+ 628 0036 0948     		ldr	r0, .L63+4
+ 629 0038 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 630 003c 02B0     		add	sp, sp, #8
+ 631              		@ sp needed
+ 632 003e 10BD     		pop	{r4, pc}
+ 633              	.L62:
+ 634 0040 0848     		ldr	r0, .L63+12
+ 635 0042 FFF7FEFF 		bl	HAL_SPI_DeInit
+ 636 0046 0748     		ldr	r0, .L63+12
+ 637 0048 FFF7FEFF 		bl	HAL_SPI_GetState
+ 638 004c 0028     		cmp	r0, #0
+ 639 004e F0D1     		bne	.L59
+ 640 0050 FFF7FEFF 		bl	SPIx_Init.part.1
+ 641 0054 EDE7     		b	.L59
+ 642              	.L64:
+ 643 0056 00BF     		.align	2
+ 644              	.L63:
+ 645 0058 000C0240 		.word	1073875968
+ 646 005c 00080240 		.word	1073874944
+ 647 0060 00000000 		.word	.LANCHOR5
+ 648 0064 00000000 		.word	.LANCHOR0
+ 650              		.section	.text.LCD_IO_ReadData,"ax",%progbits
+ 651              		.align	1
+ARM GAS  D:\Programs\cygwin64\tmp\ccxwsXiS.s 			page 12
+
+
+ 652              		.p2align 2,,3
+ 653              		.global	LCD_IO_ReadData
+ 654              		.syntax unified
+ 655              		.thumb
+ 656              		.thumb_func
+ 657              		.fpu fpv4-sp-d16
+ 659              	LCD_IO_ReadData:
+ 660              		@ args = 0, pretend = 0, frame = 8
+ 661              		@ frame_needed = 0, uses_anonymous_args = 0
+ 662 0000 70B5     		push	{r4, r5, r6, lr}
+ 663 0002 0022     		movs	r2, #0
+ 664 0004 82B0     		sub	sp, sp, #8
+ 665 0006 0646     		mov	r6, r0
+ 666 0008 0D46     		mov	r5, r1
+ 667 000a 2048     		ldr	r0, .L75
+ 668 000c 204C     		ldr	r4, .L75+4
+ 669 000e 0421     		movs	r1, #4
+ 670 0010 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 671 0014 0022     		movs	r2, #0
+ 672 0016 4FF40051 		mov	r1, #8192
+ 673 001a 1E48     		ldr	r0, .L75+8
+ 674 001c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 675 0020 2368     		ldr	r3, [r4]
+ 676 0022 1D48     		ldr	r0, .L75+12
+ 677 0024 ADF80460 		strh	r6, [sp, #4]	@ movhi
+ 678 0028 01A9     		add	r1, sp, #4
+ 679 002a 0122     		movs	r2, #1
+ 680 002c FFF7FEFF 		bl	HAL_SPI_Transmit
+ 681 0030 A8B9     		cbnz	r0, .L73
+ 682              	.L67:
+ 683 0032 2368     		ldr	r3, [r4]
+ 684 0034 1848     		ldr	r0, .L75+12
+ 685 0036 2A46     		mov	r2, r5
+ 686 0038 01A9     		add	r1, sp, #4
+ 687 003a FFF7FEFF 		bl	HAL_SPI_Receive
+ 688 003e C8B9     		cbnz	r0, .L74
+ 689              	.L70:
+ 690 0040 0122     		movs	r2, #1
+ 691 0042 4FF40051 		mov	r1, #8192
+ 692 0046 1348     		ldr	r0, .L75+8
+ 693 0048 019C     		ldr	r4, [sp, #4]
+ 694 004a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 695 004e 0122     		movs	r2, #1
+ 696 0050 0421     		movs	r1, #4
+ 697 0052 0E48     		ldr	r0, .L75
+ 698 0054 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 699 0058 2046     		mov	r0, r4
+ 700 005a 02B0     		add	sp, sp, #8
+ 701              		@ sp needed
+ 702 005c 70BD     		pop	{r4, r5, r6, pc}
+ 703              	.L73:
+ 704 005e 0E48     		ldr	r0, .L75+12
+ 705 0060 FFF7FEFF 		bl	HAL_SPI_DeInit
+ 706 0064 0C48     		ldr	r0, .L75+12
+ 707 0066 FFF7FEFF 		bl	HAL_SPI_GetState
+ 708 006a 0028     		cmp	r0, #0
+ 709 006c E1D1     		bne	.L67
+ARM GAS  D:\Programs\cygwin64\tmp\ccxwsXiS.s 			page 13
+
+
+ 710 006e FFF7FEFF 		bl	SPIx_Init.part.1
+ 711 0072 DEE7     		b	.L67
+ 712              	.L74:
+ 713 0074 0848     		ldr	r0, .L75+12
+ 714 0076 FFF7FEFF 		bl	HAL_SPI_DeInit
+ 715 007a 0748     		ldr	r0, .L75+12
+ 716 007c FFF7FEFF 		bl	HAL_SPI_GetState
+ 717 0080 0028     		cmp	r0, #0
+ 718 0082 DDD1     		bne	.L70
+ 719 0084 FFF7FEFF 		bl	SPIx_Init.part.1
+ 720 0088 DAE7     		b	.L70
+ 721              	.L76:
+ 722 008a 00BF     		.align	2
+ 723              	.L75:
+ 724 008c 00080240 		.word	1073874944
+ 725 0090 00000000 		.word	.LANCHOR5
+ 726 0094 000C0240 		.word	1073875968
+ 727 0098 00000000 		.word	.LANCHOR0
+ 729              		.section	.text.LCD_Delay,"ax",%progbits
+ 730              		.align	1
+ 731              		.p2align 2,,3
+ 732              		.global	LCD_Delay
+ 733              		.syntax unified
+ 734              		.thumb
+ 735              		.thumb_func
+ 736              		.fpu fpv4-sp-d16
+ 738              	LCD_Delay:
+ 739              		@ args = 0, pretend = 0, frame = 0
+ 740              		@ frame_needed = 0, uses_anonymous_args = 0
+ 741              		@ link register save eliminated.
+ 742 0000 FFF7FEBF 		b	HAL_Delay
+ 744              		.section	.text.IOE_Init,"ax",%progbits
+ 745              		.align	1
+ 746              		.p2align 2,,3
+ 747              		.global	IOE_Init
+ 748              		.syntax unified
+ 749              		.thumb
+ 750              		.thumb_func
+ 751              		.fpu fpv4-sp-d16
+ 753              	IOE_Init:
+ 754              		@ args = 0, pretend = 0, frame = 0
+ 755              		@ frame_needed = 0, uses_anonymous_args = 0
+ 756 0000 08B5     		push	{r3, lr}
+ 757 0002 0448     		ldr	r0, .L82
+ 758 0004 FFF7FEFF 		bl	HAL_I2C_GetState
+ 759 0008 00B1     		cbz	r0, .L81
+ 760 000a 08BD     		pop	{r3, pc}
+ 761              	.L81:
+ 762 000c BDE80840 		pop	{r3, lr}
+ 763 0010 FFF7FEBF 		b	I2Cx_Init.part.3
+ 764              	.L83:
+ 765              		.align	2
+ 766              	.L82:
+ 767 0014 00000000 		.word	I2cHandle
+ 769              		.section	.text.IOE_ITConfig,"ax",%progbits
+ 770              		.align	1
+ 771              		.p2align 2,,3
+ARM GAS  D:\Programs\cygwin64\tmp\ccxwsXiS.s 			page 14
+
+
+ 772              		.global	IOE_ITConfig
+ 773              		.syntax unified
+ 774              		.thumb
+ 775              		.thumb_func
+ 776              		.fpu fpv4-sp-d16
+ 778              	IOE_ITConfig:
+ 779              		@ args = 0, pretend = 0, frame = 24
+ 780              		@ frame_needed = 0, uses_anonymous_args = 0
+ 781 0000 70B5     		push	{r4, r5, r6, lr}
+ 782 0002 86B0     		sub	sp, sp, #24
+ 783 0004 0024     		movs	r4, #0
+ 784 0006 104B     		ldr	r3, .L86
+ 785 0008 0094     		str	r4, [sp]
+ 786 000a 1A6B     		ldr	r2, [r3, #48]
+ 787 000c 0F4D     		ldr	r5, .L86+4
+ 788 000e 1048     		ldr	r0, .L86+8
+ 789 0010 42F00102 		orr	r2, r2, #1
+ 790 0014 1A63     		str	r2, [r3, #48]
+ 791 0016 1B6B     		ldr	r3, [r3, #48]
+ 792 0018 0494     		str	r4, [sp, #16]
+ 793 001a 03F00103 		and	r3, r3, #1
+ 794 001e 0093     		str	r3, [sp]
+ 795 0020 4FF40042 		mov	r2, #32768
+ 796 0024 0123     		movs	r3, #1
+ 797 0026 01A9     		add	r1, sp, #4
+ 798 0028 CDE90253 		strd	r5, r3, [sp, #8]
+ 799 002c 0192     		str	r2, [sp, #4]
+ 800 002e 009E     		ldr	r6, [sp]
+ 801 0030 FFF7FEFF 		bl	HAL_GPIO_Init
+ 802 0034 2246     		mov	r2, r4
+ 803 0036 0F21     		movs	r1, #15
+ 804 0038 2820     		movs	r0, #40
+ 805 003a FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 806 003e 2820     		movs	r0, #40
+ 807 0040 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 808 0044 06B0     		add	sp, sp, #24
+ 809              		@ sp needed
+ 810 0046 70BD     		pop	{r4, r5, r6, pc}
+ 811              	.L87:
+ 812              		.align	2
+ 813              	.L86:
+ 814 0048 00380240 		.word	1073887232
+ 815 004c 00002110 		.word	270598144
+ 816 0050 00000240 		.word	1073872896
+ 818              		.section	.text.IOE_Write,"ax",%progbits
+ 819              		.align	1
+ 820              		.p2align 2,,3
+ 821              		.global	IOE_Write
+ 822              		.syntax unified
+ 823              		.thumb
+ 824              		.thumb_func
+ 825              		.fpu fpv4-sp-d16
+ 827              	IOE_Write:
+ 828              		@ args = 0, pretend = 0, frame = 8
+ 829              		@ frame_needed = 0, uses_anonymous_args = 0
+ 830 0000 10B5     		push	{r4, lr}
+ 831 0002 0F4B     		ldr	r3, .L94
+ARM GAS  D:\Programs\cygwin64\tmp\ccxwsXiS.s 			page 15
+
+
+ 832 0004 86B0     		sub	sp, sp, #24
+ 833 0006 1B68     		ldr	r3, [r3]
+ 834 0008 0293     		str	r3, [sp, #8]
+ 835 000a 0DF11704 		add	r4, sp, #23
+ 836 000e 0123     		movs	r3, #1
+ 837 0010 8DF81720 		strb	r2, [sp, #23]
+ 838 0014 0193     		str	r3, [sp, #4]
+ 839 0016 0A46     		mov	r2, r1
+ 840 0018 0094     		str	r4, [sp]
+ 841 001a 0146     		mov	r1, r0
+ 842 001c 0948     		ldr	r0, .L94+4
+ 843 001e FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 844 0022 08B9     		cbnz	r0, .L93
+ 845              	.L88:
+ 846 0024 06B0     		add	sp, sp, #24
+ 847              		@ sp needed
+ 848 0026 10BD     		pop	{r4, pc}
+ 849              	.L93:
+ 850 0028 0648     		ldr	r0, .L94+4
+ 851 002a FFF7FEFF 		bl	HAL_I2C_DeInit
+ 852 002e 0548     		ldr	r0, .L94+4
+ 853 0030 FFF7FEFF 		bl	HAL_I2C_GetState
+ 854 0034 0028     		cmp	r0, #0
+ 855 0036 F5D1     		bne	.L88
+ 856 0038 FFF7FEFF 		bl	I2Cx_Init.part.3
+ 857 003c 06B0     		add	sp, sp, #24
+ 858              		@ sp needed
+ 859 003e 10BD     		pop	{r4, pc}
+ 860              	.L95:
+ 861              		.align	2
+ 862              	.L94:
+ 863 0040 00000000 		.word	.LANCHOR6
+ 864 0044 00000000 		.word	I2cHandle
+ 866              		.section	.text.IOE_Read,"ax",%progbits
+ 867              		.align	1
+ 868              		.p2align 2,,3
+ 869              		.global	IOE_Read
+ 870              		.syntax unified
+ 871              		.thumb
+ 872              		.thumb_func
+ 873              		.fpu fpv4-sp-d16
+ 875              	IOE_Read:
+ 876              		@ args = 0, pretend = 0, frame = 8
+ 877              		@ frame_needed = 0, uses_anonymous_args = 0
+ 878 0000 10B5     		push	{r4, lr}
+ 879 0002 124A     		ldr	r2, .L102
+ 880 0004 86B0     		sub	sp, sp, #24
+ 881 0006 1268     		ldr	r2, [r2]
+ 882 0008 0292     		str	r2, [sp, #8]
+ 883 000a 0DF11704 		add	r4, sp, #23
+ 884 000e 0123     		movs	r3, #1
+ 885 0010 0A46     		mov	r2, r1
+ 886 0012 0094     		str	r4, [sp]
+ 887 0014 0146     		mov	r1, r0
+ 888 0016 0024     		movs	r4, #0
+ 889 0018 0193     		str	r3, [sp, #4]
+ 890 001a 0D48     		ldr	r0, .L102+4
+ARM GAS  D:\Programs\cygwin64\tmp\ccxwsXiS.s 			page 16
+
+
+ 891 001c 8DF81740 		strb	r4, [sp, #23]
+ 892 0020 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 893 0024 18B9     		cbnz	r0, .L101
+ 894              	.L98:
+ 895 0026 9DF81700 		ldrb	r0, [sp, #23]	@ zero_extendqisi2
+ 896 002a 06B0     		add	sp, sp, #24
+ 897              		@ sp needed
+ 898 002c 10BD     		pop	{r4, pc}
+ 899              	.L101:
+ 900 002e 0848     		ldr	r0, .L102+4
+ 901 0030 FFF7FEFF 		bl	HAL_I2C_DeInit
+ 902 0034 0648     		ldr	r0, .L102+4
+ 903 0036 FFF7FEFF 		bl	HAL_I2C_GetState
+ 904 003a 0028     		cmp	r0, #0
+ 905 003c F3D1     		bne	.L98
+ 906 003e FFF7FEFF 		bl	I2Cx_Init.part.3
+ 907 0042 9DF81700 		ldrb	r0, [sp, #23]	@ zero_extendqisi2
+ 908 0046 06B0     		add	sp, sp, #24
+ 909              		@ sp needed
+ 910 0048 10BD     		pop	{r4, pc}
+ 911              	.L103:
+ 912 004a 00BF     		.align	2
+ 913              	.L102:
+ 914 004c 00000000 		.word	.LANCHOR6
+ 915 0050 00000000 		.word	I2cHandle
+ 917              		.section	.text.IOE_WriteMultiple,"ax",%progbits
+ 918              		.align	1
+ 919              		.p2align 2,,3
+ 920              		.global	IOE_WriteMultiple
+ 921              		.syntax unified
+ 922              		.thumb
+ 923              		.thumb_func
+ 924              		.fpu fpv4-sp-d16
+ 926              	IOE_WriteMultiple:
+ 927              		@ args = 0, pretend = 0, frame = 0
+ 928              		@ frame_needed = 0, uses_anonymous_args = 0
+ 929 0000 10B5     		push	{r4, lr}
+ 930 0002 84B0     		sub	sp, sp, #16
+ 931 0004 0D4C     		ldr	r4, .L110
+ 932 0006 0092     		str	r2, [sp]
+ 933 0008 2468     		ldr	r4, [r4]
+ 934 000a 0294     		str	r4, [sp, #8]
+ 935 000c 0193     		str	r3, [sp, #4]
+ 936 000e 0A46     		mov	r2, r1
+ 937 0010 0123     		movs	r3, #1
+ 938 0012 0146     		mov	r1, r0
+ 939 0014 0A48     		ldr	r0, .L110+4
+ 940 0016 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 941 001a 08B9     		cbnz	r0, .L109
+ 942              	.L104:
+ 943 001c 04B0     		add	sp, sp, #16
+ 944              		@ sp needed
+ 945 001e 10BD     		pop	{r4, pc}
+ 946              	.L109:
+ 947 0020 0748     		ldr	r0, .L110+4
+ 948 0022 FFF7FEFF 		bl	HAL_I2C_DeInit
+ 949 0026 0648     		ldr	r0, .L110+4
+ARM GAS  D:\Programs\cygwin64\tmp\ccxwsXiS.s 			page 17
+
+
+ 950 0028 FFF7FEFF 		bl	HAL_I2C_GetState
+ 951 002c 0028     		cmp	r0, #0
+ 952 002e F5D1     		bne	.L104
+ 953 0030 04B0     		add	sp, sp, #16
+ 954              		@ sp needed
+ 955 0032 BDE81040 		pop	{r4, lr}
+ 956 0036 FFF7FEBF 		b	I2Cx_Init.part.3
+ 957              	.L111:
+ 958 003a 00BF     		.align	2
+ 959              	.L110:
+ 960 003c 00000000 		.word	.LANCHOR6
+ 961 0040 00000000 		.word	I2cHandle
+ 963              		.section	.text.IOE_ReadMultiple,"ax",%progbits
+ 964              		.align	1
+ 965              		.p2align 2,,3
+ 966              		.global	IOE_ReadMultiple
+ 967              		.syntax unified
+ 968              		.thumb
+ 969              		.thumb_func
+ 970              		.fpu fpv4-sp-d16
+ 972              	IOE_ReadMultiple:
+ 973              		@ args = 0, pretend = 0, frame = 0
+ 974              		@ frame_needed = 0, uses_anonymous_args = 0
+ 975 0000 10B5     		push	{r4, lr}
+ 976 0002 84B0     		sub	sp, sp, #16
+ 977 0004 0E4C     		ldr	r4, .L119
+ 978 0006 0092     		str	r2, [sp]
+ 979 0008 2468     		ldr	r4, [r4]
+ 980 000a 0294     		str	r4, [sp, #8]
+ 981 000c 0193     		str	r3, [sp, #4]
+ 982 000e 0A46     		mov	r2, r1
+ 983 0010 0123     		movs	r3, #1
+ 984 0012 0146     		mov	r1, r0
+ 985 0014 0B48     		ldr	r0, .L119+4
+ 986 0016 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 987 001a 08B9     		cbnz	r0, .L117
+ 988 001c 04B0     		add	sp, sp, #16
+ 989              		@ sp needed
+ 990 001e 10BD     		pop	{r4, pc}
+ 991              	.L117:
+ 992 0020 0848     		ldr	r0, .L119+4
+ 993 0022 FFF7FEFF 		bl	HAL_I2C_DeInit
+ 994 0026 0748     		ldr	r0, .L119+4
+ 995 0028 FFF7FEFF 		bl	HAL_I2C_GetState
+ 996 002c 10B1     		cbz	r0, .L118
+ 997 002e 0120     		movs	r0, #1
+ 998 0030 04B0     		add	sp, sp, #16
+ 999              		@ sp needed
+ 1000 0032 10BD     		pop	{r4, pc}
+ 1001              	.L118:
+ 1002 0034 FFF7FEFF 		bl	I2Cx_Init.part.3
+ 1003 0038 0120     		movs	r0, #1
+ 1004 003a 04B0     		add	sp, sp, #16
+ 1005              		@ sp needed
+ 1006 003c 10BD     		pop	{r4, pc}
+ 1007              	.L120:
+ 1008 003e 00BF     		.align	2
+ARM GAS  D:\Programs\cygwin64\tmp\ccxwsXiS.s 			page 18
+
+
+ 1009              	.L119:
+ 1010 0040 00000000 		.word	.LANCHOR6
+ 1011 0044 00000000 		.word	I2cHandle
+ 1013              		.section	.text.IOE_Delay,"ax",%progbits
+ 1014              		.align	1
+ 1015              		.p2align 2,,3
+ 1016              		.global	IOE_Delay
+ 1017              		.syntax unified
+ 1018              		.thumb
+ 1019              		.thumb_func
+ 1020              		.fpu fpv4-sp-d16
+ 1022              	IOE_Delay:
+ 1023              		@ args = 0, pretend = 0, frame = 0
+ 1024              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1025              		@ link register save eliminated.
+ 1026 0000 FFF7FEBF 		b	HAL_Delay
+ 1028              		.section	.text.GYRO_IO_Init,"ax",%progbits
+ 1029              		.align	1
+ 1030              		.p2align 2,,3
+ 1031              		.global	GYRO_IO_Init
+ 1032              		.syntax unified
+ 1033              		.thumb
+ 1034              		.thumb_func
+ 1035              		.fpu fpv4-sp-d16
+ 1037              	GYRO_IO_Init:
+ 1038              		@ args = 0, pretend = 0, frame = 32
+ 1039              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1040 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 1041 0002 89B0     		sub	sp, sp, #36
+ 1042 0004 1A4C     		ldr	r4, .L126
+ 1043 0006 1B48     		ldr	r0, .L126+4
+ 1044 0008 0025     		movs	r5, #0
+ 1045 000a 0195     		str	r5, [sp, #4]
+ 1046 000c 236B     		ldr	r3, [r4, #48]
+ 1047 000e 43F00403 		orr	r3, r3, #4
+ 1048 0012 2363     		str	r3, [r4, #48]
+ 1049 0014 236B     		ldr	r3, [r4, #48]
+ 1050 0016 0595     		str	r5, [sp, #20]
+ 1051 0018 03F00403 		and	r3, r3, #4
+ 1052 001c 0127     		movs	r7, #1
+ 1053 001e 0226     		movs	r6, #2
+ 1054 0020 0193     		str	r3, [sp, #4]
+ 1055 0022 03A9     		add	r1, sp, #12
+ 1056 0024 019B     		ldr	r3, [sp, #4]
+ 1057 0026 0697     		str	r7, [sp, #24]
+ 1058 0028 CDE90367 		strd	r6, r7, [sp, #12]
+ 1059 002c FFF7FEFF 		bl	HAL_GPIO_Init
+ 1060 0030 3A46     		mov	r2, r7
+ 1061 0032 3146     		mov	r1, r6
+ 1062 0034 0F48     		ldr	r0, .L126+4
+ 1063 0036 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1064 003a 0295     		str	r5, [sp, #8]
+ 1065 003c 236B     		ldr	r3, [r4, #48]
+ 1066 003e 0E48     		ldr	r0, .L126+8
+ 1067 0040 3B43     		orrs	r3, r3, r7
+ 1068 0042 2363     		str	r3, [r4, #48]
+ 1069 0044 236B     		ldr	r3, [r4, #48]
+ARM GAS  D:\Programs\cygwin64\tmp\ccxwsXiS.s 			page 19
+
+
+ 1070 0046 0495     		str	r5, [sp, #16]
+ 1071 0048 3B40     		ands	r3, r3, r7
+ 1072 004a 0293     		str	r3, [sp, #8]
+ 1073 004c 03A9     		add	r1, sp, #12
+ 1074 004e 0623     		movs	r3, #6
+ 1075 0050 029A     		ldr	r2, [sp, #8]
+ 1076 0052 0393     		str	r3, [sp, #12]
+ 1077 0054 CDE90556 		strd	r5, r6, [sp, #20]
+ 1078 0058 FFF7FEFF 		bl	HAL_GPIO_Init
+ 1079 005c 0748     		ldr	r0, .L126+12
+ 1080 005e FFF7FEFF 		bl	HAL_SPI_GetState
+ 1081 0062 08B1     		cbz	r0, .L125
+ 1082 0064 09B0     		add	sp, sp, #36
+ 1083              		@ sp needed
+ 1084 0066 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 1085              	.L125:
+ 1086 0068 FFF7FEFF 		bl	SPIx_Init.part.1
+ 1087 006c 09B0     		add	sp, sp, #36
+ 1088              		@ sp needed
+ 1089 006e F0BD     		pop	{r4, r5, r6, r7, pc}
+ 1090              	.L127:
+ 1091              		.align	2
+ 1092              	.L126:
+ 1093 0070 00380240 		.word	1073887232
+ 1094 0074 00080240 		.word	1073874944
+ 1095 0078 00000240 		.word	1073872896
+ 1096 007c 00000000 		.word	.LANCHOR0
+ 1098              		.section	.text.GYRO_IO_Write,"ax",%progbits
+ 1099              		.align	1
+ 1100              		.p2align 2,,3
+ 1101              		.global	GYRO_IO_Write
+ 1102              		.syntax unified
+ 1103              		.thumb
+ 1104              		.thumb_func
+ 1105              		.fpu fpv4-sp-d16
+ 1107              	GYRO_IO_Write:
+ 1108              		@ args = 0, pretend = 0, frame = 8
+ 1109              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1110 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 1111 0004 012A     		cmp	r2, #1
+ 1112 0006 1746     		mov	r7, r2
+ 1113 0008 0446     		mov	r4, r0
+ 1114 000a 0D46     		mov	r5, r1
+ 1115 000c 85B0     		sub	sp, sp, #20
+ 1116 000e DFF8EC80 		ldr	r8, .L150+8
+ 1117 0012 3848     		ldr	r0, .L150
+ 1118 0014 4FF00002 		mov	r2, #0
+ 1119 0018 4FF00201 		mov	r1, #2
+ 1120 001c 46D9     		bls	.L129
+ 1121 001e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1122 0022 0DF10F0A 		add	r10, sp, #15
+ 1123 0026 D8F80030 		ldr	r3, [r8]
+ 1124 002a 0093     		str	r3, [sp]
+ 1125 002c 0DF10E09 		add	r9, sp, #14
+ 1126 0030 45F04005 		orr	r5, r5, #64
+ 1127 0034 0026     		movs	r6, #0
+ 1128 0036 5246     		mov	r2, r10
+ARM GAS  D:\Programs\cygwin64\tmp\ccxwsXiS.s 			page 20
+
+
+ 1129 0038 4946     		mov	r1, r9
+ 1130 003a 0123     		movs	r3, #1
+ 1131 003c 2E48     		ldr	r0, .L150+4
+ 1132 003e 8DF80E50 		strb	r5, [sp, #14]
+ 1133 0042 8DF80F60 		strb	r6, [sp, #15]
+ 1134 0046 FFF7FEFF 		bl	HAL_SPI_TransmitReceive
+ 1135 004a 0028     		cmp	r0, #0
+ 1136 004c 43D1     		bne	.L133
+ 1137              	.L140:
+ 1138 004e 013F     		subs	r7, r7, #1
+ 1139 0050 14FA87F7 		uxtah	r7, r4, r7
+ 1140 0054 284E     		ldr	r6, .L150+4
+ 1141 0056 013C     		subs	r4, r4, #1
+ 1142 0058 4FF0000B 		mov	fp, #0
+ 1143 005c 01E0     		b	.L139
+ 1144              	.L137:
+ 1145 005e BC42     		cmp	r4, r7
+ 1146 0060 1CD0     		beq	.L135
+ 1147              	.L139:
+ 1148 0062 D8F80030 		ldr	r3, [r8]
+ 1149 0066 0093     		str	r3, [sp]
+ 1150 0068 14F8015F 		ldrb	r5, [r4, #1]!	@ zero_extendqisi2
+ 1151 006c 8DF80FB0 		strb	fp, [sp, #15]
+ 1152 0070 0123     		movs	r3, #1
+ 1153 0072 5246     		mov	r2, r10
+ 1154 0074 4946     		mov	r1, r9
+ 1155 0076 3046     		mov	r0, r6
+ 1156 0078 8DF80E50 		strb	r5, [sp, #14]
+ 1157 007c FFF7FEFF 		bl	HAL_SPI_TransmitReceive
+ 1158 0080 0028     		cmp	r0, #0
+ 1159 0082 ECD0     		beq	.L137
+ 1160 0084 3046     		mov	r0, r6
+ 1161 0086 FFF7FEFF 		bl	HAL_SPI_DeInit
+ 1162 008a 3046     		mov	r0, r6
+ 1163 008c FFF7FEFF 		bl	HAL_SPI_GetState
+ 1164 0090 0028     		cmp	r0, #0
+ 1165 0092 E4D1     		bne	.L137
+ 1166 0094 FFF7FEFF 		bl	SPIx_Init.part.1
+ 1167 0098 BC42     		cmp	r4, r7
+ 1168 009a E2D1     		bne	.L139
+ 1169              	.L135:
+ 1170 009c 0122     		movs	r2, #1
+ 1171 009e 0221     		movs	r1, #2
+ 1172 00a0 1448     		ldr	r0, .L150
+ 1173 00a2 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1174 00a6 05B0     		add	sp, sp, #20
+ 1175              		@ sp needed
+ 1176 00a8 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 1177              	.L129:
+ 1178 00ac FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1179 00b0 0DF10F0A 		add	r10, sp, #15
+ 1180 00b4 D8F80030 		ldr	r3, [r8]
+ 1181 00b8 0093     		str	r3, [sp]
+ 1182 00ba 0DF10E09 		add	r9, sp, #14
+ 1183 00be 0026     		movs	r6, #0
+ 1184 00c0 5246     		mov	r2, r10
+ 1185 00c2 4946     		mov	r1, r9
+ARM GAS  D:\Programs\cygwin64\tmp\ccxwsXiS.s 			page 21
+
+
+ 1186 00c4 0123     		movs	r3, #1
+ 1187 00c6 0C48     		ldr	r0, .L150+4
+ 1188 00c8 8DF80E50 		strb	r5, [sp, #14]
+ 1189 00cc 8DF80F60 		strb	r6, [sp, #15]
+ 1190 00d0 FFF7FEFF 		bl	HAL_SPI_TransmitReceive
+ 1191 00d4 30B1     		cbz	r0, .L134
+ 1192              	.L133:
+ 1193 00d6 0848     		ldr	r0, .L150+4
+ 1194 00d8 FFF7FEFF 		bl	HAL_SPI_DeInit
+ 1195 00dc 0648     		ldr	r0, .L150+4
+ 1196 00de FFF7FEFF 		bl	HAL_SPI_GetState
+ 1197 00e2 10B1     		cbz	r0, .L149
+ 1198              	.L134:
+ 1199 00e4 002F     		cmp	r7, #0
+ 1200 00e6 B2D1     		bne	.L140
+ 1201 00e8 D8E7     		b	.L135
+ 1202              	.L149:
+ 1203 00ea FFF7FEFF 		bl	SPIx_Init.part.1
+ 1204 00ee 002F     		cmp	r7, #0
+ 1205 00f0 ADD1     		bne	.L140
+ 1206 00f2 D3E7     		b	.L135
+ 1207              	.L151:
+ 1208              		.align	2
+ 1209              	.L150:
+ 1210 00f4 00080240 		.word	1073874944
+ 1211 00f8 00000000 		.word	.LANCHOR0
+ 1212 00fc 00000000 		.word	.LANCHOR5
+ 1214              		.section	.text.GYRO_IO_Read,"ax",%progbits
+ 1215              		.align	1
+ 1216              		.p2align 2,,3
+ 1217              		.global	GYRO_IO_Read
+ 1218              		.syntax unified
+ 1219              		.thumb
+ 1220              		.thumb_func
+ 1221              		.fpu fpv4-sp-d16
+ 1223              	GYRO_IO_Read:
+ 1224              		@ args = 0, pretend = 0, frame = 8
+ 1225              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1226 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 1227 0004 012A     		cmp	r2, #1
+ 1228 0006 1546     		mov	r5, r2
+ 1229 0008 0446     		mov	r4, r0
+ 1230 000a 0E46     		mov	r6, r1
+ 1231 000c 84B0     		sub	sp, sp, #16
+ 1232 000e DFF8FC80 		ldr	r8, .L174+8
+ 1233 0012 3C48     		ldr	r0, .L174
+ 1234 0014 4FF00002 		mov	r2, #0
+ 1235 0018 4FF00201 		mov	r1, #2
+ 1236 001c 4BD9     		bls	.L153
+ 1237 001e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1238 0022 0DF10F0A 		add	r10, sp, #15
+ 1239 0026 D8F80030 		ldr	r3, [r8]
+ 1240 002a 0093     		str	r3, [sp]
+ 1241 002c 0DF10E09 		add	r9, sp, #14
+ 1242 0030 66F03F06 		orn	r6, r6, #63
+ 1243 0034 0027     		movs	r7, #0
+ 1244 0036 5246     		mov	r2, r10
+ARM GAS  D:\Programs\cygwin64\tmp\ccxwsXiS.s 			page 22
+
+
+ 1245 0038 4946     		mov	r1, r9
+ 1246 003a 0123     		movs	r3, #1
+ 1247 003c 3248     		ldr	r0, .L174+4
+ 1248 003e 8DF80E60 		strb	r6, [sp, #14]
+ 1249 0042 8DF80F70 		strb	r7, [sp, #15]
+ 1250 0046 FFF7FEFF 		bl	HAL_SPI_TransmitReceive
+ 1251 004a 0028     		cmp	r0, #0
+ 1252 004c 4AD1     		bne	.L157
+ 1253              	.L164:
+ 1254 004e 013D     		subs	r5, r5, #1
+ 1255 0050 ADB2     		uxth	r5, r5
+ 1256 0052 0135     		adds	r5, r5, #1
+ 1257 0054 2C4F     		ldr	r7, .L174+4
+ 1258 0056 2544     		add	r5, r5, r4
+ 1259 0058 0026     		movs	r6, #0
+ 1260 005a 05E0     		b	.L163
+ 1261              	.L161:
+ 1262 005c 9DF80E30 		ldrb	r3, [sp, #14]	@ zero_extendqisi2
+ 1263 0060 04F8013B 		strb	r3, [r4], #1
+ 1264 0064 AC42     		cmp	r4, r5
+ 1265 0066 1ED0     		beq	.L159
+ 1266              	.L163:
+ 1267 0068 D8F80030 		ldr	r3, [r8]
+ 1268 006c 0093     		str	r3, [sp]
+ 1269 006e 4A46     		mov	r2, r9
+ 1270 0070 0123     		movs	r3, #1
+ 1271 0072 5146     		mov	r1, r10
+ 1272 0074 3846     		mov	r0, r7
+ 1273 0076 8DF80F60 		strb	r6, [sp, #15]
+ 1274 007a 8DF80E60 		strb	r6, [sp, #14]
+ 1275 007e FFF7FEFF 		bl	HAL_SPI_TransmitReceive
+ 1276 0082 0028     		cmp	r0, #0
+ 1277 0084 EAD0     		beq	.L161
+ 1278 0086 3846     		mov	r0, r7
+ 1279 0088 FFF7FEFF 		bl	HAL_SPI_DeInit
+ 1280 008c 3846     		mov	r0, r7
+ 1281 008e FFF7FEFF 		bl	HAL_SPI_GetState
+ 1282 0092 0028     		cmp	r0, #0
+ 1283 0094 E2D1     		bne	.L161
+ 1284 0096 FFF7FEFF 		bl	SPIx_Init.part.1
+ 1285 009a 9DF80E30 		ldrb	r3, [sp, #14]	@ zero_extendqisi2
+ 1286 009e 04F8013B 		strb	r3, [r4], #1
+ 1287 00a2 AC42     		cmp	r4, r5
+ 1288 00a4 E0D1     		bne	.L163
+ 1289              	.L159:
+ 1290 00a6 0122     		movs	r2, #1
+ 1291 00a8 0221     		movs	r1, #2
+ 1292 00aa 1648     		ldr	r0, .L174
+ 1293 00ac FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1294 00b0 04B0     		add	sp, sp, #16
+ 1295              		@ sp needed
+ 1296 00b2 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 1297              	.L153:
+ 1298 00b6 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1299 00ba 0DF10F0A 		add	r10, sp, #15
+ 1300 00be D8F80030 		ldr	r3, [r8]
+ 1301 00c2 0093     		str	r3, [sp]
+ARM GAS  D:\Programs\cygwin64\tmp\ccxwsXiS.s 			page 23
+
+
+ 1302 00c4 0DF10E09 		add	r9, sp, #14
+ 1303 00c8 66F07F06 		orn	r6, r6, #127
+ 1304 00cc 0027     		movs	r7, #0
+ 1305 00ce 5246     		mov	r2, r10
+ 1306 00d0 4946     		mov	r1, r9
+ 1307 00d2 0123     		movs	r3, #1
+ 1308 00d4 0C48     		ldr	r0, .L174+4
+ 1309 00d6 8DF80E60 		strb	r6, [sp, #14]
+ 1310 00da 8DF80F70 		strb	r7, [sp, #15]
+ 1311 00de FFF7FEFF 		bl	HAL_SPI_TransmitReceive
+ 1312 00e2 30B1     		cbz	r0, .L158
+ 1313              	.L157:
+ 1314 00e4 0848     		ldr	r0, .L174+4
+ 1315 00e6 FFF7FEFF 		bl	HAL_SPI_DeInit
+ 1316 00ea 0748     		ldr	r0, .L174+4
+ 1317 00ec FFF7FEFF 		bl	HAL_SPI_GetState
+ 1318 00f0 10B1     		cbz	r0, .L173
+ 1319              	.L158:
+ 1320 00f2 002D     		cmp	r5, #0
+ 1321 00f4 ABD1     		bne	.L164
+ 1322 00f6 D6E7     		b	.L159
+ 1323              	.L173:
+ 1324 00f8 FFF7FEFF 		bl	SPIx_Init.part.1
+ 1325 00fc 002D     		cmp	r5, #0
+ 1326 00fe A6D1     		bne	.L164
+ 1327 0100 D1E7     		b	.L159
+ 1328              	.L175:
+ 1329 0102 00BF     		.align	2
+ 1330              	.L174:
+ 1331 0104 00080240 		.word	1073874944
+ 1332 0108 00000000 		.word	.LANCHOR0
+ 1333 010c 00000000 		.word	.LANCHOR5
+ 1335              		.comm	I2cHandle,84,4
+ 1336              		.global	SpixTimeout
+ 1337              		.global	I2cxTimeout
+ 1338              		.global	BUTTON_IRQn
+ 1339              		.global	BUTTON_PIN
+ 1340              		.global	BUTTON_PORT
+ 1341              		.global	GPIO_PIN
+ 1342              		.global	GPIO_PORT
+ 1343              		.section	.bss.Is_LCD_IO_Initialized,"aw",%nobits
+ 1344              		.set	.LANCHOR4,. + 0
+ 1347              	Is_LCD_IO_Initialized:
+ 1348 0000 00       		.space	1
+ 1349              		.section	.bss.SpiHandle,"aw",%nobits
+ 1350              		.align	2
+ 1351              		.set	.LANCHOR0,. + 0
+ 1354              	SpiHandle:
+ 1355 0000 00000000 		.space	88
+ 1355      00000000 
+ 1355      00000000 
+ 1355      00000000 
+ 1355      00000000 
+ 1356              		.section	.data.BUTTON_PORT,"aw"
+ 1357              		.align	2
+ 1358              		.set	.LANCHOR3,. + 0
+ 1361              	BUTTON_PORT:
+ARM GAS  D:\Programs\cygwin64\tmp\ccxwsXiS.s 			page 24
+
+
+ 1362 0000 00000240 		.word	1073872896
+ 1363              		.section	.data.GPIO_PORT,"aw"
+ 1364              		.align	2
+ 1365              		.set	.LANCHOR2,. + 0
+ 1368              	GPIO_PORT:
+ 1369 0000 00180240 		.word	1073879040
+ 1370 0004 00180240 		.word	1073879040
+ 1371              		.section	.data.I2cxTimeout,"aw"
+ 1372              		.align	2
+ 1373              		.set	.LANCHOR6,. + 0
+ 1376              	I2cxTimeout:
+ 1377 0000 00300000 		.word	12288
+ 1378              		.section	.data.SpixTimeout,"aw"
+ 1379              		.align	2
+ 1380              		.set	.LANCHOR5,. + 0
+ 1383              	SpixTimeout:
+ 1384 0000 00100000 		.word	4096
+ 1385              		.section	.rodata.BUTTON_IRQn,"a"
+ 1386              		.align	2
+ 1389              	BUTTON_IRQn:
+ 1390 0000 06       		.byte	6
+ 1391              		.section	.rodata.BUTTON_PIN,"a"
+ 1392              		.align	2
+ 1395              	BUTTON_PIN:
+ 1396 0000 0100     		.short	1
+ 1397              		.section	.rodata.GPIO_PIN,"a"
+ 1398              		.align	2
+ 1399              		.set	.LANCHOR1,. + 0
+ 1402              	GPIO_PIN:
+ 1403 0000 0020     		.short	8192
+ 1404 0002 0040     		.short	16384
+ 1405              		.ident	"GCC: (GNU Tools for Arm Embedded Processors 8-2018-q4-major) 8.2.1 20181213 (release) [gcc
+ARM GAS  D:\Programs\cygwin64\tmp\ccxwsXiS.s 			page 25
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f429i_discovery.c
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:16     .text.SPIx_Init.part.1:00000000 $t
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:24     .text.SPIx_Init.part.1:00000000 SPIx_Init.part.1
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:82     .text.SPIx_Init.part.1:00000080 $d
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:88     .text.I2Cx_Init.part.3:00000000 $t
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:95     .text.I2Cx_Init.part.3:00000000 I2Cx_Init.part.3
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:181    .text.I2Cx_Init.part.3:000000c4 $d
+                            *COM*:00000054 I2cHandle
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:189    .text.BSP_GetVersion:00000000 $t
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:197    .text.BSP_GetVersion:00000000 BSP_GetVersion
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:206    .text.BSP_GetVersion:00000004 $d
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:209    .text.BSP_LED_Init:00000000 $t
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:217    .text.BSP_LED_Init:00000000 BSP_LED_Init
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:269    .text.BSP_LED_Init:0000006c $d
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:274    .text.BSP_LED_On:00000000 $t
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:282    .text.BSP_LED_On:00000000 BSP_LED_On
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:295    .text.BSP_LED_On:00000014 $d
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:299    .text.BSP_LED_Off:00000000 $t
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:307    .text.BSP_LED_Off:00000000 BSP_LED_Off
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:320    .text.BSP_LED_Off:00000014 $d
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:324    .text.BSP_LED_Toggle:00000000 $t
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:332    .text.BSP_LED_Toggle:00000000 BSP_LED_Toggle
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:344    .text.BSP_LED_Toggle:00000010 $d
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:348    .text.BSP_PB_Init:00000000 $t
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:356    .text.BSP_PB_Init:00000000 BSP_PB_Init
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:414    .text.BSP_PB_Init:00000074 $d
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:419    .text.BSP_PB_GetState:00000000 $t
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:427    .text.BSP_PB_GetState:00000000 BSP_PB_GetState
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:439    .text.BSP_PB_GetState:00000010 $d
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:442    .text.LCD_IO_Init:00000000 $t
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:450    .text.LCD_IO_Init:00000000 LCD_IO_Init
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:532    .text.LCD_IO_Init:000000b4 $d
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:539    .text.LCD_IO_WriteData:00000000 $t
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:547    .text.LCD_IO_WriteData:00000000 LCD_IO_WriteData
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:589    .text.LCD_IO_WriteData:00000058 $d
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:595    .text.LCD_IO_WriteReg:00000000 $t
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:603    .text.LCD_IO_WriteReg:00000000 LCD_IO_WriteReg
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:645    .text.LCD_IO_WriteReg:00000058 $d
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:651    .text.LCD_IO_ReadData:00000000 $t
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:659    .text.LCD_IO_ReadData:00000000 LCD_IO_ReadData
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:724    .text.LCD_IO_ReadData:0000008c $d
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:730    .text.LCD_Delay:00000000 $t
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:738    .text.LCD_Delay:00000000 LCD_Delay
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:745    .text.IOE_Init:00000000 $t
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:753    .text.IOE_Init:00000000 IOE_Init
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:767    .text.IOE_Init:00000014 $d
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:770    .text.IOE_ITConfig:00000000 $t
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:778    .text.IOE_ITConfig:00000000 IOE_ITConfig
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:814    .text.IOE_ITConfig:00000048 $d
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:819    .text.IOE_Write:00000000 $t
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:827    .text.IOE_Write:00000000 IOE_Write
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:863    .text.IOE_Write:00000040 $d
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:867    .text.IOE_Read:00000000 $t
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:875    .text.IOE_Read:00000000 IOE_Read
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:914    .text.IOE_Read:0000004c $d
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:918    .text.IOE_WriteMultiple:00000000 $t
+ARM GAS  D:\Programs\cygwin64\tmp\ccxwsXiS.s 			page 26
+
+
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:926    .text.IOE_WriteMultiple:00000000 IOE_WriteMultiple
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:960    .text.IOE_WriteMultiple:0000003c $d
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:964    .text.IOE_ReadMultiple:00000000 $t
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:972    .text.IOE_ReadMultiple:00000000 IOE_ReadMultiple
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:1010   .text.IOE_ReadMultiple:00000040 $d
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:1014   .text.IOE_Delay:00000000 $t
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:1022   .text.IOE_Delay:00000000 IOE_Delay
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:1029   .text.GYRO_IO_Init:00000000 $t
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:1037   .text.GYRO_IO_Init:00000000 GYRO_IO_Init
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:1093   .text.GYRO_IO_Init:00000070 $d
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:1099   .text.GYRO_IO_Write:00000000 $t
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:1107   .text.GYRO_IO_Write:00000000 GYRO_IO_Write
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:1210   .text.GYRO_IO_Write:000000f4 $d
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:1215   .text.GYRO_IO_Read:00000000 $t
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:1223   .text.GYRO_IO_Read:00000000 GYRO_IO_Read
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:1331   .text.GYRO_IO_Read:00000104 $d
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:1383   .data.SpixTimeout:00000000 SpixTimeout
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:1376   .data.I2cxTimeout:00000000 I2cxTimeout
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:1389   .rodata.BUTTON_IRQn:00000000 BUTTON_IRQn
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:1395   .rodata.BUTTON_PIN:00000000 BUTTON_PIN
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:1361   .data.BUTTON_PORT:00000000 BUTTON_PORT
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:1402   .rodata.GPIO_PIN:00000000 GPIO_PIN
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:1368   .data.GPIO_PORT:00000000 GPIO_PORT
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:1347   .bss.Is_LCD_IO_Initialized:00000000 Is_LCD_IO_Initialized
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:1348   .bss.Is_LCD_IO_Initialized:00000000 $d
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:1350   .bss.SpiHandle:00000000 $d
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:1354   .bss.SpiHandle:00000000 SpiHandle
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:1357   .data.BUTTON_PORT:00000000 $d
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:1364   .data.GPIO_PORT:00000000 $d
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:1372   .data.I2cxTimeout:00000000 $d
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:1379   .data.SpixTimeout:00000000 $d
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:1386   .rodata.BUTTON_IRQn:00000000 $d
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:1392   .rodata.BUTTON_PIN:00000000 $d
+D:\Programs\cygwin64\tmp\ccxwsXiS.s:1398   .rodata.GPIO_PIN:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_GPIO_Init
+HAL_SPI_Init
+HAL_NVIC_SetPriority
+HAL_NVIC_EnableIRQ
+HAL_I2C_Init
+HAL_GPIO_WritePin
+HAL_GPIO_TogglePin
+HAL_GPIO_ReadPin
+HAL_SPI_GetState
+HAL_SPI_Transmit
+HAL_SPI_DeInit
+HAL_SPI_Receive
+HAL_Delay
+HAL_I2C_GetState
+HAL_I2C_Mem_Write
+HAL_I2C_DeInit
+HAL_I2C_Mem_Read
+HAL_SPI_TransmitReceive

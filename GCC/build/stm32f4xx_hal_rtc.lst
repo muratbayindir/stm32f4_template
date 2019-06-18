@@ -1,0 +1,1670 @@
+ARM GAS  D:\Programs\cygwin64\tmp\ccScWG34.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"stm32f4xx_hal_rtc.c"
+  14              		.text
+  15              		.section	.text.HAL_RTC_MspInit,"ax",%progbits
+  16              		.align	1
+  17              		.p2align 2,,3
+  18              		.weak	HAL_RTC_MspInit
+  19              		.arch armv7e-m
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	HAL_RTC_MspInit:
+  26              		@ args = 0, pretend = 0, frame = 0
+  27              		@ frame_needed = 0, uses_anonymous_args = 0
+  28              		@ link register save eliminated.
+  29 0000 7047     		bx	lr
+  31 0002 00BF     		.section	.text.HAL_RTC_Init,"ax",%progbits
+  32              		.align	1
+  33              		.p2align 2,,3
+  34              		.global	HAL_RTC_Init
+  35              		.syntax unified
+  36              		.thumb
+  37              		.thumb_func
+  38              		.fpu fpv4-sp-d16
+  40              	HAL_RTC_Init:
+  41              		@ args = 0, pretend = 0, frame = 0
+  42              		@ frame_needed = 0, uses_anonymous_args = 0
+  43 0000 0028     		cmp	r0, #0
+  44 0002 68D0     		beq	.L14
+  45 0004 38B5     		push	{r3, r4, r5, lr}
+  46 0006 437F     		ldrb	r3, [r0, #29]	@ zero_extendqisi2
+  47 0008 0446     		mov	r4, r0
+  48 000a 03F0FF02 		and	r2, r3, #255
+  49 000e 002B     		cmp	r3, #0
+  50 0010 5DD0     		beq	.L20
+  51              	.L5:
+  52 0012 2368     		ldr	r3, [r4]
+  53 0014 5322     		movs	r2, #83
+  54 0016 0220     		movs	r0, #2
+  55 0018 CA21     		movs	r1, #202
+  56 001a 6077     		strb	r0, [r4, #29]
+  57 001c 5962     		str	r1, [r3, #36]
+  58 001e 5A62     		str	r2, [r3, #36]
+  59 0020 DA68     		ldr	r2, [r3, #12]
+  60 0022 5506     		lsls	r5, r2, #25
+ARM GAS  D:\Programs\cygwin64\tmp\ccScWG34.s 			page 2
+
+
+  61 0024 3CD5     		bpl	.L21
+  62              	.L6:
+  63 0026 9968     		ldr	r1, [r3, #8]
+  64 0028 6268     		ldr	r2, [r4, #4]
+  65 002a D4E90450 		ldrd	r5, r0, [r4, #16]
+  66 002e 21F4E001 		bic	r1, r1, #7340032
+  67 0032 21F04001 		bic	r1, r1, #64
+  68 0036 9960     		str	r1, [r3, #8]
+  69 0038 9968     		ldr	r1, [r3, #8]
+  70 003a 2A43     		orrs	r2, r2, r5
+  71 003c 0243     		orrs	r2, r2, r0
+  72 003e 0A43     		orrs	r2, r2, r1
+  73 0040 E168     		ldr	r1, [r4, #12]
+  74 0042 9A60     		str	r2, [r3, #8]
+  75 0044 1961     		str	r1, [r3, #16]
+  76 0046 1A69     		ldr	r2, [r3, #16]
+  77 0048 A168     		ldr	r1, [r4, #8]
+  78 004a 42EA0142 		orr	r2, r2, r1, lsl #16
+  79 004e 1A61     		str	r2, [r3, #16]
+  80 0050 DA68     		ldr	r2, [r3, #12]
+  81 0052 22F08002 		bic	r2, r2, #128
+  82 0056 DA60     		str	r2, [r3, #12]
+  83 0058 9A68     		ldr	r2, [r3, #8]
+  84 005a 9106     		lsls	r1, r2, #26
+  85 005c 0DD5     		bpl	.L22
+  86              	.L10:
+  87 005e 196C     		ldr	r1, [r3, #64]
+  88 0060 A069     		ldr	r0, [r4, #24]
+  89 0062 21F48021 		bic	r1, r1, #262144
+  90 0066 1964     		str	r1, [r3, #64]
+  91 0068 1A6C     		ldr	r2, [r3, #64]
+  92 006a FF25     		movs	r5, #255
+  93 006c 0243     		orrs	r2, r2, r0
+  94 006e 0121     		movs	r1, #1
+  95 0070 1A64     		str	r2, [r3, #64]
+  96 0072 0020     		movs	r0, #0
+  97 0074 5D62     		str	r5, [r3, #36]
+  98 0076 6177     		strb	r1, [r4, #29]
+  99 0078 38BD     		pop	{r3, r4, r5, pc}
+ 100              	.L22:
+ 101 007a DA68     		ldr	r2, [r3, #12]
+ 102 007c 22F0A002 		bic	r2, r2, #160
+ 103 0080 DA60     		str	r2, [r3, #12]
+ 104 0082 FFF7FEFF 		bl	HAL_GetTick
+ 105 0086 0546     		mov	r5, r0
+ 106 0088 05E0     		b	.L11
+ 107              	.L13:
+ 108 008a FFF7FEFF 		bl	HAL_GetTick
+ 109 008e 401B     		subs	r0, r0, r5
+ 110 0090 B0F57A7F 		cmp	r0, #1000
+ 111 0094 14D8     		bhi	.L8
+ 112              	.L11:
+ 113 0096 2368     		ldr	r3, [r4]
+ 114 0098 DA68     		ldr	r2, [r3, #12]
+ 115 009a 9206     		lsls	r2, r2, #26
+ 116 009c F5D5     		bpl	.L13
+ 117 009e DEE7     		b	.L10
+ARM GAS  D:\Programs\cygwin64\tmp\ccScWG34.s 			page 3
+
+
+ 118              	.L21:
+ 119 00a0 4FF0FF32 		mov	r2, #-1
+ 120 00a4 DA60     		str	r2, [r3, #12]
+ 121 00a6 FFF7FEFF 		bl	HAL_GetTick
+ 122 00aa 0546     		mov	r5, r0
+ 123              	.L7:
+ 124 00ac 2368     		ldr	r3, [r4]
+ 125 00ae DA68     		ldr	r2, [r3, #12]
+ 126 00b0 5006     		lsls	r0, r2, #25
+ 127 00b2 B8D4     		bmi	.L6
+ 128 00b4 FFF7FEFF 		bl	HAL_GetTick
+ 129 00b8 401B     		subs	r0, r0, r5
+ 130 00ba B0F57A7F 		cmp	r0, #1000
+ 131 00be F5D9     		bls	.L7
+ 132              	.L8:
+ 133 00c0 2268     		ldr	r2, [r4]
+ 134 00c2 FF21     		movs	r1, #255
+ 135 00c4 0423     		movs	r3, #4
+ 136 00c6 5162     		str	r1, [r2, #36]
+ 137 00c8 0120     		movs	r0, #1
+ 138 00ca 6377     		strb	r3, [r4, #29]
+ 139 00cc 38BD     		pop	{r3, r4, r5, pc}
+ 140              	.L20:
+ 141 00ce 0277     		strb	r2, [r0, #28]
+ 142 00d0 FFF7FEFF 		bl	HAL_RTC_MspInit
+ 143 00d4 9DE7     		b	.L5
+ 144              	.L14:
+ 145 00d6 0120     		movs	r0, #1
+ 146 00d8 7047     		bx	lr
+ 148 00da 00BF     		.section	.text.HAL_RTC_MspDeInit,"ax",%progbits
+ 149              		.align	1
+ 150              		.p2align 2,,3
+ 151              		.weak	HAL_RTC_MspDeInit
+ 152              		.syntax unified
+ 153              		.thumb
+ 154              		.thumb_func
+ 155              		.fpu fpv4-sp-d16
+ 157              	HAL_RTC_MspDeInit:
+ 158              		@ args = 0, pretend = 0, frame = 0
+ 159              		@ frame_needed = 0, uses_anonymous_args = 0
+ 160              		@ link register save eliminated.
+ 161 0000 7047     		bx	lr
+ 163 0002 00BF     		.section	.text.HAL_RTC_DeInit,"ax",%progbits
+ 164              		.align	1
+ 165              		.p2align 2,,3
+ 166              		.global	HAL_RTC_DeInit
+ 167              		.syntax unified
+ 168              		.thumb
+ 169              		.thumb_func
+ 170              		.fpu fpv4-sp-d16
+ 172              	HAL_RTC_DeInit:
+ 173              		@ args = 0, pretend = 0, frame = 0
+ 174              		@ frame_needed = 0, uses_anonymous_args = 0
+ 175 0000 38B5     		push	{r3, r4, r5, lr}
+ 176 0002 0222     		movs	r2, #2
+ 177 0004 0368     		ldr	r3, [r0]
+ 178 0006 4277     		strb	r2, [r0, #29]
+ARM GAS  D:\Programs\cygwin64\tmp\ccScWG34.s 			page 4
+
+
+ 179 0008 CA21     		movs	r1, #202
+ 180 000a 5322     		movs	r2, #83
+ 181 000c 5962     		str	r1, [r3, #36]
+ 182 000e 5A62     		str	r2, [r3, #36]
+ 183 0010 DA68     		ldr	r2, [r3, #12]
+ 184 0012 5106     		lsls	r1, r2, #25
+ 185 0014 0446     		mov	r4, r0
+ 186 0016 48D5     		bpl	.L39
+ 187              	.L25:
+ 188 0018 0021     		movs	r1, #0
+ 189 001a 42F20112 		movw	r2, #8449
+ 190 001e 1960     		str	r1, [r3]
+ 191 0020 5A60     		str	r2, [r3, #4]
+ 192 0022 9A68     		ldr	r2, [r3, #8]
+ 193 0024 02F00702 		and	r2, r2, #7
+ 194 0028 9A60     		str	r2, [r3, #8]
+ 195 002a FFF7FEFF 		bl	HAL_GetTick
+ 196 002e 2368     		ldr	r3, [r4]
+ 197 0030 DA68     		ldr	r2, [r3, #12]
+ 198 0032 0546     		mov	r5, r0
+ 199 0034 5007     		lsls	r0, r2, #29
+ 200 0036 09D4     		bmi	.L40
+ 201              	.L31:
+ 202 0038 FFF7FEFF 		bl	HAL_GetTick
+ 203 003c 401B     		subs	r0, r0, r5
+ 204 003e B0F57A7F 		cmp	r0, #1000
+ 205 0042 49D8     		bhi	.L41
+ 206 0044 2368     		ldr	r3, [r4]
+ 207 0046 DA68     		ldr	r2, [r3, #12]
+ 208 0048 5007     		lsls	r0, r2, #29
+ 209 004a F5D5     		bpl	.L31
+ 210              	.L40:
+ 211 004c 0022     		movs	r2, #0
+ 212 004e 2649     		ldr	r1, .L42
+ 213 0050 9D68     		ldr	r5, [r3, #8]
+ 214 0052 9A60     		str	r2, [r3, #8]
+ 215 0054 4FF6FF70 		movw	r0, #65535
+ 216 0058 5861     		str	r0, [r3, #20]
+ 217 005a 1961     		str	r1, [r3, #16]
+ 218 005c 9A61     		str	r2, [r3, #24]
+ 219 005e DA61     		str	r2, [r3, #28]
+ 220 0060 1A62     		str	r2, [r3, #32]
+ 221 0062 DA62     		str	r2, [r3, #44]
+ 222 0064 DA63     		str	r2, [r3, #60]
+ 223 0066 5A64     		str	r2, [r3, #68]
+ 224 0068 9A64     		str	r2, [r3, #72]
+ 225 006a DA60     		str	r2, [r3, #12]
+ 226 006c 1A64     		str	r2, [r3, #64]
+ 227 006e 9A68     		ldr	r2, [r3, #8]
+ 228 0070 9106     		lsls	r1, r2, #26
+ 229 0072 11D4     		bmi	.L32
+ 230 0074 DA68     		ldr	r2, [r3, #12]
+ 231 0076 22F0A002 		bic	r2, r2, #160
+ 232 007a DA60     		str	r2, [r3, #12]
+ 233 007c FFF7FEFF 		bl	HAL_GetTick
+ 234 0080 0546     		mov	r5, r0
+ 235 0082 05E0     		b	.L33
+ARM GAS  D:\Programs\cygwin64\tmp\ccScWG34.s 			page 5
+
+
+ 236              	.L35:
+ 237 0084 FFF7FEFF 		bl	HAL_GetTick
+ 238 0088 401B     		subs	r0, r0, r5
+ 239 008a B0F57A7F 		cmp	r0, #1000
+ 240 008e 1CD8     		bhi	.L27
+ 241              	.L33:
+ 242 0090 2368     		ldr	r3, [r4]
+ 243 0092 DA68     		ldr	r2, [r3, #12]
+ 244 0094 9206     		lsls	r2, r2, #26
+ 245 0096 F5D5     		bpl	.L35
+ 246              	.L32:
+ 247 0098 FF22     		movs	r2, #255
+ 248 009a 2046     		mov	r0, r4
+ 249 009c 5A62     		str	r2, [r3, #36]
+ 250 009e FFF7FEFF 		bl	HAL_RTC_MspDeInit
+ 251 00a2 0020     		movs	r0, #0
+ 252 00a4 6077     		strb	r0, [r4, #29]
+ 253 00a6 2077     		strb	r0, [r4, #28]
+ 254 00a8 38BD     		pop	{r3, r4, r5, pc}
+ 255              	.L39:
+ 256 00aa 4FF0FF32 		mov	r2, #-1
+ 257 00ae DA60     		str	r2, [r3, #12]
+ 258 00b0 FFF7FEFF 		bl	HAL_GetTick
+ 259 00b4 0546     		mov	r5, r0
+ 260              	.L26:
+ 261 00b6 2368     		ldr	r3, [r4]
+ 262 00b8 DA68     		ldr	r2, [r3, #12]
+ 263 00ba 5206     		lsls	r2, r2, #25
+ 264 00bc ACD4     		bmi	.L25
+ 265 00be FFF7FEFF 		bl	HAL_GetTick
+ 266 00c2 401B     		subs	r0, r0, r5
+ 267 00c4 B0F57A7F 		cmp	r0, #1000
+ 268 00c8 F5D9     		bls	.L26
+ 269              	.L27:
+ 270 00ca 2268     		ldr	r2, [r4]
+ 271 00cc FF21     		movs	r1, #255
+ 272 00ce 0423     		movs	r3, #4
+ 273 00d0 5162     		str	r1, [r2, #36]
+ 274 00d2 0120     		movs	r0, #1
+ 275 00d4 6377     		strb	r3, [r4, #29]
+ 276 00d6 38BD     		pop	{r3, r4, r5, pc}
+ 277              	.L41:
+ 278 00d8 2268     		ldr	r2, [r4]
+ 279 00da 0323     		movs	r3, #3
+ 280 00dc FF21     		movs	r1, #255
+ 281 00de 5162     		str	r1, [r2, #36]
+ 282 00e0 1846     		mov	r0, r3
+ 283 00e2 6377     		strb	r3, [r4, #29]
+ 284 00e4 38BD     		pop	{r3, r4, r5, pc}
+ 285              	.L43:
+ 286 00e6 00BF     		.align	2
+ 287              	.L42:
+ 288 00e8 FF007F00 		.word	8323327
+ 290              		.section	.text.HAL_RTC_SetTime,"ax",%progbits
+ 291              		.align	1
+ 292              		.p2align 2,,3
+ 293              		.global	HAL_RTC_SetTime
+ARM GAS  D:\Programs\cygwin64\tmp\ccScWG34.s 			page 6
+
+
+ 294              		.syntax unified
+ 295              		.thumb
+ 296              		.thumb_func
+ 297              		.fpu fpv4-sp-d16
+ 299              	HAL_RTC_SetTime:
+ 300              		@ args = 0, pretend = 0, frame = 0
+ 301              		@ frame_needed = 0, uses_anonymous_args = 0
+ 302 0000 037F     		ldrb	r3, [r0, #28]	@ zero_extendqisi2
+ 303 0002 012B     		cmp	r3, #1
+ 304 0004 00F0AE80 		beq	.L66
+ 305 0008 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 306 000c 0223     		movs	r3, #2
+ 307 000e 0D46     		mov	r5, r1
+ 308 0010 0121     		movs	r1, #1
+ 309 0012 0177     		strb	r1, [r0, #28]
+ 310 0014 0446     		mov	r4, r0
+ 311 0016 4377     		strb	r3, [r0, #29]
+ 312 0018 0168     		ldr	r1, [r0]
+ 313 001a 002A     		cmp	r2, #0
+ 314 001c 49D0     		beq	.L75
+ 315 001e 8E68     		ldr	r6, [r1, #8]
+ 316 0020 6B78     		ldrb	r3, [r5, #1]	@ zero_extendqisi2
+ 317 0022 2878     		ldrb	r0, [r5]	@ zero_extendqisi2
+ 318 0024 AA78     		ldrb	r2, [r5, #2]	@ zero_extendqisi2
+ 319 0026 16F04006 		ands	r6, r6, #64
+ 320 002a 14BF     		ite	ne
+ 321 002c EE78     		ldrbne	r6, [r5, #3]	@ zero_extendqisi2
+ 322 002e EE70     		strbeq	r6, [r5, #3]
+ 323 0030 4FEA0323 		lsl	r3, r3, #8
+ 324 0034 43EA0043 		orr	r3, r3, r0, lsl #16
+ 325 0038 18BF     		it	ne
+ 326 003a 3604     		lslne	r6, r6, #16
+ 327 003c 1343     		orrs	r3, r3, r2
+ 328 003e 1E43     		orrs	r6, r6, r3
+ 329              	.L55:
+ 330 0040 CA22     		movs	r2, #202
+ 331 0042 5323     		movs	r3, #83
+ 332 0044 4A62     		str	r2, [r1, #36]
+ 333 0046 4B62     		str	r3, [r1, #36]
+ 334 0048 CB68     		ldr	r3, [r1, #12]
+ 335 004a 5A06     		lsls	r2, r3, #25
+ 336 004c 66D5     		bpl	.L76
+ 337              	.L58:
+ 338 004e 06F07F36 		and	r6, r6, #2139062143
+ 339 0052 26F0FE46 		bic	r6, r6, #2130706432
+ 340 0056 0E60     		str	r6, [r1]
+ 341 0058 8A68     		ldr	r2, [r1, #8]
+ 342 005a D5E90330 		ldrd	r3, r0, [r5, #12]
+ 343 005e 22F48022 		bic	r2, r2, #262144
+ 344 0062 8A60     		str	r2, [r1, #8]
+ 345 0064 8A68     		ldr	r2, [r1, #8]
+ 346 0066 0343     		orrs	r3, r3, r0
+ 347 0068 1343     		orrs	r3, r3, r2
+ 348 006a 8B60     		str	r3, [r1, #8]
+ 349 006c CB68     		ldr	r3, [r1, #12]
+ 350 006e 23F08003 		bic	r3, r3, #128
+ 351 0072 CB60     		str	r3, [r1, #12]
+ARM GAS  D:\Programs\cygwin64\tmp\ccScWG34.s 			page 7
+
+
+ 352 0074 8B68     		ldr	r3, [r1, #8]
+ 353 0076 9B06     		lsls	r3, r3, #26
+ 354 0078 12D4     		bmi	.L62
+ 355 007a CB68     		ldr	r3, [r1, #12]
+ 356 007c 23F0A003 		bic	r3, r3, #160
+ 357 0080 CB60     		str	r3, [r1, #12]
+ 358 0082 FFF7FEFF 		bl	HAL_GetTick
+ 359 0086 0646     		mov	r6, r0
+ 360 0088 05E0     		b	.L63
+ 361              	.L65:
+ 362 008a FFF7FEFF 		bl	HAL_GetTick
+ 363 008e 801B     		subs	r0, r0, r6
+ 364 0090 B0F57A7F 		cmp	r0, #1000
+ 365 0094 5DD8     		bhi	.L64
+ 366              	.L63:
+ 367 0096 2168     		ldr	r1, [r4]
+ 368 0098 CD68     		ldr	r5, [r1, #12]
+ 369 009a 15F02005 		ands	r5, r5, #32
+ 370 009e F4D0     		beq	.L65
+ 371              	.L62:
+ 372 00a0 0023     		movs	r3, #0
+ 373 00a2 FF20     		movs	r0, #255
+ 374 00a4 0122     		movs	r2, #1
+ 375 00a6 4862     		str	r0, [r1, #36]
+ 376 00a8 1846     		mov	r0, r3
+ 377 00aa 6277     		strb	r2, [r4, #29]
+ 378 00ac 2377     		strb	r3, [r4, #28]
+ 379 00ae BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 380              	.L75:
+ 381 00b2 8F68     		ldr	r7, [r1, #8]
+ 382 00b4 17F04007 		ands	r7, r7, #64
+ 383 00b8 16BF     		itet	ne
+ 384 00ba EB78     		ldrbne	r3, [r5, #3]	@ zero_extendqisi2
+ 385 00bc EF70     		strbeq	r7, [r5, #3]
+ 386 00be 1F04     		lslne	r7, r3, #16
+ 387 00c0 2B78     		ldrb	r3, [r5]	@ zero_extendqisi2
+ 388 00c2 092B     		cmp	r3, #9
+ 389 00c4 09D9     		bls	.L49
+ 390 00c6 0020     		movs	r0, #0
+ 391              	.L50:
+ 392 00c8 0A3B     		subs	r3, r3, #10
+ 393 00ca DBB2     		uxtb	r3, r3
+ 394 00cc 092B     		cmp	r3, #9
+ 395 00ce 00F10100 		add	r0, r0, #1
+ 396 00d2 F9D8     		bhi	.L50
+ 397 00d4 43EA0013 		orr	r3, r3, r0, lsl #4
+ 398 00d8 DBB2     		uxtb	r3, r3
+ 399              	.L49:
+ 400 00da 6878     		ldrb	r0, [r5, #1]	@ zero_extendqisi2
+ 401 00dc 0928     		cmp	r0, #9
+ 402 00de 4FEA0343 		lsl	r3, r3, #16
+ 403 00e2 09D9     		bls	.L51
+ 404 00e4 0026     		movs	r6, #0
+ 405              	.L52:
+ 406 00e6 0A38     		subs	r0, r0, #10
+ 407 00e8 C0B2     		uxtb	r0, r0
+ 408 00ea 0928     		cmp	r0, #9
+ARM GAS  D:\Programs\cygwin64\tmp\ccScWG34.s 			page 8
+
+
+ 409 00ec 06F10106 		add	r6, r6, #1
+ 410 00f0 F9D8     		bhi	.L52
+ 411 00f2 40EA0610 		orr	r0, r0, r6, lsl #4
+ 412 00f6 C0B2     		uxtb	r0, r0
+ 413              	.L51:
+ 414 00f8 AE78     		ldrb	r6, [r5, #2]	@ zero_extendqisi2
+ 415 00fa 092E     		cmp	r6, #9
+ 416 00fc 4FEA0020 		lsl	r0, r0, #8
+ 417 0100 08D9     		bls	.L53
+ 418              	.L54:
+ 419 0102 0A3E     		subs	r6, r6, #10
+ 420 0104 F6B2     		uxtb	r6, r6
+ 421 0106 092E     		cmp	r6, #9
+ 422 0108 02F10102 		add	r2, r2, #1
+ 423 010c F9D8     		bhi	.L54
+ 424 010e 46EA0216 		orr	r6, r6, r2, lsl #4
+ 425 0112 F6B2     		uxtb	r6, r6
+ 426              	.L53:
+ 427 0114 3B43     		orrs	r3, r3, r7
+ 428 0116 0343     		orrs	r3, r3, r0
+ 429 0118 1E43     		orrs	r6, r6, r3
+ 430 011a 91E7     		b	.L55
+ 431              	.L76:
+ 432 011c 4FF0FF33 		mov	r3, #-1
+ 433 0120 CB60     		str	r3, [r1, #12]
+ 434 0122 FFF7FEFF 		bl	HAL_GetTick
+ 435 0126 8046     		mov	r8, r0
+ 436              	.L59:
+ 437 0128 2168     		ldr	r1, [r4]
+ 438 012a CF68     		ldr	r7, [r1, #12]
+ 439 012c 17F04007 		ands	r7, r7, #64
+ 440 0130 8DD1     		bne	.L58
+ 441 0132 FFF7FEFF 		bl	HAL_GetTick
+ 442 0136 A0EB0800 		sub	r0, r0, r8
+ 443 013a B0F57A7F 		cmp	r0, #1000
+ 444 013e F3D9     		bls	.L59
+ 445 0140 2268     		ldr	r2, [r4]
+ 446 0142 FF21     		movs	r1, #255
+ 447 0144 0423     		movs	r3, #4
+ 448 0146 5162     		str	r1, [r2, #36]
+ 449 0148 0120     		movs	r0, #1
+ 450 014a 2777     		strb	r7, [r4, #28]
+ 451 014c 6377     		strb	r3, [r4, #29]
+ 452 014e BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 453              	.L64:
+ 454 0152 2268     		ldr	r2, [r4]
+ 455 0154 FF21     		movs	r1, #255
+ 456 0156 0423     		movs	r3, #4
+ 457 0158 5162     		str	r1, [r2, #36]
+ 458 015a 0120     		movs	r0, #1
+ 459 015c 2577     		strb	r5, [r4, #28]
+ 460 015e 6377     		strb	r3, [r4, #29]
+ 461 0160 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 462              	.L66:
+ 463 0164 0220     		movs	r0, #2
+ 464 0166 7047     		bx	lr
+ 466              		.section	.text.HAL_RTC_GetTime,"ax",%progbits
+ARM GAS  D:\Programs\cygwin64\tmp\ccScWG34.s 			page 9
+
+
+ 467              		.align	1
+ 468              		.p2align 2,,3
+ 469              		.global	HAL_RTC_GetTime
+ 470              		.syntax unified
+ 471              		.thumb
+ 472              		.thumb_func
+ 473              		.fpu fpv4-sp-d16
+ 475              	HAL_RTC_GetTime:
+ 476              		@ args = 0, pretend = 0, frame = 0
+ 477              		@ frame_needed = 0, uses_anonymous_args = 0
+ 478              		@ link register save eliminated.
+ 479 0000 0368     		ldr	r3, [r0]
+ 480 0002 70B4     		push	{r4, r5, r6}
+ 481 0004 9D6A     		ldr	r5, [r3, #40]
+ 482 0006 1C69     		ldr	r4, [r3, #16]
+ 483 0008 1B68     		ldr	r3, [r3]
+ 484 000a 4D60     		str	r5, [r1, #4]
+ 485 000c 03F07F33 		and	r3, r3, #2139062143
+ 486 0010 23F0FE43 		bic	r3, r3, #2130706432
+ 487 0014 180C     		lsrs	r0, r3, #16
+ 488 0016 C4F30E04 		ubfx	r4, r4, #0, #15
+ 489 001a 00F04006 		and	r6, r0, #64
+ 490 001e 00F03F05 		and	r5, r0, #63
+ 491 0022 8C60     		str	r4, [r1, #8]
+ 492 0024 C3F30624 		ubfx	r4, r3, #8, #7
+ 493 0028 DBB2     		uxtb	r3, r3
+ 494 002a CE70     		strb	r6, [r1, #3]
+ 495 002c 0D70     		strb	r5, [r1]
+ 496 002e 4C70     		strb	r4, [r1, #1]
+ 497 0030 8B70     		strb	r3, [r1, #2]
+ 498 0032 BAB9     		cbnz	r2, .L78
+ 499 0034 2209     		lsrs	r2, r4, #4
+ 500 0036 02EB8206 		add	r6, r2, r2, lsl #2
+ 501 003a 2D09     		lsrs	r5, r5, #4
+ 502 003c 1A09     		lsrs	r2, r3, #4
+ 503 003e 05EB8505 		add	r5, r5, r5, lsl #2
+ 504 0042 00F00F00 		and	r0, r0, #15
+ 505 0046 04F00F04 		and	r4, r4, #15
+ 506 004a 02EB8202 		add	r2, r2, r2, lsl #2
+ 507 004e 03F00F03 		and	r3, r3, #15
+ 508 0052 00EB4500 		add	r0, r0, r5, lsl #1
+ 509 0056 04EB4604 		add	r4, r4, r6, lsl #1
+ 510 005a 03EB4203 		add	r3, r3, r2, lsl #1
+ 511 005e 0870     		strb	r0, [r1]
+ 512 0060 4C70     		strb	r4, [r1, #1]
+ 513 0062 8B70     		strb	r3, [r1, #2]
+ 514              	.L78:
+ 515 0064 0020     		movs	r0, #0
+ 516 0066 70BC     		pop	{r4, r5, r6}
+ 517 0068 7047     		bx	lr
+ 519 006a 00BF     		.section	.text.HAL_RTC_SetDate,"ax",%progbits
+ 520              		.align	1
+ 521              		.p2align 2,,3
+ 522              		.global	HAL_RTC_SetDate
+ 523              		.syntax unified
+ 524              		.thumb
+ 525              		.thumb_func
+ARM GAS  D:\Programs\cygwin64\tmp\ccScWG34.s 			page 10
+
+
+ 526              		.fpu fpv4-sp-d16
+ 528              	HAL_RTC_SetDate:
+ 529              		@ args = 0, pretend = 0, frame = 0
+ 530              		@ frame_needed = 0, uses_anonymous_args = 0
+ 531 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 532 0002 037F     		ldrb	r3, [r0, #28]	@ zero_extendqisi2
+ 533 0004 012B     		cmp	r3, #1
+ 534 0006 00F09080 		beq	.L102
+ 535 000a 0446     		mov	r4, r0
+ 536 000c 0223     		movs	r3, #2
+ 537 000e 0120     		movs	r0, #1
+ 538 0010 2077     		strb	r0, [r4, #28]
+ 539 0012 6377     		strb	r3, [r4, #29]
+ 540 0014 0F78     		ldrb	r7, [r1]	@ zero_extendqisi2
+ 541 0016 CB78     		ldrb	r3, [r1, #3]	@ zero_extendqisi2
+ 542 0018 4878     		ldrb	r0, [r1, #1]	@ zero_extendqisi2
+ 543 001a 8E78     		ldrb	r6, [r1, #2]	@ zero_extendqisi2
+ 544 001c 7F03     		lsls	r7, r7, #13
+ 545 001e 002A     		cmp	r2, #0
+ 546 0020 33D0     		beq	.L108
+ 547 0022 47EA0343 		orr	r3, r7, r3, lsl #16
+ 548 0026 3343     		orrs	r3, r3, r6
+ 549 0028 43EA0026 		orr	r6, r3, r0, lsl #8
+ 550              	.L100:
+ 551 002c 2268     		ldr	r2, [r4]
+ 552 002e CA21     		movs	r1, #202
+ 553 0030 5323     		movs	r3, #83
+ 554 0032 5162     		str	r1, [r2, #36]
+ 555 0034 5362     		str	r3, [r2, #36]
+ 556 0036 D368     		ldr	r3, [r2, #12]
+ 557 0038 5906     		lsls	r1, r3, #25
+ 558 003a 5AD5     		bpl	.L109
+ 559              	.L90:
+ 560 003c 26F07F46 		bic	r6, r6, #-16777216
+ 561 0040 26F0C006 		bic	r6, r6, #192
+ 562 0044 5660     		str	r6, [r2, #4]
+ 563 0046 D368     		ldr	r3, [r2, #12]
+ 564 0048 23F08003 		bic	r3, r3, #128
+ 565 004c D360     		str	r3, [r2, #12]
+ 566 004e 9368     		ldr	r3, [r2, #8]
+ 567 0050 9B06     		lsls	r3, r3, #26
+ 568 0052 12D4     		bmi	.L94
+ 569 0054 D368     		ldr	r3, [r2, #12]
+ 570 0056 23F0A003 		bic	r3, r3, #160
+ 571 005a D360     		str	r3, [r2, #12]
+ 572 005c FFF7FEFF 		bl	HAL_GetTick
+ 573 0060 0646     		mov	r6, r0
+ 574 0062 05E0     		b	.L95
+ 575              	.L97:
+ 576 0064 FFF7FEFF 		bl	HAL_GetTick
+ 577 0068 801B     		subs	r0, r0, r6
+ 578 006a B0F57A7F 		cmp	r0, #1000
+ 579 006e 51D8     		bhi	.L92
+ 580              	.L95:
+ 581 0070 2268     		ldr	r2, [r4]
+ 582 0072 D568     		ldr	r5, [r2, #12]
+ 583 0074 15F02005 		ands	r5, r5, #32
+ARM GAS  D:\Programs\cygwin64\tmp\ccScWG34.s 			page 11
+
+
+ 584 0078 F4D0     		beq	.L97
+ 585              	.L94:
+ 586 007a 0023     		movs	r3, #0
+ 587 007c FF20     		movs	r0, #255
+ 588 007e 0121     		movs	r1, #1
+ 589 0080 5062     		str	r0, [r2, #36]
+ 590 0082 1846     		mov	r0, r3
+ 591 0084 6177     		strb	r1, [r4, #29]
+ 592 0086 2377     		strb	r3, [r4, #28]
+ 593 0088 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 594              	.L108:
+ 595 008a C506     		lsls	r5, r0, #27
+ 596 008c 4AD5     		bpl	.L83
+ 597 008e 20F01000 		bic	r0, r0, #16
+ 598 0092 0A30     		adds	r0, r0, #10
+ 599 0094 C0B2     		uxtb	r0, r0
+ 600 0096 092B     		cmp	r3, #9
+ 601 0098 4870     		strb	r0, [r1, #1]
+ 602 009a 48D9     		bls	.L84
+ 603              	.L98:
+ 604 009c 0021     		movs	r1, #0
+ 605              	.L85:
+ 606 009e 0A3B     		subs	r3, r3, #10
+ 607 00a0 DBB2     		uxtb	r3, r3
+ 608 00a2 092B     		cmp	r3, #9
+ 609 00a4 01F10101 		add	r1, r1, #1
+ 610 00a8 F9D8     		bhi	.L85
+ 611 00aa 43EA0111 		orr	r1, r3, r1, lsl #4
+ 612 00ae CBB2     		uxtb	r3, r1
+ 613              	.L99:
+ 614 00b0 0928     		cmp	r0, #9
+ 615 00b2 4FEA0343 		lsl	r3, r3, #16
+ 616 00b6 0AD9     		bls	.L86
+ 617              	.L101:
+ 618 00b8 0021     		movs	r1, #0
+ 619              	.L87:
+ 620 00ba A0F10A05 		sub	r5, r0, #10
+ 621 00be E8B2     		uxtb	r0, r5
+ 622 00c0 0928     		cmp	r0, #9
+ 623 00c2 01F10101 		add	r1, r1, #1
+ 624 00c6 F8D8     		bhi	.L87
+ 625 00c8 40EA0110 		orr	r0, r0, r1, lsl #4
+ 626 00cc C0B2     		uxtb	r0, r0
+ 627              	.L86:
+ 628 00ce 092E     		cmp	r6, #9
+ 629 00d0 4FEA0021 		lsl	r1, r0, #8
+ 630 00d4 09D9     		bls	.L88
+ 631              	.L89:
+ 632 00d6 A6F10A00 		sub	r0, r6, #10
+ 633 00da C6B2     		uxtb	r6, r0
+ 634 00dc 092E     		cmp	r6, #9
+ 635 00de 02F10102 		add	r2, r2, #1
+ 636 00e2 F8D8     		bhi	.L89
+ 637 00e4 46EA0210 		orr	r0, r6, r2, lsl #4
+ 638 00e8 C6B2     		uxtb	r6, r0
+ 639              	.L88:
+ 640 00ea 3B43     		orrs	r3, r3, r7
+ARM GAS  D:\Programs\cygwin64\tmp\ccScWG34.s 			page 12
+
+
+ 641 00ec 0B43     		orrs	r3, r3, r1
+ 642 00ee 1E43     		orrs	r6, r6, r3
+ 643 00f0 9CE7     		b	.L100
+ 644              	.L109:
+ 645 00f2 4FF0FF33 		mov	r3, #-1
+ 646 00f6 D360     		str	r3, [r2, #12]
+ 647 00f8 FFF7FEFF 		bl	HAL_GetTick
+ 648 00fc 0746     		mov	r7, r0
+ 649              	.L91:
+ 650 00fe 2268     		ldr	r2, [r4]
+ 651 0100 D568     		ldr	r5, [r2, #12]
+ 652 0102 15F04005 		ands	r5, r5, #64
+ 653 0106 99D1     		bne	.L90
+ 654 0108 FFF7FEFF 		bl	HAL_GetTick
+ 655 010c C01B     		subs	r0, r0, r7
+ 656 010e B0F57A7F 		cmp	r0, #1000
+ 657 0112 F4D9     		bls	.L91
+ 658              	.L92:
+ 659 0114 2268     		ldr	r2, [r4]
+ 660 0116 FF21     		movs	r1, #255
+ 661 0118 0423     		movs	r3, #4
+ 662 011a 5162     		str	r1, [r2, #36]
+ 663 011c 0120     		movs	r0, #1
+ 664 011e 2577     		strb	r5, [r4, #28]
+ 665 0120 6377     		strb	r3, [r4, #29]
+ 666 0122 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 667              	.L83:
+ 668 0124 092B     		cmp	r3, #9
+ 669 0126 B9D8     		bhi	.L98
+ 670 0128 C2E7     		b	.L99
+ 671              	.L102:
+ 672 012a 0220     		movs	r0, #2
+ 673 012c F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 674              	.L84:
+ 675 012e 1B04     		lsls	r3, r3, #16
+ 676 0130 C2E7     		b	.L101
+ 678 0132 00BF     		.section	.text.HAL_RTC_GetDate,"ax",%progbits
+ 679              		.align	1
+ 680              		.p2align 2,,3
+ 681              		.global	HAL_RTC_GetDate
+ 682              		.syntax unified
+ 683              		.thumb
+ 684              		.thumb_func
+ 685              		.fpu fpv4-sp-d16
+ 687              	HAL_RTC_GetDate:
+ 688              		@ args = 0, pretend = 0, frame = 0
+ 689              		@ frame_needed = 0, uses_anonymous_args = 0
+ 690              		@ link register save eliminated.
+ 691 0000 0368     		ldr	r3, [r0]
+ 692 0002 5B68     		ldr	r3, [r3, #4]
+ 693 0004 23F07F43 		bic	r3, r3, #-16777216
+ 694 0008 23F0C003 		bic	r3, r3, #192
+ 695 000c 70B4     		push	{r4, r5, r6}
+ 696 000e C3F30724 		ubfx	r4, r3, #8, #8
+ 697 0012 C3F34236 		ubfx	r6, r3, #13, #3
+ 698 0016 180C     		lsrs	r0, r3, #16
+ 699 0018 04F01F05 		and	r5, r4, #31
+ARM GAS  D:\Programs\cygwin64\tmp\ccScWG34.s 			page 13
+
+
+ 700 001c DBB2     		uxtb	r3, r3
+ 701 001e 0E70     		strb	r6, [r1]
+ 702 0020 4D70     		strb	r5, [r1, #1]
+ 703 0022 C870     		strb	r0, [r1, #3]
+ 704 0024 8B70     		strb	r3, [r1, #2]
+ 705 0026 BAB9     		cbnz	r2, .L111
+ 706 0028 2D09     		lsrs	r5, r5, #4
+ 707 002a AA00     		lsls	r2, r5, #2
+ 708 002c 0609     		lsrs	r6, r0, #4
+ 709 002e 1544     		add	r5, r5, r2
+ 710 0030 1A09     		lsrs	r2, r3, #4
+ 711 0032 04F00F04 		and	r4, r4, #15
+ 712 0036 06EB8606 		add	r6, r6, r6, lsl #2
+ 713 003a 00F00F00 		and	r0, r0, #15
+ 714 003e 02EB8202 		add	r2, r2, r2, lsl #2
+ 715 0042 03F00F03 		and	r3, r3, #15
+ 716 0046 04EB4504 		add	r4, r4, r5, lsl #1
+ 717 004a 00EB4600 		add	r0, r0, r6, lsl #1
+ 718 004e 03EB4203 		add	r3, r3, r2, lsl #1
+ 719 0052 4C70     		strb	r4, [r1, #1]
+ 720 0054 C870     		strb	r0, [r1, #3]
+ 721 0056 8B70     		strb	r3, [r1, #2]
+ 722              	.L111:
+ 723 0058 0020     		movs	r0, #0
+ 724 005a 70BC     		pop	{r4, r5, r6}
+ 725 005c 7047     		bx	lr
+ 727 005e 00BF     		.section	.text.HAL_RTC_SetAlarm,"ax",%progbits
+ 728              		.align	1
+ 729              		.p2align 2,,3
+ 730              		.global	HAL_RTC_SetAlarm
+ 731              		.syntax unified
+ 732              		.thumb
+ 733              		.thumb_func
+ 734              		.fpu fpv4-sp-d16
+ 736              	HAL_RTC_SetAlarm:
+ 737              		@ args = 0, pretend = 0, frame = 0
+ 738              		@ frame_needed = 0, uses_anonymous_args = 0
+ 739 0000 037F     		ldrb	r3, [r0, #28]	@ zero_extendqisi2
+ 740 0002 012B     		cmp	r3, #1
+ 741 0004 00F0D880 		beq	.L135
+ 742 0008 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 743 000c 0446     		mov	r4, r0
+ 744 000e 0223     		movs	r3, #2
+ 745 0010 2668     		ldr	r6, [r4]
+ 746 0012 6377     		strb	r3, [r4, #29]
+ 747 0014 0120     		movs	r0, #1
+ 748 0016 2077     		strb	r0, [r4, #28]
+ 749 0018 B768     		ldr	r7, [r6, #8]
+ 750 001a 002A     		cmp	r2, #0
+ 751 001c 4ED0     		beq	.L147
+ 752 001e 17F0400E 		ands	lr, r7, #64
+ 753 0022 18BF     		it	ne
+ 754 0024 CF78     		ldrbne	r7, [r1, #3]	@ zero_extendqisi2
+ 755 0026 CB69     		ldr	r3, [r1, #28]
+ 756 0028 8A78     		ldrb	r2, [r1, #2]	@ zero_extendqisi2
+ 757 002a 91F800C0 		ldrb	ip, [r1]	@ zero_extendqisi2
+ 758 002e 0CBF     		ite	eq
+ARM GAS  D:\Programs\cygwin64\tmp\ccScWG34.s 			page 14
+
+
+ 759 0030 81F803E0 		strbeq	lr, [r1, #3]
+ 760 0034 4FEA074E 		lslne	lr, r7, #16
+ 761 0038 4F69     		ldr	r7, [r1, #20]
+ 762 003a 1F43     		orrs	r7, r7, r3
+ 763 003c 1743     		orrs	r7, r7, r2
+ 764 003e 4B78     		ldrb	r3, [r1, #1]	@ zero_extendqisi2
+ 765 0040 47EA0C47 		orr	r7, r7, ip, lsl #16
+ 766 0044 91F820C0 		ldrb	ip, [r1, #32]	@ zero_extendqisi2
+ 767 0048 47EA0327 		orr	r7, r7, r3, lsl #8
+ 768 004c 47EA0C6C 		orr	ip, r7, ip, lsl #24
+ 769 0050 4CEA0E07 		orr	r7, ip, lr
+ 770              	.L126:
+ 771 0054 8A69     		ldr	r2, [r1, #24]
+ 772 0056 4868     		ldr	r0, [r1, #4]
+ 773 0058 4B6A     		ldr	r3, [r1, #36]
+ 774 005a 40EA0208 		orr	r8, r0, r2
+ 775 005e CA21     		movs	r1, #202
+ 776 0060 5322     		movs	r2, #83
+ 777 0062 7162     		str	r1, [r6, #36]
+ 778 0064 B3F5807F 		cmp	r3, #256
+ 779 0068 7262     		str	r2, [r6, #36]
+ 780 006a B368     		ldr	r3, [r6, #8]
+ 781 006c 00F08680 		beq	.L148
+ 782 0070 23F40073 		bic	r3, r3, #512
+ 783 0074 B360     		str	r3, [r6, #8]
+ 784 0076 B368     		ldr	r3, [r6, #8]
+ 785 0078 23F40053 		bic	r3, r3, #8192
+ 786 007c B360     		str	r3, [r6, #8]
+ 787 007e FFF7FEFF 		bl	HAL_GetTick
+ 788 0082 0646     		mov	r6, r0
+ 789 0084 05E0     		b	.L133
+ 790              	.L134:
+ 791 0086 FFF7FEFF 		bl	HAL_GetTick
+ 792 008a 801B     		subs	r0, r0, r6
+ 793 008c B0F57A7F 		cmp	r0, #1000
+ 794 0090 6BD8     		bhi	.L146
+ 795              	.L133:
+ 796 0092 2268     		ldr	r2, [r4]
+ 797 0094 D568     		ldr	r5, [r2, #12]
+ 798 0096 15F00205 		ands	r5, r5, #2
+ 799 009a F4D0     		beq	.L134
+ 800 009c 1762     		str	r7, [r2, #32]
+ 801 009e C2F84880 		str	r8, [r2, #72]
+ 802 00a2 9368     		ldr	r3, [r2, #8]
+ 803 00a4 43F40073 		orr	r3, r3, #512
+ 804 00a8 9360     		str	r3, [r2, #8]
+ 805              	.L132:
+ 806 00aa 0023     		movs	r3, #0
+ 807 00ac FF20     		movs	r0, #255
+ 808 00ae 0121     		movs	r1, #1
+ 809 00b0 5062     		str	r0, [r2, #36]
+ 810 00b2 1846     		mov	r0, r3
+ 811 00b4 6177     		strb	r1, [r4, #29]
+ 812 00b6 2377     		strb	r3, [r4, #28]
+ 813 00b8 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 814              	.L147:
+ 815 00bc 17F04007 		ands	r7, r7, #64
+ARM GAS  D:\Programs\cygwin64\tmp\ccScWG34.s 			page 15
+
+
+ 816 00c0 18BF     		it	ne
+ 817 00c2 CF78     		ldrbne	r7, [r1, #3]	@ zero_extendqisi2
+ 818 00c4 0878     		ldrb	r0, [r1]	@ zero_extendqisi2
+ 819 00c6 0CBF     		ite	eq
+ 820 00c8 CF70     		strbeq	r7, [r1, #3]
+ 821 00ca 3F04     		lslne	r7, r7, #16
+ 822 00cc 0928     		cmp	r0, #9
+ 823 00ce CD69     		ldr	r5, [r1, #28]
+ 824 00d0 09D9     		bls	.L118
+ 825 00d2 0023     		movs	r3, #0
+ 826              	.L119:
+ 827 00d4 0A38     		subs	r0, r0, #10
+ 828 00d6 C0B2     		uxtb	r0, r0
+ 829 00d8 0928     		cmp	r0, #9
+ 830 00da 03F10103 		add	r3, r3, #1
+ 831 00de F9D8     		bhi	.L119
+ 832 00e0 40EA0310 		orr	r0, r0, r3, lsl #4
+ 833 00e4 C0B2     		uxtb	r0, r0
+ 834              	.L118:
+ 835 00e6 4B78     		ldrb	r3, [r1, #1]	@ zero_extendqisi2
+ 836 00e8 092B     		cmp	r3, #9
+ 837 00ea 4FEA0040 		lsl	r0, r0, #16
+ 838 00ee 0AD9     		bls	.L120
+ 839 00f0 4FF0000C 		mov	ip, #0
+ 840              	.L121:
+ 841 00f4 0A3B     		subs	r3, r3, #10
+ 842 00f6 DBB2     		uxtb	r3, r3
+ 843 00f8 092B     		cmp	r3, #9
+ 844 00fa 0CF1010C 		add	ip, ip, #1
+ 845 00fe F9D8     		bhi	.L121
+ 846 0100 43EA0C13 		orr	r3, r3, ip, lsl #4
+ 847 0104 DBB2     		uxtb	r3, r3
+ 848              	.L120:
+ 849 0106 91F802E0 		ldrb	lr, [r1, #2]	@ zero_extendqisi2
+ 850 010a BEF1090F 		cmp	lr, #9
+ 851 010e 4FEA0323 		lsl	r3, r3, #8
+ 852 0112 0ED9     		bls	.L122
+ 853 0114 4FF00008 		mov	r8, #0
+ 854              	.L123:
+ 855 0118 AEF10A0E 		sub	lr, lr, #10
+ 856 011c 5FFA8EFE 		uxtb	lr, lr
+ 857 0120 BEF1090F 		cmp	lr, #9
+ 858 0124 08F10108 		add	r8, r8, #1
+ 859 0128 F6D8     		bhi	.L123
+ 860 012a 4EEA081E 		orr	lr, lr, r8, lsl #4
+ 861 012e 5FFA8EFE 		uxtb	lr, lr
+ 862              	.L122:
+ 863 0132 91F820C0 		ldrb	ip, [r1, #32]	@ zero_extendqisi2
+ 864 0136 BCF1090F 		cmp	ip, #9
+ 865 013a 0CD9     		bls	.L124
+ 866              	.L125:
+ 867 013c ACF10A0C 		sub	ip, ip, #10
+ 868 0140 5FFA8CFC 		uxtb	ip, ip
+ 869 0144 BCF1090F 		cmp	ip, #9
+ 870 0148 02F10102 		add	r2, r2, #1
+ 871 014c F6D8     		bhi	.L125
+ 872 014e 4CEA021C 		orr	ip, ip, r2, lsl #4
+ARM GAS  D:\Programs\cygwin64\tmp\ccScWG34.s 			page 16
+
+
+ 873 0152 5FFA8CFC 		uxtb	ip, ip
+ 874              	.L124:
+ 875 0156 4A69     		ldr	r2, [r1, #20]
+ 876 0158 1543     		orrs	r5, r5, r2
+ 877 015a 2F43     		orrs	r7, r7, r5
+ 878 015c 3843     		orrs	r0, r0, r7
+ 879 015e 0343     		orrs	r3, r3, r0
+ 880 0160 43EA0E0E 		orr	lr, r3, lr
+ 881 0164 4EEA0C67 		orr	r7, lr, ip, lsl #24
+ 882 0168 74E7     		b	.L126
+ 883              	.L146:
+ 884 016a 2268     		ldr	r2, [r4]
+ 885 016c 0323     		movs	r3, #3
+ 886 016e FF21     		movs	r1, #255
+ 887 0170 5162     		str	r1, [r2, #36]
+ 888 0172 1846     		mov	r0, r3
+ 889 0174 2577     		strb	r5, [r4, #28]
+ 890 0176 6377     		strb	r3, [r4, #29]
+ 891 0178 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 892              	.L148:
+ 893 017c 23F48073 		bic	r3, r3, #256
+ 894 0180 B360     		str	r3, [r6, #8]
+ 895 0182 B368     		ldr	r3, [r6, #8]
+ 896 0184 23F48053 		bic	r3, r3, #4096
+ 897 0188 B360     		str	r3, [r6, #8]
+ 898 018a FFF7FEFF 		bl	HAL_GetTick
+ 899 018e 0646     		mov	r6, r0
+ 900 0190 05E0     		b	.L130
+ 901              	.L131:
+ 902 0192 FFF7FEFF 		bl	HAL_GetTick
+ 903 0196 801B     		subs	r0, r0, r6
+ 904 0198 B0F57A7F 		cmp	r0, #1000
+ 905 019c E5D8     		bhi	.L146
+ 906              	.L130:
+ 907 019e 2268     		ldr	r2, [r4]
+ 908 01a0 D568     		ldr	r5, [r2, #12]
+ 909 01a2 15F00105 		ands	r5, r5, #1
+ 910 01a6 F4D0     		beq	.L131
+ 911 01a8 D761     		str	r7, [r2, #28]
+ 912 01aa C2F84480 		str	r8, [r2, #68]
+ 913 01ae 9368     		ldr	r3, [r2, #8]
+ 914 01b0 43F48073 		orr	r3, r3, #256
+ 915 01b4 9360     		str	r3, [r2, #8]
+ 916 01b6 78E7     		b	.L132
+ 917              	.L135:
+ 918 01b8 0220     		movs	r0, #2
+ 919 01ba 7047     		bx	lr
+ 921              		.section	.text.HAL_RTC_SetAlarm_IT,"ax",%progbits
+ 922              		.align	1
+ 923              		.p2align 2,,3
+ 924              		.global	HAL_RTC_SetAlarm_IT
+ 925              		.syntax unified
+ 926              		.thumb
+ 927              		.thumb_func
+ 928              		.fpu fpv4-sp-d16
+ 930              	HAL_RTC_SetAlarm_IT:
+ 931              		@ args = 0, pretend = 0, frame = 8
+ARM GAS  D:\Programs\cygwin64\tmp\ccScWG34.s 			page 17
+
+
+ 932              		@ frame_needed = 0, uses_anonymous_args = 0
+ 933 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 934 0004 7D4B     		ldr	r3, .L185
+ 935 0006 7E4C     		ldr	r4, .L185+4
+ 936 0008 1B68     		ldr	r3, [r3]
+ 937 000a 057F     		ldrb	r5, [r0, #28]	@ zero_extendqisi2
+ 938 000c A4FB0343 		umull	r4, r3, r4, r3
+ 939 0010 82B0     		sub	sp, sp, #8
+ 940 0012 DB0A     		lsrs	r3, r3, #11
+ 941 0014 4FF47A74 		mov	r4, #1000
+ 942 0018 04FB03F3 		mul	r3, r4, r3
+ 943 001c 012D     		cmp	r5, #1
+ 944 001e 0193     		str	r3, [sp, #4]
+ 945 0020 00F0E680 		beq	.L171
+ 946 0024 0124     		movs	r4, #1
+ 947 0026 0223     		movs	r3, #2
+ 948 0028 0477     		strb	r4, [r0, #28]
+ 949 002a 4377     		strb	r3, [r0, #29]
+ 950 002c 0568     		ldr	r5, [r0]
+ 951 002e 002A     		cmp	r2, #0
+ 952 0030 43D0     		beq	.L181
+ 953 0032 AA68     		ldr	r2, [r5, #8]
+ 954 0034 CB69     		ldr	r3, [r1, #28]
+ 955 0036 8C78     		ldrb	r4, [r1, #2]	@ zero_extendqisi2
+ 956 0038 91F800C0 		ldrb	ip, [r1]	@ zero_extendqisi2
+ 957 003c 12F0400E 		ands	lr, r2, #64
+ 958 0040 16BF     		itet	ne
+ 959 0042 CA78     		ldrbne	r2, [r1, #3]	@ zero_extendqisi2
+ 960 0044 81F803E0 		strbeq	lr, [r1, #3]
+ 961 0048 4FEA024E 		lslne	lr, r2, #16
+ 962 004c 4A69     		ldr	r2, [r1, #20]
+ 963 004e 1A43     		orrs	r2, r2, r3
+ 964 0050 2243     		orrs	r2, r2, r4
+ 965 0052 4B78     		ldrb	r3, [r1, #1]	@ zero_extendqisi2
+ 966 0054 42EA0C42 		orr	r2, r2, ip, lsl #16
+ 967 0058 91F820C0 		ldrb	ip, [r1, #32]	@ zero_extendqisi2
+ 968 005c 42EA0322 		orr	r2, r2, r3, lsl #8
+ 969 0060 42EA0C6C 		orr	ip, r2, ip, lsl #24
+ 970 0064 4CEA0E02 		orr	r2, ip, lr
+ 971              	.L162:
+ 972 0068 4B6A     		ldr	r3, [r1, #36]
+ 973 006a 4F68     		ldr	r7, [r1, #4]
+ 974 006c 8C69     		ldr	r4, [r1, #24]
+ 975 006e CA26     		movs	r6, #202
+ 976 0070 5321     		movs	r1, #83
+ 977 0072 6E62     		str	r6, [r5, #36]
+ 978 0074 B3F5807F 		cmp	r3, #256
+ 979 0078 6962     		str	r1, [r5, #36]
+ 980 007a 44EA0704 		orr	r4, r4, r7
+ 981 007e AB68     		ldr	r3, [r5, #8]
+ 982 0080 72D0     		beq	.L182
+ 983 0082 23F40073 		bic	r3, r3, #512
+ 984 0086 AB60     		str	r3, [r5, #8]
+ 985 0088 EB68     		ldr	r3, [r5, #12]
+ 986 008a DBB2     		uxtb	r3, r3
+ 987 008c 63F42073 		orn	r3, r3, #640
+ 988 0090 EB60     		str	r3, [r5, #12]
+ARM GAS  D:\Programs\cygwin64\tmp\ccScWG34.s 			page 18
+
+
+ 989 0092 03E0     		b	.L170
+ 990              	.L169:
+ 991 0094 EB68     		ldr	r3, [r5, #12]
+ 992 0096 9B07     		lsls	r3, r3, #30
+ 993 0098 00F18180 		bmi	.L183
+ 994              	.L170:
+ 995 009c 0199     		ldr	r1, [sp, #4]
+ 996 009e 4B1E     		subs	r3, r1, #1
+ 997 00a0 0193     		str	r3, [sp, #4]
+ 998 00a2 0029     		cmp	r1, #0
+ 999 00a4 F6D1     		bne	.L169
+ 1000 00a6 0323     		movs	r3, #3
+ 1001 00a8 FF22     		movs	r2, #255
+ 1002 00aa 6A62     		str	r2, [r5, #36]
+ 1003 00ac 1A46     		mov	r2, r3
+ 1004 00ae 0177     		strb	r1, [r0, #28]
+ 1005 00b0 4377     		strb	r3, [r0, #29]
+ 1006 00b2 1046     		mov	r0, r2
+ 1007 00b4 02B0     		add	sp, sp, #8
+ 1008              		@ sp needed
+ 1009 00b6 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 1010              	.L181:
+ 1011 00ba AF68     		ldr	r7, [r5, #8]
+ 1012 00bc 0C78     		ldrb	r4, [r1]	@ zero_extendqisi2
+ 1013 00be CE69     		ldr	r6, [r1, #28]
+ 1014 00c0 17F04007 		ands	r7, r7, #64
+ 1015 00c4 16BF     		itet	ne
+ 1016 00c6 CF78     		ldrbne	r7, [r1, #3]	@ zero_extendqisi2
+ 1017 00c8 CF70     		strbeq	r7, [r1, #3]
+ 1018 00ca 3F04     		lslne	r7, r7, #16
+ 1019 00cc 092C     		cmp	r4, #9
+ 1020 00ce 09D9     		bls	.L154
+ 1021 00d0 0023     		movs	r3, #0
+ 1022              	.L155:
+ 1023 00d2 0A3C     		subs	r4, r4, #10
+ 1024 00d4 E4B2     		uxtb	r4, r4
+ 1025 00d6 092C     		cmp	r4, #9
+ 1026 00d8 03F10103 		add	r3, r3, #1
+ 1027 00dc F9D8     		bhi	.L155
+ 1028 00de 44EA0314 		orr	r4, r4, r3, lsl #4
+ 1029 00e2 E4B2     		uxtb	r4, r4
+ 1030              	.L154:
+ 1031 00e4 4B78     		ldrb	r3, [r1, #1]	@ zero_extendqisi2
+ 1032 00e6 092B     		cmp	r3, #9
+ 1033 00e8 4FEA0444 		lsl	r4, r4, #16
+ 1034 00ec 0AD9     		bls	.L156
+ 1035 00ee 4FF0000C 		mov	ip, #0
+ 1036              	.L157:
+ 1037 00f2 0A3B     		subs	r3, r3, #10
+ 1038 00f4 DBB2     		uxtb	r3, r3
+ 1039 00f6 092B     		cmp	r3, #9
+ 1040 00f8 0CF1010C 		add	ip, ip, #1
+ 1041 00fc F9D8     		bhi	.L157
+ 1042 00fe 43EA0C13 		orr	r3, r3, ip, lsl #4
+ 1043 0102 DBB2     		uxtb	r3, r3
+ 1044              	.L156:
+ 1045 0104 91F802E0 		ldrb	lr, [r1, #2]	@ zero_extendqisi2
+ARM GAS  D:\Programs\cygwin64\tmp\ccScWG34.s 			page 19
+
+
+ 1046 0108 BEF1090F 		cmp	lr, #9
+ 1047 010c 4FEA0323 		lsl	r3, r3, #8
+ 1048 0110 0ED9     		bls	.L158
+ 1049 0112 4FF00008 		mov	r8, #0
+ 1050              	.L159:
+ 1051 0116 AEF10A0E 		sub	lr, lr, #10
+ 1052 011a 5FFA8EFE 		uxtb	lr, lr
+ 1053 011e BEF1090F 		cmp	lr, #9
+ 1054 0122 08F10108 		add	r8, r8, #1
+ 1055 0126 F6D8     		bhi	.L159
+ 1056 0128 4EEA081E 		orr	lr, lr, r8, lsl #4
+ 1057 012c 5FFA8EFE 		uxtb	lr, lr
+ 1058              	.L158:
+ 1059 0130 91F820C0 		ldrb	ip, [r1, #32]	@ zero_extendqisi2
+ 1060 0134 BCF1090F 		cmp	ip, #9
+ 1061 0138 0CD9     		bls	.L160
+ 1062              	.L161:
+ 1063 013a ACF10A0C 		sub	ip, ip, #10
+ 1064 013e 5FFA8CFC 		uxtb	ip, ip
+ 1065 0142 BCF1090F 		cmp	ip, #9
+ 1066 0146 02F10102 		add	r2, r2, #1
+ 1067 014a F6D8     		bhi	.L161
+ 1068 014c 4CEA021C 		orr	ip, ip, r2, lsl #4
+ 1069 0150 5FFA8CFC 		uxtb	ip, ip
+ 1070              	.L160:
+ 1071 0154 4A69     		ldr	r2, [r1, #20]
+ 1072 0156 1643     		orrs	r6, r6, r2
+ 1073 0158 3743     		orrs	r7, r7, r6
+ 1074 015a 3C43     		orrs	r4, r4, r7
+ 1075 015c 2343     		orrs	r3, r3, r4
+ 1076 015e 43EA0E0E 		orr	lr, r3, lr
+ 1077 0162 4EEA0C62 		orr	r2, lr, ip, lsl #24
+ 1078 0166 7FE7     		b	.L162
+ 1079              	.L182:
+ 1080 0168 23F48073 		bic	r3, r3, #256
+ 1081 016c AB60     		str	r3, [r5, #8]
+ 1082 016e EB68     		ldr	r3, [r5, #12]
+ 1083 0170 DBB2     		uxtb	r3, r3
+ 1084 0172 63F4C073 		orn	r3, r3, #384
+ 1085 0176 EB60     		str	r3, [r5, #12]
+ 1086 0178 02E0     		b	.L167
+ 1087              	.L166:
+ 1088 017a EB68     		ldr	r3, [r5, #12]
+ 1089 017c D907     		lsls	r1, r3, #31
+ 1090 017e 2CD4     		bmi	.L184
+ 1091              	.L167:
+ 1092 0180 019B     		ldr	r3, [sp, #4]
+ 1093 0182 591E     		subs	r1, r3, #1
+ 1094 0184 0191     		str	r1, [sp, #4]
+ 1095 0186 002B     		cmp	r3, #0
+ 1096 0188 F7D1     		bne	.L166
+ 1097 018a 0321     		movs	r1, #3
+ 1098 018c FF22     		movs	r2, #255
+ 1099 018e 6A62     		str	r2, [r5, #36]
+ 1100 0190 0A46     		mov	r2, r1
+ 1101 0192 0377     		strb	r3, [r0, #28]
+ 1102 0194 4177     		strb	r1, [r0, #29]
+ARM GAS  D:\Programs\cygwin64\tmp\ccScWG34.s 			page 20
+
+
+ 1103 0196 1046     		mov	r0, r2
+ 1104 0198 02B0     		add	sp, sp, #8
+ 1105              		@ sp needed
+ 1106 019a BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 1107              	.L183:
+ 1108 019e 2A62     		str	r2, [r5, #32]
+ 1109 01a0 AC64     		str	r4, [r5, #72]
+ 1110 01a2 AB68     		ldr	r3, [r5, #8]
+ 1111 01a4 43F40073 		orr	r3, r3, #512
+ 1112 01a8 AB60     		str	r3, [r5, #8]
+ 1113 01aa AB68     		ldr	r3, [r5, #8]
+ 1114 01ac 43F40053 		orr	r3, r3, #8192
+ 1115 01b0 AB60     		str	r3, [r5, #8]
+ 1116              	.L168:
+ 1117 01b2 144B     		ldr	r3, .L185+8
+ 1118 01b4 1A68     		ldr	r2, [r3]
+ 1119 01b6 42F40032 		orr	r2, r2, #131072
+ 1120 01ba 1A60     		str	r2, [r3]
+ 1121 01bc 9A68     		ldr	r2, [r3, #8]
+ 1122 01be 42F40032 		orr	r2, r2, #131072
+ 1123 01c2 9A60     		str	r2, [r3, #8]
+ 1124 01c4 0023     		movs	r3, #0
+ 1125 01c6 FF24     		movs	r4, #255
+ 1126 01c8 0121     		movs	r1, #1
+ 1127 01ca 1A46     		mov	r2, r3
+ 1128 01cc 6C62     		str	r4, [r5, #36]
+ 1129 01ce 4177     		strb	r1, [r0, #29]
+ 1130 01d0 0377     		strb	r3, [r0, #28]
+ 1131 01d2 1046     		mov	r0, r2
+ 1132 01d4 02B0     		add	sp, sp, #8
+ 1133              		@ sp needed
+ 1134 01d6 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 1135              	.L184:
+ 1136 01da EA61     		str	r2, [r5, #28]
+ 1137 01dc 6C64     		str	r4, [r5, #68]
+ 1138 01de AB68     		ldr	r3, [r5, #8]
+ 1139 01e0 43F48073 		orr	r3, r3, #256
+ 1140 01e4 AB60     		str	r3, [r5, #8]
+ 1141 01e6 AB68     		ldr	r3, [r5, #8]
+ 1142 01e8 43F48053 		orr	r3, r3, #4096
+ 1143 01ec AB60     		str	r3, [r5, #8]
+ 1144 01ee E0E7     		b	.L168
+ 1145              	.L171:
+ 1146 01f0 0222     		movs	r2, #2
+ 1147 01f2 1046     		mov	r0, r2
+ 1148 01f4 02B0     		add	sp, sp, #8
+ 1149              		@ sp needed
+ 1150 01f6 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 1151              	.L186:
+ 1152 01fa 00BF     		.align	2
+ 1153              	.L185:
+ 1154 01fc 00000000 		.word	SystemCoreClock
+ 1155 0200 D34D6210 		.word	274877907
+ 1156 0204 003C0140 		.word	1073822720
+ 1158              		.section	.text.HAL_RTC_DeactivateAlarm,"ax",%progbits
+ 1159              		.align	1
+ 1160              		.p2align 2,,3
+ARM GAS  D:\Programs\cygwin64\tmp\ccScWG34.s 			page 21
+
+
+ 1161              		.global	HAL_RTC_DeactivateAlarm
+ 1162              		.syntax unified
+ 1163              		.thumb
+ 1164              		.thumb_func
+ 1165              		.fpu fpv4-sp-d16
+ 1167              	HAL_RTC_DeactivateAlarm:
+ 1168              		@ args = 0, pretend = 0, frame = 0
+ 1169              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1170 0000 037F     		ldrb	r3, [r0, #28]	@ zero_extendqisi2
+ 1171 0002 012B     		cmp	r3, #1
+ 1172 0004 4BD0     		beq	.L195
+ 1173 0006 70B5     		push	{r4, r5, r6, lr}
+ 1174 0008 0546     		mov	r5, r0
+ 1175 000a 0368     		ldr	r3, [r0]
+ 1176 000c 0122     		movs	r2, #1
+ 1177 000e 2A77     		strb	r2, [r5, #28]
+ 1178 0010 0224     		movs	r4, #2
+ 1179 0012 5322     		movs	r2, #83
+ 1180 0014 CA20     		movs	r0, #202
+ 1181 0016 6C77     		strb	r4, [r5, #29]
+ 1182 0018 B1F5807F 		cmp	r1, #256
+ 1183 001c 5862     		str	r0, [r3, #36]
+ 1184 001e 5A62     		str	r2, [r3, #36]
+ 1185 0020 9A68     		ldr	r2, [r3, #8]
+ 1186 0022 25D0     		beq	.L203
+ 1187 0024 22F40072 		bic	r2, r2, #512
+ 1188 0028 9A60     		str	r2, [r3, #8]
+ 1189 002a 9A68     		ldr	r2, [r3, #8]
+ 1190 002c 22F40052 		bic	r2, r2, #8192
+ 1191 0030 9A60     		str	r2, [r3, #8]
+ 1192 0032 FFF7FEFF 		bl	HAL_GetTick
+ 1193 0036 0646     		mov	r6, r0
+ 1194 0038 05E0     		b	.L193
+ 1195              	.L194:
+ 1196 003a FFF7FEFF 		bl	HAL_GetTick
+ 1197 003e 801B     		subs	r0, r0, r6
+ 1198 0040 B0F57A7F 		cmp	r0, #1000
+ 1199 0044 0CD8     		bhi	.L202
+ 1200              	.L193:
+ 1201 0046 2B68     		ldr	r3, [r5]
+ 1202 0048 DC68     		ldr	r4, [r3, #12]
+ 1203 004a 14F00204 		ands	r4, r4, #2
+ 1204 004e F4D0     		beq	.L194
+ 1205              	.L192:
+ 1206 0050 0022     		movs	r2, #0
+ 1207 0052 FF20     		movs	r0, #255
+ 1208 0054 0121     		movs	r1, #1
+ 1209 0056 5862     		str	r0, [r3, #36]
+ 1210 0058 1046     		mov	r0, r2
+ 1211 005a 6977     		strb	r1, [r5, #29]
+ 1212 005c 2A77     		strb	r2, [r5, #28]
+ 1213 005e 70BD     		pop	{r4, r5, r6, pc}
+ 1214              	.L202:
+ 1215 0060 2A68     		ldr	r2, [r5]
+ 1216 0062 0323     		movs	r3, #3
+ 1217 0064 FF21     		movs	r1, #255
+ 1218 0066 5162     		str	r1, [r2, #36]
+ARM GAS  D:\Programs\cygwin64\tmp\ccScWG34.s 			page 22
+
+
+ 1219 0068 1846     		mov	r0, r3
+ 1220 006a 2C77     		strb	r4, [r5, #28]
+ 1221 006c 6B77     		strb	r3, [r5, #29]
+ 1222 006e 70BD     		pop	{r4, r5, r6, pc}
+ 1223              	.L203:
+ 1224 0070 22F48072 		bic	r2, r2, #256
+ 1225 0074 9A60     		str	r2, [r3, #8]
+ 1226 0076 9A68     		ldr	r2, [r3, #8]
+ 1227 0078 22F48052 		bic	r2, r2, #4096
+ 1228 007c 9A60     		str	r2, [r3, #8]
+ 1229 007e FFF7FEFF 		bl	HAL_GetTick
+ 1230 0082 0646     		mov	r6, r0
+ 1231 0084 05E0     		b	.L190
+ 1232              	.L191:
+ 1233 0086 FFF7FEFF 		bl	HAL_GetTick
+ 1234 008a 801B     		subs	r0, r0, r6
+ 1235 008c B0F57A7F 		cmp	r0, #1000
+ 1236 0090 E6D8     		bhi	.L202
+ 1237              	.L190:
+ 1238 0092 2B68     		ldr	r3, [r5]
+ 1239 0094 DC68     		ldr	r4, [r3, #12]
+ 1240 0096 14F00104 		ands	r4, r4, #1
+ 1241 009a F4D0     		beq	.L191
+ 1242 009c D8E7     		b	.L192
+ 1243              	.L195:
+ 1244 009e 0220     		movs	r0, #2
+ 1245 00a0 7047     		bx	lr
+ 1247 00a2 00BF     		.section	.text.HAL_RTC_GetAlarm,"ax",%progbits
+ 1248              		.align	1
+ 1249              		.p2align 2,,3
+ 1250              		.global	HAL_RTC_GetAlarm
+ 1251              		.syntax unified
+ 1252              		.thumb
+ 1253              		.thumb_func
+ 1254              		.fpu fpv4-sp-d16
+ 1256              	HAL_RTC_GetAlarm:
+ 1257              		@ args = 0, pretend = 0, frame = 0
+ 1258              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1259 0000 B2F5807F 		cmp	r2, #256
+ 1260 0004 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 1261 0008 0468     		ldr	r4, [r0]
+ 1262 000a 4FD0     		beq	.L209
+ 1263 000c 206A     		ldr	r0, [r4, #32]
+ 1264 000e A46C     		ldr	r4, [r4, #72]
+ 1265 0010 4FF40072 		mov	r2, #512
+ 1266 0014 C4F30E0B 		ubfx	fp, r4, #0, #15
+ 1267              	.L206:
+ 1268 0018 C0F30744 		ubfx	r4, r0, #16, #8
+ 1269 001c C0F3072C 		ubfx	ip, r0, #8, #8
+ 1270 0020 C7B2     		uxtb	r7, r0
+ 1271 0022 060E     		lsrs	r6, r0, #24
+ 1272 0024 04F03F05 		and	r5, r4, #63
+ 1273 0028 04F0400A 		and	r10, r4, #64
+ 1274 002c 0CF07F09 		and	r9, ip, #127
+ 1275 0030 07F07F08 		and	r8, r7, #127
+ 1276 0034 4A62     		str	r2, [r1, #36]
+ 1277 0036 06F03F0E 		and	lr, r6, #63
+ARM GAS  D:\Programs\cygwin64\tmp\ccScWG34.s 			page 23
+
+
+ 1278 003a 00F08042 		and	r2, r0, #1073741824
+ 1279 003e 00F08030 		and	r0, r0, #-2139062144
+ 1280 0042 C1F804B0 		str	fp, [r1, #4]
+ 1281 0046 0D70     		strb	r5, [r1]
+ 1282 0048 81F803A0 		strb	r10, [r1, #3]
+ 1283 004c 81F80190 		strb	r9, [r1, #1]
+ 1284 0050 81F80280 		strb	r8, [r1, #2]
+ 1285 0054 81F820E0 		strb	lr, [r1, #32]
+ 1286 0058 CA61     		str	r2, [r1, #28]
+ 1287 005a 4861     		str	r0, [r1, #20]
+ 1288 005c 1BBB     		cbnz	r3, .L207
+ 1289 005e 2D09     		lsrs	r5, r5, #4
+ 1290 0060 4FEA1910 		lsr	r0, r9, #4
+ 1291 0064 4FEA1812 		lsr	r2, r8, #4
+ 1292 0068 4FEA1E13 		lsr	r3, lr, #4
+ 1293 006c 05EB8505 		add	r5, r5, r5, lsl #2
+ 1294 0070 00EB8000 		add	r0, r0, r0, lsl #2
+ 1295 0074 02EB8202 		add	r2, r2, r2, lsl #2
+ 1296 0078 03EB8303 		add	r3, r3, r3, lsl #2
+ 1297 007c 04F00F04 		and	r4, r4, #15
+ 1298 0080 0CF00F0C 		and	ip, ip, #15
+ 1299 0084 07F00F07 		and	r7, r7, #15
+ 1300 0088 06F00F06 		and	r6, r6, #15
+ 1301 008c 04EB4504 		add	r4, r4, r5, lsl #1
+ 1302 0090 0CEB4000 		add	r0, ip, r0, lsl #1
+ 1303 0094 07EB4202 		add	r2, r7, r2, lsl #1
+ 1304 0098 06EB4303 		add	r3, r6, r3, lsl #1
+ 1305 009c 0C70     		strb	r4, [r1]
+ 1306 009e 4870     		strb	r0, [r1, #1]
+ 1307 00a0 8A70     		strb	r2, [r1, #2]
+ 1308 00a2 81F82030 		strb	r3, [r1, #32]
+ 1309              	.L207:
+ 1310 00a6 0020     		movs	r0, #0
+ 1311 00a8 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 1312              	.L209:
+ 1313 00ac E069     		ldr	r0, [r4, #28]
+ 1314 00ae 646C     		ldr	r4, [r4, #68]
+ 1315 00b0 C4F30E0B 		ubfx	fp, r4, #0, #15
+ 1316 00b4 B0E7     		b	.L206
+ 1318 00b6 00BF     		.section	.text.HAL_RTC_AlarmAEventCallback,"ax",%progbits
+ 1319              		.align	1
+ 1320              		.p2align 2,,3
+ 1321              		.weak	HAL_RTC_AlarmAEventCallback
+ 1322              		.syntax unified
+ 1323              		.thumb
+ 1324              		.thumb_func
+ 1325              		.fpu fpv4-sp-d16
+ 1327              	HAL_RTC_AlarmAEventCallback:
+ 1328              		@ args = 0, pretend = 0, frame = 0
+ 1329              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1330              		@ link register save eliminated.
+ 1331 0000 7047     		bx	lr
+ 1333 0002 00BF     		.section	.text.HAL_RTC_AlarmIRQHandler,"ax",%progbits
+ 1334              		.align	1
+ 1335              		.p2align 2,,3
+ 1336              		.global	HAL_RTC_AlarmIRQHandler
+ 1337              		.syntax unified
+ARM GAS  D:\Programs\cygwin64\tmp\ccScWG34.s 			page 24
+
+
+ 1338              		.thumb
+ 1339              		.thumb_func
+ 1340              		.fpu fpv4-sp-d16
+ 1342              	HAL_RTC_AlarmIRQHandler:
+ 1343              		@ args = 0, pretend = 0, frame = 0
+ 1344              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1345 0000 0368     		ldr	r3, [r0]
+ 1346 0002 DA68     		ldr	r2, [r3, #12]
+ 1347 0004 D205     		lsls	r2, r2, #23
+ 1348 0006 10B5     		push	{r4, lr}
+ 1349 0008 0446     		mov	r4, r0
+ 1350 000a 02D5     		bpl	.L212
+ 1351 000c 9A68     		ldr	r2, [r3, #8]
+ 1352 000e D104     		lsls	r1, r2, #19
+ 1353 0010 16D4     		bmi	.L227
+ 1354              	.L212:
+ 1355 0012 DA68     		ldr	r2, [r3, #12]
+ 1356 0014 9205     		lsls	r2, r2, #22
+ 1357 0016 02D5     		bpl	.L213
+ 1358 0018 9B68     		ldr	r3, [r3, #8]
+ 1359 001a 9B04     		lsls	r3, r3, #18
+ 1360 001c 06D4     		bmi	.L228
+ 1361              	.L213:
+ 1362 001e 0D4A     		ldr	r2, .L229
+ 1363 0020 4FF40031 		mov	r1, #131072
+ 1364 0024 0123     		movs	r3, #1
+ 1365 0026 5161     		str	r1, [r2, #20]
+ 1366 0028 6377     		strb	r3, [r4, #29]
+ 1367 002a 10BD     		pop	{r4, pc}
+ 1368              	.L228:
+ 1369 002c 2046     		mov	r0, r4
+ 1370 002e FFF7FEFF 		bl	HAL_RTCEx_AlarmBEventCallback
+ 1371 0032 2268     		ldr	r2, [r4]
+ 1372 0034 D368     		ldr	r3, [r2, #12]
+ 1373 0036 DBB2     		uxtb	r3, r3
+ 1374 0038 63F42073 		orn	r3, r3, #640
+ 1375 003c D360     		str	r3, [r2, #12]
+ 1376 003e EEE7     		b	.L213
+ 1377              	.L227:
+ 1378 0040 FFF7FEFF 		bl	HAL_RTC_AlarmAEventCallback
+ 1379 0044 2368     		ldr	r3, [r4]
+ 1380 0046 DA68     		ldr	r2, [r3, #12]
+ 1381 0048 D2B2     		uxtb	r2, r2
+ 1382 004a 62F4C072 		orn	r2, r2, #384
+ 1383 004e DA60     		str	r2, [r3, #12]
+ 1384 0050 DFE7     		b	.L212
+ 1385              	.L230:
+ 1386 0052 00BF     		.align	2
+ 1387              	.L229:
+ 1388 0054 003C0140 		.word	1073822720
+ 1390              		.section	.text.HAL_RTC_PollForAlarmAEvent,"ax",%progbits
+ 1391              		.align	1
+ 1392              		.p2align 2,,3
+ 1393              		.global	HAL_RTC_PollForAlarmAEvent
+ 1394              		.syntax unified
+ 1395              		.thumb
+ 1396              		.thumb_func
+ARM GAS  D:\Programs\cygwin64\tmp\ccScWG34.s 			page 25
+
+
+ 1397              		.fpu fpv4-sp-d16
+ 1399              	HAL_RTC_PollForAlarmAEvent:
+ 1400              		@ args = 0, pretend = 0, frame = 0
+ 1401              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1402 0000 70B5     		push	{r4, r5, r6, lr}
+ 1403 0002 0546     		mov	r5, r0
+ 1404 0004 0C46     		mov	r4, r1
+ 1405 0006 FFF7FEFF 		bl	HAL_GetTick
+ 1406 000a 0646     		mov	r6, r0
+ 1407              	.L232:
+ 1408 000c 601C     		adds	r0, r4, #1
+ 1409 000e 2A68     		ldr	r2, [r5]
+ 1410 0010 0BD1     		bne	.L236
+ 1411              	.L237:
+ 1412 0012 D368     		ldr	r3, [r2, #12]
+ 1413 0014 D905     		lsls	r1, r3, #23
+ 1414 0016 FCD5     		bpl	.L237
+ 1415              	.L238:
+ 1416 0018 D368     		ldr	r3, [r2, #12]
+ 1417 001a DBB2     		uxtb	r3, r3
+ 1418 001c 63F4C073 		orn	r3, r3, #384
+ 1419 0020 0121     		movs	r1, #1
+ 1420 0022 D360     		str	r3, [r2, #12]
+ 1421 0024 0020     		movs	r0, #0
+ 1422 0026 6977     		strb	r1, [r5, #29]
+ 1423 0028 70BD     		pop	{r4, r5, r6, pc}
+ 1424              	.L236:
+ 1425 002a D368     		ldr	r3, [r2, #12]
+ 1426 002c DB05     		lsls	r3, r3, #23
+ 1427 002e F3D4     		bmi	.L238
+ 1428 0030 24B1     		cbz	r4, .L235
+ 1429 0032 FFF7FEFF 		bl	HAL_GetTick
+ 1430 0036 801B     		subs	r0, r0, r6
+ 1431 0038 A042     		cmp	r0, r4
+ 1432 003a E7D9     		bls	.L232
+ 1433              	.L235:
+ 1434 003c 0320     		movs	r0, #3
+ 1435 003e 6877     		strb	r0, [r5, #29]
+ 1436 0040 70BD     		pop	{r4, r5, r6, pc}
+ 1438 0042 00BF     		.section	.text.HAL_RTC_WaitForSynchro,"ax",%progbits
+ 1439              		.align	1
+ 1440              		.p2align 2,,3
+ 1441              		.global	HAL_RTC_WaitForSynchro
+ 1442              		.syntax unified
+ 1443              		.thumb
+ 1444              		.thumb_func
+ 1445              		.fpu fpv4-sp-d16
+ 1447              	HAL_RTC_WaitForSynchro:
+ 1448              		@ args = 0, pretend = 0, frame = 0
+ 1449              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1450 0000 0268     		ldr	r2, [r0]
+ 1451 0002 38B5     		push	{r3, r4, r5, lr}
+ 1452 0004 D368     		ldr	r3, [r2, #12]
+ 1453 0006 23F0A003 		bic	r3, r3, #160
+ 1454 000a D360     		str	r3, [r2, #12]
+ 1455 000c 0446     		mov	r4, r0
+ 1456 000e FFF7FEFF 		bl	HAL_GetTick
+ARM GAS  D:\Programs\cygwin64\tmp\ccScWG34.s 			page 26
+
+
+ 1457 0012 0546     		mov	r5, r0
+ 1458 0014 05E0     		b	.L244
+ 1459              	.L246:
+ 1460 0016 FFF7FEFF 		bl	HAL_GetTick
+ 1461 001a 401B     		subs	r0, r0, r5
+ 1462 001c B0F57A7F 		cmp	r0, #1000
+ 1463 0020 05D8     		bhi	.L247
+ 1464              	.L244:
+ 1465 0022 2368     		ldr	r3, [r4]
+ 1466 0024 DB68     		ldr	r3, [r3, #12]
+ 1467 0026 9B06     		lsls	r3, r3, #26
+ 1468 0028 F5D5     		bpl	.L246
+ 1469 002a 0020     		movs	r0, #0
+ 1470 002c 38BD     		pop	{r3, r4, r5, pc}
+ 1471              	.L247:
+ 1472 002e 0320     		movs	r0, #3
+ 1473 0030 38BD     		pop	{r3, r4, r5, pc}
+ 1475 0032 00BF     		.section	.text.HAL_RTC_GetState,"ax",%progbits
+ 1476              		.align	1
+ 1477              		.p2align 2,,3
+ 1478              		.global	HAL_RTC_GetState
+ 1479              		.syntax unified
+ 1480              		.thumb
+ 1481              		.thumb_func
+ 1482              		.fpu fpv4-sp-d16
+ 1484              	HAL_RTC_GetState:
+ 1485              		@ args = 0, pretend = 0, frame = 0
+ 1486              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1487              		@ link register save eliminated.
+ 1488 0000 407F     		ldrb	r0, [r0, #29]	@ zero_extendqisi2
+ 1489 0002 7047     		bx	lr
+ 1491              		.section	.text.RTC_EnterInitMode,"ax",%progbits
+ 1492              		.align	1
+ 1493              		.p2align 2,,3
+ 1494              		.global	RTC_EnterInitMode
+ 1495              		.syntax unified
+ 1496              		.thumb
+ 1497              		.thumb_func
+ 1498              		.fpu fpv4-sp-d16
+ 1500              	RTC_EnterInitMode:
+ 1501              		@ args = 0, pretend = 0, frame = 0
+ 1502              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1503 0000 38B5     		push	{r3, r4, r5, lr}
+ 1504 0002 0368     		ldr	r3, [r0]
+ 1505 0004 DA68     		ldr	r2, [r3, #12]
+ 1506 0006 5206     		lsls	r2, r2, #25
+ 1507 0008 01D5     		bpl	.L251
+ 1508              	.L255:
+ 1509 000a 0020     		movs	r0, #0
+ 1510 000c 38BD     		pop	{r3, r4, r5, pc}
+ 1511              	.L251:
+ 1512 000e 4FF0FF32 		mov	r2, #-1
+ 1513 0012 DA60     		str	r2, [r3, #12]
+ 1514 0014 0446     		mov	r4, r0
+ 1515 0016 FFF7FEFF 		bl	HAL_GetTick
+ 1516 001a 0546     		mov	r5, r0
+ 1517              	.L253:
+ARM GAS  D:\Programs\cygwin64\tmp\ccScWG34.s 			page 27
+
+
+ 1518 001c 2368     		ldr	r3, [r4]
+ 1519 001e DB68     		ldr	r3, [r3, #12]
+ 1520 0020 5B06     		lsls	r3, r3, #25
+ 1521 0022 F2D4     		bmi	.L255
+ 1522 0024 FFF7FEFF 		bl	HAL_GetTick
+ 1523 0028 401B     		subs	r0, r0, r5
+ 1524 002a B0F57A7F 		cmp	r0, #1000
+ 1525 002e F5D9     		bls	.L253
+ 1526 0030 0320     		movs	r0, #3
+ 1527 0032 38BD     		pop	{r3, r4, r5, pc}
+ 1529              		.section	.text.RTC_ByteToBcd2,"ax",%progbits
+ 1530              		.align	1
+ 1531              		.p2align 2,,3
+ 1532              		.global	RTC_ByteToBcd2
+ 1533              		.syntax unified
+ 1534              		.thumb
+ 1535              		.thumb_func
+ 1536              		.fpu fpv4-sp-d16
+ 1538              	RTC_ByteToBcd2:
+ 1539              		@ args = 0, pretend = 0, frame = 0
+ 1540              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1541              		@ link register save eliminated.
+ 1542 0000 0928     		cmp	r0, #9
+ 1543 0002 09D9     		bls	.L259
+ 1544 0004 0023     		movs	r3, #0
+ 1545              	.L260:
+ 1546 0006 0A38     		subs	r0, r0, #10
+ 1547 0008 C0B2     		uxtb	r0, r0
+ 1548 000a 0928     		cmp	r0, #9
+ 1549 000c 03F10103 		add	r3, r3, #1
+ 1550 0010 F9D8     		bhi	.L260
+ 1551 0012 40EA0310 		orr	r0, r0, r3, lsl #4
+ 1552 0016 C0B2     		uxtb	r0, r0
+ 1553              	.L259:
+ 1554 0018 7047     		bx	lr
+ 1556 001a 00BF     		.section	.text.RTC_Bcd2ToByte,"ax",%progbits
+ 1557              		.align	1
+ 1558              		.p2align 2,,3
+ 1559              		.global	RTC_Bcd2ToByte
+ 1560              		.syntax unified
+ 1561              		.thumb
+ 1562              		.thumb_func
+ 1563              		.fpu fpv4-sp-d16
+ 1565              	RTC_Bcd2ToByte:
+ 1566              		@ args = 0, pretend = 0, frame = 0
+ 1567              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1568              		@ link register save eliminated.
+ 1569 0000 0309     		lsrs	r3, r0, #4
+ 1570 0002 03EB8303 		add	r3, r3, r3, lsl #2
+ 1571 0006 00F00F00 		and	r0, r0, #15
+ 1572 000a 00EB4300 		add	r0, r0, r3, lsl #1
+ 1573 000e C0B2     		uxtb	r0, r0
+ 1574 0010 7047     		bx	lr
+ 1576 0012 00BF     		.ident	"GCC: (GNU Tools for Arm Embedded Processors 8-2018-q4-major) 8.2.1 20181213 (release) [gcc
+ARM GAS  D:\Programs\cygwin64\tmp\ccScWG34.s 			page 28
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f4xx_hal_rtc.c
+D:\Programs\cygwin64\tmp\ccScWG34.s:16     .text.HAL_RTC_MspInit:00000000 $t
+D:\Programs\cygwin64\tmp\ccScWG34.s:25     .text.HAL_RTC_MspInit:00000000 HAL_RTC_MspInit
+D:\Programs\cygwin64\tmp\ccScWG34.s:32     .text.HAL_RTC_Init:00000000 $t
+D:\Programs\cygwin64\tmp\ccScWG34.s:40     .text.HAL_RTC_Init:00000000 HAL_RTC_Init
+D:\Programs\cygwin64\tmp\ccScWG34.s:149    .text.HAL_RTC_MspDeInit:00000000 $t
+D:\Programs\cygwin64\tmp\ccScWG34.s:157    .text.HAL_RTC_MspDeInit:00000000 HAL_RTC_MspDeInit
+D:\Programs\cygwin64\tmp\ccScWG34.s:164    .text.HAL_RTC_DeInit:00000000 $t
+D:\Programs\cygwin64\tmp\ccScWG34.s:172    .text.HAL_RTC_DeInit:00000000 HAL_RTC_DeInit
+D:\Programs\cygwin64\tmp\ccScWG34.s:288    .text.HAL_RTC_DeInit:000000e8 $d
+D:\Programs\cygwin64\tmp\ccScWG34.s:291    .text.HAL_RTC_SetTime:00000000 $t
+D:\Programs\cygwin64\tmp\ccScWG34.s:299    .text.HAL_RTC_SetTime:00000000 HAL_RTC_SetTime
+D:\Programs\cygwin64\tmp\ccScWG34.s:467    .text.HAL_RTC_GetTime:00000000 $t
+D:\Programs\cygwin64\tmp\ccScWG34.s:475    .text.HAL_RTC_GetTime:00000000 HAL_RTC_GetTime
+D:\Programs\cygwin64\tmp\ccScWG34.s:520    .text.HAL_RTC_SetDate:00000000 $t
+D:\Programs\cygwin64\tmp\ccScWG34.s:528    .text.HAL_RTC_SetDate:00000000 HAL_RTC_SetDate
+D:\Programs\cygwin64\tmp\ccScWG34.s:679    .text.HAL_RTC_GetDate:00000000 $t
+D:\Programs\cygwin64\tmp\ccScWG34.s:687    .text.HAL_RTC_GetDate:00000000 HAL_RTC_GetDate
+D:\Programs\cygwin64\tmp\ccScWG34.s:728    .text.HAL_RTC_SetAlarm:00000000 $t
+D:\Programs\cygwin64\tmp\ccScWG34.s:736    .text.HAL_RTC_SetAlarm:00000000 HAL_RTC_SetAlarm
+D:\Programs\cygwin64\tmp\ccScWG34.s:922    .text.HAL_RTC_SetAlarm_IT:00000000 $t
+D:\Programs\cygwin64\tmp\ccScWG34.s:930    .text.HAL_RTC_SetAlarm_IT:00000000 HAL_RTC_SetAlarm_IT
+D:\Programs\cygwin64\tmp\ccScWG34.s:1154   .text.HAL_RTC_SetAlarm_IT:000001fc $d
+D:\Programs\cygwin64\tmp\ccScWG34.s:1159   .text.HAL_RTC_DeactivateAlarm:00000000 $t
+D:\Programs\cygwin64\tmp\ccScWG34.s:1167   .text.HAL_RTC_DeactivateAlarm:00000000 HAL_RTC_DeactivateAlarm
+D:\Programs\cygwin64\tmp\ccScWG34.s:1248   .text.HAL_RTC_GetAlarm:00000000 $t
+D:\Programs\cygwin64\tmp\ccScWG34.s:1256   .text.HAL_RTC_GetAlarm:00000000 HAL_RTC_GetAlarm
+D:\Programs\cygwin64\tmp\ccScWG34.s:1319   .text.HAL_RTC_AlarmAEventCallback:00000000 $t
+D:\Programs\cygwin64\tmp\ccScWG34.s:1327   .text.HAL_RTC_AlarmAEventCallback:00000000 HAL_RTC_AlarmAEventCallback
+D:\Programs\cygwin64\tmp\ccScWG34.s:1334   .text.HAL_RTC_AlarmIRQHandler:00000000 $t
+D:\Programs\cygwin64\tmp\ccScWG34.s:1342   .text.HAL_RTC_AlarmIRQHandler:00000000 HAL_RTC_AlarmIRQHandler
+D:\Programs\cygwin64\tmp\ccScWG34.s:1388   .text.HAL_RTC_AlarmIRQHandler:00000054 $d
+D:\Programs\cygwin64\tmp\ccScWG34.s:1391   .text.HAL_RTC_PollForAlarmAEvent:00000000 $t
+D:\Programs\cygwin64\tmp\ccScWG34.s:1399   .text.HAL_RTC_PollForAlarmAEvent:00000000 HAL_RTC_PollForAlarmAEvent
+D:\Programs\cygwin64\tmp\ccScWG34.s:1439   .text.HAL_RTC_WaitForSynchro:00000000 $t
+D:\Programs\cygwin64\tmp\ccScWG34.s:1447   .text.HAL_RTC_WaitForSynchro:00000000 HAL_RTC_WaitForSynchro
+D:\Programs\cygwin64\tmp\ccScWG34.s:1476   .text.HAL_RTC_GetState:00000000 $t
+D:\Programs\cygwin64\tmp\ccScWG34.s:1484   .text.HAL_RTC_GetState:00000000 HAL_RTC_GetState
+D:\Programs\cygwin64\tmp\ccScWG34.s:1492   .text.RTC_EnterInitMode:00000000 $t
+D:\Programs\cygwin64\tmp\ccScWG34.s:1500   .text.RTC_EnterInitMode:00000000 RTC_EnterInitMode
+D:\Programs\cygwin64\tmp\ccScWG34.s:1530   .text.RTC_ByteToBcd2:00000000 $t
+D:\Programs\cygwin64\tmp\ccScWG34.s:1538   .text.RTC_ByteToBcd2:00000000 RTC_ByteToBcd2
+D:\Programs\cygwin64\tmp\ccScWG34.s:1557   .text.RTC_Bcd2ToByte:00000000 $t
+D:\Programs\cygwin64\tmp\ccScWG34.s:1565   .text.RTC_Bcd2ToByte:00000000 RTC_Bcd2ToByte
+
+UNDEFINED SYMBOLS
+HAL_GetTick
+SystemCoreClock
+HAL_RTCEx_AlarmBEventCallback

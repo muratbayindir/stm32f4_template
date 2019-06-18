@@ -1,0 +1,1276 @@
+ARM GAS  D:\Programs\cygwin64\tmp\ccKT2oSi.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"stm32f4xx_hal_i2s_ex.c"
+  14              		.text
+  15              		.section	.text.I2SEx_TxRxDMAError,"ax",%progbits
+  16              		.align	1
+  17              		.p2align 2,,3
+  18              		.arch armv7e-m
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu fpv4-sp-d16
+  24              	I2SEx_TxRxDMAError:
+  25              		@ args = 0, pretend = 0, frame = 0
+  26              		@ frame_needed = 0, uses_anonymous_args = 0
+  27              		@ link register save eliminated.
+  28 0000 806B     		ldr	r0, [r0, #56]
+  29 0002 0F4B     		ldr	r3, .L6
+  30 0004 0268     		ldr	r2, [r0]
+  31 0006 10B4     		push	{r4}
+  32 0008 5168     		ldr	r1, [r2, #4]
+  33 000a 0E4C     		ldr	r4, .L6+4
+  34 000c 21F00301 		bic	r1, r1, #3
+  35 0010 A242     		cmp	r2, r4
+  36 0012 18BF     		it	ne
+  37 0014 4FF04023 		movne	r3, #1073758208
+  38 0018 5160     		str	r1, [r2, #4]
+  39 001a 5A68     		ldr	r2, [r3, #4]
+  40 001c 0021     		movs	r1, #0
+  41 001e 0124     		movs	r4, #1
+  42 0020 22F00302 		bic	r2, r2, #3
+  43 0024 5A60     		str	r2, [r3, #4]
+  44 0026 4185     		strh	r1, [r0, #42]	@ movhi
+  45 0028 4186     		strh	r1, [r0, #50]	@ movhi
+  46 002a 80F84140 		strb	r4, [r0, #65]
+  47 002e 436C     		ldr	r3, [r0, #68]
+  48 0030 5DF8044B 		ldr	r4, [sp], #4
+  49 0034 43F00803 		orr	r3, r3, #8
+  50 0038 4364     		str	r3, [r0, #68]
+  51 003a FFF7FEBF 		b	HAL_I2S_ErrorCallback
+  52              	.L7:
+  53 003e 00BF     		.align	2
+  54              	.L6:
+  55 0040 00340040 		.word	1073755136
+  56 0044 00380040 		.word	1073756160
+  58              		.section	.text.HAL_I2SEx_TransmitReceive,"ax",%progbits
+  59              		.align	1
+ARM GAS  D:\Programs\cygwin64\tmp\ccKT2oSi.s 			page 2
+
+
+  60              		.p2align 2,,3
+  61              		.global	HAL_I2SEx_TransmitReceive
+  62              		.syntax unified
+  63              		.thumb
+  64              		.thumb_func
+  65              		.fpu fpv4-sp-d16
+  67              	HAL_I2SEx_TransmitReceive:
+  68              		@ args = 4, pretend = 0, frame = 24
+  69              		@ frame_needed = 0, uses_anonymous_args = 0
+  70 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+  71 0004 0446     		mov	r4, r0
+  72 0006 90F84100 		ldrb	r0, [r0, #65]	@ zero_extendqisi2
+  73 000a 87B0     		sub	sp, sp, #28
+  74 000c C0B2     		uxtb	r0, r0
+  75 000e 0128     		cmp	r0, #1
+  76 0010 109D     		ldr	r5, [sp, #64]
+  77 0012 78D1     		bne	.L58
+  78 0014 0029     		cmp	r1, #0
+  79 0016 7DD0     		beq	.L10
+  80 0018 1746     		mov	r7, r2
+  81 001a 002A     		cmp	r2, #0
+  82 001c 7AD0     		beq	.L10
+  83 001e 002B     		cmp	r3, #0
+  84 0020 78D0     		beq	.L10
+  85 0022 94F84020 		ldrb	r2, [r4, #64]	@ zero_extendqisi2
+  86 0026 012A     		cmp	r2, #1
+  87 0028 00F06781 		beq	.L62
+  88 002c 2268     		ldr	r2, [r4]
+  89 002e 84F84000 		strb	r0, [r4, #64]
+  90 0032 D069     		ldr	r0, [r2, #28]
+  91 0034 00F00700 		and	r0, r0, #7
+  92 0038 0328     		cmp	r0, #3
+  93 003a 00F04E81 		beq	.L11
+  94 003e 0528     		cmp	r0, #5
+  95 0040 00F04B81 		beq	.L11
+  96 0044 2385     		strh	r3, [r4, #40]	@ movhi
+  97 0046 6385     		strh	r3, [r4, #42]	@ movhi
+  98 0048 2386     		strh	r3, [r4, #48]	@ movhi
+  99 004a 6386     		strh	r3, [r4, #50]	@ movhi
+ 100              	.L13:
+ 101 004c 0523     		movs	r3, #5
+ 102 004e 0020     		movs	r0, #0
+ 103 0050 6064     		str	r0, [r4, #68]
+ 104 0052 84F84130 		strb	r3, [r4, #65]
+ 105 0056 D369     		ldr	r3, [r2, #28]
+ 106 0058 0E46     		mov	r6, r1
+ 107 005a 03F4407A 		and	r10, r3, #768
+ 108 005e 13F48073 		ands	r3, r3, #256
+ 109 0062 36F8021B 		ldrh	r1, [r6], #2
+ 110 0066 00F0A280 		beq	.L89
+ 111 006a DFF880C2 		ldr	ip, .L93+4
+ 112 006e 9E4B     		ldr	r3, .L93
+ 113 0070 6245     		cmp	r2, ip
+ 114 0072 18BF     		it	ne
+ 115 0074 4FF04023 		movne	r3, #1073758208
+ 116 0078 D960     		str	r1, [r3, #12]
+ 117 007a 618D     		ldrh	r1, [r4, #42]
+ARM GAS  D:\Programs\cygwin64\tmp\ccKT2oSi.s 			page 3
+
+
+ 118 007c 0139     		subs	r1, r1, #1
+ 119 007e 89B2     		uxth	r1, r1
+ 120 0080 6185     		strh	r1, [r4, #42]	@ movhi
+ 121 0082 D969     		ldr	r1, [r3, #28]
+ 122 0084 41F48061 		orr	r1, r1, #1024
+ 123 0088 D961     		str	r1, [r3, #28]
+ 124 008a D369     		ldr	r3, [r2, #28]
+ 125 008c 43F48063 		orr	r3, r3, #1024
+ 126 0090 D361     		str	r3, [r2, #28]
+ 127 0092 D369     		ldr	r3, [r2, #28]
+ 128 0094 03F44073 		and	r3, r3, #768
+ 129 0098 B3F5407F 		cmp	r3, #768
+ 130 009c 00F02F81 		beq	.L90
+ 131              	.L37:
+ 132 00a0 DFF84892 		ldr	r9, .L93+4
+ 133 00a4 DFF84082 		ldr	r8, .L93
+ 134              	.L55:
+ 135 00a8 638E     		ldrh	r3, [r4, #50]
+ 136 00aa 9BB2     		uxth	r3, r3
+ 137 00ac 23B9     		cbnz	r3, .L56
+ 138 00ae 638D     		ldrh	r3, [r4, #42]
+ 139 00b0 9BB2     		uxth	r3, r3
+ 140 00b2 002B     		cmp	r3, #0
+ 141 00b4 00F01C81 		beq	.L57
+ 142              	.L56:
+ 143 00b8 638D     		ldrh	r3, [r4, #42]
+ 144 00ba 9BB2     		uxth	r3, r3
+ 145 00bc 002B     		cmp	r3, #0
+ 146 00be 2CD1     		bne	.L91
+ 147              	.L38:
+ 148 00c0 638E     		ldrh	r3, [r4, #50]
+ 149 00c2 9BB2     		uxth	r3, r3
+ 150 00c4 002B     		cmp	r3, #0
+ 151 00c6 EFD0     		beq	.L55
+ 152 00c8 FFF7FEFF 		bl	HAL_GetTick
+ 153 00cc 8346     		mov	fp, r0
+ 154              	.L48:
+ 155 00ce 6B1C     		adds	r3, r5, #1
+ 156 00d0 2268     		ldr	r2, [r4]
+ 157 00d2 60D1     		bne	.L51
+ 158              	.L53:
+ 159 00d4 9368     		ldr	r3, [r2, #8]
+ 160 00d6 D807     		lsls	r0, r3, #31
+ 161 00d8 FCD5     		bpl	.L53
+ 162              	.L52:
+ 163 00da D368     		ldr	r3, [r2, #12]
+ 164 00dc 27F8023B 		strh	r3, [r7], #2	@ movhi
+ 165 00e0 638E     		ldrh	r3, [r4, #50]
+ 166 00e2 013B     		subs	r3, r3, #1
+ 167 00e4 9BB2     		uxth	r3, r3
+ 168 00e6 6386     		strh	r3, [r4, #50]	@ movhi
+ 169 00e8 9368     		ldr	r3, [r2, #8]
+ 170 00ea 5B06     		lsls	r3, r3, #25
+ 171 00ec DCD5     		bpl	.L55
+ 172 00ee 0023     		movs	r3, #0
+ 173 00f0 0593     		str	r3, [sp, #20]
+ 174 00f2 D368     		ldr	r3, [r2, #12]
+ARM GAS  D:\Programs\cygwin64\tmp\ccKT2oSi.s 			page 4
+
+
+ 175 00f4 0593     		str	r3, [sp, #20]
+ 176 00f6 9368     		ldr	r3, [r2, #8]
+ 177 00f8 0593     		str	r3, [sp, #20]
+ 178 00fa 059B     		ldr	r3, [sp, #20]
+ 179 00fc 636C     		ldr	r3, [r4, #68]
+ 180 00fe 43F00203 		orr	r3, r3, #2
+ 181 0102 6364     		str	r3, [r4, #68]
+ 182 0104 D0E7     		b	.L55
+ 183              	.L58:
+ 184 0106 0220     		movs	r0, #2
+ 185              	.L9:
+ 186 0108 0122     		movs	r2, #1
+ 187 010a 0023     		movs	r3, #0
+ 188 010c 84F84120 		strb	r2, [r4, #65]
+ 189 0110 84F84030 		strb	r3, [r4, #64]
+ 190              	.L10:
+ 191 0114 07B0     		add	sp, sp, #28
+ 192              		@ sp needed
+ 193 0116 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 194              	.L91:
+ 195 011a FFF7FEFF 		bl	HAL_GetTick
+ 196 011e 8346     		mov	fp, r0
+ 197              	.L39:
+ 198 0120 2068     		ldr	r0, [r4]
+ 199 0122 4845     		cmp	r0, r9
+ 200 0124 0CBF     		ite	eq
+ 201 0126 4246     		moveq	r2, r8
+ 202 0128 4FF04022 		movne	r2, #1073758208
+ 203 012c 691C     		adds	r1, r5, #1
+ 204 012e 1ED1     		bne	.L42
+ 205              	.L44:
+ 206 0130 9368     		ldr	r3, [r2, #8]
+ 207 0132 9B07     		lsls	r3, r3, #30
+ 208 0134 FCD5     		bpl	.L44
+ 209              	.L43:
+ 210 0136 4845     		cmp	r0, r9
+ 211 0138 0CBF     		ite	eq
+ 212 013a 4246     		moveq	r2, r8
+ 213 013c 4FF04022 		movne	r2, #1073758208
+ 214 0140 36F8023B 		ldrh	r3, [r6], #2
+ 215 0144 D360     		str	r3, [r2, #12]
+ 216 0146 638D     		ldrh	r3, [r4, #42]
+ 217 0148 013B     		subs	r3, r3, #1
+ 218 014a 9BB2     		uxth	r3, r3
+ 219 014c 6385     		strh	r3, [r4, #42]	@ movhi
+ 220 014e 9368     		ldr	r3, [r2, #8]
+ 221 0150 1A07     		lsls	r2, r3, #28
+ 222 0152 B5D5     		bpl	.L38
+ 223 0154 BAF5807F 		cmp	r10, #256
+ 224 0158 B2D1     		bne	.L38
+ 225 015a 0023     		movs	r3, #0
+ 226 015c 0493     		str	r3, [sp, #16]
+ 227 015e 8368     		ldr	r3, [r0, #8]
+ 228 0160 0493     		str	r3, [sp, #16]
+ 229 0162 049B     		ldr	r3, [sp, #16]
+ 230 0164 636C     		ldr	r3, [r4, #68]
+ 231 0166 43F00403 		orr	r3, r3, #4
+ARM GAS  D:\Programs\cygwin64\tmp\ccKT2oSi.s 			page 5
+
+
+ 232 016a 6364     		str	r3, [r4, #68]
+ 233 016c A8E7     		b	.L38
+ 234              	.L42:
+ 235 016e 9268     		ldr	r2, [r2, #8]
+ 236 0170 9107     		lsls	r1, r2, #30
+ 237 0172 E0D4     		bmi	.L43
+ 238 0174 2DB1     		cbz	r5, .L50
+ 239 0176 FFF7FEFF 		bl	HAL_GetTick
+ 240 017a A0EB0B00 		sub	r0, r0, fp
+ 241 017e 8542     		cmp	r5, r0
+ 242 0180 CED2     		bcs	.L39
+ 243              	.L50:
+ 244 0182 0120     		movs	r0, #1
+ 245 0184 0023     		movs	r3, #0
+ 246 0186 84F84100 		strb	r0, [r4, #65]
+ 247 018a 84F84030 		strb	r3, [r4, #64]
+ 248 018e 636C     		ldr	r3, [r4, #68]
+ 249 0190 0343     		orrs	r3, r3, r0
+ 250 0192 6364     		str	r3, [r4, #68]
+ 251 0194 B8E7     		b	.L9
+ 252              	.L51:
+ 253 0196 9368     		ldr	r3, [r2, #8]
+ 254 0198 D907     		lsls	r1, r3, #31
+ 255 019a 9ED4     		bmi	.L52
+ 256 019c 002D     		cmp	r5, #0
+ 257 019e F0D0     		beq	.L50
+ 258 01a0 FFF7FEFF 		bl	HAL_GetTick
+ 259 01a4 A0EB0B00 		sub	r0, r0, fp
+ 260 01a8 8542     		cmp	r5, r0
+ 261 01aa 90D2     		bcs	.L48
+ 262 01ac E9E7     		b	.L50
+ 263              	.L89:
+ 264 01ae D160     		str	r1, [r2, #12]
+ 265 01b0 618D     		ldrh	r1, [r4, #42]
+ 266 01b2 DFF838C1 		ldr	ip, .L93+4
+ 267 01b6 4C48     		ldr	r0, .L93
+ 268 01b8 0139     		subs	r1, r1, #1
+ 269 01ba 6245     		cmp	r2, ip
+ 270 01bc 18BF     		it	ne
+ 271 01be 4FF04020 		movne	r0, #1073758208
+ 272 01c2 89B2     		uxth	r1, r1
+ 273 01c4 6185     		strh	r1, [r4, #42]	@ movhi
+ 274 01c6 C169     		ldr	r1, [r0, #28]
+ 275 01c8 41F48061 		orr	r1, r1, #1024
+ 276 01cc C161     		str	r1, [r0, #28]
+ 277 01ce D169     		ldr	r1, [r2, #28]
+ 278 01d0 41F48061 		orr	r1, r1, #1024
+ 279 01d4 D161     		str	r1, [r2, #28]
+ 280 01d6 D269     		ldr	r2, [r2, #28]
+ 281 01d8 02F44072 		and	r2, r2, #768
+ 282 01dc B2F5007F 		cmp	r2, #512
+ 283 01e0 05D1     		bne	.L16
+ 284 01e2 0093     		str	r3, [sp]
+ 285 01e4 C368     		ldr	r3, [r0, #12]
+ 286 01e6 0093     		str	r3, [sp]
+ 287 01e8 8368     		ldr	r3, [r0, #8]
+ 288 01ea 0093     		str	r3, [sp]
+ARM GAS  D:\Programs\cygwin64\tmp\ccKT2oSi.s 			page 6
+
+
+ 289 01ec 009B     		ldr	r3, [sp]
+ 290              	.L16:
+ 291 01ee DFF8FC90 		ldr	r9, .L93+4
+ 292 01f2 DFF8F480 		ldr	r8, .L93
+ 293              	.L34:
+ 294 01f6 638E     		ldrh	r3, [r4, #50]
+ 295 01f8 9BB2     		uxth	r3, r3
+ 296 01fa 1BB9     		cbnz	r3, .L35
+ 297 01fc 638D     		ldrh	r3, [r4, #42]
+ 298 01fe 9BB2     		uxth	r3, r3
+ 299 0200 002B     		cmp	r3, #0
+ 300 0202 75D0     		beq	.L57
+ 301              	.L35:
+ 302 0204 638D     		ldrh	r3, [r4, #42]
+ 303 0206 9BB2     		uxth	r3, r3
+ 304 0208 002B     		cmp	r3, #0
+ 305 020a 2CD1     		bne	.L92
+ 306              	.L17:
+ 307 020c 638E     		ldrh	r3, [r4, #50]
+ 308 020e 9BB2     		uxth	r3, r3
+ 309 0210 002B     		cmp	r3, #0
+ 310 0212 F0D0     		beq	.L34
+ 311 0214 FFF7FEFF 		bl	HAL_GetTick
+ 312 0218 8346     		mov	fp, r0
+ 313              	.L26:
+ 314 021a 2168     		ldr	r1, [r4]
+ 315 021c 4945     		cmp	r1, r9
+ 316 021e 0CBF     		ite	eq
+ 317 0220 4246     		moveq	r2, r8
+ 318 0222 4FF04022 		movne	r2, #1073758208
+ 319 0226 6B1C     		adds	r3, r5, #1
+ 320 0228 4AD1     		bne	.L29
+ 321              	.L31:
+ 322 022a 9368     		ldr	r3, [r2, #8]
+ 323 022c D807     		lsls	r0, r3, #31
+ 324 022e FCD5     		bpl	.L31
+ 325              	.L30:
+ 326 0230 4945     		cmp	r1, r9
+ 327 0232 0CBF     		ite	eq
+ 328 0234 4246     		moveq	r2, r8
+ 329 0236 4FF04022 		movne	r2, #1073758208
+ 330 023a D368     		ldr	r3, [r2, #12]
+ 331 023c 27F8023B 		strh	r3, [r7], #2	@ movhi
+ 332 0240 638E     		ldrh	r3, [r4, #50]
+ 333 0242 013B     		subs	r3, r3, #1
+ 334 0244 9BB2     		uxth	r3, r3
+ 335 0246 6386     		strh	r3, [r4, #50]	@ movhi
+ 336 0248 9368     		ldr	r3, [r2, #8]
+ 337 024a 5806     		lsls	r0, r3, #25
+ 338 024c D3D5     		bpl	.L34
+ 339 024e 0023     		movs	r3, #0
+ 340 0250 0293     		str	r3, [sp, #8]
+ 341 0252 CB68     		ldr	r3, [r1, #12]
+ 342 0254 0293     		str	r3, [sp, #8]
+ 343 0256 8B68     		ldr	r3, [r1, #8]
+ 344 0258 0293     		str	r3, [sp, #8]
+ 345 025a 029B     		ldr	r3, [sp, #8]
+ARM GAS  D:\Programs\cygwin64\tmp\ccKT2oSi.s 			page 7
+
+
+ 346 025c 636C     		ldr	r3, [r4, #68]
+ 347 025e 43F00203 		orr	r3, r3, #2
+ 348 0262 6364     		str	r3, [r4, #68]
+ 349 0264 C7E7     		b	.L34
+ 350              	.L92:
+ 351 0266 FFF7FEFF 		bl	HAL_GetTick
+ 352 026a 8346     		mov	fp, r0
+ 353              	.L18:
+ 354 026c 6A1C     		adds	r2, r5, #1
+ 355 026e 2368     		ldr	r3, [r4]
+ 356 0270 19D1     		bne	.L21
+ 357              	.L23:
+ 358 0272 9A68     		ldr	r2, [r3, #8]
+ 359 0274 9007     		lsls	r0, r2, #30
+ 360 0276 FCD5     		bpl	.L23
+ 361              	.L22:
+ 362 0278 36F8022B 		ldrh	r2, [r6], #2
+ 363 027c DA60     		str	r2, [r3, #12]
+ 364 027e 628D     		ldrh	r2, [r4, #42]
+ 365 0280 013A     		subs	r2, r2, #1
+ 366 0282 92B2     		uxth	r2, r2
+ 367 0284 6285     		strh	r2, [r4, #42]	@ movhi
+ 368 0286 9A68     		ldr	r2, [r3, #8]
+ 369 0288 1207     		lsls	r2, r2, #28
+ 370 028a BFD5     		bpl	.L17
+ 371 028c BAF1000F 		cmp	r10, #0
+ 372 0290 BCD1     		bne	.L17
+ 373 0292 CDF804A0 		str	r10, [sp, #4]
+ 374 0296 9B68     		ldr	r3, [r3, #8]
+ 375 0298 0193     		str	r3, [sp, #4]
+ 376 029a 019B     		ldr	r3, [sp, #4]
+ 377 029c 636C     		ldr	r3, [r4, #68]
+ 378 029e 43F00403 		orr	r3, r3, #4
+ 379 02a2 6364     		str	r3, [r4, #68]
+ 380 02a4 B2E7     		b	.L17
+ 381              	.L21:
+ 382 02a6 9A68     		ldr	r2, [r3, #8]
+ 383 02a8 9107     		lsls	r1, r2, #30
+ 384 02aa E5D4     		bmi	.L22
+ 385 02ac 002D     		cmp	r5, #0
+ 386 02ae 3FF468AF 		beq	.L50
+ 387 02b2 FFF7FEFF 		bl	HAL_GetTick
+ 388 02b6 A0EB0B00 		sub	r0, r0, fp
+ 389 02ba 8542     		cmp	r5, r0
+ 390 02bc D6D2     		bcs	.L18
+ 391 02be 60E7     		b	.L50
+ 392              	.L29:
+ 393 02c0 9268     		ldr	r2, [r2, #8]
+ 394 02c2 D307     		lsls	r3, r2, #31
+ 395 02c4 B4D4     		bmi	.L30
+ 396 02c6 002D     		cmp	r5, #0
+ 397 02c8 3FF45BAF 		beq	.L50
+ 398 02cc FFF7FEFF 		bl	HAL_GetTick
+ 399 02d0 A0EB0B00 		sub	r0, r0, fp
+ 400 02d4 8542     		cmp	r5, r0
+ 401 02d6 A0D2     		bcs	.L26
+ 402 02d8 53E7     		b	.L50
+ARM GAS  D:\Programs\cygwin64\tmp\ccKT2oSi.s 			page 8
+
+
+ 403              	.L11:
+ 404 02da 5B00     		lsls	r3, r3, #1
+ 405 02dc 9BB2     		uxth	r3, r3
+ 406 02de 2385     		strh	r3, [r4, #40]	@ movhi
+ 407 02e0 6385     		strh	r3, [r4, #42]	@ movhi
+ 408 02e2 2386     		strh	r3, [r4, #48]	@ movhi
+ 409 02e4 6386     		strh	r3, [r4, #50]	@ movhi
+ 410 02e6 B1E6     		b	.L13
+ 411              	.L94:
+ 412              		.align	2
+ 413              	.L93:
+ 414 02e8 00340040 		.word	1073755136
+ 415 02ec 00380040 		.word	1073756160
+ 416              	.L57:
+ 417 02f0 606C     		ldr	r0, [r4, #68]
+ 418 02f2 0030     		adds	r0, r0, #0
+ 419 02f4 18BF     		it	ne
+ 420 02f6 0120     		movne	r0, #1
+ 421 02f8 06E7     		b	.L9
+ 422              	.L62:
+ 423 02fa 0220     		movs	r0, #2
+ 424 02fc 0AE7     		b	.L10
+ 425              	.L90:
+ 426 02fe 0390     		str	r0, [sp, #12]
+ 427 0300 D368     		ldr	r3, [r2, #12]
+ 428 0302 0393     		str	r3, [sp, #12]
+ 429 0304 9368     		ldr	r3, [r2, #8]
+ 430 0306 0393     		str	r3, [sp, #12]
+ 431 0308 039B     		ldr	r3, [sp, #12]
+ 432 030a C9E6     		b	.L37
+ 434              		.section	.text.HAL_I2SEx_TransmitReceive_IT,"ax",%progbits
+ 435              		.align	1
+ 436              		.p2align 2,,3
+ 437              		.global	HAL_I2SEx_TransmitReceive_IT
+ 438              		.syntax unified
+ 439              		.thumb
+ 440              		.thumb_func
+ 441              		.fpu fpv4-sp-d16
+ 443              	HAL_I2SEx_TransmitReceive_IT:
+ 444              		@ args = 0, pretend = 0, frame = 0
+ 445              		@ frame_needed = 0, uses_anonymous_args = 0
+ 446              		@ link register save eliminated.
+ 447 0000 30B4     		push	{r4, r5}
+ 448 0002 90F84140 		ldrb	r4, [r0, #65]	@ zero_extendqisi2
+ 449 0006 E4B2     		uxtb	r4, r4
+ 450 0008 012C     		cmp	r4, #1
+ 451 000a 54D1     		bne	.L108
+ 452 000c 0029     		cmp	r1, #0
+ 453 000e 4FD0     		beq	.L97
+ 454 0010 002A     		cmp	r2, #0
+ 455 0012 4DD0     		beq	.L97
+ 456 0014 002B     		cmp	r3, #0
+ 457 0016 4BD0     		beq	.L97
+ 458 0018 90F84050 		ldrb	r5, [r0, #64]	@ zero_extendqisi2
+ 459 001c 012D     		cmp	r5, #1
+ 460 001e 74D0     		beq	.L112
+ 461 0020 0568     		ldr	r5, [r0]
+ARM GAS  D:\Programs\cygwin64\tmp\ccKT2oSi.s 			page 9
+
+
+ 462 0022 80F84040 		strb	r4, [r0, #64]
+ 463 0026 EC69     		ldr	r4, [r5, #28]
+ 464 0028 4162     		str	r1, [r0, #36]
+ 465 002a 04F00704 		and	r4, r4, #7
+ 466 002e 032C     		cmp	r4, #3
+ 467 0030 C262     		str	r2, [r0, #44]
+ 468 0032 63D0     		beq	.L98
+ 469 0034 052C     		cmp	r4, #5
+ 470 0036 61D0     		beq	.L98
+ 471 0038 0385     		strh	r3, [r0, #40]	@ movhi
+ 472 003a 4385     		strh	r3, [r0, #42]	@ movhi
+ 473 003c 0386     		strh	r3, [r0, #48]	@ movhi
+ 474 003e 4386     		strh	r3, [r0, #50]	@ movhi
+ 475              	.L100:
+ 476 0040 4368     		ldr	r3, [r0, #4]
+ 477 0042 0024     		movs	r4, #0
+ 478 0044 0522     		movs	r2, #5
+ 479 0046 33F40073 		bics	r3, r3, #512
+ 480 004a 4464     		str	r4, [r0, #68]
+ 481 004c 304B     		ldr	r3, .L121
+ 482 004e 80F84120 		strb	r2, [r0, #65]
+ 483 0052 0C88     		ldrh	r4, [r1]
+ 484 0054 2F4A     		ldr	r2, .L121+4
+ 485 0056 35D0     		beq	.L120
+ 486 0058 9542     		cmp	r5, r2
+ 487 005a 18BF     		it	ne
+ 488 005c 4FF04023 		movne	r3, #1073758208
+ 489 0060 0231     		adds	r1, r1, #2
+ 490 0062 5A68     		ldr	r2, [r3, #4]
+ 491 0064 42F0A002 		orr	r2, r2, #160
+ 492 0068 5A60     		str	r2, [r3, #4]
+ 493 006a 6A68     		ldr	r2, [r5, #4]
+ 494 006c 42F06002 		orr	r2, r2, #96
+ 495 0070 6A60     		str	r2, [r5, #4]
+ 496 0072 4162     		str	r1, [r0, #36]
+ 497 0074 DC60     		str	r4, [r3, #12]
+ 498 0076 428D     		ldrh	r2, [r0, #42]
+ 499 0078 013A     		subs	r2, r2, #1
+ 500 007a 92B2     		uxth	r2, r2
+ 501 007c 4285     		strh	r2, [r0, #42]	@ movhi
+ 502 007e 428D     		ldrh	r2, [r0, #42]
+ 503 0080 92B2     		uxth	r2, r2
+ 504 0082 1AB9     		cbnz	r2, .L104
+ 505 0084 5A68     		ldr	r2, [r3, #4]
+ 506 0086 22F0A002 		bic	r2, r2, #160
+ 507 008a 5A60     		str	r2, [r3, #4]
+ 508              	.L104:
+ 509 008c 214A     		ldr	r2, .L121+4
+ 510 008e 204B     		ldr	r3, .L121
+ 511 0090 9542     		cmp	r5, r2
+ 512 0092 18BF     		it	ne
+ 513 0094 4FF04023 		movne	r3, #1073758208
+ 514 0098 0024     		movs	r4, #0
+ 515 009a DA69     		ldr	r2, [r3, #28]
+ 516 009c 42F48062 		orr	r2, r2, #1024
+ 517 00a0 DA61     		str	r2, [r3, #28]
+ 518 00a2 EB69     		ldr	r3, [r5, #28]
+ARM GAS  D:\Programs\cygwin64\tmp\ccKT2oSi.s 			page 10
+
+
+ 519 00a4 43F48063 		orr	r3, r3, #1024
+ 520 00a8 EB61     		str	r3, [r5, #28]
+ 521 00aa 0023     		movs	r3, #0
+ 522 00ac 80F84030 		strb	r3, [r0, #64]
+ 523              	.L97:
+ 524 00b0 2046     		mov	r0, r4
+ 525 00b2 30BC     		pop	{r4, r5}
+ 526 00b4 7047     		bx	lr
+ 527              	.L108:
+ 528              	.L96:
+ 529 00b6 0224     		movs	r4, #2
+ 530 00b8 0023     		movs	r3, #0
+ 531 00ba 80F84030 		strb	r3, [r0, #64]
+ 532 00be 2046     		mov	r0, r4
+ 533 00c0 30BC     		pop	{r4, r5}
+ 534 00c2 7047     		bx	lr
+ 535              	.L120:
+ 536 00c4 9542     		cmp	r5, r2
+ 537 00c6 18BF     		it	ne
+ 538 00c8 4FF04023 		movne	r3, #1073758208
+ 539 00cc 0231     		adds	r1, r1, #2
+ 540 00ce 5A68     		ldr	r2, [r3, #4]
+ 541 00d0 42F06002 		orr	r2, r2, #96
+ 542 00d4 5A60     		str	r2, [r3, #4]
+ 543 00d6 6B68     		ldr	r3, [r5, #4]
+ 544 00d8 43F0A003 		orr	r3, r3, #160
+ 545 00dc 6B60     		str	r3, [r5, #4]
+ 546 00de 4162     		str	r1, [r0, #36]
+ 547 00e0 EC60     		str	r4, [r5, #12]
+ 548 00e2 438D     		ldrh	r3, [r0, #42]
+ 549 00e4 013B     		subs	r3, r3, #1
+ 550 00e6 9BB2     		uxth	r3, r3
+ 551 00e8 4385     		strh	r3, [r0, #42]	@ movhi
+ 552 00ea 438D     		ldrh	r3, [r0, #42]
+ 553 00ec 9BB2     		uxth	r3, r3
+ 554 00ee 002B     		cmp	r3, #0
+ 555 00f0 CCD1     		bne	.L104
+ 556 00f2 6B68     		ldr	r3, [r5, #4]
+ 557 00f4 23F0A003 		bic	r3, r3, #160
+ 558 00f8 6B60     		str	r3, [r5, #4]
+ 559 00fa C7E7     		b	.L104
+ 560              	.L98:
+ 561 00fc 5B00     		lsls	r3, r3, #1
+ 562 00fe 9BB2     		uxth	r3, r3
+ 563 0100 0385     		strh	r3, [r0, #40]	@ movhi
+ 564 0102 4385     		strh	r3, [r0, #42]	@ movhi
+ 565 0104 0386     		strh	r3, [r0, #48]	@ movhi
+ 566 0106 4386     		strh	r3, [r0, #50]	@ movhi
+ 567 0108 9AE7     		b	.L100
+ 568              	.L112:
+ 569 010a 0224     		movs	r4, #2
+ 570 010c D0E7     		b	.L97
+ 571              	.L122:
+ 572 010e 00BF     		.align	2
+ 573              	.L121:
+ 574 0110 00340040 		.word	1073755136
+ 575 0114 00380040 		.word	1073756160
+ARM GAS  D:\Programs\cygwin64\tmp\ccKT2oSi.s 			page 11
+
+
+ 577              		.section	.text.HAL_I2SEx_TransmitReceive_DMA,"ax",%progbits
+ 578              		.align	1
+ 579              		.p2align 2,,3
+ 580              		.global	HAL_I2SEx_TransmitReceive_DMA
+ 581              		.syntax unified
+ 582              		.thumb
+ 583              		.thumb_func
+ 584              		.fpu fpv4-sp-d16
+ 586              	HAL_I2SEx_TransmitReceive_DMA:
+ 587              		@ args = 0, pretend = 0, frame = 8
+ 588              		@ frame_needed = 0, uses_anonymous_args = 0
+ 589 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+ 590 0004 0446     		mov	r4, r0
+ 591 0006 90F84100 		ldrb	r0, [r0, #65]	@ zero_extendqisi2
+ 592 000a C0B2     		uxtb	r0, r0
+ 593 000c 0128     		cmp	r0, #1
+ 594 000e 83B0     		sub	sp, sp, #12
+ 595 0010 6FD1     		bne	.L139
+ 596 0012 0D46     		mov	r5, r1
+ 597 0014 0029     		cmp	r1, #0
+ 598 0016 70D0     		beq	.L125
+ 599 0018 1646     		mov	r6, r2
+ 600 001a 002A     		cmp	r2, #0
+ 601 001c 6DD0     		beq	.L125
+ 602 001e 002B     		cmp	r3, #0
+ 603 0020 6BD0     		beq	.L125
+ 604 0022 94F84020 		ldrb	r2, [r4, #64]	@ zero_extendqisi2
+ 605 0026 012A     		cmp	r2, #1
+ 606 0028 00F0A880 		beq	.L143
+ 607 002c 2268     		ldr	r2, [r4]
+ 608 002e 84F84000 		strb	r0, [r4, #64]
+ 609 0032 D069     		ldr	r0, [r2, #28]
+ 610 0034 6162     		str	r1, [r4, #36]
+ 611 0036 00F00700 		and	r0, r0, #7
+ 612 003a 0328     		cmp	r0, #3
+ 613 003c E662     		str	r6, [r4, #44]
+ 614 003e 00F09680 		beq	.L126
+ 615 0042 0528     		cmp	r0, #5
+ 616 0044 00F09380 		beq	.L126
+ 617 0048 2385     		strh	r3, [r4, #40]	@ movhi
+ 618 004a 6385     		strh	r3, [r4, #42]	@ movhi
+ 619 004c 2386     		strh	r3, [r4, #48]	@ movhi
+ 620 004e 6386     		strh	r3, [r4, #50]	@ movhi
+ 621              	.L128:
+ 622 0050 0523     		movs	r3, #5
+ 623 0052 4FF0000C 		mov	ip, #0
+ 624 0056 C4F844C0 		str	ip, [r4, #68]
+ 625 005a 84F84130 		strb	r3, [r4, #65]
+ 626 005e D2F81CE0 		ldr	lr, [r2, #28]
+ 627 0062 4B4F     		ldr	r7, .L156
+ 628 0064 4B49     		ldr	r1, .L156+4
+ 629 0066 4C4B     		ldr	r3, .L156+8
+ 630 0068 D4E90E09 		ldrd	r0, r9, [r4, #56]
+ 631 006c 1EF4807F 		tst	lr, #256
+ 632 0070 C9E90F17 		strd	r1, r7, [r9, #60]
+ 633 0074 C9F84C30 		str	r3, [r9, #76]
+ 634 0078 C0E90F17 		strd	r1, r7, [r0, #60]
+ARM GAS  D:\Programs\cygwin64\tmp\ccKT2oSi.s 			page 12
+
+
+ 635 007c C364     		str	r3, [r0, #76]
+ 636 007e 41D0     		beq	.L154
+ 637 0080 D369     		ldr	r3, [r2, #28]
+ 638 0082 03F44073 		and	r3, r3, #768
+ 639 0086 B3F5407F 		cmp	r3, #768
+ 640 008a 79D0     		beq	.L155
+ 641              	.L134:
+ 642 008c DFF81081 		ldr	r8, .L156+16
+ 643 0090 424F     		ldr	r7, .L156+12
+ 644 0092 238D     		ldrh	r3, [r4, #40]
+ 645 0094 4245     		cmp	r2, r8
+ 646 0096 0CBF     		ite	eq
+ 647 0098 3A46     		moveq	r2, r7
+ 648 009a 4FF04022 		movne	r2, #1073758208
+ 649 009e 2946     		mov	r1, r5
+ 650 00a0 0C32     		adds	r2, r2, #12
+ 651 00a2 FFF7FEFF 		bl	HAL_DMA_Start_IT
+ 652 00a6 2168     		ldr	r1, [r4]
+ 653 00a8 E06B     		ldr	r0, [r4, #60]
+ 654 00aa 4145     		cmp	r1, r8
+ 655 00ac 0CBF     		ite	eq
+ 656 00ae 3D46     		moveq	r5, r7
+ 657 00b0 4FF04025 		movne	r5, #1073758208
+ 658 00b4 3246     		mov	r2, r6
+ 659 00b6 6B68     		ldr	r3, [r5, #4]
+ 660 00b8 43F00203 		orr	r3, r3, #2
+ 661 00bc 6B60     		str	r3, [r5, #4]
+ 662 00be 238E     		ldrh	r3, [r4, #48]
+ 663 00c0 0C31     		adds	r1, r1, #12
+ 664 00c2 FFF7FEFF 		bl	HAL_DMA_Start_IT
+ 665 00c6 2368     		ldr	r3, [r4]
+ 666 00c8 5A68     		ldr	r2, [r3, #4]
+ 667 00ca 42F00102 		orr	r2, r2, #1
+ 668 00ce 5A60     		str	r2, [r3, #4]
+ 669 00d0 D869     		ldr	r0, [r3, #28]
+ 670 00d2 10F48060 		ands	r0, r0, #1024
+ 671 00d6 13D1     		bne	.L137
+ 672 00d8 4345     		cmp	r3, r8
+ 673 00da 18BF     		it	ne
+ 674 00dc 4FF04027 		movne	r7, #1073758208
+ 675 00e0 FA69     		ldr	r2, [r7, #28]
+ 676 00e2 42F48062 		orr	r2, r2, #1024
+ 677 00e6 FA61     		str	r2, [r7, #28]
+ 678 00e8 DA69     		ldr	r2, [r3, #28]
+ 679 00ea 42F48062 		orr	r2, r2, #1024
+ 680 00ee DA61     		str	r2, [r3, #28]
+ 681 00f0 00E0     		b	.L124
+ 682              	.L139:
+ 683 00f2 0220     		movs	r0, #2
+ 684              	.L124:
+ 685 00f4 0023     		movs	r3, #0
+ 686 00f6 84F84030 		strb	r3, [r4, #64]
+ 687              	.L125:
+ 688 00fa 03B0     		add	sp, sp, #12
+ 689              		@ sp needed
+ 690 00fc BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 691              	.L137:
+ARM GAS  D:\Programs\cygwin64\tmp\ccKT2oSi.s 			page 13
+
+
+ 692 0100 0020     		movs	r0, #0
+ 693 0102 F7E7     		b	.L124
+ 694              	.L154:
+ 695 0104 DFF89880 		ldr	r8, .L156+16
+ 696 0108 244F     		ldr	r7, .L156+12
+ 697 010a 238E     		ldrh	r3, [r4, #48]
+ 698 010c 4245     		cmp	r2, r8
+ 699 010e 0CBF     		ite	eq
+ 700 0110 3946     		moveq	r1, r7
+ 701 0112 4FF04021 		movne	r1, #1073758208
+ 702 0116 0C31     		adds	r1, r1, #12
+ 703 0118 3246     		mov	r2, r6
+ 704 011a 4846     		mov	r0, r9
+ 705 011c FFF7FEFF 		bl	HAL_DMA_Start_IT
+ 706 0120 2268     		ldr	r2, [r4]
+ 707 0122 A06B     		ldr	r0, [r4, #56]
+ 708 0124 4245     		cmp	r2, r8
+ 709 0126 0CBF     		ite	eq
+ 710 0128 3E46     		moveq	r6, r7
+ 711 012a 4FF04026 		movne	r6, #1073758208
+ 712 012e 2946     		mov	r1, r5
+ 713 0130 7368     		ldr	r3, [r6, #4]
+ 714 0132 43F00103 		orr	r3, r3, #1
+ 715 0136 7360     		str	r3, [r6, #4]
+ 716 0138 238D     		ldrh	r3, [r4, #40]
+ 717 013a 0C32     		adds	r2, r2, #12
+ 718 013c FFF7FEFF 		bl	HAL_DMA_Start_IT
+ 719 0140 2368     		ldr	r3, [r4]
+ 720 0142 5A68     		ldr	r2, [r3, #4]
+ 721 0144 42F00202 		orr	r2, r2, #2
+ 722 0148 5A60     		str	r2, [r3, #4]
+ 723 014a D869     		ldr	r0, [r3, #28]
+ 724 014c 10F48060 		ands	r0, r0, #1024
+ 725 0150 D6D1     		bne	.L137
+ 726 0152 4345     		cmp	r3, r8
+ 727 0154 0CBF     		ite	eq
+ 728 0156 3A46     		moveq	r2, r7
+ 729 0158 4FF04022 		movne	r2, #1073758208
+ 730 015c D169     		ldr	r1, [r2, #28]
+ 731 015e 41F48061 		orr	r1, r1, #1024
+ 732 0162 D161     		str	r1, [r2, #28]
+ 733 0164 DA69     		ldr	r2, [r3, #28]
+ 734 0166 42F48062 		orr	r2, r2, #1024
+ 735 016a DA61     		str	r2, [r3, #28]
+ 736 016c C2E7     		b	.L124
+ 737              	.L126:
+ 738 016e 5B00     		lsls	r3, r3, #1
+ 739 0170 9BB2     		uxth	r3, r3
+ 740 0172 2385     		strh	r3, [r4, #40]	@ movhi
+ 741 0174 6385     		strh	r3, [r4, #42]	@ movhi
+ 742 0176 2386     		strh	r3, [r4, #48]	@ movhi
+ 743 0178 6386     		strh	r3, [r4, #50]	@ movhi
+ 744 017a 69E7     		b	.L128
+ 745              	.L143:
+ 746 017c 0220     		movs	r0, #2
+ 747 017e BCE7     		b	.L125
+ 748              	.L155:
+ARM GAS  D:\Programs\cygwin64\tmp\ccKT2oSi.s 			page 14
+
+
+ 749 0180 CDF804C0 		str	ip, [sp, #4]
+ 750 0184 D368     		ldr	r3, [r2, #12]
+ 751 0186 0193     		str	r3, [sp, #4]
+ 752 0188 9368     		ldr	r3, [r2, #8]
+ 753 018a 0193     		str	r3, [sp, #4]
+ 754 018c 019B     		ldr	r3, [sp, #4]
+ 755 018e 7DE7     		b	.L134
+ 756              	.L157:
+ 757              		.align	2
+ 758              	.L156:
+ 759 0190 00000000 		.word	I2SEx_TxRxDMAHalfCplt
+ 760 0194 00000000 		.word	I2SEx_TxRxDMACplt
+ 761 0198 00000000 		.word	I2SEx_TxRxDMAError
+ 762 019c 00340040 		.word	1073755136
+ 763 01a0 00380040 		.word	1073756160
+ 765              		.section	.text.HAL_I2SEx_TxRxHalfCpltCallback,"ax",%progbits
+ 766              		.align	1
+ 767              		.p2align 2,,3
+ 768              		.weak	HAL_I2SEx_TxRxHalfCpltCallback
+ 769              		.syntax unified
+ 770              		.thumb
+ 771              		.thumb_func
+ 772              		.fpu fpv4-sp-d16
+ 774              	HAL_I2SEx_TxRxHalfCpltCallback:
+ 775              		@ args = 0, pretend = 0, frame = 0
+ 776              		@ frame_needed = 0, uses_anonymous_args = 0
+ 777              		@ link register save eliminated.
+ 778 0000 7047     		bx	lr
+ 780 0002 00BF     		.section	.text.I2SEx_TxRxDMAHalfCplt,"ax",%progbits
+ 781              		.align	1
+ 782              		.p2align 2,,3
+ 783              		.syntax unified
+ 784              		.thumb
+ 785              		.thumb_func
+ 786              		.fpu fpv4-sp-d16
+ 788              	I2SEx_TxRxDMAHalfCplt:
+ 789              		@ args = 0, pretend = 0, frame = 0
+ 790              		@ frame_needed = 0, uses_anonymous_args = 0
+ 791 0000 08B5     		push	{r3, lr}
+ 792 0002 806B     		ldr	r0, [r0, #56]
+ 793 0004 FFF7FEFF 		bl	HAL_I2SEx_TxRxHalfCpltCallback
+ 794 0008 08BD     		pop	{r3, pc}
+ 796 000a 00BF     		.section	.text.HAL_I2SEx_TxRxCpltCallback,"ax",%progbits
+ 797              		.align	1
+ 798              		.p2align 2,,3
+ 799              		.weak	HAL_I2SEx_TxRxCpltCallback
+ 800              		.syntax unified
+ 801              		.thumb
+ 802              		.thumb_func
+ 803              		.fpu fpv4-sp-d16
+ 805              	HAL_I2SEx_TxRxCpltCallback:
+ 806              		@ args = 0, pretend = 0, frame = 0
+ 807              		@ frame_needed = 0, uses_anonymous_args = 0
+ 808              		@ link register save eliminated.
+ 809 0000 7047     		bx	lr
+ 811 0002 00BF     		.section	.text.I2SEx_TxRxDMACplt,"ax",%progbits
+ 812              		.align	1
+ARM GAS  D:\Programs\cygwin64\tmp\ccKT2oSi.s 			page 15
+
+
+ 813              		.p2align 2,,3
+ 814              		.syntax unified
+ 815              		.thumb
+ 816              		.thumb_func
+ 817              		.fpu fpv4-sp-d16
+ 819              	I2SEx_TxRxDMACplt:
+ 820              		@ args = 0, pretend = 0, frame = 0
+ 821              		@ frame_needed = 0, uses_anonymous_args = 0
+ 822 0000 38B5     		push	{r3, r4, r5, lr}
+ 823 0002 C369     		ldr	r3, [r0, #28]
+ 824 0004 3BB9     		cbnz	r3, .L162
+ 825 0006 856B     		ldr	r5, [r0, #56]
+ 826 0008 EB6B     		ldr	r3, [r5, #60]
+ 827 000a 8342     		cmp	r3, r0
+ 828 000c 0446     		mov	r4, r0
+ 829 000e 1FD0     		beq	.L187
+ 830              	.L166:
+ 831 0010 AB6B     		ldr	r3, [r5, #56]
+ 832 0012 A342     		cmp	r3, r4
+ 833 0014 00D0     		beq	.L188
+ 834              	.L162:
+ 835 0016 38BD     		pop	{r3, r4, r5, pc}
+ 836              	.L188:
+ 837 0018 2B68     		ldr	r3, [r5]
+ 838 001a DA69     		ldr	r2, [r3, #28]
+ 839 001c 02F44072 		and	r2, r2, #768
+ 840 0020 B2F5007F 		cmp	r2, #512
+ 841 0024 03D0     		beq	.L186
+ 842 0026 DA69     		ldr	r2, [r3, #28]
+ 843 0028 12F4407F 		tst	r2, #768
+ 844 002c 38D1     		bne	.L174
+ 845              	.L186:
+ 846 002e 5A68     		ldr	r2, [r3, #4]
+ 847 0030 22F00202 		bic	r2, r2, #2
+ 848 0034 5A60     		str	r2, [r3, #4]
+ 849 0036 0023     		movs	r3, #0
+ 850 0038 6B85     		strh	r3, [r5, #42]	@ movhi
+ 851 003a 6B8E     		ldrh	r3, [r5, #50]
+ 852 003c 9BB2     		uxth	r3, r3
+ 853 003e 002B     		cmp	r3, #0
+ 854 0040 E9D1     		bne	.L162
+ 855 0042 0123     		movs	r3, #1
+ 856 0044 85F84130 		strb	r3, [r5, #65]
+ 857 0048 2846     		mov	r0, r5
+ 858 004a FFF7FEFF 		bl	HAL_I2SEx_TxRxCpltCallback
+ 859 004e 38BD     		pop	{r3, r4, r5, pc}
+ 860              	.L187:
+ 861 0050 2A68     		ldr	r2, [r5]
+ 862 0052 D369     		ldr	r3, [r2, #28]
+ 863 0054 03F44073 		and	r3, r3, #768
+ 864 0058 B3F5007F 		cmp	r3, #512
+ 865 005c 03D0     		beq	.L167
+ 866 005e D369     		ldr	r3, [r2, #28]
+ 867 0060 13F4407F 		tst	r3, #768
+ 868 0064 17D1     		bne	.L168
+ 869              	.L167:
+ 870 0066 124B     		ldr	r3, .L189
+ARM GAS  D:\Programs\cygwin64\tmp\ccKT2oSi.s 			page 16
+
+
+ 871 0068 1249     		ldr	r1, .L189+4
+ 872 006a 8A42     		cmp	r2, r1
+ 873 006c 0CBF     		ite	eq
+ 874 006e 1A46     		moveq	r2, r3
+ 875 0070 4FF04022 		movne	r2, #1073758208
+ 876 0074 5368     		ldr	r3, [r2, #4]
+ 877 0076 23F00103 		bic	r3, r3, #1
+ 878 007a 5360     		str	r3, [r2, #4]
+ 879              	.L170:
+ 880 007c 0023     		movs	r3, #0
+ 881 007e 6B86     		strh	r3, [r5, #50]	@ movhi
+ 882 0080 6B8D     		ldrh	r3, [r5, #42]
+ 883 0082 9BB2     		uxth	r3, r3
+ 884 0084 002B     		cmp	r3, #0
+ 885 0086 C3D1     		bne	.L166
+ 886 0088 0123     		movs	r3, #1
+ 887 008a 85F84130 		strb	r3, [r5, #65]
+ 888 008e 2846     		mov	r0, r5
+ 889 0090 FFF7FEFF 		bl	HAL_I2SEx_TxRxCpltCallback
+ 890 0094 BCE7     		b	.L166
+ 891              	.L168:
+ 892 0096 5368     		ldr	r3, [r2, #4]
+ 893 0098 23F00103 		bic	r3, r3, #1
+ 894 009c 5360     		str	r3, [r2, #4]
+ 895 009e EDE7     		b	.L170
+ 896              	.L174:
+ 897 00a0 0449     		ldr	r1, .L189+4
+ 898 00a2 034A     		ldr	r2, .L189
+ 899 00a4 8B42     		cmp	r3, r1
+ 900 00a6 0CBF     		ite	eq
+ 901 00a8 1346     		moveq	r3, r2
+ 902 00aa 4FF04023 		movne	r3, #1073758208
+ 903 00ae BEE7     		b	.L186
+ 904              	.L190:
+ 905              		.align	2
+ 906              	.L189:
+ 907 00b0 00340040 		.word	1073755136
+ 908 00b4 00380040 		.word	1073756160
+ 910              		.section	.text.HAL_I2SEx_FullDuplex_IRQHandler,"ax",%progbits
+ 911              		.align	1
+ 912              		.p2align 2,,3
+ 913              		.global	HAL_I2SEx_FullDuplex_IRQHandler
+ 914              		.syntax unified
+ 915              		.thumb
+ 916              		.thumb_func
+ 917              		.fpu fpv4-sp-d16
+ 919              	HAL_I2SEx_FullDuplex_IRQHandler:
+ 920              		@ args = 0, pretend = 0, frame = 24
+ 921              		@ frame_needed = 0, uses_anonymous_args = 0
+ 922 0000 30B5     		push	{r4, r5, lr}
+ 923 0002 924A     		ldr	r2, .L260
+ 924 0004 0568     		ldr	r5, [r0]
+ 925 0006 924B     		ldr	r3, .L260+4
+ 926 0008 A968     		ldr	r1, [r5, #8]
+ 927 000a 87B0     		sub	sp, sp, #28
+ 928 000c 9542     		cmp	r5, r2
+ 929 000e 18BF     		it	ne
+ARM GAS  D:\Programs\cygwin64\tmp\ccKT2oSi.s 			page 17
+
+
+ 930 0010 4FF04023 		movne	r3, #1073758208
+ 931 0014 0091     		str	r1, [sp]
+ 932 0016 9968     		ldr	r1, [r3, #8]
+ 933 0018 0191     		str	r1, [sp, #4]
+ 934 001a 6968     		ldr	r1, [r5, #4]
+ 935 001c 4268     		ldr	r2, [r0, #4]
+ 936 001e 0291     		str	r1, [sp, #8]
+ 937 0020 5968     		ldr	r1, [r3, #4]
+ 938 0022 0391     		str	r1, [sp, #12]
+ 939 0024 32F40072 		bics	r2, r2, #512
+ 940 0028 0446     		mov	r4, r0
+ 941 002a 75D0     		beq	.L257
+ 942 002c 019A     		ldr	r2, [sp, #4]
+ 943 002e 9107     		lsls	r1, r2, #30
+ 944 0030 1AD5     		bpl	.L208
+ 945 0032 039A     		ldr	r2, [sp, #12]
+ 946 0034 1206     		lsls	r2, r2, #24
+ 947 0036 17D5     		bpl	.L208
+ 948 0038 426A     		ldr	r2, [r0, #36]
+ 949 003a 911C     		adds	r1, r2, #2
+ 950 003c 1288     		ldrh	r2, [r2]
+ 951 003e 4162     		str	r1, [r0, #36]
+ 952 0040 DA60     		str	r2, [r3, #12]
+ 953 0042 428D     		ldrh	r2, [r0, #42]
+ 954 0044 013A     		subs	r2, r2, #1
+ 955 0046 92B2     		uxth	r2, r2
+ 956 0048 4285     		strh	r2, [r0, #42]	@ movhi
+ 957 004a 428D     		ldrh	r2, [r0, #42]
+ 958 004c 92B2     		uxth	r2, r2
+ 959 004e 5AB9     		cbnz	r2, .L208
+ 960 0050 5A68     		ldr	r2, [r3, #4]
+ 961 0052 22F0A002 		bic	r2, r2, #160
+ 962 0056 5A60     		str	r2, [r3, #4]
+ 963 0058 438E     		ldrh	r3, [r0, #50]
+ 964 005a 9BB2     		uxth	r3, r3
+ 965 005c 23B9     		cbnz	r3, .L208
+ 966 005e 0123     		movs	r3, #1
+ 967 0060 80F84130 		strb	r3, [r0, #65]
+ 968 0064 FFF7FEFF 		bl	HAL_I2SEx_TxRxCpltCallback
+ 969              	.L208:
+ 970 0068 009B     		ldr	r3, [sp]
+ 971 006a DB07     		lsls	r3, r3, #31
+ 972 006c 1CD5     		bpl	.L211
+ 973 006e 029B     		ldr	r3, [sp, #8]
+ 974 0070 5D06     		lsls	r5, r3, #25
+ 975 0072 19D5     		bpl	.L211
+ 976 0074 E36A     		ldr	r3, [r4, #44]
+ 977 0076 2268     		ldr	r2, [r4]
+ 978 0078 981C     		adds	r0, r3, #2
+ 979 007a D168     		ldr	r1, [r2, #12]
+ 980 007c E062     		str	r0, [r4, #44]
+ 981 007e 1980     		strh	r1, [r3]	@ movhi
+ 982 0080 638E     		ldrh	r3, [r4, #50]
+ 983 0082 013B     		subs	r3, r3, #1
+ 984 0084 9BB2     		uxth	r3, r3
+ 985 0086 6386     		strh	r3, [r4, #50]	@ movhi
+ 986 0088 638E     		ldrh	r3, [r4, #50]
+ARM GAS  D:\Programs\cygwin64\tmp\ccKT2oSi.s 			page 18
+
+
+ 987 008a 9BB2     		uxth	r3, r3
+ 988 008c 63B9     		cbnz	r3, .L211
+ 989 008e 5368     		ldr	r3, [r2, #4]
+ 990 0090 23F06003 		bic	r3, r3, #96
+ 991 0094 5360     		str	r3, [r2, #4]
+ 992 0096 638D     		ldrh	r3, [r4, #42]
+ 993 0098 9BB2     		uxth	r3, r3
+ 994 009a 2BB9     		cbnz	r3, .L211
+ 995 009c 0123     		movs	r3, #1
+ 996 009e 84F84130 		strb	r3, [r4, #65]
+ 997 00a2 2046     		mov	r0, r4
+ 998 00a4 FFF7FEFF 		bl	HAL_I2SEx_TxRxCpltCallback
+ 999              	.L211:
+ 1000 00a8 009B     		ldr	r3, [sp]
+ 1001 00aa 5806     		lsls	r0, r3, #25
+ 1002 00ac 1BD5     		bpl	.L213
+ 1003 00ae 029B     		ldr	r3, [sp, #8]
+ 1004 00b0 9906     		lsls	r1, r3, #26
+ 1005 00b2 18D5     		bpl	.L213
+ 1006 00b4 2268     		ldr	r2, [r4]
+ 1007 00b6 6548     		ldr	r0, .L260
+ 1008 00b8 5168     		ldr	r1, [r2, #4]
+ 1009 00ba 654B     		ldr	r3, .L260+4
+ 1010 00bc 21F06001 		bic	r1, r1, #96
+ 1011 00c0 8242     		cmp	r2, r0
+ 1012 00c2 18BF     		it	ne
+ 1013 00c4 4FF04023 		movne	r3, #1073758208
+ 1014 00c8 5160     		str	r1, [r2, #4]
+ 1015 00ca 5A68     		ldr	r2, [r3, #4]
+ 1016 00cc 0121     		movs	r1, #1
+ 1017 00ce 22F0A002 		bic	r2, r2, #160
+ 1018 00d2 5A60     		str	r2, [r3, #4]
+ 1019 00d4 84F84110 		strb	r1, [r4, #65]
+ 1020 00d8 636C     		ldr	r3, [r4, #68]
+ 1021 00da 43F00203 		orr	r3, r3, #2
+ 1022 00de 6364     		str	r3, [r4, #68]
+ 1023 00e0 2046     		mov	r0, r4
+ 1024 00e2 FFF7FEFF 		bl	HAL_I2S_ErrorCallback
+ 1025              	.L213:
+ 1026 00e6 019B     		ldr	r3, [sp, #4]
+ 1027 00e8 1A07     		lsls	r2, r3, #28
+ 1028 00ea 6ED5     		bpl	.L191
+ 1029 00ec 039B     		ldr	r3, [sp, #12]
+ 1030 00ee 9B06     		lsls	r3, r3, #26
+ 1031 00f0 6BD5     		bpl	.L191
+ 1032 00f2 2268     		ldr	r2, [r4]
+ 1033 00f4 5549     		ldr	r1, .L260
+ 1034 00f6 564B     		ldr	r3, .L260+4
+ 1035 00f8 8A42     		cmp	r2, r1
+ 1036 00fa 18BF     		it	ne
+ 1037 00fc 4FF04023 		movne	r3, #1073758208
+ 1038 0100 0120     		movs	r0, #1
+ 1039 0102 5968     		ldr	r1, [r3, #4]
+ 1040 0104 21F0A001 		bic	r1, r1, #160
+ 1041 0108 5960     		str	r1, [r3, #4]
+ 1042 010a 5368     		ldr	r3, [r2, #4]
+ 1043 010c 23F06003 		bic	r3, r3, #96
+ARM GAS  D:\Programs\cygwin64\tmp\ccKT2oSi.s 			page 19
+
+
+ 1044 0110 5360     		str	r3, [r2, #4]
+ 1045 0112 84F84100 		strb	r0, [r4, #65]
+ 1046 0116 4EE0     		b	.L256
+ 1047              	.L257:
+ 1048 0118 009B     		ldr	r3, [sp]
+ 1049 011a 9A07     		lsls	r2, r3, #30
+ 1050 011c 02D5     		bpl	.L195
+ 1051 011e 029B     		ldr	r3, [sp, #8]
+ 1052 0120 1B06     		lsls	r3, r3, #24
+ 1053 0122 54D4     		bmi	.L258
+ 1054              	.L195:
+ 1055 0124 019B     		ldr	r3, [sp, #4]
+ 1056 0126 D807     		lsls	r0, r3, #31
+ 1057 0128 02D5     		bpl	.L198
+ 1058 012a 039B     		ldr	r3, [sp, #12]
+ 1059 012c 5906     		lsls	r1, r3, #25
+ 1060 012e 69D4     		bmi	.L259
+ 1061              	.L198:
+ 1062 0130 019B     		ldr	r3, [sp, #4]
+ 1063 0132 5A06     		lsls	r2, r3, #25
+ 1064 0134 22D5     		bpl	.L201
+ 1065 0136 039B     		ldr	r3, [sp, #12]
+ 1066 0138 9B06     		lsls	r3, r3, #26
+ 1067 013a 1FD5     		bpl	.L201
+ 1068 013c 2368     		ldr	r3, [r4]
+ 1069 013e 4349     		ldr	r1, .L260
+ 1070 0140 434A     		ldr	r2, .L260+4
+ 1071 0142 8B42     		cmp	r3, r1
+ 1072 0144 18BF     		it	ne
+ 1073 0146 4FF04022 		movne	r2, #1073758208
+ 1074 014a 0020     		movs	r0, #0
+ 1075 014c 5168     		ldr	r1, [r2, #4]
+ 1076 014e 21F06001 		bic	r1, r1, #96
+ 1077 0152 5160     		str	r1, [r2, #4]
+ 1078 0154 5A68     		ldr	r2, [r3, #4]
+ 1079 0156 22F0A002 		bic	r2, r2, #160
+ 1080 015a 5A60     		str	r2, [r3, #4]
+ 1081 015c 0490     		str	r0, [sp, #16]
+ 1082 015e DA68     		ldr	r2, [r3, #12]
+ 1083 0160 0492     		str	r2, [sp, #16]
+ 1084 0162 9B68     		ldr	r3, [r3, #8]
+ 1085 0164 0493     		str	r3, [sp, #16]
+ 1086 0166 0123     		movs	r3, #1
+ 1087 0168 049A     		ldr	r2, [sp, #16]
+ 1088 016a 84F84130 		strb	r3, [r4, #65]
+ 1089 016e 636C     		ldr	r3, [r4, #68]
+ 1090 0170 43F00203 		orr	r3, r3, #2
+ 1091 0174 6364     		str	r3, [r4, #68]
+ 1092 0176 2046     		mov	r0, r4
+ 1093 0178 FFF7FEFF 		bl	HAL_I2S_ErrorCallback
+ 1094              	.L201:
+ 1095 017c 009B     		ldr	r3, [sp]
+ 1096 017e 1D07     		lsls	r5, r3, #28
+ 1097 0180 23D5     		bpl	.L191
+ 1098 0182 029B     		ldr	r3, [sp, #8]
+ 1099 0184 9806     		lsls	r0, r3, #26
+ 1100 0186 20D5     		bpl	.L191
+ARM GAS  D:\Programs\cygwin64\tmp\ccKT2oSi.s 			page 20
+
+
+ 1101 0188 2368     		ldr	r3, [r4]
+ 1102 018a 3048     		ldr	r0, .L260
+ 1103 018c 5968     		ldr	r1, [r3, #4]
+ 1104 018e 304A     		ldr	r2, .L260+4
+ 1105 0190 21F0A001 		bic	r1, r1, #160
+ 1106 0194 8342     		cmp	r3, r0
+ 1107 0196 18BF     		it	ne
+ 1108 0198 4FF04022 		movne	r2, #1073758208
+ 1109 019c 5960     		str	r1, [r3, #4]
+ 1110 019e 5168     		ldr	r1, [r2, #4]
+ 1111 01a0 0020     		movs	r0, #0
+ 1112 01a2 21F06001 		bic	r1, r1, #96
+ 1113 01a6 5160     		str	r1, [r2, #4]
+ 1114 01a8 0590     		str	r0, [sp, #20]
+ 1115 01aa 9B68     		ldr	r3, [r3, #8]
+ 1116 01ac 0593     		str	r3, [sp, #20]
+ 1117 01ae 0123     		movs	r3, #1
+ 1118 01b0 059A     		ldr	r2, [sp, #20]
+ 1119 01b2 84F84130 		strb	r3, [r4, #65]
+ 1120              	.L256:
+ 1121 01b6 636C     		ldr	r3, [r4, #68]
+ 1122 01b8 2046     		mov	r0, r4
+ 1123 01ba 43F00403 		orr	r3, r3, #4
+ 1124 01be 6364     		str	r3, [r4, #68]
+ 1125 01c0 07B0     		add	sp, sp, #28
+ 1126              		@ sp needed
+ 1127 01c2 BDE83040 		pop	{r4, r5, lr}
+ 1128 01c6 FFF7FEBF 		b	HAL_I2S_ErrorCallback
+ 1129              	.L191:
+ 1130 01ca 07B0     		add	sp, sp, #28
+ 1131              		@ sp needed
+ 1132 01cc 30BD     		pop	{r4, r5, pc}
+ 1133              	.L258:
+ 1134 01ce 436A     		ldr	r3, [r0, #36]
+ 1135 01d0 9A1C     		adds	r2, r3, #2
+ 1136 01d2 1B88     		ldrh	r3, [r3]
+ 1137 01d4 4262     		str	r2, [r0, #36]
+ 1138 01d6 EB60     		str	r3, [r5, #12]
+ 1139 01d8 438D     		ldrh	r3, [r0, #42]
+ 1140 01da 013B     		subs	r3, r3, #1
+ 1141 01dc 9BB2     		uxth	r3, r3
+ 1142 01de 4385     		strh	r3, [r0, #42]	@ movhi
+ 1143 01e0 438D     		ldrh	r3, [r0, #42]
+ 1144 01e2 9BB2     		uxth	r3, r3
+ 1145 01e4 002B     		cmp	r3, #0
+ 1146 01e6 9DD1     		bne	.L195
+ 1147 01e8 6B68     		ldr	r3, [r5, #4]
+ 1148 01ea 23F0A003 		bic	r3, r3, #160
+ 1149 01ee 6B60     		str	r3, [r5, #4]
+ 1150 01f0 438E     		ldrh	r3, [r0, #50]
+ 1151 01f2 9BB2     		uxth	r3, r3
+ 1152 01f4 002B     		cmp	r3, #0
+ 1153 01f6 95D1     		bne	.L195
+ 1154 01f8 0123     		movs	r3, #1
+ 1155 01fa 80F84130 		strb	r3, [r0, #65]
+ 1156 01fe FFF7FEFF 		bl	HAL_I2SEx_TxRxCpltCallback
+ 1157 0202 8FE7     		b	.L195
+ARM GAS  D:\Programs\cygwin64\tmp\ccKT2oSi.s 			page 21
+
+
+ 1158              	.L259:
+ 1159 0204 2068     		ldr	r0, [r4]
+ 1160 0206 1149     		ldr	r1, .L260
+ 1161 0208 114A     		ldr	r2, .L260+4
+ 1162 020a E36A     		ldr	r3, [r4, #44]
+ 1163 020c 8842     		cmp	r0, r1
+ 1164 020e 18BF     		it	ne
+ 1165 0210 4FF04022 		movne	r2, #1073758208
+ 1166 0214 981C     		adds	r0, r3, #2
+ 1167 0216 D168     		ldr	r1, [r2, #12]
+ 1168 0218 E062     		str	r0, [r4, #44]
+ 1169 021a 1980     		strh	r1, [r3]	@ movhi
+ 1170 021c 638E     		ldrh	r3, [r4, #50]
+ 1171 021e 013B     		subs	r3, r3, #1
+ 1172 0220 9BB2     		uxth	r3, r3
+ 1173 0222 6386     		strh	r3, [r4, #50]	@ movhi
+ 1174 0224 638E     		ldrh	r3, [r4, #50]
+ 1175 0226 9BB2     		uxth	r3, r3
+ 1176 0228 002B     		cmp	r3, #0
+ 1177 022a 81D1     		bne	.L198
+ 1178 022c 5368     		ldr	r3, [r2, #4]
+ 1179 022e 23F06003 		bic	r3, r3, #96
+ 1180 0232 5360     		str	r3, [r2, #4]
+ 1181 0234 638D     		ldrh	r3, [r4, #42]
+ 1182 0236 9BB2     		uxth	r3, r3
+ 1183 0238 002B     		cmp	r3, #0
+ 1184 023a 7FF479AF 		bne	.L198
+ 1185 023e 0123     		movs	r3, #1
+ 1186 0240 84F84130 		strb	r3, [r4, #65]
+ 1187 0244 2046     		mov	r0, r4
+ 1188 0246 FFF7FEFF 		bl	HAL_I2SEx_TxRxCpltCallback
+ 1189 024a 71E7     		b	.L198
+ 1190              	.L261:
+ 1191              		.align	2
+ 1192              	.L260:
+ 1193 024c 00380040 		.word	1073756160
+ 1194 0250 00340040 		.word	1073755136
+ 1196              		.ident	"GCC: (GNU Tools for Arm Embedded Processors 8-2018-q4-major) 8.2.1 20181213 (release) [gcc
+ARM GAS  D:\Programs\cygwin64\tmp\ccKT2oSi.s 			page 22
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f4xx_hal_i2s_ex.c
+D:\Programs\cygwin64\tmp\ccKT2oSi.s:16     .text.I2SEx_TxRxDMAError:00000000 $t
+D:\Programs\cygwin64\tmp\ccKT2oSi.s:24     .text.I2SEx_TxRxDMAError:00000000 I2SEx_TxRxDMAError
+D:\Programs\cygwin64\tmp\ccKT2oSi.s:55     .text.I2SEx_TxRxDMAError:00000040 $d
+D:\Programs\cygwin64\tmp\ccKT2oSi.s:59     .text.HAL_I2SEx_TransmitReceive:00000000 $t
+D:\Programs\cygwin64\tmp\ccKT2oSi.s:67     .text.HAL_I2SEx_TransmitReceive:00000000 HAL_I2SEx_TransmitReceive
+D:\Programs\cygwin64\tmp\ccKT2oSi.s:414    .text.HAL_I2SEx_TransmitReceive:000002e8 $d
+D:\Programs\cygwin64\tmp\ccKT2oSi.s:417    .text.HAL_I2SEx_TransmitReceive:000002f0 $t
+D:\Programs\cygwin64\tmp\ccKT2oSi.s:435    .text.HAL_I2SEx_TransmitReceive_IT:00000000 $t
+D:\Programs\cygwin64\tmp\ccKT2oSi.s:443    .text.HAL_I2SEx_TransmitReceive_IT:00000000 HAL_I2SEx_TransmitReceive_IT
+D:\Programs\cygwin64\tmp\ccKT2oSi.s:574    .text.HAL_I2SEx_TransmitReceive_IT:00000110 $d
+D:\Programs\cygwin64\tmp\ccKT2oSi.s:578    .text.HAL_I2SEx_TransmitReceive_DMA:00000000 $t
+D:\Programs\cygwin64\tmp\ccKT2oSi.s:586    .text.HAL_I2SEx_TransmitReceive_DMA:00000000 HAL_I2SEx_TransmitReceive_DMA
+D:\Programs\cygwin64\tmp\ccKT2oSi.s:759    .text.HAL_I2SEx_TransmitReceive_DMA:00000190 $d
+D:\Programs\cygwin64\tmp\ccKT2oSi.s:788    .text.I2SEx_TxRxDMAHalfCplt:00000000 I2SEx_TxRxDMAHalfCplt
+D:\Programs\cygwin64\tmp\ccKT2oSi.s:819    .text.I2SEx_TxRxDMACplt:00000000 I2SEx_TxRxDMACplt
+D:\Programs\cygwin64\tmp\ccKT2oSi.s:766    .text.HAL_I2SEx_TxRxHalfCpltCallback:00000000 $t
+D:\Programs\cygwin64\tmp\ccKT2oSi.s:774    .text.HAL_I2SEx_TxRxHalfCpltCallback:00000000 HAL_I2SEx_TxRxHalfCpltCallback
+D:\Programs\cygwin64\tmp\ccKT2oSi.s:781    .text.I2SEx_TxRxDMAHalfCplt:00000000 $t
+D:\Programs\cygwin64\tmp\ccKT2oSi.s:797    .text.HAL_I2SEx_TxRxCpltCallback:00000000 $t
+D:\Programs\cygwin64\tmp\ccKT2oSi.s:805    .text.HAL_I2SEx_TxRxCpltCallback:00000000 HAL_I2SEx_TxRxCpltCallback
+D:\Programs\cygwin64\tmp\ccKT2oSi.s:812    .text.I2SEx_TxRxDMACplt:00000000 $t
+D:\Programs\cygwin64\tmp\ccKT2oSi.s:907    .text.I2SEx_TxRxDMACplt:000000b0 $d
+D:\Programs\cygwin64\tmp\ccKT2oSi.s:911    .text.HAL_I2SEx_FullDuplex_IRQHandler:00000000 $t
+D:\Programs\cygwin64\tmp\ccKT2oSi.s:919    .text.HAL_I2SEx_FullDuplex_IRQHandler:00000000 HAL_I2SEx_FullDuplex_IRQHandler
+D:\Programs\cygwin64\tmp\ccKT2oSi.s:1193   .text.HAL_I2SEx_FullDuplex_IRQHandler:0000024c $d
+
+UNDEFINED SYMBOLS
+HAL_I2S_ErrorCallback
+HAL_GetTick
+HAL_DMA_Start_IT

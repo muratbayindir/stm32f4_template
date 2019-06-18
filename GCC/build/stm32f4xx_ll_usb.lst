@@ -1,0 +1,2854 @@
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"stm32f4xx_ll_usb.c"
+  14              		.text
+  15              		.section	.text.USB_CoreInit,"ax",%progbits
+  16              		.align	1
+  17              		.p2align 2,,3
+  18              		.global	USB_CoreInit
+  19              		.arch armv7e-m
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	USB_CoreInit:
+  26              		@ args = 56, pretend = 16, frame = 0
+  27              		@ frame_needed = 0, uses_anonymous_args = 0
+  28              		@ link register save eliminated.
+  29 0000 84B0     		sub	sp, sp, #16
+  30 0002 70B4     		push	{r4, r5, r6}
+  31 0004 099E     		ldr	r6, [sp, #36]
+  32 0006 04AD     		add	r5, sp, #16
+  33 0008 012E     		cmp	r6, #1
+  34 000a 0446     		mov	r4, r0
+  35 000c 85E80E00 		stm	r5, {r1, r2, r3}
+  36 0010 31D1     		bne	.L2
+  37 0012 836B     		ldr	r3, [r0, #56]
+  38 0014 109A     		ldr	r2, [sp, #64]
+  39 0016 23F48033 		bic	r3, r3, #65536
+  40 001a 8363     		str	r3, [r0, #56]
+  41 001c C368     		ldr	r3, [r0, #12]
+  42 001e 23F48403 		bic	r3, r3, #4325376
+  43 0022 23F04003 		bic	r3, r3, #64
+  44 0026 C360     		str	r3, [r0, #12]
+  45 0028 C368     		ldr	r3, [r0, #12]
+  46 002a 012A     		cmp	r2, #1
+  47 002c 23F44013 		bic	r3, r3, #3145728
+  48 0030 C360     		str	r3, [r0, #12]
+  49 0032 43D0     		beq	.L30
+  50              	.L3:
+  51 0034 264B     		ldr	r3, .L31
+  52 0036 01E0     		b	.L4
+  53              	.L6:
+  54 0038 013B     		subs	r3, r3, #1
+  55 003a 44D0     		beq	.L8
+  56              	.L4:
+  57 003c 2269     		ldr	r2, [r4, #16]
+  58 003e 002A     		cmp	r2, #0
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 2
+
+
+  59 0040 FADA     		bge	.L6
+  60 0042 2269     		ldr	r2, [r4, #16]
+  61 0044 224B     		ldr	r3, .L31
+  62 0046 42F00102 		orr	r2, r2, #1
+  63 004a 2261     		str	r2, [r4, #16]
+  64 004c 01E0     		b	.L7
+  65              	.L9:
+  66 004e 013B     		subs	r3, r3, #1
+  67 0050 39D0     		beq	.L8
+  68              	.L7:
+  69 0052 2069     		ldr	r0, [r4, #16]
+  70 0054 10F00100 		ands	r0, r0, #1
+  71 0058 F9D1     		bne	.L9
+  72              	.L5:
+  73 005a 079B     		ldr	r3, [sp, #28]
+  74 005c 012B     		cmp	r3, #1
+  75 005e 07D1     		bne	.L17
+  76 0060 A368     		ldr	r3, [r4, #8]
+  77 0062 43F00603 		orr	r3, r3, #6
+  78 0066 A360     		str	r3, [r4, #8]
+  79 0068 A368     		ldr	r3, [r4, #8]
+  80 006a 43F02003 		orr	r3, r3, #32
+  81 006e A360     		str	r3, [r4, #8]
+  82              	.L17:
+  83 0070 70BC     		pop	{r4, r5, r6}
+  84 0072 04B0     		add	sp, sp, #16
+  85 0074 7047     		bx	lr
+  86              	.L2:
+  87 0076 C268     		ldr	r2, [r0, #12]
+  88 0078 154B     		ldr	r3, .L31
+  89 007a 42F04002 		orr	r2, r2, #64
+  90 007e C260     		str	r2, [r0, #12]
+  91 0080 01E0     		b	.L10
+  92              	.L12:
+  93 0082 013B     		subs	r3, r3, #1
+  94 0084 21D0     		beq	.L14
+  95              	.L10:
+  96 0086 2269     		ldr	r2, [r4, #16]
+  97 0088 002A     		cmp	r2, #0
+  98 008a FADA     		bge	.L12
+  99 008c 2269     		ldr	r2, [r4, #16]
+ 100 008e 104B     		ldr	r3, .L31
+ 101 0090 42F00102 		orr	r2, r2, #1
+ 102 0094 2261     		str	r2, [r4, #16]
+ 103 0096 01E0     		b	.L13
+ 104              	.L15:
+ 105 0098 013B     		subs	r3, r3, #1
+ 106 009a 16D0     		beq	.L14
+ 107              	.L13:
+ 108 009c 2069     		ldr	r0, [r4, #16]
+ 109 009e 10F00100 		ands	r0, r0, #1
+ 110 00a2 F9D1     		bne	.L15
+ 111              	.L11:
+ 112 00a4 0D9B     		ldr	r3, [sp, #52]
+ 113 00a6 23B9     		cbnz	r3, .L16
+ 114 00a8 A36B     		ldr	r3, [r4, #56]
+ 115 00aa 43F48033 		orr	r3, r3, #65536
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 3
+
+
+ 116 00ae A363     		str	r3, [r4, #56]
+ 117 00b0 D3E7     		b	.L5
+ 118              	.L16:
+ 119 00b2 A36B     		ldr	r3, [r4, #56]
+ 120 00b4 23F48033 		bic	r3, r3, #65536
+ 121 00b8 A363     		str	r3, [r4, #56]
+ 122 00ba CEE7     		b	.L5
+ 123              	.L30:
+ 124 00bc C368     		ldr	r3, [r0, #12]
+ 125 00be 43F48013 		orr	r3, r3, #1048576
+ 126 00c2 C360     		str	r3, [r0, #12]
+ 127 00c4 B6E7     		b	.L3
+ 128              	.L8:
+ 129 00c6 0320     		movs	r0, #3
+ 130 00c8 C7E7     		b	.L5
+ 131              	.L14:
+ 132 00ca 0320     		movs	r0, #3
+ 133 00cc EAE7     		b	.L11
+ 134              	.L32:
+ 135 00ce 00BF     		.align	2
+ 136              	.L31:
+ 137 00d0 400D0300 		.word	200000
+ 139              		.section	.text.USB_SetTurnaroundTime,"ax",%progbits
+ 140              		.align	1
+ 141              		.p2align 2,,3
+ 142              		.global	USB_SetTurnaroundTime
+ 143              		.syntax unified
+ 144              		.thumb
+ 145              		.thumb_func
+ 146              		.fpu fpv4-sp-d16
+ 148              	USB_SetTurnaroundTime:
+ 149              		@ args = 0, pretend = 0, frame = 0
+ 150              		@ frame_needed = 0, uses_anonymous_args = 0
+ 151              		@ link register save eliminated.
+ 152 0000 022A     		cmp	r2, #2
+ 153 0002 0AD0     		beq	.L45
+ 154              	.L42:
+ 155 0004 4FF41051 		mov	r1, #9216
+ 156              	.L34:
+ 157 0008 C268     		ldr	r2, [r0, #12]
+ 158 000a 22F47052 		bic	r2, r2, #15360
+ 159 000e C260     		str	r2, [r0, #12]
+ 160 0010 C368     		ldr	r3, [r0, #12]
+ 161 0012 0B43     		orrs	r3, r3, r1
+ 162 0014 C360     		str	r3, [r0, #12]
+ 163 0016 0020     		movs	r0, #0
+ 164 0018 7047     		bx	lr
+ 165              	.L45:
+ 166 001a 2D4B     		ldr	r3, .L46
+ 167 001c 2D4A     		ldr	r2, .L46+4
+ 168 001e 0B44     		add	r3, r3, r1
+ 169 0020 9342     		cmp	r3, r2
+ 170 0022 40D9     		bls	.L36
+ 171 0024 2C4B     		ldr	r3, .L46+8
+ 172 0026 2D4A     		ldr	r2, .L46+12
+ 173 0028 0B44     		add	r3, r3, r1
+ 174 002a 9342     		cmp	r3, r2
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 4
+
+
+ 175 002c 3ED9     		bls	.L37
+ 176 002e A1F57403 		sub	r3, r1, #15990784
+ 177 0032 2B4A     		ldr	r2, .L46+16
+ 178 0034 A3F51053 		sub	r3, r3, #9216
+ 179 0038 9342     		cmp	r3, r2
+ 180 003a 3AD9     		bls	.L38
+ 181 003c A1F18373 		sub	r3, r1, #17170432
+ 182 0040 02F5C332 		add	r2, r2, #99840
+ 183 0044 A032     		adds	r2, r2, #160
+ 184 0046 A3F5E743 		sub	r3, r3, #29568
+ 185 004a 9342     		cmp	r3, r2
+ 186 004c 34D9     		bls	.L39
+ 187 004e 254B     		ldr	r3, .L46+20
+ 188 0050 254A     		ldr	r2, .L46+24
+ 189 0052 0B44     		add	r3, r3, r1
+ 190 0054 9342     		cmp	r3, r2
+ 191 0056 32D9     		bls	.L40
+ 192 0058 244B     		ldr	r3, .L46+28
+ 193 005a 02F59222 		add	r2, r2, #299008
+ 194 005e 02F57872 		add	r2, r2, #992
+ 195 0062 0B44     		add	r3, r3, r1
+ 196 0064 9342     		cmp	r3, r2
+ 197 0066 2DD9     		bls	.L41
+ 198 0068 214B     		ldr	r3, .L46+32
+ 199 006a 02F5C322 		add	r2, r2, #399360
+ 200 006e 02F52072 		add	r2, r2, #640
+ 201 0072 0B44     		add	r3, r3, r1
+ 202 0074 9342     		cmp	r3, r2
+ 203 0076 C5D9     		bls	.L42
+ 204 0078 A1F1B773 		sub	r3, r1, #23986176
+ 205 007c 02F5B712 		add	r2, r2, #1499136
+ 206 0080 02F55872 		add	r2, r2, #864
+ 207 0084 A3F55853 		sub	r3, r3, #13824
+ 208 0088 9342     		cmp	r3, r2
+ 209 008a 1ED9     		bls	.L43
+ 210 008c 194B     		ldr	r3, .L46+36
+ 211 008e 02F51222 		add	r2, r2, #598016
+ 212 0092 02F5F862 		add	r2, r2, #1984
+ 213 0096 0B44     		add	r3, r3, r1
+ 214 0098 9342     		cmp	r3, r2
+ 215 009a 94BF     		ite	ls
+ 216 009c 4FF4E051 		movls	r1, #7168
+ 217 00a0 4FF4C051 		movhi	r1, #6144
+ 218 00a4 B0E7     		b	.L34
+ 219              	.L36:
+ 220 00a6 4FF47051 		mov	r1, #15360
+ 221 00aa ADE7     		b	.L34
+ 222              	.L37:
+ 223 00ac 4FF46051 		mov	r1, #14336
+ 224 00b0 AAE7     		b	.L34
+ 225              	.L38:
+ 226 00b2 4FF45051 		mov	r1, #13312
+ 227 00b6 A7E7     		b	.L34
+ 228              	.L39:
+ 229 00b8 4FF44051 		mov	r1, #12288
+ 230 00bc A4E7     		b	.L34
+ 231              	.L40:
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 5
+
+
+ 232 00be 4FF43051 		mov	r1, #11264
+ 233 00c2 A1E7     		b	.L34
+ 234              	.L41:
+ 235 00c4 4FF42051 		mov	r1, #10240
+ 236 00c8 9EE7     		b	.L34
+ 237              	.L43:
+ 238 00ca 4FF40051 		mov	r1, #8192
+ 239 00ce 9BE7     		b	.L34
+ 240              	.L47:
+ 241              		.align	2
+ 242              	.L46:
+ 243 00d0 405327FF 		.word	-14200000
+ 244 00d4 FF340C00 		.word	799999
+ 245 00d8 401E1BFF 		.word	-15000000
+ 246 00dc 3F420F00 		.word	999999
+ 247 00e0 7F4F1200 		.word	1199999
+ 248 00e4 60B6E5FE 		.word	-18500000
+ 249 00e8 5FE31600 		.word	1499999
+ 250 00ec 00D3CEFE 		.word	-20000000
+ 251 00f0 C05BB3FE 		.word	-21800000
+ 252 00f4 E05459FE 		.word	-27700000
+ 254              		.section	.text.USB_EnableGlobalInt,"ax",%progbits
+ 255              		.align	1
+ 256              		.p2align 2,,3
+ 257              		.global	USB_EnableGlobalInt
+ 258              		.syntax unified
+ 259              		.thumb
+ 260              		.thumb_func
+ 261              		.fpu fpv4-sp-d16
+ 263              	USB_EnableGlobalInt:
+ 264              		@ args = 0, pretend = 0, frame = 0
+ 265              		@ frame_needed = 0, uses_anonymous_args = 0
+ 266              		@ link register save eliminated.
+ 267 0000 0246     		mov	r2, r0
+ 268 0002 0020     		movs	r0, #0
+ 269 0004 9368     		ldr	r3, [r2, #8]
+ 270 0006 43F00103 		orr	r3, r3, #1
+ 271 000a 9360     		str	r3, [r2, #8]
+ 272 000c 7047     		bx	lr
+ 274 000e 00BF     		.section	.text.USB_DisableGlobalInt,"ax",%progbits
+ 275              		.align	1
+ 276              		.p2align 2,,3
+ 277              		.global	USB_DisableGlobalInt
+ 278              		.syntax unified
+ 279              		.thumb
+ 280              		.thumb_func
+ 281              		.fpu fpv4-sp-d16
+ 283              	USB_DisableGlobalInt:
+ 284              		@ args = 0, pretend = 0, frame = 0
+ 285              		@ frame_needed = 0, uses_anonymous_args = 0
+ 286              		@ link register save eliminated.
+ 287 0000 0246     		mov	r2, r0
+ 288 0002 0020     		movs	r0, #0
+ 289 0004 9368     		ldr	r3, [r2, #8]
+ 290 0006 23F00103 		bic	r3, r3, #1
+ 291 000a 9360     		str	r3, [r2, #8]
+ 292 000c 7047     		bx	lr
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 6
+
+
+ 294 000e 00BF     		.section	.text.USB_SetCurrentMode,"ax",%progbits
+ 295              		.align	1
+ 296              		.p2align 2,,3
+ 297              		.global	USB_SetCurrentMode
+ 298              		.syntax unified
+ 299              		.thumb
+ 300              		.thumb_func
+ 301              		.fpu fpv4-sp-d16
+ 303              	USB_SetCurrentMode:
+ 304              		@ args = 0, pretend = 0, frame = 0
+ 305              		@ frame_needed = 0, uses_anonymous_args = 0
+ 306 0000 08B5     		push	{r3, lr}
+ 307 0002 C368     		ldr	r3, [r0, #12]
+ 308 0004 0129     		cmp	r1, #1
+ 309 0006 23F0C043 		bic	r3, r3, #1610612736
+ 310 000a C360     		str	r3, [r0, #12]
+ 311 000c 0BD0     		beq	.L56
+ 312 000e 41B9     		cbnz	r1, .L54
+ 313 0010 C368     		ldr	r3, [r0, #12]
+ 314 0012 43F08043 		orr	r3, r3, #1073741824
+ 315 0016 C360     		str	r3, [r0, #12]
+ 316              	.L52:
+ 317 0018 3220     		movs	r0, #50
+ 318 001a FFF7FEFF 		bl	HAL_Delay
+ 319 001e 0020     		movs	r0, #0
+ 320 0020 08BD     		pop	{r3, pc}
+ 321              	.L54:
+ 322 0022 0120     		movs	r0, #1
+ 323 0024 08BD     		pop	{r3, pc}
+ 324              	.L56:
+ 325 0026 C368     		ldr	r3, [r0, #12]
+ 326 0028 43F00053 		orr	r3, r3, #536870912
+ 327 002c C360     		str	r3, [r0, #12]
+ 328 002e F3E7     		b	.L52
+ 330              		.section	.text.USB_DevInit,"ax",%progbits
+ 331              		.align	1
+ 332              		.p2align 2,,3
+ 333              		.global	USB_DevInit
+ 334              		.syntax unified
+ 335              		.thumb
+ 336              		.thumb_func
+ 337              		.fpu fpv4-sp-d16
+ 339              	USB_DevInit:
+ 340              		@ args = 56, pretend = 16, frame = 0
+ 341              		@ frame_needed = 0, uses_anonymous_args = 0
+ 342 0000 84B0     		sub	sp, sp, #16
+ 343 0002 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 344 0006 09AC     		add	r4, sp, #36
+ 345 0008 84E80E00 		stm	r4, {r1, r2, r3}
+ 346 000c 139E     		ldr	r6, [sp, #76]
+ 347 000e 0C9F     		ldr	r7, [sp, #48]
+ 348 0010 0022     		movs	r2, #0
+ 349 0012 C0F80421 		str	r2, [r0, #260]
+ 350 0016 0346     		mov	r3, r0
+ 351 0018 C0F80821 		str	r2, [r0, #264]
+ 352 001c 0C46     		mov	r4, r1
+ 353 001e C0F80C21 		str	r2, [r0, #268]
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 7
+
+
+ 354 0022 C0F81021 		str	r2, [r0, #272]
+ 355 0026 C0F81421 		str	r2, [r0, #276]
+ 356 002a C0F81821 		str	r2, [r0, #280]
+ 357 002e C0F81C21 		str	r2, [r0, #284]
+ 358 0032 C0F82021 		str	r2, [r0, #288]
+ 359 0036 C0F82421 		str	r2, [r0, #292]
+ 360 003a C0F82821 		str	r2, [r0, #296]
+ 361 003e C0F82C21 		str	r2, [r0, #300]
+ 362 0042 C0F83021 		str	r2, [r0, #304]
+ 363 0046 C0F83421 		str	r2, [r0, #308]
+ 364 004a C0F83821 		str	r2, [r0, #312]
+ 365 004e C0F83C21 		str	r2, [r0, #316]
+ 366 0052 002E     		cmp	r6, #0
+ 367 0054 40F0A480 		bne	.L58
+ 368 0058 826B     		ldr	r2, [r0, #56]
+ 369 005a 42F40012 		orr	r2, r2, #2097152
+ 370 005e 8263     		str	r2, [r0, #56]
+ 371 0060 826B     		ldr	r2, [r0, #56]
+ 372 0062 22F40022 		bic	r2, r2, #524288
+ 373 0066 8263     		str	r2, [r0, #56]
+ 374 0068 826B     		ldr	r2, [r0, #56]
+ 375 006a 22F48022 		bic	r2, r2, #262144
+ 376 006e 8263     		str	r2, [r0, #56]
+ 377              	.L59:
+ 378 0070 0022     		movs	r2, #0
+ 379 0072 C3F8002E 		str	r2, [r3, #3584]
+ 380 0076 0E9A     		ldr	r2, [sp, #56]
+ 381 0078 D3F80018 		ldr	r1, [r3, #2048]
+ 382 007c C3F80018 		str	r1, [r3, #2048]
+ 383 0080 012A     		cmp	r2, #1
+ 384 0082 03F50065 		add	r5, r3, #2048
+ 385 0086 00F0A280 		beq	.L95
+ 386 008a D3F80028 		ldr	r2, [r3, #2048]
+ 387 008e 42F00302 		orr	r2, r2, #3
+ 388 0092 C3F80028 		str	r2, [r3, #2048]
+ 389              	.L62:
+ 390 0096 4FF48462 		mov	r2, #1056
+ 391 009a 1A61     		str	r2, [r3, #16]
+ 392 009c 554A     		ldr	r2, .L101
+ 393 009e 02E0     		b	.L63
+ 394              	.L65:
+ 395 00a0 013A     		subs	r2, r2, #1
+ 396 00a2 00F0A280 		beq	.L84
+ 397              	.L63:
+ 398 00a6 1869     		ldr	r0, [r3, #16]
+ 399 00a8 10F02000 		ands	r0, r0, #32
+ 400 00ac F8D1     		bne	.L65
+ 401              	.L64:
+ 402 00ae 1022     		movs	r2, #16
+ 403 00b0 1A61     		str	r2, [r3, #16]
+ 404 00b2 504A     		ldr	r2, .L101
+ 405 00b4 02E0     		b	.L66
+ 406              	.L68:
+ 407 00b6 013A     		subs	r2, r2, #1
+ 408 00b8 00F09980 		beq	.L85
+ 409              	.L66:
+ 410 00bc 1969     		ldr	r1, [r3, #16]
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 8
+
+
+ 411 00be C906     		lsls	r1, r1, #27
+ 412 00c0 F9D4     		bmi	.L68
+ 413              	.L67:
+ 414 00c2 0021     		movs	r1, #0
+ 415 00c4 2961     		str	r1, [r5, #16]
+ 416 00c6 6961     		str	r1, [r5, #20]
+ 417 00c8 E961     		str	r1, [r5, #28]
+ 418 00ca 04B3     		cbz	r4, .L80
+ 419 00cc 8E46     		mov	lr, r1
+ 420 00ce 03F51062 		add	r2, r3, #2304
+ 421 00d2 4FF09049 		mov	r9, #1207959552
+ 422 00d6 4FF0006A 		mov	r10, #134217728
+ 423 00da 4FF67F38 		movw	r8, #64383
+ 424 00de 0AE0     		b	.L75
+ 425              	.L72:
+ 426 00e0 C2F800E0 		str	lr, [r2]
+ 427              	.L74:
+ 428 00e4 0131     		adds	r1, r1, #1
+ 429 00e6 A142     		cmp	r1, r4
+ 430 00e8 C2F810E0 		str	lr, [r2, #16]
+ 431 00ec C2F80880 		str	r8, [r2, #8]
+ 432 00f0 02F12002 		add	r2, r2, #32
+ 433 00f4 2DD0     		beq	.L96
+ 434              	.L75:
+ 435 00f6 D2F800C0 		ldr	ip, [r2]
+ 436 00fa BCF1000F 		cmp	ip, #0
+ 437 00fe EFDA     		bge	.L72
+ 438 0100 11B1     		cbz	r1, .L97
+ 439 0102 C2F80090 		str	r9, [r2]
+ 440 0106 EDE7     		b	.L74
+ 441              	.L97:
+ 442 0108 C2F800A0 		str	r10, [r2]
+ 443 010c EAE7     		b	.L74
+ 444              	.L80:
+ 445 010e 2A69     		ldr	r2, [r5, #16]
+ 446 0110 012F     		cmp	r7, #1
+ 447 0112 22F48072 		bic	r2, r2, #256
+ 448 0116 2A61     		str	r2, [r5, #16]
+ 449 0118 4BD0     		beq	.L98
+ 450 011a 0021     		movs	r1, #0
+ 451 011c 6FF08042 		mvn	r2, #1073741824
+ 452 0120 9961     		str	r1, [r3, #24]
+ 453 0122 5A61     		str	r2, [r3, #20]
+ 454 0124 1FB9     		cbnz	r7, .L81
+ 455 0126 9A69     		ldr	r2, [r3, #24]
+ 456 0128 42F01002 		orr	r2, r2, #16
+ 457 012c 9A61     		str	r2, [r3, #24]
+ 458              	.L81:
+ 459 012e 9C69     		ldr	r4, [r3, #24]
+ 460 0130 314A     		ldr	r2, .L101+4
+ 461 0132 0F99     		ldr	r1, [sp, #60]
+ 462 0134 2243     		orrs	r2, r2, r4
+ 463 0136 9A61     		str	r2, [r3, #24]
+ 464 0138 69BB     		cbnz	r1, .L99
+ 465              	.L82:
+ 466 013a 012E     		cmp	r6, #1
+ 467 013c 05D1     		bne	.L83
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 9
+
+
+ 468 013e 9A69     		ldr	r2, [r3, #24]
+ 469 0140 42F08042 		orr	r2, r2, #1073741824
+ 470 0144 42F00402 		orr	r2, r2, #4
+ 471 0148 9A61     		str	r2, [r3, #24]
+ 472              	.L83:
+ 473 014a BDE8F047 		pop	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 474 014e 04B0     		add	sp, sp, #16
+ 475 0150 7047     		bx	lr
+ 476              	.L96:
+ 477 0152 0021     		movs	r1, #0
+ 478 0154 8E46     		mov	lr, r1
+ 479 0156 03F53062 		add	r2, r3, #2816
+ 480 015a 4FF09049 		mov	r9, #1207959552
+ 481 015e 4FF0006A 		mov	r10, #134217728
+ 482 0162 4FF67F38 		movw	r8, #64383
+ 483 0166 0AE0     		b	.L79
+ 484              	.L76:
+ 485 0168 C2F800E0 		str	lr, [r2]
+ 486              	.L78:
+ 487 016c 0131     		adds	r1, r1, #1
+ 488 016e A142     		cmp	r1, r4
+ 489 0170 C2F810E0 		str	lr, [r2, #16]
+ 490 0174 C2F80880 		str	r8, [r2, #8]
+ 491 0178 02F12002 		add	r2, r2, #32
+ 492 017c C7D0     		beq	.L80
+ 493              	.L79:
+ 494 017e D2F800C0 		ldr	ip, [r2]
+ 495 0182 BCF1000F 		cmp	ip, #0
+ 496 0186 EFDA     		bge	.L76
+ 497 0188 11B1     		cbz	r1, .L100
+ 498 018a C2F80090 		str	r9, [r2]
+ 499 018e EDE7     		b	.L78
+ 500              	.L100:
+ 501 0190 C2F800A0 		str	r10, [r2]
+ 502 0194 EAE7     		b	.L78
+ 503              	.L99:
+ 504 0196 9A69     		ldr	r2, [r3, #24]
+ 505 0198 42F00802 		orr	r2, r2, #8
+ 506 019c 9A61     		str	r2, [r3, #24]
+ 507 019e CCE7     		b	.L82
+ 508              	.L58:
+ 509 01a0 0268     		ldr	r2, [r0]
+ 510 01a2 22F40012 		bic	r2, r2, #2097152
+ 511 01a6 0260     		str	r2, [r0]
+ 512 01a8 826B     		ldr	r2, [r0, #56]
+ 513 01aa 42F40022 		orr	r2, r2, #524288
+ 514 01ae 8263     		str	r2, [r0, #56]
+ 515 01b0 5EE7     		b	.L59
+ 516              	.L98:
+ 517 01b2 124A     		ldr	r2, .L101+8
+ 518 01b4 2A63     		str	r2, [r5, #48]
+ 519 01b6 2A6B     		ldr	r2, [r5, #48]
+ 520 01b8 42F48032 		orr	r2, r2, #65536
+ 521 01bc 42F00302 		orr	r2, r2, #3
+ 522 01c0 2A63     		str	r2, [r5, #48]
+ 523 01c2 0021     		movs	r1, #0
+ 524 01c4 6FF08042 		mvn	r2, #1073741824
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 10
+
+
+ 525 01c8 9961     		str	r1, [r3, #24]
+ 526 01ca 5A61     		str	r2, [r3, #20]
+ 527 01cc AFE7     		b	.L81
+ 528              	.L95:
+ 529 01ce 0B9A     		ldr	r2, [sp, #44]
+ 530 01d0 22B9     		cbnz	r2, .L61
+ 531 01d2 D3F80028 		ldr	r2, [r3, #2048]
+ 532 01d6 C3F80028 		str	r2, [r3, #2048]
+ 533 01da 5CE7     		b	.L62
+ 534              	.L61:
+ 535 01dc D3F80028 		ldr	r2, [r3, #2048]
+ 536 01e0 42F00102 		orr	r2, r2, #1
+ 537 01e4 C3F80028 		str	r2, [r3, #2048]
+ 538 01e8 55E7     		b	.L62
+ 539              	.L84:
+ 540 01ea 0120     		movs	r0, #1
+ 541 01ec 5FE7     		b	.L64
+ 542              	.L85:
+ 543 01ee 0120     		movs	r0, #1
+ 544 01f0 67E7     		b	.L67
+ 545              	.L102:
+ 546 01f2 00BF     		.align	2
+ 547              	.L101:
+ 548 01f4 400D0300 		.word	200000
+ 549 01f8 00383C80 		.word	-2143537152
+ 550 01fc 00018000 		.word	8388864
+ 552              		.section	.text.USB_FlushTxFifo,"ax",%progbits
+ 553              		.align	1
+ 554              		.p2align 2,,3
+ 555              		.global	USB_FlushTxFifo
+ 556              		.syntax unified
+ 557              		.thumb
+ 558              		.thumb_func
+ 559              		.fpu fpv4-sp-d16
+ 561              	USB_FlushTxFifo:
+ 562              		@ args = 0, pretend = 0, frame = 0
+ 563              		@ frame_needed = 0, uses_anonymous_args = 0
+ 564              		@ link register save eliminated.
+ 565 0000 8901     		lsls	r1, r1, #6
+ 566 0002 41F02001 		orr	r1, r1, #32
+ 567 0006 0161     		str	r1, [r0, #16]
+ 568 0008 054A     		ldr	r2, .L109
+ 569 000a 01E0     		b	.L104
+ 570              	.L106:
+ 571 000c 013A     		subs	r2, r2, #1
+ 572 000e 05D0     		beq	.L107
+ 573              	.L104:
+ 574 0010 0369     		ldr	r3, [r0, #16]
+ 575 0012 13F02003 		ands	r3, r3, #32
+ 576 0016 F9D1     		bne	.L106
+ 577 0018 1846     		mov	r0, r3
+ 578 001a 7047     		bx	lr
+ 579              	.L107:
+ 580 001c 0320     		movs	r0, #3
+ 581 001e 7047     		bx	lr
+ 582              	.L110:
+ 583              		.align	2
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 11
+
+
+ 584              	.L109:
+ 585 0020 400D0300 		.word	200000
+ 587              		.section	.text.USB_FlushRxFifo,"ax",%progbits
+ 588              		.align	1
+ 589              		.p2align 2,,3
+ 590              		.global	USB_FlushRxFifo
+ 591              		.syntax unified
+ 592              		.thumb
+ 593              		.thumb_func
+ 594              		.fpu fpv4-sp-d16
+ 596              	USB_FlushRxFifo:
+ 597              		@ args = 0, pretend = 0, frame = 0
+ 598              		@ frame_needed = 0, uses_anonymous_args = 0
+ 599              		@ link register save eliminated.
+ 600 0000 1023     		movs	r3, #16
+ 601 0002 0361     		str	r3, [r0, #16]
+ 602 0004 054A     		ldr	r2, .L117
+ 603 0006 01E0     		b	.L112
+ 604              	.L114:
+ 605 0008 013A     		subs	r2, r2, #1
+ 606 000a 05D0     		beq	.L115
+ 607              	.L112:
+ 608 000c 0369     		ldr	r3, [r0, #16]
+ 609 000e 13F01003 		ands	r3, r3, #16
+ 610 0012 F9D1     		bne	.L114
+ 611 0014 1846     		mov	r0, r3
+ 612 0016 7047     		bx	lr
+ 613              	.L115:
+ 614 0018 0320     		movs	r0, #3
+ 615 001a 7047     		bx	lr
+ 616              	.L118:
+ 617              		.align	2
+ 618              	.L117:
+ 619 001c 400D0300 		.word	200000
+ 621              		.section	.text.USB_SetDevSpeed,"ax",%progbits
+ 622              		.align	1
+ 623              		.p2align 2,,3
+ 624              		.global	USB_SetDevSpeed
+ 625              		.syntax unified
+ 626              		.thumb
+ 627              		.thumb_func
+ 628              		.fpu fpv4-sp-d16
+ 630              	USB_SetDevSpeed:
+ 631              		@ args = 0, pretend = 0, frame = 0
+ 632              		@ frame_needed = 0, uses_anonymous_args = 0
+ 633              		@ link register save eliminated.
+ 634 0000 0246     		mov	r2, r0
+ 635 0002 0020     		movs	r0, #0
+ 636 0004 D2F80038 		ldr	r3, [r2, #2048]
+ 637 0008 1943     		orrs	r1, r1, r3
+ 638 000a C2F80018 		str	r1, [r2, #2048]
+ 639 000e 7047     		bx	lr
+ 641              		.section	.text.USB_GetDevSpeed,"ax",%progbits
+ 642              		.align	1
+ 643              		.p2align 2,,3
+ 644              		.global	USB_GetDevSpeed
+ 645              		.syntax unified
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 12
+
+
+ 646              		.thumb
+ 647              		.thumb_func
+ 648              		.fpu fpv4-sp-d16
+ 650              	USB_GetDevSpeed:
+ 651              		@ args = 0, pretend = 0, frame = 0
+ 652              		@ frame_needed = 0, uses_anonymous_args = 0
+ 653              		@ link register save eliminated.
+ 654 0000 D0F80838 		ldr	r3, [r0, #2056]
+ 655 0004 13F00600 		ands	r0, r3, #6
+ 656 0008 04D0     		beq	.L121
+ 657 000a 13F0020F 		tst	r3, #2
+ 658 000e 14BF     		ite	ne
+ 659 0010 0220     		movne	r0, #2
+ 660 0012 0F20     		moveq	r0, #15
+ 661              	.L121:
+ 662 0014 7047     		bx	lr
+ 664 0016 00BF     		.section	.text.USB_ActivateEndpoint,"ax",%progbits
+ 665              		.align	1
+ 666              		.p2align 2,,3
+ 667              		.global	USB_ActivateEndpoint
+ 668              		.syntax unified
+ 669              		.thumb
+ 670              		.thumb_func
+ 671              		.fpu fpv4-sp-d16
+ 673              	USB_ActivateEndpoint:
+ 674              		@ args = 0, pretend = 0, frame = 0
+ 675              		@ frame_needed = 0, uses_anonymous_args = 0
+ 676              		@ link register save eliminated.
+ 677 0000 30B4     		push	{r4, r5}
+ 678 0002 0A78     		ldrb	r2, [r1]	@ zero_extendqisi2
+ 679 0004 4D78     		ldrb	r5, [r1, #1]	@ zero_extendqisi2
+ 680 0006 02F00F04 		and	r4, r2, #15
+ 681 000a 0123     		movs	r3, #1
+ 682 000c 012D     		cmp	r5, #1
+ 683 000e 03FA04F3 		lsl	r3, r3, r4
+ 684 0012 00EB4214 		add	r4, r0, r2, lsl #5
+ 685 0016 00F50060 		add	r0, r0, #2048
+ 686 001a 19D0     		beq	.L130
+ 687 001c C269     		ldr	r2, [r0, #28]
+ 688 001e 42EA0343 		orr	r3, r2, r3, lsl #16
+ 689 0022 C361     		str	r3, [r0, #28]
+ 690 0024 D4F8003B 		ldr	r3, [r4, #2816]
+ 691 0028 1B04     		lsls	r3, r3, #16
+ 692 002a 0ED4     		bmi	.L127
+ 693 002c 8B68     		ldr	r3, [r1, #8]
+ 694 002e D4F8000B 		ldr	r0, [r4, #2816]
+ 695 0032 C978     		ldrb	r1, [r1, #3]	@ zero_extendqisi2
+ 696 0034 C3F30A03 		ubfx	r3, r3, #0, #11
+ 697 0038 0343     		orrs	r3, r3, r0
+ 698 003a 43EA8143 		orr	r3, r3, r1, lsl #18
+ 699 003e 43F08053 		orr	r3, r3, #268435456
+ 700 0042 43F40043 		orr	r3, r3, #32768
+ 701 0046 C4F8003B 		str	r3, [r4, #2816]
+ 702              	.L127:
+ 703 004a 0020     		movs	r0, #0
+ 704 004c 30BC     		pop	{r4, r5}
+ 705 004e 7047     		bx	lr
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 13
+
+
+ 706              	.L130:
+ 707 0050 C569     		ldr	r5, [r0, #28]
+ 708 0052 2B43     		orrs	r3, r3, r5
+ 709 0054 C361     		str	r3, [r0, #28]
+ 710 0056 D4F80039 		ldr	r3, [r4, #2304]
+ 711 005a 1804     		lsls	r0, r3, #16
+ 712 005c F5D4     		bmi	.L127
+ 713 005e 8B68     		ldr	r3, [r1, #8]
+ 714 0060 D4F80009 		ldr	r0, [r4, #2304]
+ 715 0064 C978     		ldrb	r1, [r1, #3]	@ zero_extendqisi2
+ 716 0066 C3F30A03 		ubfx	r3, r3, #0, #11
+ 717 006a 0343     		orrs	r3, r3, r0
+ 718 006c 43EA8143 		orr	r3, r3, r1, lsl #18
+ 719 0070 43EA8252 		orr	r2, r3, r2, lsl #22
+ 720 0074 42F08052 		orr	r2, r2, #268435456
+ 721 0078 42F40042 		orr	r2, r2, #32768
+ 722 007c C4F80029 		str	r2, [r4, #2304]
+ 723 0080 0020     		movs	r0, #0
+ 724 0082 30BC     		pop	{r4, r5}
+ 725 0084 7047     		bx	lr
+ 727 0086 00BF     		.section	.text.USB_ActivateDedicatedEndpoint,"ax",%progbits
+ 728              		.align	1
+ 729              		.p2align 2,,3
+ 730              		.global	USB_ActivateDedicatedEndpoint
+ 731              		.syntax unified
+ 732              		.thumb
+ 733              		.thumb_func
+ 734              		.fpu fpv4-sp-d16
+ 736              	USB_ActivateDedicatedEndpoint:
+ 737              		@ args = 0, pretend = 0, frame = 0
+ 738              		@ frame_needed = 0, uses_anonymous_args = 0
+ 739              		@ link register save eliminated.
+ 740 0000 30B4     		push	{r4, r5}
+ 741 0002 4A78     		ldrb	r2, [r1, #1]	@ zero_extendqisi2
+ 742 0004 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 743 0006 012A     		cmp	r2, #1
+ 744 0008 00EB4314 		add	r4, r0, r3, lsl #5
+ 745 000c 21D0     		beq	.L137
+ 746 000e D4F8002B 		ldr	r2, [r4, #2816]
+ 747 0012 1204     		lsls	r2, r2, #16
+ 748 0014 0DD5     		bpl	.L138
+ 749              	.L135:
+ 750 0016 D0F83C18 		ldr	r1, [r0, #2108]
+ 751 001a 03F00F03 		and	r3, r3, #15
+ 752 001e 4FF48032 		mov	r2, #65536
+ 753 0022 02FA03F3 		lsl	r3, r2, r3
+ 754 0026 0B43     		orrs	r3, r3, r1
+ 755 0028 C0F83C38 		str	r3, [r0, #2108]
+ 756 002c 30BC     		pop	{r4, r5}
+ 757 002e 0020     		movs	r0, #0
+ 758 0030 7047     		bx	lr
+ 759              	.L138:
+ 760 0032 8A68     		ldr	r2, [r1, #8]
+ 761 0034 D4F8005B 		ldr	r5, [r4, #2816]
+ 762 0038 C978     		ldrb	r1, [r1, #3]	@ zero_extendqisi2
+ 763 003a C2F30A02 		ubfx	r2, r2, #0, #11
+ 764 003e 2A43     		orrs	r2, r2, r5
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 14
+
+
+ 765 0040 42EA8142 		orr	r2, r2, r1, lsl #18
+ 766 0044 42EA8352 		orr	r2, r2, r3, lsl #22
+ 767 0048 42F40042 		orr	r2, r2, #32768
+ 768 004c C4F8002B 		str	r2, [r4, #2816]
+ 769 0050 E1E7     		b	.L135
+ 770              	.L137:
+ 771 0052 D4F80029 		ldr	r2, [r4, #2304]
+ 772 0056 1504     		lsls	r5, r2, #16
+ 773 0058 10D4     		bmi	.L133
+ 774 005a 8A68     		ldr	r2, [r1, #8]
+ 775 005c D4F80059 		ldr	r5, [r4, #2304]
+ 776 0060 C978     		ldrb	r1, [r1, #3]	@ zero_extendqisi2
+ 777 0062 C2F30A02 		ubfx	r2, r2, #0, #11
+ 778 0066 2A43     		orrs	r2, r2, r5
+ 779 0068 42EA8142 		orr	r2, r2, r1, lsl #18
+ 780 006c 42EA8352 		orr	r2, r2, r3, lsl #22
+ 781 0070 42F08052 		orr	r2, r2, #268435456
+ 782 0074 42F40042 		orr	r2, r2, #32768
+ 783 0078 C4F80029 		str	r2, [r4, #2304]
+ 784              	.L133:
+ 785 007c D0F83C28 		ldr	r2, [r0, #2108]
+ 786 0080 03F00F01 		and	r1, r3, #15
+ 787 0084 0123     		movs	r3, #1
+ 788 0086 8B40     		lsls	r3, r3, r1
+ 789 0088 1343     		orrs	r3, r3, r2
+ 790 008a C0F83C38 		str	r3, [r0, #2108]
+ 791 008e 30BC     		pop	{r4, r5}
+ 792 0090 0020     		movs	r0, #0
+ 793 0092 7047     		bx	lr
+ 795              		.section	.text.USB_DeactivateEndpoint,"ax",%progbits
+ 796              		.align	1
+ 797              		.p2align 2,,3
+ 798              		.global	USB_DeactivateEndpoint
+ 799              		.syntax unified
+ 800              		.thumb
+ 801              		.thumb_func
+ 802              		.fpu fpv4-sp-d16
+ 804              	USB_DeactivateEndpoint:
+ 805              		@ args = 0, pretend = 0, frame = 0
+ 806              		@ frame_needed = 0, uses_anonymous_args = 0
+ 807              		@ link register save eliminated.
+ 808 0000 10B4     		push	{r4}
+ 809 0002 0A78     		ldrb	r2, [r1]	@ zero_extendqisi2
+ 810 0004 4978     		ldrb	r1, [r1, #1]	@ zero_extendqisi2
+ 811 0006 02F00F04 		and	r4, r2, #15
+ 812 000a 00EB4212 		add	r2, r0, r2, lsl #5
+ 813 000e 00F50060 		add	r0, r0, #2048
+ 814 0012 0123     		movs	r3, #1
+ 815 0014 0129     		cmp	r1, #1
+ 816 0016 03FA04F3 		lsl	r3, r3, r4
+ 817 001a C46B     		ldr	r4, [r0, #60]
+ 818 001c 10D0     		beq	.L143
+ 819 001e 6FEA0343 		mvn	r3, r3, lsl #16
+ 820 0022 1C40     		ands	r4, r4, r3
+ 821 0024 C463     		str	r4, [r0, #60]
+ 822 0026 C469     		ldr	r4, [r0, #28]
+ 823 0028 0D49     		ldr	r1, .L144
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 15
+
+
+ 824 002a 2340     		ands	r3, r3, r4
+ 825 002c C361     		str	r3, [r0, #28]
+ 826 002e D2F8003B 		ldr	r3, [r2, #2816]
+ 827 0032 5DF8044B 		ldr	r4, [sp], #4
+ 828 0036 1940     		ands	r1, r1, r3
+ 829 0038 0020     		movs	r0, #0
+ 830 003a C2F8001B 		str	r1, [r2, #2816]
+ 831 003e 7047     		bx	lr
+ 832              	.L143:
+ 833 0040 DB43     		mvns	r3, r3
+ 834 0042 1C40     		ands	r4, r4, r3
+ 835 0044 C463     		str	r4, [r0, #60]
+ 836 0046 C469     		ldr	r4, [r0, #28]
+ 837 0048 0649     		ldr	r1, .L144+4
+ 838 004a 2340     		ands	r3, r3, r4
+ 839 004c C361     		str	r3, [r0, #28]
+ 840 004e D2F80039 		ldr	r3, [r2, #2304]
+ 841 0052 5DF8044B 		ldr	r4, [sp], #4
+ 842 0056 1940     		ands	r1, r1, r3
+ 843 0058 0020     		movs	r0, #0
+ 844 005a C2F80019 		str	r1, [r2, #2304]
+ 845 005e 7047     		bx	lr
+ 846              	.L145:
+ 847              		.align	2
+ 848              	.L144:
+ 849 0060 0078F3EF 		.word	-269256704
+ 850 0064 007833EC 		.word	-332171264
+ 852              		.section	.text.USB_DeactivateDedicatedEndpoint,"ax",%progbits
+ 853              		.align	1
+ 854              		.p2align 2,,3
+ 855              		.global	USB_DeactivateDedicatedEndpoint
+ 856              		.syntax unified
+ 857              		.thumb
+ 858              		.thumb_func
+ 859              		.fpu fpv4-sp-d16
+ 861              	USB_DeactivateDedicatedEndpoint:
+ 862              		@ args = 0, pretend = 0, frame = 0
+ 863              		@ frame_needed = 0, uses_anonymous_args = 0
+ 864              		@ link register save eliminated.
+ 865 0000 10B4     		push	{r4}
+ 866 0002 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 867 0004 4978     		ldrb	r1, [r1, #1]	@ zero_extendqisi2
+ 868 0006 03F00F04 		and	r4, r3, #15
+ 869 000a 0122     		movs	r2, #1
+ 870 000c 0129     		cmp	r1, #1
+ 871 000e 00EB4313 		add	r3, r0, r3, lsl #5
+ 872 0012 02FA04F2 		lsl	r2, r2, r4
+ 873 0016 00F50060 		add	r0, r0, #2048
+ 874 001a 0DD0     		beq	.L150
+ 875 001c D3F8001B 		ldr	r1, [r3, #2816]
+ 876 0020 5DF8044B 		ldr	r4, [sp], #4
+ 877 0024 21F40041 		bic	r1, r1, #32768
+ 878 0028 C3F8001B 		str	r1, [r3, #2816]
+ 879 002c C369     		ldr	r3, [r0, #28]
+ 880 002e 23EA0242 		bic	r2, r3, r2, lsl #16
+ 881 0032 C261     		str	r2, [r0, #28]
+ 882 0034 0020     		movs	r0, #0
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 16
+
+
+ 883 0036 7047     		bx	lr
+ 884              	.L150:
+ 885 0038 D3F80019 		ldr	r1, [r3, #2304]
+ 886 003c 5DF8044B 		ldr	r4, [sp], #4
+ 887 0040 21F40041 		bic	r1, r1, #32768
+ 888 0044 C3F80019 		str	r1, [r3, #2304]
+ 889 0048 C369     		ldr	r3, [r0, #28]
+ 890 004a 23EA0202 		bic	r2, r3, r2
+ 891 004e C261     		str	r2, [r0, #28]
+ 892 0050 0020     		movs	r0, #0
+ 893 0052 7047     		bx	lr
+ 895              		.section	.text.USB_EPStartXfer,"ax",%progbits
+ 896              		.align	1
+ 897              		.p2align 2,,3
+ 898              		.global	USB_EPStartXfer
+ 899              		.syntax unified
+ 900              		.thumb
+ 901              		.thumb_func
+ 902              		.fpu fpv4-sp-d16
+ 904              	USB_EPStartXfer:
+ 905              		@ args = 0, pretend = 0, frame = 0
+ 906              		@ frame_needed = 0, uses_anonymous_args = 0
+ 907 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 908 0004 91F801C0 		ldrb	ip, [r1, #1]	@ zero_extendqisi2
+ 909 0008 0E78     		ldrb	r6, [r1]	@ zero_extendqisi2
+ 910 000a 4B69     		ldr	r3, [r1, #20]
+ 911 000c CF78     		ldrb	r7, [r1, #3]	@ zero_extendqisi2
+ 912 000e BCF1010F 		cmp	ip, #1
+ 913 0012 00EB4615 		add	r5, r0, r6, lsl #5
+ 914 0016 4ED0     		beq	.L195
+ 915 0018 05F53064 		add	r4, r5, #2816
+ 916 001c 2669     		ldr	r6, [r4, #16]
+ 917 001e D1F808C0 		ldr	ip, [r1, #8]
+ 918 0022 F60C     		lsrs	r6, r6, #19
+ 919 0024 F604     		lsls	r6, r6, #19
+ 920 0026 2661     		str	r6, [r4, #16]
+ 921 0028 2669     		ldr	r6, [r4, #16]
+ 922 002a 26F0FF56 		bic	r6, r6, #534773760
+ 923 002e 26F4C016 		bic	r6, r6, #1572864
+ 924 0032 2661     		str	r6, [r4, #16]
+ 925 0034 7BB3     		cbz	r3, .L196
+ 926 0036 DFF8F8E1 		ldr	lr, .L203
+ 927 003a D4F81080 		ldr	r8, [r4, #16]
+ 928 003e 03EB0C06 		add	r6, r3, ip
+ 929 0042 013E     		subs	r6, r6, #1
+ 930 0044 B6FBFCF6 		udiv	r6, r6, ip
+ 931 0048 0EEAC643 		and	r3, lr, r6, lsl #19
+ 932 004c 43EA0803 		orr	r3, r3, r8
+ 933 0050 2361     		str	r3, [r4, #16]
+ 934 0052 B6B2     		uxth	r6, r6
+ 935 0054 0CFB06F3 		mul	r3, ip, r6
+ 936 0058 2669     		ldr	r6, [r4, #16]
+ 937 005a C3F31203 		ubfx	r3, r3, #0, #19
+ 938 005e 3343     		orrs	r3, r3, r6
+ 939 0060 012A     		cmp	r2, #1
+ 940 0062 2361     		str	r3, [r4, #16]
+ 941 0064 22D0     		beq	.L197
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 17
+
+
+ 942              	.L170:
+ 943 0066 012F     		cmp	r7, #1
+ 944 0068 0CD1     		bne	.L171
+ 945 006a D0F80838 		ldr	r3, [r0, #2056]
+ 946 006e 13F4807F 		tst	r3, #256
+ 947 0072 D5F8003B 		ldr	r3, [r5, #2816]
+ 948 0076 0CBF     		ite	eq
+ 949 0078 43F00053 		orreq	r3, r3, #536870912
+ 950 007c 43F08053 		orrne	r3, r3, #268435456
+ 951 0080 C5F8003B 		str	r3, [r5, #2816]
+ 952              	.L171:
+ 953 0084 D5F8003B 		ldr	r3, [r5, #2816]
+ 954 0088 43F00443 		orr	r3, r3, #-2080374784
+ 955 008c C5F8003B 		str	r3, [r5, #2816]
+ 956              	.L185:
+ 957 0090 0020     		movs	r0, #0
+ 958 0092 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 959              	.L196:
+ 960 0096 2669     		ldr	r6, [r4, #16]
+ 961 0098 CCF31203 		ubfx	r3, ip, #0, #19
+ 962 009c 3343     		orrs	r3, r3, r6
+ 963 009e 2361     		str	r3, [r4, #16]
+ 964 00a0 2369     		ldr	r3, [r4, #16]
+ 965 00a2 012A     		cmp	r2, #1
+ 966 00a4 43F40023 		orr	r3, r3, #524288
+ 967 00a8 2361     		str	r3, [r4, #16]
+ 968 00aa DCD1     		bne	.L170
+ 969              	.L197:
+ 970 00ac CB68     		ldr	r3, [r1, #12]
+ 971 00ae 002B     		cmp	r3, #0
+ 972 00b0 D9D0     		beq	.L170
+ 973 00b2 6361     		str	r3, [r4, #20]
+ 974 00b4 D7E7     		b	.L170
+ 975              	.L195:
+ 976 00b6 05F51064 		add	r4, r5, #2304
+ 977 00ba F3B3     		cbz	r3, .L198
+ 978 00bc D4F81080 		ldr	r8, [r4, #16]
+ 979 00c0 D1F808A0 		ldr	r10, [r1, #8]
+ 980 00c4 DFF868E1 		ldr	lr, .L203
+ 981 00c8 4FEAD848 		lsr	r8, r8, #19
+ 982 00cc 4FEAC848 		lsl	r8, r8, #19
+ 983 00d0 C4F81080 		str	r8, [r4, #16]
+ 984 00d4 D4F81080 		ldr	r8, [r4, #16]
+ 985 00d8 28F0FF58 		bic	r8, r8, #534773760
+ 986 00dc 28F4C018 		bic	r8, r8, #1572864
+ 987 00e0 C4F81080 		str	r8, [r4, #16]
+ 988 00e4 D4F81090 		ldr	r9, [r4, #16]
+ 989 00e8 0AEB0308 		add	r8, r10, r3
+ 990 00ec 08F1FF38 		add	r8, r8, #-1
+ 991 00f0 B8FBFAF8 		udiv	r8, r8, r10
+ 992 00f4 0EEAC84E 		and	lr, lr, r8, lsl #19
+ 993 00f8 4EEA090E 		orr	lr, lr, r9
+ 994 00fc C4F810E0 		str	lr, [r4, #16]
+ 995 0100 D4F81080 		ldr	r8, [r4, #16]
+ 996 0104 C3F3120E 		ubfx	lr, r3, #0, #19
+ 997 0108 4EEA080E 		orr	lr, lr, r8
+ 998 010c 012F     		cmp	r7, #1
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 18
+
+
+ 999 010e C4F810E0 		str	lr, [r4, #16]
+ 1000 0112 54D0     		beq	.L199
+ 1001 0114 012A     		cmp	r2, #1
+ 1002 0116 74D0     		beq	.L200
+ 1003 0118 D5F80039 		ldr	r3, [r5, #2304]
+ 1004 011c 43F00443 		orr	r3, r3, #-2080374784
+ 1005 0120 C5F80039 		str	r3, [r5, #2304]
+ 1006 0124 D0F83438 		ldr	r3, [r0, #2100]
+ 1007 0128 06F00F06 		and	r6, r6, #15
+ 1008 012c 0CFA06FC 		lsl	ip, ip, r6
+ 1009 0130 4CEA0303 		orr	r3, ip, r3
+ 1010 0134 C0F83438 		str	r3, [r0, #2100]
+ 1011 0138 AAE7     		b	.L185
+ 1012              	.L198:
+ 1013 013a D4F810C0 		ldr	ip, [r4, #16]
+ 1014 013e 2CF0FF5C 		bic	ip, ip, #534773760
+ 1015 0142 2CF4C01C 		bic	ip, ip, #1572864
+ 1016 0146 C4F810C0 		str	ip, [r4, #16]
+ 1017 014a D4F810C0 		ldr	ip, [r4, #16]
+ 1018 014e 4CF4002C 		orr	ip, ip, #524288
+ 1019 0152 C4F810C0 		str	ip, [r4, #16]
+ 1020 0156 D4F810C0 		ldr	ip, [r4, #16]
+ 1021 015a 4FEADC4C 		lsr	ip, ip, #19
+ 1022 015e 4FEACC4C 		lsl	ip, ip, #19
+ 1023 0162 012A     		cmp	r2, #1
+ 1024 0164 C4F810C0 		str	ip, [r4, #16]
+ 1025 0168 3ED0     		beq	.L201
+ 1026 016a D5F80049 		ldr	r4, [r5, #2304]
+ 1027 016e 012F     		cmp	r7, #1
+ 1028 0170 44F00444 		orr	r4, r4, #-2080374784
+ 1029 0174 C5F80049 		str	r4, [r5, #2304]
+ 1030 0178 8AD1     		bne	.L185
+ 1031              	.L163:
+ 1032 017a D0F80848 		ldr	r4, [r0, #2056]
+ 1033 017e 14F4807F 		tst	r4, #256
+ 1034 0182 D5F80049 		ldr	r4, [r5, #2304]
+ 1035 0186 0CBF     		ite	eq
+ 1036 0188 44F00054 		orreq	r4, r4, #536870912
+ 1037 018c 44F08054 		orrne	r4, r4, #268435456
+ 1038 0190 C5F80049 		str	r4, [r5, #2304]
+ 1039 0194 002A     		cmp	r2, #0
+ 1040 0196 7FF47BAF 		bne	.L185
+ 1041 019a 9BB2     		uxth	r3, r3
+ 1042 019c 0333     		adds	r3, r3, #3
+ 1043 019e 9A08     		lsrs	r2, r3, #2
+ 1044 01a0 3FF476AF 		beq	.L185
+ 1045 01a4 CB68     		ldr	r3, [r1, #12]
+ 1046 01a6 00EB0630 		add	r0, r0, r6, lsl #12
+ 1047 01aa 03EB8201 		add	r1, r3, r2, lsl #2
+ 1048 01ae 00F58050 		add	r0, r0, #4096
+ 1049              	.L167:
+ 1050 01b2 53F8042B 		ldr	r2, [r3], #4	@ unaligned
+ 1051 01b6 0260     		str	r2, [r0]
+ 1052 01b8 8B42     		cmp	r3, r1
+ 1053 01ba FAD1     		bne	.L167
+ 1054 01bc 68E7     		b	.L185
+ 1055              	.L199:
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 19
+
+
+ 1056 01be D4F810C0 		ldr	ip, [r4, #16]
+ 1057 01c2 2CF0C04C 		bic	ip, ip, #1610612736
+ 1058 01c6 C4F810C0 		str	ip, [r4, #16]
+ 1059 01ca D4F810C0 		ldr	ip, [r4, #16]
+ 1060 01ce 012A     		cmp	r2, #1
+ 1061 01d0 4CF0005C 		orr	ip, ip, #536870912
+ 1062 01d4 C4F810C0 		str	ip, [r4, #16]
+ 1063 01d8 18D0     		beq	.L202
+ 1064 01da D5F80049 		ldr	r4, [r5, #2304]
+ 1065 01de 44F00444 		orr	r4, r4, #-2080374784
+ 1066 01e2 C5F80049 		str	r4, [r5, #2304]
+ 1067 01e6 C8E7     		b	.L163
+ 1068              	.L201:
+ 1069 01e8 0B69     		ldr	r3, [r1, #16]
+ 1070 01ea 6BB9     		cbnz	r3, .L175
+ 1071              	.L159:
+ 1072 01ec 012F     		cmp	r7, #1
+ 1073 01ee 10D0     		beq	.L176
+ 1074              	.L160:
+ 1075 01f0 D5F80039 		ldr	r3, [r5, #2304]
+ 1076 01f4 43F00443 		orr	r3, r3, #-2080374784
+ 1077 01f8 C5F80039 		str	r3, [r5, #2304]
+ 1078 01fc 0020     		movs	r0, #0
+ 1079 01fe BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 1080              	.L200:
+ 1081 0202 0B69     		ldr	r3, [r1, #16]
+ 1082 0204 002B     		cmp	r3, #0
+ 1083 0206 F3D0     		beq	.L160
+ 1084              	.L175:
+ 1085 0208 6361     		str	r3, [r4, #20]
+ 1086 020a EFE7     		b	.L159
+ 1087              	.L202:
+ 1088 020c 0B69     		ldr	r3, [r1, #16]
+ 1089 020e 002B     		cmp	r3, #0
+ 1090 0210 FAD1     		bne	.L175
+ 1091              	.L176:
+ 1092 0212 D0F80838 		ldr	r3, [r0, #2056]
+ 1093 0216 13F4807F 		tst	r3, #256
+ 1094 021a D5F80039 		ldr	r3, [r5, #2304]
+ 1095 021e 0CBF     		ite	eq
+ 1096 0220 43F00053 		orreq	r3, r3, #536870912
+ 1097 0224 43F08053 		orrne	r3, r3, #268435456
+ 1098 0228 C5F80039 		str	r3, [r5, #2304]
+ 1099 022c E0E7     		b	.L160
+ 1100              	.L204:
+ 1101 022e 00BF     		.align	2
+ 1102              	.L203:
+ 1103 0230 0000F81F 		.word	536346624
+ 1105              		.section	.text.USB_EP0StartXfer,"ax",%progbits
+ 1106              		.align	1
+ 1107              		.p2align 2,,3
+ 1108              		.global	USB_EP0StartXfer
+ 1109              		.syntax unified
+ 1110              		.thumb
+ 1111              		.thumb_func
+ 1112              		.fpu fpv4-sp-d16
+ 1114              	USB_EP0StartXfer:
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 20
+
+
+ 1115              		@ args = 0, pretend = 0, frame = 0
+ 1116              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1117              		@ link register save eliminated.
+ 1118 0000 4B78     		ldrb	r3, [r1, #1]	@ zero_extendqisi2
+ 1119 0002 F0B4     		push	{r4, r5, r6, r7}
+ 1120 0004 0D78     		ldrb	r5, [r1]	@ zero_extendqisi2
+ 1121 0006 4E69     		ldr	r6, [r1, #20]
+ 1122 0008 012B     		cmp	r3, #1
+ 1123 000a 00EB4514 		add	r4, r0, r5, lsl #5
+ 1124 000e 27D0     		beq	.L234
+ 1125 0010 04F53063 		add	r3, r4, #2816
+ 1126 0014 1D69     		ldr	r5, [r3, #16]
+ 1127 0016 8868     		ldr	r0, [r1, #8]
+ 1128 0018 ED0C     		lsrs	r5, r5, #19
+ 1129 001a ED04     		lsls	r5, r5, #19
+ 1130 001c 1D61     		str	r5, [r3, #16]
+ 1131 001e 1D69     		ldr	r5, [r3, #16]
+ 1132 0020 25F0FF55 		bic	r5, r5, #534773760
+ 1133 0024 25F4C015 		bic	r5, r5, #1572864
+ 1134 0028 1D61     		str	r5, [r3, #16]
+ 1135 002a 06B1     		cbz	r6, .L214
+ 1136 002c 4861     		str	r0, [r1, #20]
+ 1137              	.L214:
+ 1138 002e 1D69     		ldr	r5, [r3, #16]
+ 1139 0030 45F40025 		orr	r5, r5, #524288
+ 1140 0034 1D61     		str	r5, [r3, #16]
+ 1141 0036 1D69     		ldr	r5, [r3, #16]
+ 1142 0038 C0F31200 		ubfx	r0, r0, #0, #19
+ 1143 003c 2843     		orrs	r0, r0, r5
+ 1144 003e 012A     		cmp	r2, #1
+ 1145 0040 1861     		str	r0, [r3, #16]
+ 1146 0042 08D0     		beq	.L235
+ 1147              	.L215:
+ 1148 0044 D4F8003B 		ldr	r3, [r4, #2816]
+ 1149 0048 43F00443 		orr	r3, r3, #-2080374784
+ 1150 004c C4F8003B 		str	r3, [r4, #2816]
+ 1151              	.L226:
+ 1152 0050 0020     		movs	r0, #0
+ 1153 0052 F0BC     		pop	{r4, r5, r6, r7}
+ 1154 0054 7047     		bx	lr
+ 1155              	.L235:
+ 1156 0056 CA68     		ldr	r2, [r1, #12]
+ 1157 0058 002A     		cmp	r2, #0
+ 1158 005a F3D0     		beq	.L215
+ 1159 005c 5A61     		str	r2, [r3, #20]
+ 1160 005e F1E7     		b	.L215
+ 1161              	.L234:
+ 1162 0060 04F51063 		add	r3, r4, #2304
+ 1163 0064 9EB3     		cbz	r6, .L236
+ 1164 0066 1F69     		ldr	r7, [r3, #16]
+ 1165 0068 D1F808C0 		ldr	ip, [r1, #8]
+ 1166 006c FF0C     		lsrs	r7, r7, #19
+ 1167 006e FF04     		lsls	r7, r7, #19
+ 1168 0070 1F61     		str	r7, [r3, #16]
+ 1169 0072 1F69     		ldr	r7, [r3, #16]
+ 1170 0074 27F0FF57 		bic	r7, r7, #534773760
+ 1171 0078 27F4C017 		bic	r7, r7, #1572864
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 21
+
+
+ 1172 007c 1F61     		str	r7, [r3, #16]
+ 1173 007e 1F69     		ldr	r7, [r3, #16]
+ 1174 0080 B445     		cmp	ip, r6
+ 1175 0082 47F40027 		orr	r7, r7, #524288
+ 1176 0086 38BF     		it	cc
+ 1177 0088 C1F814C0 		strcc	ip, [r1, #20]
+ 1178 008c 1F61     		str	r7, [r3, #16]
+ 1179 008e 38BF     		it	cc
+ 1180 0090 6646     		movcc	r6, ip
+ 1181 0092 D3F810C0 		ldr	ip, [r3, #16]
+ 1182 0096 C6F31207 		ubfx	r7, r6, #0, #19
+ 1183 009a 47EA0C07 		orr	r7, r7, ip
+ 1184 009e 012A     		cmp	r2, #1
+ 1185 00a0 1F61     		str	r7, [r3, #16]
+ 1186 00a2 2DD0     		beq	.L208
+ 1187 00a4 D4F80039 		ldr	r3, [r4, #2304]
+ 1188 00a8 43F00443 		orr	r3, r3, #-2080374784
+ 1189 00ac C4F80039 		str	r3, [r4, #2304]
+ 1190 00b0 002E     		cmp	r6, #0
+ 1191 00b2 CDD0     		beq	.L226
+ 1192 00b4 D0F83428 		ldr	r2, [r0, #2100]
+ 1193 00b8 05F00F05 		and	r5, r5, #15
+ 1194 00bc 0123     		movs	r3, #1
+ 1195 00be 03FA05F5 		lsl	r5, r3, r5
+ 1196 00c2 1543     		orrs	r5, r5, r2
+ 1197 00c4 C0F83458 		str	r5, [r0, #2100]
+ 1198 00c8 0020     		movs	r0, #0
+ 1199 00ca F0BC     		pop	{r4, r5, r6, r7}
+ 1200 00cc 7047     		bx	lr
+ 1201              	.L236:
+ 1202 00ce 1869     		ldr	r0, [r3, #16]
+ 1203 00d0 20F0FF50 		bic	r0, r0, #534773760
+ 1204 00d4 20F4C010 		bic	r0, r0, #1572864
+ 1205 00d8 1861     		str	r0, [r3, #16]
+ 1206 00da 1869     		ldr	r0, [r3, #16]
+ 1207 00dc 40F40020 		orr	r0, r0, #524288
+ 1208 00e0 1861     		str	r0, [r3, #16]
+ 1209 00e2 1869     		ldr	r0, [r3, #16]
+ 1210 00e4 C00C     		lsrs	r0, r0, #19
+ 1211 00e6 C004     		lsls	r0, r0, #19
+ 1212 00e8 012A     		cmp	r2, #1
+ 1213 00ea 1861     		str	r0, [r3, #16]
+ 1214 00ec 08D0     		beq	.L208
+ 1215              	.L232:
+ 1216 00ee D4F80039 		ldr	r3, [r4, #2304]
+ 1217 00f2 43F00443 		orr	r3, r3, #-2080374784
+ 1218 00f6 C4F80039 		str	r3, [r4, #2304]
+ 1219 00fa 0020     		movs	r0, #0
+ 1220 00fc F0BC     		pop	{r4, r5, r6, r7}
+ 1221 00fe 7047     		bx	lr
+ 1222              	.L208:
+ 1223 0100 0A69     		ldr	r2, [r1, #16]
+ 1224 0102 002A     		cmp	r2, #0
+ 1225 0104 F3D0     		beq	.L232
+ 1226 0106 5A61     		str	r2, [r3, #20]
+ 1227 0108 F1E7     		b	.L232
+ 1229 010a 00BF     		.section	.text.USB_WritePacket,"ax",%progbits
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 22
+
+
+ 1230              		.align	1
+ 1231              		.p2align 2,,3
+ 1232              		.global	USB_WritePacket
+ 1233              		.syntax unified
+ 1234              		.thumb
+ 1235              		.thumb_func
+ 1236              		.fpu fpv4-sp-d16
+ 1238              	USB_WritePacket:
+ 1239              		@ args = 4, pretend = 0, frame = 0
+ 1240              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1241              		@ link register save eliminated.
+ 1242 0000 10B4     		push	{r4}
+ 1243 0002 9DF80440 		ldrb	r4, [sp, #4]	@ zero_extendqisi2
+ 1244 0006 64B9     		cbnz	r4, .L238
+ 1245 0008 0333     		adds	r3, r3, #3
+ 1246 000a 9B08     		lsrs	r3, r3, #2
+ 1247 000c 09D0     		beq	.L238
+ 1248 000e 0132     		adds	r2, r2, #1
+ 1249 0010 00EB0230 		add	r0, r0, r2, lsl #12
+ 1250 0014 01EB8303 		add	r3, r1, r3, lsl #2
+ 1251              	.L239:
+ 1252 0018 51F8042B 		ldr	r2, [r1], #4	@ unaligned
+ 1253 001c 0260     		str	r2, [r0]
+ 1254 001e 8B42     		cmp	r3, r1
+ 1255 0020 FAD1     		bne	.L239
+ 1256              	.L238:
+ 1257 0022 0020     		movs	r0, #0
+ 1258 0024 5DF8044B 		ldr	r4, [sp], #4
+ 1259 0028 7047     		bx	lr
+ 1261 002a 00BF     		.section	.text.USB_ReadPacket,"ax",%progbits
+ 1262              		.align	1
+ 1263              		.p2align 2,,3
+ 1264              		.global	USB_ReadPacket
+ 1265              		.syntax unified
+ 1266              		.thumb
+ 1267              		.thumb_func
+ 1268              		.fpu fpv4-sp-d16
+ 1270              	USB_ReadPacket:
+ 1271              		@ args = 0, pretend = 0, frame = 0
+ 1272              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1273              		@ link register save eliminated.
+ 1274 0000 0332     		adds	r2, r2, #3
+ 1275 0002 9208     		lsrs	r2, r2, #2
+ 1276 0004 0CD0     		beq	.L248
+ 1277 0006 10B4     		push	{r4}
+ 1278 0008 00F58054 		add	r4, r0, #4096
+ 1279 000c 01EB8200 		add	r0, r1, r2, lsl #2
+ 1280              	.L247:
+ 1281 0010 2368     		ldr	r3, [r4]
+ 1282 0012 41F8043B 		str	r3, [r1], #4	@ unaligned
+ 1283 0016 8842     		cmp	r0, r1
+ 1284 0018 FAD1     		bne	.L247
+ 1285 001a 5DF8044B 		ldr	r4, [sp], #4
+ 1286 001e 7047     		bx	lr
+ 1287              	.L248:
+ 1288 0020 0846     		mov	r0, r1
+ 1289 0022 7047     		bx	lr
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 23
+
+
+ 1291              		.section	.text.USB_EPSetStall,"ax",%progbits
+ 1292              		.align	1
+ 1293              		.p2align 2,,3
+ 1294              		.global	USB_EPSetStall
+ 1295              		.syntax unified
+ 1296              		.thumb
+ 1297              		.thumb_func
+ 1298              		.fpu fpv4-sp-d16
+ 1300              	USB_EPSetStall:
+ 1301              		@ args = 0, pretend = 0, frame = 0
+ 1302              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1303              		@ link register save eliminated.
+ 1304 0000 4A78     		ldrb	r2, [r1, #1]	@ zero_extendqisi2
+ 1305 0002 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 1306 0004 012A     		cmp	r2, #1
+ 1307 0006 00EB4310 		add	r0, r0, r3, lsl #5
+ 1308 000a 0CD0     		beq	.L265
+ 1309 000c D0F8002B 		ldr	r2, [r0, #2816]
+ 1310 0010 002A     		cmp	r2, #0
+ 1311 0012 00DB     		blt	.L258
+ 1312 0014 D3B9     		cbnz	r3, .L266
+ 1313              	.L258:
+ 1314 0016 D0F8003B 		ldr	r3, [r0, #2816]
+ 1315 001a 43F40013 		orr	r3, r3, #2097152
+ 1316 001e C0F8003B 		str	r3, [r0, #2816]
+ 1317 0022 0020     		movs	r0, #0
+ 1318 0024 7047     		bx	lr
+ 1319              	.L265:
+ 1320 0026 D0F80029 		ldr	r2, [r0, #2304]
+ 1321 002a 002A     		cmp	r2, #0
+ 1322 002c 06DB     		blt	.L256
+ 1323 002e 2BB1     		cbz	r3, .L256
+ 1324 0030 D0F80039 		ldr	r3, [r0, #2304]
+ 1325 0034 23F08043 		bic	r3, r3, #1073741824
+ 1326 0038 C0F80039 		str	r3, [r0, #2304]
+ 1327              	.L256:
+ 1328 003c D0F80039 		ldr	r3, [r0, #2304]
+ 1329 0040 43F40013 		orr	r3, r3, #2097152
+ 1330 0044 C0F80039 		str	r3, [r0, #2304]
+ 1331 0048 0020     		movs	r0, #0
+ 1332 004a 7047     		bx	lr
+ 1333              	.L266:
+ 1334 004c D0F8003B 		ldr	r3, [r0, #2816]
+ 1335 0050 23F08043 		bic	r3, r3, #1073741824
+ 1336 0054 C0F8003B 		str	r3, [r0, #2816]
+ 1337 0058 DDE7     		b	.L258
+ 1339 005a 00BF     		.section	.text.USB_EPClearStall,"ax",%progbits
+ 1340              		.align	1
+ 1341              		.p2align 2,,3
+ 1342              		.global	USB_EPClearStall
+ 1343              		.syntax unified
+ 1344              		.thumb
+ 1345              		.thumb_func
+ 1346              		.fpu fpv4-sp-d16
+ 1348              	USB_EPClearStall:
+ 1349              		@ args = 0, pretend = 0, frame = 0
+ 1350              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 24
+
+
+ 1351              		@ link register save eliminated.
+ 1352 0000 CB78     		ldrb	r3, [r1, #3]	@ zero_extendqisi2
+ 1353 0002 0A78     		ldrb	r2, [r1]	@ zero_extendqisi2
+ 1354 0004 4978     		ldrb	r1, [r1, #1]	@ zero_extendqisi2
+ 1355 0006 023B     		subs	r3, r3, #2
+ 1356 0008 0129     		cmp	r1, #1
+ 1357 000a DBB2     		uxtb	r3, r3
+ 1358 000c 00EB4210 		add	r0, r0, r2, lsl #5
+ 1359 0010 11D0     		beq	.L272
+ 1360 0012 D0F8002B 		ldr	r2, [r0, #2816]
+ 1361 0016 012B     		cmp	r3, #1
+ 1362 0018 22F40012 		bic	r2, r2, #2097152
+ 1363 001c C0F8002B 		str	r2, [r0, #2816]
+ 1364 0020 01D9     		bls	.L273
+ 1365              	.L270:
+ 1366 0022 0020     		movs	r0, #0
+ 1367 0024 7047     		bx	lr
+ 1368              	.L273:
+ 1369 0026 D0F8003B 		ldr	r3, [r0, #2816]
+ 1370 002a 43F08053 		orr	r3, r3, #268435456
+ 1371 002e C0F8003B 		str	r3, [r0, #2816]
+ 1372 0032 0020     		movs	r0, #0
+ 1373 0034 7047     		bx	lr
+ 1374              	.L272:
+ 1375 0036 D0F80029 		ldr	r2, [r0, #2304]
+ 1376 003a 012B     		cmp	r3, #1
+ 1377 003c 22F40012 		bic	r2, r2, #2097152
+ 1378 0040 C0F80029 		str	r2, [r0, #2304]
+ 1379 0044 EDD8     		bhi	.L270
+ 1380 0046 D0F80039 		ldr	r3, [r0, #2304]
+ 1381 004a 43F08053 		orr	r3, r3, #268435456
+ 1382 004e C0F80039 		str	r3, [r0, #2304]
+ 1383 0052 0020     		movs	r0, #0
+ 1384 0054 7047     		bx	lr
+ 1386 0056 00BF     		.section	.text.USB_StopDevice,"ax",%progbits
+ 1387              		.align	1
+ 1388              		.p2align 2,,3
+ 1389              		.global	USB_StopDevice
+ 1390              		.syntax unified
+ 1391              		.thumb
+ 1392              		.thumb_func
+ 1393              		.fpu fpv4-sp-d16
+ 1395              	USB_StopDevice:
+ 1396              		@ args = 0, pretend = 0, frame = 0
+ 1397              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1398              		@ link register save eliminated.
+ 1399 0000 30B4     		push	{r4, r5}
+ 1400 0002 4FF67F33 		movw	r3, #64383
+ 1401 0006 0021     		movs	r1, #0
+ 1402 0008 1024     		movs	r4, #16
+ 1403 000a C0F80839 		str	r3, [r0, #2312]
+ 1404 000e C0F8083B 		str	r3, [r0, #2824]
+ 1405 0012 C0F82839 		str	r3, [r0, #2344]
+ 1406 0016 C0F8283B 		str	r3, [r0, #2856]
+ 1407 001a C0F84839 		str	r3, [r0, #2376]
+ 1408 001e C0F8483B 		str	r3, [r0, #2888]
+ 1409 0022 C0F86839 		str	r3, [r0, #2408]
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 25
+
+
+ 1410 0026 C0F8683B 		str	r3, [r0, #2920]
+ 1411 002a C0F88839 		str	r3, [r0, #2440]
+ 1412 002e C0F8883B 		str	r3, [r0, #2952]
+ 1413 0032 C0F8A839 		str	r3, [r0, #2472]
+ 1414 0036 C0F8A83B 		str	r3, [r0, #2984]
+ 1415 003a C0F8C839 		str	r3, [r0, #2504]
+ 1416 003e C0F8C83B 		str	r3, [r0, #3016]
+ 1417 0042 C0F8E839 		str	r3, [r0, #2536]
+ 1418 0046 C0F8E83B 		str	r3, [r0, #3048]
+ 1419 004a C0F8083A 		str	r3, [r0, #2568]
+ 1420 004e C0F8083C 		str	r3, [r0, #3080]
+ 1421 0052 C0F8283A 		str	r3, [r0, #2600]
+ 1422 0056 C0F8283C 		str	r3, [r0, #3112]
+ 1423 005a C0F8483A 		str	r3, [r0, #2632]
+ 1424 005e C0F8483C 		str	r3, [r0, #3144]
+ 1425 0062 C0F8683A 		str	r3, [r0, #2664]
+ 1426 0066 C0F8683C 		str	r3, [r0, #3176]
+ 1427 006a C0F8883A 		str	r3, [r0, #2696]
+ 1428 006e C0F8883C 		str	r3, [r0, #3208]
+ 1429 0072 C0F8A83A 		str	r3, [r0, #2728]
+ 1430 0076 C0F8A83C 		str	r3, [r0, #3240]
+ 1431 007a C0F8C83A 		str	r3, [r0, #2760]
+ 1432 007e C0F8C83C 		str	r3, [r0, #3272]
+ 1433 0082 C0F81018 		str	r1, [r0, #2064]
+ 1434 0086 0E4B     		ldr	r3, .L290
+ 1435 0088 C0F81418 		str	r1, [r0, #2068]
+ 1436 008c C0F81C18 		str	r1, [r0, #2076]
+ 1437 0090 0461     		str	r4, [r0, #16]
+ 1438 0092 01E0     		b	.L275
+ 1439              	.L277:
+ 1440 0094 013B     		subs	r3, r3, #1
+ 1441 0096 10D0     		beq	.L279
+ 1442              	.L275:
+ 1443 0098 0269     		ldr	r2, [r0, #16]
+ 1444 009a D206     		lsls	r2, r2, #27
+ 1445 009c FAD4     		bmi	.L277
+ 1446 009e 4FF48463 		mov	r3, #1056
+ 1447 00a2 0361     		str	r3, [r0, #16]
+ 1448 00a4 064A     		ldr	r2, .L290
+ 1449 00a6 01E0     		b	.L281
+ 1450              	.L280:
+ 1451 00a8 013A     		subs	r2, r2, #1
+ 1452 00aa 06D0     		beq	.L279
+ 1453              	.L281:
+ 1454 00ac 0369     		ldr	r3, [r0, #16]
+ 1455 00ae 13F02003 		ands	r3, r3, #32
+ 1456 00b2 F9D1     		bne	.L280
+ 1457 00b4 1846     		mov	r0, r3
+ 1458 00b6 30BC     		pop	{r4, r5}
+ 1459 00b8 7047     		bx	lr
+ 1460              	.L279:
+ 1461 00ba 0320     		movs	r0, #3
+ 1462 00bc 30BC     		pop	{r4, r5}
+ 1463 00be 7047     		bx	lr
+ 1464              	.L291:
+ 1465              		.align	2
+ 1466              	.L290:
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 26
+
+
+ 1467 00c0 400D0300 		.word	200000
+ 1469              		.section	.text.USB_SetDevAddress,"ax",%progbits
+ 1470              		.align	1
+ 1471              		.p2align 2,,3
+ 1472              		.global	USB_SetDevAddress
+ 1473              		.syntax unified
+ 1474              		.thumb
+ 1475              		.thumb_func
+ 1476              		.fpu fpv4-sp-d16
+ 1478              	USB_SetDevAddress:
+ 1479              		@ args = 0, pretend = 0, frame = 0
+ 1480              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1481              		@ link register save eliminated.
+ 1482 0000 D0F80038 		ldr	r3, [r0, #2048]
+ 1483 0004 23F4FE63 		bic	r3, r3, #2032
+ 1484 0008 C0F80038 		str	r3, [r0, #2048]
+ 1485 000c D0F80038 		ldr	r3, [r0, #2048]
+ 1486 0010 0901     		lsls	r1, r1, #4
+ 1487 0012 01F4FE61 		and	r1, r1, #2032
+ 1488 0016 1943     		orrs	r1, r1, r3
+ 1489 0018 C0F80018 		str	r1, [r0, #2048]
+ 1490 001c 0020     		movs	r0, #0
+ 1491 001e 7047     		bx	lr
+ 1493              		.section	.text.USB_DevConnect,"ax",%progbits
+ 1494              		.align	1
+ 1495              		.p2align 2,,3
+ 1496              		.global	USB_DevConnect
+ 1497              		.syntax unified
+ 1498              		.thumb
+ 1499              		.thumb_func
+ 1500              		.fpu fpv4-sp-d16
+ 1502              	USB_DevConnect:
+ 1503              		@ args = 0, pretend = 0, frame = 0
+ 1504              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1505 0000 00F50062 		add	r2, r0, #2048
+ 1506 0004 08B5     		push	{r3, lr}
+ 1507 0006 5368     		ldr	r3, [r2, #4]
+ 1508 0008 23F00203 		bic	r3, r3, #2
+ 1509 000c 0320     		movs	r0, #3
+ 1510 000e 5360     		str	r3, [r2, #4]
+ 1511 0010 FFF7FEFF 		bl	HAL_Delay
+ 1512 0014 0020     		movs	r0, #0
+ 1513 0016 08BD     		pop	{r3, pc}
+ 1515              		.section	.text.USB_DevDisconnect,"ax",%progbits
+ 1516              		.align	1
+ 1517              		.p2align 2,,3
+ 1518              		.global	USB_DevDisconnect
+ 1519              		.syntax unified
+ 1520              		.thumb
+ 1521              		.thumb_func
+ 1522              		.fpu fpv4-sp-d16
+ 1524              	USB_DevDisconnect:
+ 1525              		@ args = 0, pretend = 0, frame = 0
+ 1526              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1527 0000 00F50062 		add	r2, r0, #2048
+ 1528 0004 08B5     		push	{r3, lr}
+ 1529 0006 5368     		ldr	r3, [r2, #4]
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 27
+
+
+ 1530 0008 43F00203 		orr	r3, r3, #2
+ 1531 000c 0320     		movs	r0, #3
+ 1532 000e 5360     		str	r3, [r2, #4]
+ 1533 0010 FFF7FEFF 		bl	HAL_Delay
+ 1534 0014 0020     		movs	r0, #0
+ 1535 0016 08BD     		pop	{r3, pc}
+ 1537              		.section	.text.USB_ReadInterrupts,"ax",%progbits
+ 1538              		.align	1
+ 1539              		.p2align 2,,3
+ 1540              		.global	USB_ReadInterrupts
+ 1541              		.syntax unified
+ 1542              		.thumb
+ 1543              		.thumb_func
+ 1544              		.fpu fpv4-sp-d16
+ 1546              	USB_ReadInterrupts:
+ 1547              		@ args = 0, pretend = 0, frame = 0
+ 1548              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1549              		@ link register save eliminated.
+ 1550 0000 4269     		ldr	r2, [r0, #20]
+ 1551 0002 8069     		ldr	r0, [r0, #24]
+ 1552 0004 1040     		ands	r0, r0, r2
+ 1553 0006 7047     		bx	lr
+ 1555              		.section	.text.USB_ReadDevAllOutEpInterrupt,"ax",%progbits
+ 1556              		.align	1
+ 1557              		.p2align 2,,3
+ 1558              		.global	USB_ReadDevAllOutEpInterrupt
+ 1559              		.syntax unified
+ 1560              		.thumb
+ 1561              		.thumb_func
+ 1562              		.fpu fpv4-sp-d16
+ 1564              	USB_ReadDevAllOutEpInterrupt:
+ 1565              		@ args = 0, pretend = 0, frame = 0
+ 1566              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1567              		@ link register save eliminated.
+ 1568 0000 D0F81838 		ldr	r3, [r0, #2072]
+ 1569 0004 00F50060 		add	r0, r0, #2048
+ 1570 0008 C069     		ldr	r0, [r0, #28]
+ 1571 000a 1840     		ands	r0, r0, r3
+ 1572 000c 000C     		lsrs	r0, r0, #16
+ 1573 000e 7047     		bx	lr
+ 1575              		.section	.text.USB_ReadDevAllInEpInterrupt,"ax",%progbits
+ 1576              		.align	1
+ 1577              		.p2align 2,,3
+ 1578              		.global	USB_ReadDevAllInEpInterrupt
+ 1579              		.syntax unified
+ 1580              		.thumb
+ 1581              		.thumb_func
+ 1582              		.fpu fpv4-sp-d16
+ 1584              	USB_ReadDevAllInEpInterrupt:
+ 1585              		@ args = 0, pretend = 0, frame = 0
+ 1586              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1587              		@ link register save eliminated.
+ 1588 0000 D0F81838 		ldr	r3, [r0, #2072]
+ 1589 0004 00F50060 		add	r0, r0, #2048
+ 1590 0008 C069     		ldr	r0, [r0, #28]
+ 1591 000a 1840     		ands	r0, r0, r3
+ 1592 000c 80B2     		uxth	r0, r0
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 28
+
+
+ 1593 000e 7047     		bx	lr
+ 1595              		.section	.text.USB_ReadDevOutEPInterrupt,"ax",%progbits
+ 1596              		.align	1
+ 1597              		.p2align 2,,3
+ 1598              		.global	USB_ReadDevOutEPInterrupt
+ 1599              		.syntax unified
+ 1600              		.thumb
+ 1601              		.thumb_func
+ 1602              		.fpu fpv4-sp-d16
+ 1604              	USB_ReadDevOutEPInterrupt:
+ 1605              		@ args = 0, pretend = 0, frame = 0
+ 1606              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1607              		@ link register save eliminated.
+ 1608 0000 00EB4111 		add	r1, r0, r1, lsl #5
+ 1609 0004 00F50060 		add	r0, r0, #2048
+ 1610 0008 D1F8082B 		ldr	r2, [r1, #2824]
+ 1611 000c 4069     		ldr	r0, [r0, #20]
+ 1612 000e 1040     		ands	r0, r0, r2
+ 1613 0010 7047     		bx	lr
+ 1615 0012 00BF     		.section	.text.USB_ReadDevInEPInterrupt,"ax",%progbits
+ 1616              		.align	1
+ 1617              		.p2align 2,,3
+ 1618              		.global	USB_ReadDevInEPInterrupt
+ 1619              		.syntax unified
+ 1620              		.thumb
+ 1621              		.thumb_func
+ 1622              		.fpu fpv4-sp-d16
+ 1624              	USB_ReadDevInEPInterrupt:
+ 1625              		@ args = 0, pretend = 0, frame = 0
+ 1626              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1627              		@ link register save eliminated.
+ 1628 0000 10B4     		push	{r4}
+ 1629 0002 D0F81048 		ldr	r4, [r0, #2064]
+ 1630 0006 D0F83438 		ldr	r3, [r0, #2100]
+ 1631 000a 00EB4110 		add	r0, r0, r1, lsl #5
+ 1632 000e 01F00F01 		and	r1, r1, #15
+ 1633 0012 00F51060 		add	r0, r0, #2304
+ 1634 0016 CB40     		lsrs	r3, r3, r1
+ 1635 0018 DB01     		lsls	r3, r3, #7
+ 1636 001a DBB2     		uxtb	r3, r3
+ 1637 001c 8068     		ldr	r0, [r0, #8]
+ 1638 001e 2343     		orrs	r3, r3, r4
+ 1639 0020 1840     		ands	r0, r0, r3
+ 1640 0022 5DF8044B 		ldr	r4, [sp], #4
+ 1641 0026 7047     		bx	lr
+ 1643              		.section	.text.USB_ClearInterrupts,"ax",%progbits
+ 1644              		.align	1
+ 1645              		.p2align 2,,3
+ 1646              		.global	USB_ClearInterrupts
+ 1647              		.syntax unified
+ 1648              		.thumb
+ 1649              		.thumb_func
+ 1650              		.fpu fpv4-sp-d16
+ 1652              	USB_ClearInterrupts:
+ 1653              		@ args = 0, pretend = 0, frame = 0
+ 1654              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1655              		@ link register save eliminated.
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 29
+
+
+ 1656 0000 4369     		ldr	r3, [r0, #20]
+ 1657 0002 1943     		orrs	r1, r1, r3
+ 1658 0004 4161     		str	r1, [r0, #20]
+ 1659 0006 7047     		bx	lr
+ 1661              		.section	.text.USB_GetMode,"ax",%progbits
+ 1662              		.align	1
+ 1663              		.p2align 2,,3
+ 1664              		.global	USB_GetMode
+ 1665              		.syntax unified
+ 1666              		.thumb
+ 1667              		.thumb_func
+ 1668              		.fpu fpv4-sp-d16
+ 1670              	USB_GetMode:
+ 1671              		@ args = 0, pretend = 0, frame = 0
+ 1672              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1673              		@ link register save eliminated.
+ 1674 0000 4069     		ldr	r0, [r0, #20]
+ 1675 0002 00F00100 		and	r0, r0, #1
+ 1676 0006 7047     		bx	lr
+ 1678              		.section	.text.USB_ActivateSetup,"ax",%progbits
+ 1679              		.align	1
+ 1680              		.p2align 2,,3
+ 1681              		.global	USB_ActivateSetup
+ 1682              		.syntax unified
+ 1683              		.thumb
+ 1684              		.thumb_func
+ 1685              		.fpu fpv4-sp-d16
+ 1687              	USB_ActivateSetup:
+ 1688              		@ args = 0, pretend = 0, frame = 0
+ 1689              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1690              		@ link register save eliminated.
+ 1691 0000 D0F80039 		ldr	r3, [r0, #2304]
+ 1692 0004 23F4FF63 		bic	r3, r3, #2040
+ 1693 0008 23F00703 		bic	r3, r3, #7
+ 1694 000c 00F50062 		add	r2, r0, #2048
+ 1695 0010 C0F80039 		str	r3, [r0, #2304]
+ 1696 0014 9368     		ldr	r3, [r2, #8]
+ 1697 0016 03F00603 		and	r3, r3, #6
+ 1698 001a 042B     		cmp	r3, #4
+ 1699 001c 05D1     		bne	.L306
+ 1700 001e D0F80039 		ldr	r3, [r0, #2304]
+ 1701 0022 43F00303 		orr	r3, r3, #3
+ 1702 0026 C0F80039 		str	r3, [r0, #2304]
+ 1703              	.L306:
+ 1704 002a 5368     		ldr	r3, [r2, #4]
+ 1705 002c 43F48073 		orr	r3, r3, #256
+ 1706 0030 5360     		str	r3, [r2, #4]
+ 1707 0032 0020     		movs	r0, #0
+ 1708 0034 7047     		bx	lr
+ 1710 0036 00BF     		.section	.text.USB_EP0_OutStart,"ax",%progbits
+ 1711              		.align	1
+ 1712              		.p2align 2,,3
+ 1713              		.global	USB_EP0_OutStart
+ 1714              		.syntax unified
+ 1715              		.thumb
+ 1716              		.thumb_func
+ 1717              		.fpu fpv4-sp-d16
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 30
+
+
+ 1719              	USB_EP0_OutStart:
+ 1720              		@ args = 0, pretend = 0, frame = 0
+ 1721              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1722              		@ link register save eliminated.
+ 1723 0000 30B4     		push	{r4, r5}
+ 1724 0002 124C     		ldr	r4, .L312
+ 1725 0004 056C     		ldr	r5, [r0, #64]
+ 1726 0006 A542     		cmp	r5, r4
+ 1727 0008 00F53063 		add	r3, r0, #2816
+ 1728 000c 03D9     		bls	.L308
+ 1729 000e D0F8004B 		ldr	r4, [r0, #2816]
+ 1730 0012 002C     		cmp	r4, #0
+ 1731 0014 16DB     		blt	.L309
+ 1732              	.L308:
+ 1733 0016 0024     		movs	r4, #0
+ 1734 0018 1C61     		str	r4, [r3, #16]
+ 1735 001a 1C69     		ldr	r4, [r3, #16]
+ 1736 001c 44F40024 		orr	r4, r4, #524288
+ 1737 0020 1C61     		str	r4, [r3, #16]
+ 1738 0022 1C69     		ldr	r4, [r3, #16]
+ 1739 0024 44F01804 		orr	r4, r4, #24
+ 1740 0028 1C61     		str	r4, [r3, #16]
+ 1741 002a 1C69     		ldr	r4, [r3, #16]
+ 1742 002c 0129     		cmp	r1, #1
+ 1743 002e 44F0C044 		orr	r4, r4, #1610612736
+ 1744 0032 1C61     		str	r4, [r3, #16]
+ 1745 0034 06D1     		bne	.L309
+ 1746 0036 5A61     		str	r2, [r3, #20]
+ 1747 0038 D0F8003B 		ldr	r3, [r0, #2816]
+ 1748 003c 43F08023 		orr	r3, r3, #-2147450880
+ 1749 0040 C0F8003B 		str	r3, [r0, #2816]
+ 1750              	.L309:
+ 1751 0044 0020     		movs	r0, #0
+ 1752 0046 30BC     		pop	{r4, r5}
+ 1753 0048 7047     		bx	lr
+ 1754              	.L313:
+ 1755 004a 00BF     		.align	2
+ 1756              	.L312:
+ 1757 004c 0A30544F 		.word	1330917386
+ 1759              		.section	.text.USB_HostInit,"ax",%progbits
+ 1760              		.align	1
+ 1761              		.p2align 2,,3
+ 1762              		.global	USB_HostInit
+ 1763              		.syntax unified
+ 1764              		.thumb
+ 1765              		.thumb_func
+ 1766              		.fpu fpv4-sp-d16
+ 1768              	USB_HostInit:
+ 1769              		@ args = 56, pretend = 16, frame = 8
+ 1770              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1771 0000 84B0     		sub	sp, sp, #16
+ 1772 0002 30B5     		push	{r4, r5, lr}
+ 1773 0004 0446     		mov	r4, r0
+ 1774 0006 0020     		movs	r0, #0
+ 1775 0008 C4F8000E 		str	r0, [r4, #3584]
+ 1776 000c A06B     		ldr	r0, [r4, #56]
+ 1777 000e 40F40010 		orr	r0, r0, #2097152
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 31
+
+
+ 1778 0012 A063     		str	r0, [r4, #56]
+ 1779 0014 A06B     		ldr	r0, [r4, #56]
+ 1780 0016 20F40020 		bic	r0, r0, #524288
+ 1781 001a A063     		str	r0, [r4, #56]
+ 1782 001c A06B     		ldr	r0, [r4, #56]
+ 1783 001e 83B0     		sub	sp, sp, #12
+ 1784 0020 07AD     		add	r5, sp, #28
+ 1785 0022 20F48020 		bic	r0, r0, #262144
+ 1786 0026 85E80E00 		stm	r5, {r1, r2, r3}
+ 1787 002a A063     		str	r0, [r4, #56]
+ 1788 002c E36B     		ldr	r3, [r4, #60]
+ 1789 002e 0899     		ldr	r1, [sp, #32]
+ 1790 0030 DB05     		lsls	r3, r3, #23
+ 1791 0032 5DD5     		bpl	.L315
+ 1792 0034 099B     		ldr	r3, [sp, #36]
+ 1793 0036 032B     		cmp	r3, #3
+ 1794 0038 D4F80034 		ldr	r3, [r4, #1024]
+ 1795 003c 64D0     		beq	.L343
+ 1796              	.L342:
+ 1797 003e 23F00403 		bic	r3, r3, #4
+ 1798 0042 C4F80034 		str	r3, [r4, #1024]
+ 1799              	.L317:
+ 1800 0046 4FF48463 		mov	r3, #1056
+ 1801 004a 2361     		str	r3, [r4, #16]
+ 1802 004c 314B     		ldr	r3, .L345
+ 1803 004e 01E0     		b	.L318
+ 1804              	.L320:
+ 1805 0050 013B     		subs	r3, r3, #1
+ 1806 0052 02D0     		beq	.L319
+ 1807              	.L318:
+ 1808 0054 2269     		ldr	r2, [r4, #16]
+ 1809 0056 9506     		lsls	r5, r2, #26
+ 1810 0058 FAD4     		bmi	.L320
+ 1811              	.L319:
+ 1812 005a 1023     		movs	r3, #16
+ 1813 005c 2361     		str	r3, [r4, #16]
+ 1814 005e 2D4B     		ldr	r3, .L345
+ 1815 0060 01E0     		b	.L321
+ 1816              	.L323:
+ 1817 0062 013B     		subs	r3, r3, #1
+ 1818 0064 02D0     		beq	.L322
+ 1819              	.L321:
+ 1820 0066 2269     		ldr	r2, [r4, #16]
+ 1821 0068 D006     		lsls	r0, r2, #27
+ 1822 006a FAD4     		bmi	.L323
+ 1823              	.L322:
+ 1824 006c 61B1     		cbz	r1, .L328
+ 1825 006e 0022     		movs	r2, #0
+ 1826 0070 1546     		mov	r5, r2
+ 1827 0072 04F5A063 		add	r3, r4, #1280
+ 1828 0076 4FF0FF30 		mov	r0, #-1
+ 1829              	.L327:
+ 1830 007a 0132     		adds	r2, r2, #1
+ 1831 007c 8A42     		cmp	r2, r1
+ 1832 007e 9860     		str	r0, [r3, #8]
+ 1833 0080 DD60     		str	r5, [r3, #12]
+ 1834 0082 03F12003 		add	r3, r3, #32
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 32
+
+
+ 1835 0086 F8D1     		bne	.L327
+ 1836              	.L328:
+ 1837 0088 0023     		movs	r3, #0
+ 1838 008a 0193     		str	r3, [sp, #4]
+ 1839 008c D4F84034 		ldr	r3, [r4, #1088]
+ 1840 0090 0193     		str	r3, [sp, #4]
+ 1841 0092 019B     		ldr	r3, [sp, #4]
+ 1842 0094 23F02E03 		bic	r3, r3, #46
+ 1843 0098 0193     		str	r3, [sp, #4]
+ 1844 009a 019B     		ldr	r3, [sp, #4]
+ 1845 009c DA04     		lsls	r2, r3, #19
+ 1846 009e 04D4     		bmi	.L326
+ 1847 00a0 019B     		ldr	r3, [sp, #4]
+ 1848 00a2 43F48053 		orr	r3, r3, #4096
+ 1849 00a6 C4F84034 		str	r3, [r4, #1088]
+ 1850              	.L326:
+ 1851 00aa C820     		movs	r0, #200
+ 1852 00ac 019B     		ldr	r3, [sp, #4]
+ 1853 00ae FFF7FEFF 		bl	HAL_Delay
+ 1854 00b2 4FF0FF33 		mov	r3, #-1
+ 1855 00b6 0022     		movs	r2, #0
+ 1856 00b8 A261     		str	r2, [r4, #24]
+ 1857 00ba 6361     		str	r3, [r4, #20]
+ 1858 00bc E36B     		ldr	r3, [r4, #60]
+ 1859 00be DB05     		lsls	r3, r3, #23
+ 1860 00c0 19D4     		bmi	.L344
+ 1861 00c2 8021     		movs	r1, #128
+ 1862 00c4 144A     		ldr	r2, .L345+4
+ 1863 00c6 154B     		ldr	r3, .L345+8
+ 1864 00c8 6162     		str	r1, [r4, #36]
+ 1865 00ca A262     		str	r2, [r4, #40]
+ 1866 00cc C4F80031 		str	r3, [r4, #256]
+ 1867              	.L330:
+ 1868 00d0 0A9B     		ldr	r3, [sp, #40]
+ 1869 00d2 1BB9     		cbnz	r3, .L331
+ 1870 00d4 A369     		ldr	r3, [r4, #24]
+ 1871 00d6 43F01003 		orr	r3, r3, #16
+ 1872 00da A361     		str	r3, [r4, #24]
+ 1873              	.L331:
+ 1874 00dc A269     		ldr	r2, [r4, #24]
+ 1875 00de 104B     		ldr	r3, .L345+12
+ 1876 00e0 0020     		movs	r0, #0
+ 1877 00e2 1343     		orrs	r3, r3, r2
+ 1878 00e4 A361     		str	r3, [r4, #24]
+ 1879 00e6 03B0     		add	sp, sp, #12
+ 1880              		@ sp needed
+ 1881 00e8 BDE83040 		pop	{r4, r5, lr}
+ 1882 00ec 04B0     		add	sp, sp, #16
+ 1883 00ee 7047     		bx	lr
+ 1884              	.L315:
+ 1885 00f0 D4F80034 		ldr	r3, [r4, #1024]
+ 1886 00f4 A3E7     		b	.L342
+ 1887              	.L344:
+ 1888 00f6 4FF40071 		mov	r1, #512
+ 1889 00fa 0A4A     		ldr	r2, .L345+16
+ 1890 00fc 0A4B     		ldr	r3, .L345+20
+ 1891 00fe 6162     		str	r1, [r4, #36]
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 33
+
+
+ 1892 0100 A262     		str	r2, [r4, #40]
+ 1893 0102 C4F80031 		str	r3, [r4, #256]
+ 1894 0106 E3E7     		b	.L330
+ 1895              	.L343:
+ 1896 0108 43F00403 		orr	r3, r3, #4
+ 1897 010c C4F80034 		str	r3, [r4, #1024]
+ 1898 0110 99E7     		b	.L317
+ 1899              	.L346:
+ 1900 0112 00BF     		.align	2
+ 1901              	.L345:
+ 1902 0114 400D0300 		.word	200000
+ 1903 0118 80006000 		.word	6291584
+ 1904 011c E0004000 		.word	4194528
+ 1905 0120 080020A3 		.word	-1558183928
+ 1906 0124 00020001 		.word	16777728
+ 1907 0128 0003E000 		.word	14680832
+ 1909              		.section	.text.USB_InitFSLSPClkSel,"ax",%progbits
+ 1910              		.align	1
+ 1911              		.p2align 2,,3
+ 1912              		.global	USB_InitFSLSPClkSel
+ 1913              		.syntax unified
+ 1914              		.thumb
+ 1915              		.thumb_func
+ 1916              		.fpu fpv4-sp-d16
+ 1918              	USB_InitFSLSPClkSel:
+ 1919              		@ args = 0, pretend = 0, frame = 0
+ 1920              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1921              		@ link register save eliminated.
+ 1922 0000 D0F80034 		ldr	r3, [r0, #1024]
+ 1923 0004 23F00303 		bic	r3, r3, #3
+ 1924 0008 C0F80034 		str	r3, [r0, #1024]
+ 1925 000c D0F80024 		ldr	r2, [r0, #1024]
+ 1926 0010 01F00303 		and	r3, r1, #3
+ 1927 0014 1343     		orrs	r3, r3, r2
+ 1928 0016 0129     		cmp	r1, #1
+ 1929 0018 C0F80034 		str	r3, [r0, #1024]
+ 1930 001c 00F58060 		add	r0, r0, #1024
+ 1931 0020 06D0     		beq	.L350
+ 1932 0022 0229     		cmp	r1, #2
+ 1933 0024 04BF     		itt	eq
+ 1934 0026 41F27073 		movweq	r3, #6000
+ 1935 002a 4360     		streq	r3, [r0, #4]
+ 1936 002c 0020     		movs	r0, #0
+ 1937 002e 7047     		bx	lr
+ 1938              	.L350:
+ 1939 0030 4BF68033 		movw	r3, #48000
+ 1940 0034 4360     		str	r3, [r0, #4]
+ 1941 0036 0020     		movs	r0, #0
+ 1942 0038 7047     		bx	lr
+ 1944 003a 00BF     		.section	.text.USB_ResetPort,"ax",%progbits
+ 1945              		.align	1
+ 1946              		.p2align 2,,3
+ 1947              		.global	USB_ResetPort
+ 1948              		.syntax unified
+ 1949              		.thumb
+ 1950              		.thumb_func
+ 1951              		.fpu fpv4-sp-d16
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 34
+
+
+ 1953              	USB_ResetPort:
+ 1954              		@ args = 0, pretend = 0, frame = 8
+ 1955              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1956 0000 30B5     		push	{r4, r5, lr}
+ 1957 0002 83B0     		sub	sp, sp, #12
+ 1958 0004 0025     		movs	r5, #0
+ 1959 0006 0195     		str	r5, [sp, #4]
+ 1960 0008 D0F84034 		ldr	r3, [r0, #1088]
+ 1961 000c 0193     		str	r3, [sp, #4]
+ 1962 000e 019B     		ldr	r3, [sp, #4]
+ 1963 0010 23F02E03 		bic	r3, r3, #46
+ 1964 0014 0193     		str	r3, [sp, #4]
+ 1965 0016 019B     		ldr	r3, [sp, #4]
+ 1966 0018 43F48073 		orr	r3, r3, #256
+ 1967 001c 0446     		mov	r4, r0
+ 1968 001e C0F84034 		str	r3, [r0, #1088]
+ 1969 0022 6420     		movs	r0, #100
+ 1970 0024 FFF7FEFF 		bl	HAL_Delay
+ 1971 0028 019B     		ldr	r3, [sp, #4]
+ 1972 002a 23F48073 		bic	r3, r3, #256
+ 1973 002e C4F84034 		str	r3, [r4, #1088]
+ 1974 0032 0A20     		movs	r0, #10
+ 1975 0034 FFF7FEFF 		bl	HAL_Delay
+ 1976 0038 2846     		mov	r0, r5
+ 1977 003a 03B0     		add	sp, sp, #12
+ 1978              		@ sp needed
+ 1979 003c 30BD     		pop	{r4, r5, pc}
+ 1981 003e 00BF     		.section	.text.USB_DriveVbus,"ax",%progbits
+ 1982              		.align	1
+ 1983              		.p2align 2,,3
+ 1984              		.global	USB_DriveVbus
+ 1985              		.syntax unified
+ 1986              		.thumb
+ 1987              		.thumb_func
+ 1988              		.fpu fpv4-sp-d16
+ 1990              	USB_DriveVbus:
+ 1991              		@ args = 0, pretend = 0, frame = 8
+ 1992              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1993              		@ link register save eliminated.
+ 1994 0000 82B0     		sub	sp, sp, #8
+ 1995 0002 0023     		movs	r3, #0
+ 1996 0004 0193     		str	r3, [sp, #4]
+ 1997 0006 D0F84034 		ldr	r3, [r0, #1088]
+ 1998 000a 0193     		str	r3, [sp, #4]
+ 1999 000c 019B     		ldr	r3, [sp, #4]
+ 2000 000e 23F02E03 		bic	r3, r3, #46
+ 2001 0012 0193     		str	r3, [sp, #4]
+ 2002 0014 019B     		ldr	r3, [sp, #4]
+ 2003 0016 13F4805F 		tst	r3, #4096
+ 2004 001a 019B     		ldr	r3, [sp, #4]
+ 2005 001c 01D1     		bne	.L354
+ 2006 001e 0129     		cmp	r1, #1
+ 2007 0020 0AD0     		beq	.L360
+ 2008              	.L354:
+ 2009 0022 DB04     		lsls	r3, r3, #19
+ 2010 0024 05D5     		bpl	.L355
+ 2011 0026 21B9     		cbnz	r1, .L355
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 35
+
+
+ 2012 0028 019B     		ldr	r3, [sp, #4]
+ 2013 002a 23F48053 		bic	r3, r3, #4096
+ 2014 002e C0F84034 		str	r3, [r0, #1088]
+ 2015              	.L355:
+ 2016 0032 0020     		movs	r0, #0
+ 2017 0034 02B0     		add	sp, sp, #8
+ 2018              		@ sp needed
+ 2019 0036 7047     		bx	lr
+ 2020              	.L360:
+ 2021 0038 43F48053 		orr	r3, r3, #4096
+ 2022 003c C0F84034 		str	r3, [r0, #1088]
+ 2023 0040 019B     		ldr	r3, [sp, #4]
+ 2024 0042 0020     		movs	r0, #0
+ 2025 0044 02B0     		add	sp, sp, #8
+ 2026              		@ sp needed
+ 2027 0046 7047     		bx	lr
+ 2029              		.section	.text.USB_GetHostSpeed,"ax",%progbits
+ 2030              		.align	1
+ 2031              		.p2align 2,,3
+ 2032              		.global	USB_GetHostSpeed
+ 2033              		.syntax unified
+ 2034              		.thumb
+ 2035              		.thumb_func
+ 2036              		.fpu fpv4-sp-d16
+ 2038              	USB_GetHostSpeed:
+ 2039              		@ args = 0, pretend = 0, frame = 8
+ 2040              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2041              		@ link register save eliminated.
+ 2042 0000 82B0     		sub	sp, sp, #8
+ 2043 0002 0023     		movs	r3, #0
+ 2044 0004 0193     		str	r3, [sp, #4]
+ 2045 0006 D0F84034 		ldr	r3, [r0, #1088]
+ 2046 000a 0193     		str	r3, [sp, #4]
+ 2047 000c 0198     		ldr	r0, [sp, #4]
+ 2048 000e C0F34140 		ubfx	r0, r0, #17, #2
+ 2049 0012 02B0     		add	sp, sp, #8
+ 2050              		@ sp needed
+ 2051 0014 7047     		bx	lr
+ 2053 0016 00BF     		.section	.text.USB_GetCurrentFrame,"ax",%progbits
+ 2054              		.align	1
+ 2055              		.p2align 2,,3
+ 2056              		.global	USB_GetCurrentFrame
+ 2057              		.syntax unified
+ 2058              		.thumb
+ 2059              		.thumb_func
+ 2060              		.fpu fpv4-sp-d16
+ 2062              	USB_GetCurrentFrame:
+ 2063              		@ args = 0, pretend = 0, frame = 0
+ 2064              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2065              		@ link register save eliminated.
+ 2066 0000 00F58060 		add	r0, r0, #1024
+ 2067 0004 8068     		ldr	r0, [r0, #8]
+ 2068 0006 80B2     		uxth	r0, r0
+ 2069 0008 7047     		bx	lr
+ 2071 000a 00BF     		.section	.text.USB_HC_Init,"ax",%progbits
+ 2072              		.align	1
+ 2073              		.p2align 2,,3
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 36
+
+
+ 2074              		.global	USB_HC_Init
+ 2075              		.syntax unified
+ 2076              		.thumb
+ 2077              		.thumb_func
+ 2078              		.fpu fpv4-sp-d16
+ 2080              	USB_HC_Init:
+ 2081              		@ args = 12, pretend = 0, frame = 0
+ 2082              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2083 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+ 2084 0004 00EB4115 		add	r5, r0, r1, lsl #5
+ 2085 0008 05F5A068 		add	r8, r5, #1280
+ 2086 000c 9DF82040 		ldrb	r4, [sp, #32]	@ zero_extendqisi2
+ 2087 0010 9DF81C60 		ldrb	r6, [sp, #28]	@ zero_extendqisi2
+ 2088 0014 BDF82470 		ldrh	r7, [sp, #36]
+ 2089 0018 4FF0010E 		mov	lr, #1
+ 2090 001c 4FF0FF3C 		mov	ip, #-1
+ 2091 0020 01F00F01 		and	r1, r1, #15
+ 2092 0024 0EFA01F1 		lsl	r1, lr, r1
+ 2093 0028 C8F808C0 		str	ip, [r8, #8]
+ 2094 002c 4FFA82FE 		sxtb	lr, r2
+ 2095 0030 00F5806C 		add	ip, r0, #1024
+ 2096 0034 032C     		cmp	r4, #3
+ 2097 0036 71D8     		bhi	.L365
+ 2098 0038 DFE804F0 		tbb	[pc, r4]
+ 2099              	.L367:
+ 2100 003c 49       		.byte	(.L368-.L367)/2
+ 2101 003d 3B       		.byte	(.L369-.L367)/2
+ 2102 003e 49       		.byte	(.L368-.L367)/2
+ 2103 003f 02       		.byte	(.L366-.L367)/2
+ 2104              		.p2align 1
+ 2105              	.L366:
+ 2106 0040 40F29D69 		movw	r9, #1693
+ 2107 0044 BEF1000F 		cmp	lr, #0
+ 2108 0048 C8F80C90 		str	r9, [r8, #12]
+ 2109 004c 52DB     		blt	.L384
+ 2110              	.L373:
+ 2111 004e DCF818E0 		ldr	lr, [ip, #24]
+ 2112 0052 4EEA0101 		orr	r1, lr, r1
+ 2113 0056 CCF81810 		str	r1, [ip, #24]
+ 2114 005a D0F818C0 		ldr	ip, [r0, #24]
+ 2115 005e 0021     		movs	r1, #0
+ 2116 0060 4CF0007C 		orr	ip, ip, #33554432
+ 2117 0064 C0F818C0 		str	ip, [r0, #24]
+ 2118 0068 0846     		mov	r0, r1
+ 2119              	.L374:
+ 2120 006a 9B05     		lsls	r3, r3, #22
+ 2121 006c C7F30A07 		ubfx	r7, r7, #0, #11
+ 2122 0070 D202     		lsls	r2, r2, #11
+ 2123 0072 03F0FE53 		and	r3, r3, #532676608
+ 2124 0076 3B43     		orrs	r3, r3, r7
+ 2125 0078 02F4F047 		and	r7, r2, #30720
+ 2126 007c A204     		lsls	r2, r4, #18
+ 2127 007e 02F44022 		and	r2, r2, #786432
+ 2128 0082 3B43     		orrs	r3, r3, r7
+ 2129 0084 022E     		cmp	r6, #2
+ 2130 0086 43EA0203 		orr	r3, r3, r2
+ 2131 008a 43EA0003 		orr	r3, r3, r0
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 37
+
+
+ 2132 008e 0CBF     		ite	eq
+ 2133 0090 4FF40032 		moveq	r2, #131072
+ 2134 0094 0022     		movne	r2, #0
+ 2135 0096 1343     		orrs	r3, r3, r2
+ 2136 0098 032C     		cmp	r4, #3
+ 2137 009a C5F80035 		str	r3, [r5, #1280]
+ 2138 009e 05D1     		bne	.L379
+ 2139 00a0 D5F80035 		ldr	r3, [r5, #1280]
+ 2140 00a4 43F00053 		orr	r3, r3, #536870912
+ 2141 00a8 C5F80035 		str	r3, [r5, #1280]
+ 2142              	.L379:
+ 2143 00ac 0846     		mov	r0, r1
+ 2144 00ae BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 2145              	.L369:
+ 2146 00b2 40F22529 		movw	r9, #549
+ 2147 00b6 BEF1000F 		cmp	lr, #0
+ 2148 00ba C8F80C90 		str	r9, [r8, #12]
+ 2149 00be C6DA     		bge	.L373
+ 2150 00c0 D8F80CE0 		ldr	lr, [r8, #12]
+ 2151 00c4 4EF4C07E 		orr	lr, lr, #384
+ 2152 00c8 C8F80CE0 		str	lr, [r8, #12]
+ 2153 00cc 18E0     		b	.L371
+ 2154              	.L368:
+ 2155 00ce 40F29D49 		movw	r9, #1181
+ 2156 00d2 BEF1000F 		cmp	lr, #0
+ 2157 00d6 C8F80C90 		str	r9, [r8, #12]
+ 2158 00da 0BDB     		blt	.L384
+ 2159 00dc D0F83CE0 		ldr	lr, [r0, #60]
+ 2160 00e0 1EF4807F 		tst	lr, #256
+ 2161 00e4 B3D0     		beq	.L373
+ 2162 00e6 D8F80CE0 		ldr	lr, [r8, #12]
+ 2163 00ea 4EF0600E 		orr	lr, lr, #96
+ 2164 00ee C8F80CE0 		str	lr, [r8, #12]
+ 2165 00f2 ACE7     		b	.L373
+ 2166              	.L384:
+ 2167 00f4 D8F80CE0 		ldr	lr, [r8, #12]
+ 2168 00f8 4EF4807E 		orr	lr, lr, #256
+ 2169 00fc C8F80CE0 		str	lr, [r8, #12]
+ 2170              	.L371:
+ 2171 0100 DCF818E0 		ldr	lr, [ip, #24]
+ 2172 0104 41EA0E01 		orr	r1, r1, lr
+ 2173 0108 CCF81810 		str	r1, [ip, #24]
+ 2174 010c 8169     		ldr	r1, [r0, #24]
+ 2175 010e 41F00071 		orr	r1, r1, #33554432
+ 2176 0112 8161     		str	r1, [r0, #24]
+ 2177 0114 0021     		movs	r1, #0
+ 2178 0116 4FF40040 		mov	r0, #32768
+ 2179 011a A6E7     		b	.L374
+ 2180              	.L365:
+ 2181 011c DCF81880 		ldr	r8, [ip, #24]
+ 2182 0120 48EA0101 		orr	r1, r8, r1
+ 2183 0124 CCF81810 		str	r1, [ip, #24]
+ 2184 0128 8169     		ldr	r1, [r0, #24]
+ 2185 012a BEF1000F 		cmp	lr, #0
+ 2186 012e 41F00071 		orr	r1, r1, #33554432
+ 2187 0132 8161     		str	r1, [r0, #24]
+ 2188 0134 B4BF     		ite	lt
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 38
+
+
+ 2189 0136 4FF40040 		movlt	r0, #32768
+ 2190 013a 0020     		movge	r0, #0
+ 2191 013c 0121     		movs	r1, #1
+ 2192 013e 94E7     		b	.L374
+ 2194              		.section	.text.USB_HC_StartXfer,"ax",%progbits
+ 2195              		.align	1
+ 2196              		.p2align 2,,3
+ 2197              		.global	USB_HC_StartXfer
+ 2198              		.syntax unified
+ 2199              		.thumb
+ 2200              		.thumb_func
+ 2201              		.fpu fpv4-sp-d16
+ 2203              	USB_HC_StartXfer:
+ 2204              		@ args = 0, pretend = 0, frame = 0
+ 2205              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2206 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 2207 0004 C36B     		ldr	r3, [r0, #60]
+ 2208 0006 4F78     		ldrb	r7, [r1, #1]	@ zero_extendqisi2
+ 2209 0008 DB05     		lsls	r3, r3, #23
+ 2210 000a 00EB4715 		add	r5, r0, r7, lsl #5
+ 2211 000e 05F5A06C 		add	ip, r5, #1280
+ 2212 0012 0DD5     		bpl	.L386
+ 2213 0014 0B79     		ldrb	r3, [r1, #4]	@ zero_extendqisi2
+ 2214 0016 5BB9     		cbnz	r3, .L386
+ 2215 0018 002A     		cmp	r2, #0
+ 2216 001a 00F08880 		beq	.L419
+ 2217 001e 012A     		cmp	r2, #1
+ 2218 0020 06D1     		bne	.L386
+ 2219 0022 DCF80C40 		ldr	r4, [ip, #12]
+ 2220 0026 24F06004 		bic	r4, r4, #96
+ 2221 002a CCF80C40 		str	r4, [ip, #12]
+ 2222 002e 4B71     		strb	r3, [r1, #5]
+ 2223              	.L386:
+ 2224 0030 0C69     		ldr	r4, [r1, #16]
+ 2225 0032 002C     		cmp	r4, #0
+ 2226 0034 4DD1     		bne	.L420
+ 2227 0036 4FF4002E 		mov	lr, #524288
+ 2228 003a 4FF00108 		mov	r8, #1
+ 2229              	.L389:
+ 2230 003e CE78     		ldrb	r6, [r1, #3]	@ zero_extendqisi2
+ 2231 0040 1EB1     		cbz	r6, .L391
+ 2232 0042 0C89     		ldrh	r4, [r1, #8]
+ 2233 0044 08FB04F4 		mul	r4, r8, r4
+ 2234 0048 0C61     		str	r4, [r1, #16]
+ 2235              	.L391:
+ 2236 004a 8B7A     		ldrb	r3, [r1, #10]	@ zero_extendqisi2
+ 2237 004c 5B07     		lsls	r3, r3, #29
+ 2238 004e 03F0C043 		and	r3, r3, #1610612736
+ 2239 0052 43EA0E03 		orr	r3, r3, lr
+ 2240 0056 C4F3120E 		ubfx	lr, r4, #0, #19
+ 2241 005a 43EA0E03 		orr	r3, r3, lr
+ 2242 005e CCF81030 		str	r3, [ip, #16]
+ 2243 0062 12B1     		cbz	r2, .L392
+ 2244 0064 CB68     		ldr	r3, [r1, #12]
+ 2245 0066 CCF81430 		str	r3, [ip, #20]
+ 2246              	.L392:
+ 2247 006a 00F5806E 		add	lr, r0, #1024
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 39
+
+
+ 2248 006e DEF80830 		ldr	r3, [lr, #8]
+ 2249 0072 D5F80085 		ldr	r8, [r5, #1280]
+ 2250 0076 DFF830C1 		ldr	ip, .L421+4
+ 2251 007a 28F00058 		bic	r8, r8, #536870912
+ 2252 007e C5F80085 		str	r8, [r5, #1280]
+ 2253 0082 DB43     		mvns	r3, r3
+ 2254 0084 D5F80085 		ldr	r8, [r5, #1280]
+ 2255 0088 5B07     		lsls	r3, r3, #29
+ 2256 008a 03F00053 		and	r3, r3, #536870912
+ 2257 008e 43EA0803 		orr	r3, r3, r8
+ 2258 0092 C5F80035 		str	r3, [r5, #1280]
+ 2259 0096 D5F80035 		ldr	r3, [r5, #1280]
+ 2260 009a CCF80030 		str	r3, [ip]
+ 2261 009e DCF80030 		ldr	r3, [ip]
+ 2262 00a2 23F08043 		bic	r3, r3, #1073741824
+ 2263 00a6 CCF80030 		str	r3, [ip]
+ 2264 00aa DCF80030 		ldr	r3, [ip]
+ 2265 00ae F6B1     		cbz	r6, .L393
+ 2266 00b0 43F40043 		orr	r3, r3, #32768
+ 2267 00b4 CCF80030 		str	r3, [ip]
+ 2268 00b8 DCF80030 		ldr	r3, [ip]
+ 2269 00bc 43F00043 		orr	r3, r3, #-2147483648
+ 2270 00c0 CCF80030 		str	r3, [ip]
+ 2271 00c4 DCF80030 		ldr	r3, [ip]
+ 2272 00c8 C5F80035 		str	r3, [r5, #1280]
+ 2273              	.L388:
+ 2274 00cc 0020     		movs	r0, #0
+ 2275 00ce BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 2276              	.L420:
+ 2277 00d2 0E89     		ldrh	r6, [r1, #8]
+ 2278 00d4 631E     		subs	r3, r4, #1
+ 2279 00d6 3344     		add	r3, r3, r6
+ 2280 00d8 B3FBF6F3 		udiv	r3, r3, r6
+ 2281 00dc 1FFA83FE 		uxth	lr, r3
+ 2282 00e0 BEF5807F 		cmp	lr, #256
+ 2283 00e4 1CD8     		bhi	.L390
+ 2284 00e6 F046     		mov	r8, lr
+ 2285 00e8 4FEAC34E 		lsl	lr, r3, #19
+ 2286 00ec A7E7     		b	.L389
+ 2287              	.L393:
+ 2288 00ee 23F40043 		bic	r3, r3, #32768
+ 2289 00f2 CCF80030 		str	r3, [ip]
+ 2290 00f6 DCF80030 		ldr	r3, [ip]
+ 2291 00fa 43F00043 		orr	r3, r3, #-2147483648
+ 2292 00fe CCF80030 		str	r3, [ip]
+ 2293 0102 DCF80030 		ldr	r3, [ip]
+ 2294 0106 C5F80035 		str	r3, [r5, #1280]
+ 2295 010a 002A     		cmp	r2, #0
+ 2296 010c DED1     		bne	.L388
+ 2297 010e 002C     		cmp	r4, #0
+ 2298 0110 DCD0     		beq	.L388
+ 2299 0112 CB79     		ldrb	r3, [r1, #7]	@ zero_extendqisi2
+ 2300 0114 032B     		cmp	r3, #3
+ 2301 0116 26D8     		bhi	.L396
+ 2302 0118 DFE803F0 		tbb	[pc, r3]
+ 2303              	.L398:
+ 2304 011c 38       		.byte	(.L399-.L398)/2
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 40
+
+
+ 2305 011d 19       		.byte	(.L397-.L398)/2
+ 2306 011e 38       		.byte	(.L399-.L398)/2
+ 2307 011f 19       		.byte	(.L397-.L398)/2
+ 2308              		.p2align 1
+ 2309              	.L390:
+ 2310 0120 3402     		lsls	r4, r6, #8
+ 2311 0122 0C61     		str	r4, [r1, #16]
+ 2312 0124 4FF0006E 		mov	lr, #134217728
+ 2313 0128 4FF48078 		mov	r8, #256
+ 2314 012c 87E7     		b	.L389
+ 2315              	.L419:
+ 2316 012e 4B79     		ldrb	r3, [r1, #5]	@ zero_extendqisi2
+ 2317 0130 012B     		cmp	r3, #1
+ 2318 0132 7FF47DAF 		bne	.L386
+ 2319 0136 1B4B     		ldr	r3, .L421
+ 2320 0138 CCF81030 		str	r3, [ip, #16]
+ 2321 013c D5F80035 		ldr	r3, [r5, #1280]
+ 2322 0140 23F08043 		bic	r3, r3, #1073741824
+ 2323 0144 43F00043 		orr	r3, r3, #-2147483648
+ 2324 0148 C5F80035 		str	r3, [r5, #1280]
+ 2325 014c BEE7     		b	.L388
+ 2326              	.L397:
+ 2327 014e DEF81020 		ldr	r2, [lr, #16]
+ 2328 0152 E31C     		adds	r3, r4, #3
+ 2329 0154 92B2     		uxth	r2, r2
+ 2330 0156 C3F38F03 		ubfx	r3, r3, #2, #16
+ 2331 015a 9A42     		cmp	r2, r3
+ 2332 015c 03D2     		bcs	.L396
+ 2333 015e 8369     		ldr	r3, [r0, #24]
+ 2334 0160 43F08063 		orr	r3, r3, #67108864
+ 2335 0164 8361     		str	r3, [r0, #24]
+ 2336              	.L396:
+ 2337 0166 A3B2     		uxth	r3, r4
+ 2338 0168 0333     		adds	r3, r3, #3
+ 2339 016a 9B08     		lsrs	r3, r3, #2
+ 2340 016c CA68     		ldr	r2, [r1, #12]
+ 2341 016e ADD0     		beq	.L388
+ 2342 0170 00EB0730 		add	r0, r0, r7, lsl #12
+ 2343 0174 00F58050 		add	r0, r0, #4096
+ 2344 0178 02EB8303 		add	r3, r2, r3, lsl #2
+ 2345              	.L400:
+ 2346 017c 52F8041B 		ldr	r1, [r2], #4	@ unaligned
+ 2347 0180 0160     		str	r1, [r0]
+ 2348 0182 9342     		cmp	r3, r2
+ 2349 0184 FAD1     		bne	.L400
+ 2350 0186 0020     		movs	r0, #0
+ 2351 0188 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 2352              	.L399:
+ 2353 018c C26A     		ldr	r2, [r0, #44]
+ 2354 018e E31C     		adds	r3, r4, #3
+ 2355 0190 92B2     		uxth	r2, r2
+ 2356 0192 C3F38F03 		ubfx	r3, r3, #2, #16
+ 2357 0196 9A42     		cmp	r2, r3
+ 2358 0198 E5D2     		bcs	.L396
+ 2359 019a 8369     		ldr	r3, [r0, #24]
+ 2360 019c 43F02003 		orr	r3, r3, #32
+ 2361 01a0 8361     		str	r3, [r0, #24]
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 41
+
+
+ 2362 01a2 E0E7     		b	.L396
+ 2363              	.L422:
+ 2364              		.align	2
+ 2365              	.L421:
+ 2366 01a4 00000880 		.word	-2146959360
+ 2367 01a8 00000000 		.word	.LANCHOR0
+ 2369              		.section	.text.USB_HC_ReadInterrupt,"ax",%progbits
+ 2370              		.align	1
+ 2371              		.p2align 2,,3
+ 2372              		.global	USB_HC_ReadInterrupt
+ 2373              		.syntax unified
+ 2374              		.thumb
+ 2375              		.thumb_func
+ 2376              		.fpu fpv4-sp-d16
+ 2378              	USB_HC_ReadInterrupt:
+ 2379              		@ args = 0, pretend = 0, frame = 0
+ 2380              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2381              		@ link register save eliminated.
+ 2382 0000 00F58060 		add	r0, r0, #1024
+ 2383 0004 4069     		ldr	r0, [r0, #20]
+ 2384 0006 80B2     		uxth	r0, r0
+ 2385 0008 7047     		bx	lr
+ 2387 000a 00BF     		.section	.text.USB_HC_Halt,"ax",%progbits
+ 2388              		.align	1
+ 2389              		.p2align 2,,3
+ 2390              		.global	USB_HC_Halt
+ 2391              		.syntax unified
+ 2392              		.thumb
+ 2393              		.thumb_func
+ 2394              		.fpu fpv4-sp-d16
+ 2396              	USB_HC_Halt:
+ 2397              		@ args = 0, pretend = 0, frame = 0
+ 2398              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2399              		@ link register save eliminated.
+ 2400 0000 00EB4111 		add	r1, r0, r1, lsl #5
+ 2401 0004 10B4     		push	{r4}
+ 2402 0006 D1F80035 		ldr	r3, [r1, #1280]
+ 2403 000a 13F4802F 		tst	r3, #262144
+ 2404 000e D1F80035 		ldr	r3, [r1, #1280]
+ 2405 0012 43F08043 		orr	r3, r3, #1073741824
+ 2406 0016 01F5A064 		add	r4, r1, #1280
+ 2407 001a C1F80035 		str	r3, [r1, #1280]
+ 2408 001e 22D0     		beq	.L440
+ 2409 0020 D0F81034 		ldr	r3, [r0, #1040]
+ 2410 0024 13F47F0F 		tst	r3, #16711680
+ 2411 0028 D1F80035 		ldr	r3, [r1, #1280]
+ 2412 002c 21D1     		bne	.L431
+ 2413 002e 23F00043 		bic	r3, r3, #-2147483648
+ 2414 0032 C1F80035 		str	r3, [r1, #1280]
+ 2415 0036 D1F80035 		ldr	r3, [r1, #1280]
+ 2416 003a 43F00043 		orr	r3, r3, #-2147483648
+ 2417 003e C1F80035 		str	r3, [r1, #1280]
+ 2418 0042 D1F80035 		ldr	r3, [r1, #1280]
+ 2419 0046 23F40043 		bic	r3, r3, #32768
+ 2420 004a C1F80035 		str	r3, [r1, #1280]
+ 2421 004e 4FF47A73 		mov	r3, #1000
+ 2422 0052 01E0     		b	.L432
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 42
+
+
+ 2423              	.L433:
+ 2424 0054 013B     		subs	r3, r3, #1
+ 2425 0056 10D0     		beq	.L428
+ 2426              	.L432:
+ 2427 0058 2268     		ldr	r2, [r4]
+ 2428 005a 002A     		cmp	r2, #0
+ 2429 005c FADB     		blt	.L433
+ 2430 005e 0020     		movs	r0, #0
+ 2431 0060 5DF8044B 		ldr	r4, [sp], #4
+ 2432 0064 7047     		bx	lr
+ 2433              	.L440:
+ 2434 0066 C36A     		ldr	r3, [r0, #44]
+ 2435 0068 13F47F0F 		tst	r3, #16711680
+ 2436 006c D1F80035 		ldr	r3, [r1, #1280]
+ 2437 0070 07D0     		beq	.L441
+ 2438              	.L431:
+ 2439 0072 43F00043 		orr	r3, r3, #-2147483648
+ 2440 0076 C1F80035 		str	r3, [r1, #1280]
+ 2441              	.L428:
+ 2442 007a 0020     		movs	r0, #0
+ 2443 007c 5DF8044B 		ldr	r4, [sp], #4
+ 2444 0080 7047     		bx	lr
+ 2445              	.L441:
+ 2446 0082 23F00043 		bic	r3, r3, #-2147483648
+ 2447 0086 C1F80035 		str	r3, [r1, #1280]
+ 2448 008a D1F80035 		ldr	r3, [r1, #1280]
+ 2449 008e 43F00043 		orr	r3, r3, #-2147483648
+ 2450 0092 C1F80035 		str	r3, [r1, #1280]
+ 2451 0096 D1F80035 		ldr	r3, [r1, #1280]
+ 2452 009a 23F40043 		bic	r3, r3, #32768
+ 2453 009e C1F80035 		str	r3, [r1, #1280]
+ 2454 00a2 4FF47A73 		mov	r3, #1000
+ 2455 00a6 01E0     		b	.L427
+ 2456              	.L429:
+ 2457 00a8 013B     		subs	r3, r3, #1
+ 2458 00aa E6D0     		beq	.L428
+ 2459              	.L427:
+ 2460 00ac 2268     		ldr	r2, [r4]
+ 2461 00ae 002A     		cmp	r2, #0
+ 2462 00b0 FADB     		blt	.L429
+ 2463 00b2 0020     		movs	r0, #0
+ 2464 00b4 5DF8044B 		ldr	r4, [sp], #4
+ 2465 00b8 7047     		bx	lr
+ 2467 00ba 00BF     		.section	.text.USB_DoPing,"ax",%progbits
+ 2468              		.align	1
+ 2469              		.p2align 2,,3
+ 2470              		.global	USB_DoPing
+ 2471              		.syntax unified
+ 2472              		.thumb
+ 2473              		.thumb_func
+ 2474              		.fpu fpv4-sp-d16
+ 2476              	USB_DoPing:
+ 2477              		@ args = 0, pretend = 0, frame = 0
+ 2478              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2479              		@ link register save eliminated.
+ 2480 0000 00EB4111 		add	r1, r0, r1, lsl #5
+ 2481 0004 064A     		ldr	r2, .L443
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 43
+
+
+ 2482 0006 C1F81025 		str	r2, [r1, #1296]
+ 2483 000a D1F80035 		ldr	r3, [r1, #1280]
+ 2484 000e 23F08043 		bic	r3, r3, #1073741824
+ 2485 0012 43F00043 		orr	r3, r3, #-2147483648
+ 2486 0016 C1F80035 		str	r3, [r1, #1280]
+ 2487 001a 0020     		movs	r0, #0
+ 2488 001c 7047     		bx	lr
+ 2489              	.L444:
+ 2490 001e 00BF     		.align	2
+ 2491              	.L443:
+ 2492 0020 00000880 		.word	-2146959360
+ 2494              		.section	.text.USB_StopHost,"ax",%progbits
+ 2495              		.align	1
+ 2496              		.p2align 2,,3
+ 2497              		.global	USB_StopHost
+ 2498              		.syntax unified
+ 2499              		.thumb
+ 2500              		.thumb_func
+ 2501              		.fpu fpv4-sp-d16
+ 2503              	USB_StopHost:
+ 2504              		@ args = 0, pretend = 0, frame = 0
+ 2505              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2506              		@ link register save eliminated.
+ 2507 0000 8268     		ldr	r2, [r0, #8]
+ 2508 0002 5D4B     		ldr	r3, .L468
+ 2509 0004 4FF48461 		mov	r1, #1056
+ 2510 0008 22F00102 		bic	r2, r2, #1
+ 2511 000c 10B4     		push	{r4}
+ 2512 000e 8260     		str	r2, [r0, #8]
+ 2513 0010 0161     		str	r1, [r0, #16]
+ 2514 0012 01E0     		b	.L446
+ 2515              	.L448:
+ 2516 0014 013B     		subs	r3, r3, #1
+ 2517 0016 02D0     		beq	.L447
+ 2518              	.L446:
+ 2519 0018 0269     		ldr	r2, [r0, #16]
+ 2520 001a 9106     		lsls	r1, r2, #26
+ 2521 001c FAD4     		bmi	.L448
+ 2522              	.L447:
+ 2523 001e 1023     		movs	r3, #16
+ 2524 0020 0361     		str	r3, [r0, #16]
+ 2525 0022 554B     		ldr	r3, .L468
+ 2526 0024 01E0     		b	.L449
+ 2527              	.L451:
+ 2528 0026 013B     		subs	r3, r3, #1
+ 2529 0028 02D0     		beq	.L450
+ 2530              	.L449:
+ 2531 002a 0269     		ldr	r2, [r0, #16]
+ 2532 002c D206     		lsls	r2, r2, #27
+ 2533 002e FAD4     		bmi	.L451
+ 2534              	.L450:
+ 2535 0030 D0F80035 		ldr	r3, [r0, #1280]
+ 2536 0034 23F08023 		bic	r3, r3, #-2147450880
+ 2537 0038 43F08043 		orr	r3, r3, #1073741824
+ 2538 003c C0F80035 		str	r3, [r0, #1280]
+ 2539 0040 D0F82035 		ldr	r3, [r0, #1312]
+ 2540 0044 23F08023 		bic	r3, r3, #-2147450880
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 44
+
+
+ 2541 0048 43F08043 		orr	r3, r3, #1073741824
+ 2542 004c C0F82035 		str	r3, [r0, #1312]
+ 2543 0050 D0F84035 		ldr	r3, [r0, #1344]
+ 2544 0054 23F08023 		bic	r3, r3, #-2147450880
+ 2545 0058 43F08043 		orr	r3, r3, #1073741824
+ 2546 005c C0F84035 		str	r3, [r0, #1344]
+ 2547 0060 D0F86035 		ldr	r3, [r0, #1376]
+ 2548 0064 23F08023 		bic	r3, r3, #-2147450880
+ 2549 0068 43F08043 		orr	r3, r3, #1073741824
+ 2550 006c C0F86035 		str	r3, [r0, #1376]
+ 2551 0070 D0F88035 		ldr	r3, [r0, #1408]
+ 2552 0074 23F08023 		bic	r3, r3, #-2147450880
+ 2553 0078 43F08043 		orr	r3, r3, #1073741824
+ 2554 007c C0F88035 		str	r3, [r0, #1408]
+ 2555 0080 D0F8A035 		ldr	r3, [r0, #1440]
+ 2556 0084 23F08023 		bic	r3, r3, #-2147450880
+ 2557 0088 43F08043 		orr	r3, r3, #1073741824
+ 2558 008c C0F8A035 		str	r3, [r0, #1440]
+ 2559 0090 D0F8C035 		ldr	r3, [r0, #1472]
+ 2560 0094 23F08023 		bic	r3, r3, #-2147450880
+ 2561 0098 43F08043 		orr	r3, r3, #1073741824
+ 2562 009c C0F8C035 		str	r3, [r0, #1472]
+ 2563 00a0 D0F8E035 		ldr	r3, [r0, #1504]
+ 2564 00a4 23F08023 		bic	r3, r3, #-2147450880
+ 2565 00a8 43F08043 		orr	r3, r3, #1073741824
+ 2566 00ac C0F8E035 		str	r3, [r0, #1504]
+ 2567 00b0 D0F80036 		ldr	r3, [r0, #1536]
+ 2568 00b4 23F08023 		bic	r3, r3, #-2147450880
+ 2569 00b8 43F08043 		orr	r3, r3, #1073741824
+ 2570 00bc C0F80036 		str	r3, [r0, #1536]
+ 2571 00c0 D0F82036 		ldr	r3, [r0, #1568]
+ 2572 00c4 23F08023 		bic	r3, r3, #-2147450880
+ 2573 00c8 43F08043 		orr	r3, r3, #1073741824
+ 2574 00cc C0F82036 		str	r3, [r0, #1568]
+ 2575 00d0 D0F84036 		ldr	r3, [r0, #1600]
+ 2576 00d4 23F08023 		bic	r3, r3, #-2147450880
+ 2577 00d8 43F08043 		orr	r3, r3, #1073741824
+ 2578 00dc C0F84036 		str	r3, [r0, #1600]
+ 2579 00e0 D0F86036 		ldr	r3, [r0, #1632]
+ 2580 00e4 23F08023 		bic	r3, r3, #-2147450880
+ 2581 00e8 43F08043 		orr	r3, r3, #1073741824
+ 2582 00ec C0F86036 		str	r3, [r0, #1632]
+ 2583 00f0 D0F88036 		ldr	r3, [r0, #1664]
+ 2584 00f4 23F08023 		bic	r3, r3, #-2147450880
+ 2585 00f8 43F08043 		orr	r3, r3, #1073741824
+ 2586 00fc C0F88036 		str	r3, [r0, #1664]
+ 2587 0100 D0F8A036 		ldr	r3, [r0, #1696]
+ 2588 0104 23F08023 		bic	r3, r3, #-2147450880
+ 2589 0108 43F08043 		orr	r3, r3, #1073741824
+ 2590 010c C0F8A036 		str	r3, [r0, #1696]
+ 2591 0110 D0F8C036 		ldr	r3, [r0, #1728]
+ 2592 0114 23F08023 		bic	r3, r3, #-2147450880
+ 2593 0118 43F08043 		orr	r3, r3, #1073741824
+ 2594 011c C0F8C036 		str	r3, [r0, #1728]
+ 2595 0120 D0F8E036 		ldr	r3, [r0, #1760]
+ 2596 0124 23F08023 		bic	r3, r3, #-2147450880
+ 2597 0128 43F08043 		orr	r3, r3, #1073741824
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 45
+
+
+ 2598 012c C0F8E036 		str	r3, [r0, #1760]
+ 2599 0130 00F5A061 		add	r1, r0, #1280
+ 2600 0134 00F5E064 		add	r4, r0, #1792
+ 2601 0138 0023     		movs	r3, #0
+ 2602              	.L454:
+ 2603 013a 0A68     		ldr	r2, [r1]
+ 2604 013c 22F40042 		bic	r2, r2, #32768
+ 2605 0140 42F04042 		orr	r2, r2, #-1073741824
+ 2606 0144 0A60     		str	r2, [r1]
+ 2607 0146 02E0     		b	.L453
+ 2608              	.L467:
+ 2609 0148 0A68     		ldr	r2, [r1]
+ 2610 014a 002A     		cmp	r2, #0
+ 2611 014c 03DA     		bge	.L452
+ 2612              	.L453:
+ 2613 014e 0133     		adds	r3, r3, #1
+ 2614 0150 B3F57A7F 		cmp	r3, #1000
+ 2615 0154 F8D9     		bls	.L467
+ 2616              	.L452:
+ 2617 0156 2031     		adds	r1, r1, #32
+ 2618 0158 A142     		cmp	r1, r4
+ 2619 015a EED1     		bne	.L454
+ 2620 015c 4FF0FF33 		mov	r3, #-1
+ 2621 0160 C0F81434 		str	r3, [r0, #1044]
+ 2622 0164 4361     		str	r3, [r0, #20]
+ 2623 0166 8368     		ldr	r3, [r0, #8]
+ 2624 0168 5DF8044B 		ldr	r4, [sp], #4
+ 2625 016c 43F00103 		orr	r3, r3, #1
+ 2626 0170 8360     		str	r3, [r0, #8]
+ 2627 0172 0020     		movs	r0, #0
+ 2628 0174 7047     		bx	lr
+ 2629              	.L469:
+ 2630 0176 00BF     		.align	2
+ 2631              	.L468:
+ 2632 0178 400D0300 		.word	200000
+ 2634              		.section	.text.USB_ActivateRemoteWakeup,"ax",%progbits
+ 2635              		.align	1
+ 2636              		.p2align 2,,3
+ 2637              		.global	USB_ActivateRemoteWakeup
+ 2638              		.syntax unified
+ 2639              		.thumb
+ 2640              		.thumb_func
+ 2641              		.fpu fpv4-sp-d16
+ 2643              	USB_ActivateRemoteWakeup:
+ 2644              		@ args = 0, pretend = 0, frame = 0
+ 2645              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2646              		@ link register save eliminated.
+ 2647 0000 D0F80838 		ldr	r3, [r0, #2056]
+ 2648 0004 DB07     		lsls	r3, r3, #31
+ 2649 0006 00F50060 		add	r0, r0, #2048
+ 2650 000a 03D5     		bpl	.L471
+ 2651 000c 4368     		ldr	r3, [r0, #4]
+ 2652 000e 43F00103 		orr	r3, r3, #1
+ 2653 0012 4360     		str	r3, [r0, #4]
+ 2654              	.L471:
+ 2655 0014 0020     		movs	r0, #0
+ 2656 0016 7047     		bx	lr
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 46
+
+
+ 2658              		.section	.text.USB_DeActivateRemoteWakeup,"ax",%progbits
+ 2659              		.align	1
+ 2660              		.p2align 2,,3
+ 2661              		.global	USB_DeActivateRemoteWakeup
+ 2662              		.syntax unified
+ 2663              		.thumb
+ 2664              		.thumb_func
+ 2665              		.fpu fpv4-sp-d16
+ 2667              	USB_DeActivateRemoteWakeup:
+ 2668              		@ args = 0, pretend = 0, frame = 0
+ 2669              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2670              		@ link register save eliminated.
+ 2671 0000 00F50062 		add	r2, r0, #2048
+ 2672 0004 5368     		ldr	r3, [r2, #4]
+ 2673 0006 23F00103 		bic	r3, r3, #1
+ 2674 000a 0020     		movs	r0, #0
+ 2675 000c 5360     		str	r3, [r2, #4]
+ 2676 000e 7047     		bx	lr
+ 2678              		.section	.bss.tmpreg.12019,"aw",%nobits
+ 2679              		.align	2
+ 2680              		.set	.LANCHOR0,. + 0
+ 2683              	tmpreg.12019:
+ 2684 0000 00000000 		.space	4
+ 2685              		.ident	"GCC: (GNU Tools for Arm Embedded Processors 8-2018-q4-major) 8.2.1 20181213 (release) [gcc
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 47
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f4xx_ll_usb.c
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:16     .text.USB_CoreInit:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:25     .text.USB_CoreInit:00000000 USB_CoreInit
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:137    .text.USB_CoreInit:000000d0 $d
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:140    .text.USB_SetTurnaroundTime:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:148    .text.USB_SetTurnaroundTime:00000000 USB_SetTurnaroundTime
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:243    .text.USB_SetTurnaroundTime:000000d0 $d
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:255    .text.USB_EnableGlobalInt:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:263    .text.USB_EnableGlobalInt:00000000 USB_EnableGlobalInt
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:275    .text.USB_DisableGlobalInt:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:283    .text.USB_DisableGlobalInt:00000000 USB_DisableGlobalInt
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:295    .text.USB_SetCurrentMode:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:303    .text.USB_SetCurrentMode:00000000 USB_SetCurrentMode
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:331    .text.USB_DevInit:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:339    .text.USB_DevInit:00000000 USB_DevInit
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:548    .text.USB_DevInit:000001f4 $d
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:553    .text.USB_FlushTxFifo:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:561    .text.USB_FlushTxFifo:00000000 USB_FlushTxFifo
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:585    .text.USB_FlushTxFifo:00000020 $d
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:588    .text.USB_FlushRxFifo:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:596    .text.USB_FlushRxFifo:00000000 USB_FlushRxFifo
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:619    .text.USB_FlushRxFifo:0000001c $d
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:622    .text.USB_SetDevSpeed:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:630    .text.USB_SetDevSpeed:00000000 USB_SetDevSpeed
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:642    .text.USB_GetDevSpeed:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:650    .text.USB_GetDevSpeed:00000000 USB_GetDevSpeed
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:665    .text.USB_ActivateEndpoint:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:673    .text.USB_ActivateEndpoint:00000000 USB_ActivateEndpoint
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:728    .text.USB_ActivateDedicatedEndpoint:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:736    .text.USB_ActivateDedicatedEndpoint:00000000 USB_ActivateDedicatedEndpoint
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:796    .text.USB_DeactivateEndpoint:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:804    .text.USB_DeactivateEndpoint:00000000 USB_DeactivateEndpoint
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:849    .text.USB_DeactivateEndpoint:00000060 $d
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:853    .text.USB_DeactivateDedicatedEndpoint:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:861    .text.USB_DeactivateDedicatedEndpoint:00000000 USB_DeactivateDedicatedEndpoint
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:896    .text.USB_EPStartXfer:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:904    .text.USB_EPStartXfer:00000000 USB_EPStartXfer
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1103   .text.USB_EPStartXfer:00000230 $d
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1106   .text.USB_EP0StartXfer:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1114   .text.USB_EP0StartXfer:00000000 USB_EP0StartXfer
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1230   .text.USB_WritePacket:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1238   .text.USB_WritePacket:00000000 USB_WritePacket
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1262   .text.USB_ReadPacket:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1270   .text.USB_ReadPacket:00000000 USB_ReadPacket
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1292   .text.USB_EPSetStall:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1300   .text.USB_EPSetStall:00000000 USB_EPSetStall
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1340   .text.USB_EPClearStall:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1348   .text.USB_EPClearStall:00000000 USB_EPClearStall
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1387   .text.USB_StopDevice:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1395   .text.USB_StopDevice:00000000 USB_StopDevice
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1467   .text.USB_StopDevice:000000c0 $d
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1470   .text.USB_SetDevAddress:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1478   .text.USB_SetDevAddress:00000000 USB_SetDevAddress
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1494   .text.USB_DevConnect:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1502   .text.USB_DevConnect:00000000 USB_DevConnect
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1516   .text.USB_DevDisconnect:00000000 $t
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 48
+
+
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1524   .text.USB_DevDisconnect:00000000 USB_DevDisconnect
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1538   .text.USB_ReadInterrupts:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1546   .text.USB_ReadInterrupts:00000000 USB_ReadInterrupts
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1556   .text.USB_ReadDevAllOutEpInterrupt:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1564   .text.USB_ReadDevAllOutEpInterrupt:00000000 USB_ReadDevAllOutEpInterrupt
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1576   .text.USB_ReadDevAllInEpInterrupt:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1584   .text.USB_ReadDevAllInEpInterrupt:00000000 USB_ReadDevAllInEpInterrupt
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1596   .text.USB_ReadDevOutEPInterrupt:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1604   .text.USB_ReadDevOutEPInterrupt:00000000 USB_ReadDevOutEPInterrupt
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1616   .text.USB_ReadDevInEPInterrupt:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1624   .text.USB_ReadDevInEPInterrupt:00000000 USB_ReadDevInEPInterrupt
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1644   .text.USB_ClearInterrupts:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1652   .text.USB_ClearInterrupts:00000000 USB_ClearInterrupts
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1662   .text.USB_GetMode:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1670   .text.USB_GetMode:00000000 USB_GetMode
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1679   .text.USB_ActivateSetup:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1687   .text.USB_ActivateSetup:00000000 USB_ActivateSetup
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1711   .text.USB_EP0_OutStart:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1719   .text.USB_EP0_OutStart:00000000 USB_EP0_OutStart
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1757   .text.USB_EP0_OutStart:0000004c $d
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1760   .text.USB_HostInit:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1768   .text.USB_HostInit:00000000 USB_HostInit
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1902   .text.USB_HostInit:00000114 $d
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1910   .text.USB_InitFSLSPClkSel:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1918   .text.USB_InitFSLSPClkSel:00000000 USB_InitFSLSPClkSel
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1945   .text.USB_ResetPort:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1953   .text.USB_ResetPort:00000000 USB_ResetPort
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1982   .text.USB_DriveVbus:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:1990   .text.USB_DriveVbus:00000000 USB_DriveVbus
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:2030   .text.USB_GetHostSpeed:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:2038   .text.USB_GetHostSpeed:00000000 USB_GetHostSpeed
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:2054   .text.USB_GetCurrentFrame:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:2062   .text.USB_GetCurrentFrame:00000000 USB_GetCurrentFrame
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:2072   .text.USB_HC_Init:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:2080   .text.USB_HC_Init:00000000 USB_HC_Init
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:2100   .text.USB_HC_Init:0000003c $d
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:2104   .text.USB_HC_Init:00000040 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:2195   .text.USB_HC_StartXfer:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:2203   .text.USB_HC_StartXfer:00000000 USB_HC_StartXfer
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:2304   .text.USB_HC_StartXfer:0000011c $d
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:2308   .text.USB_HC_StartXfer:00000120 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:2366   .text.USB_HC_StartXfer:000001a4 $d
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:2370   .text.USB_HC_ReadInterrupt:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:2378   .text.USB_HC_ReadInterrupt:00000000 USB_HC_ReadInterrupt
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:2388   .text.USB_HC_Halt:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:2396   .text.USB_HC_Halt:00000000 USB_HC_Halt
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:2468   .text.USB_DoPing:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:2476   .text.USB_DoPing:00000000 USB_DoPing
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:2492   .text.USB_DoPing:00000020 $d
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:2495   .text.USB_StopHost:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:2503   .text.USB_StopHost:00000000 USB_StopHost
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:2632   .text.USB_StopHost:00000178 $d
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:2635   .text.USB_ActivateRemoteWakeup:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:2643   .text.USB_ActivateRemoteWakeup:00000000 USB_ActivateRemoteWakeup
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:2659   .text.USB_DeActivateRemoteWakeup:00000000 $t
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:2667   .text.USB_DeActivateRemoteWakeup:00000000 USB_DeActivateRemoteWakeup
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:2679   .bss.tmpreg.12019:00000000 $d
+ARM GAS  D:\Programs\cygwin64\tmp\ccXZsj7M.s 			page 49
+
+
+D:\Programs\cygwin64\tmp\ccXZsj7M.s:2683   .bss.tmpreg.12019:00000000 tmpreg.12019
+
+UNDEFINED SYMBOLS
+HAL_Delay

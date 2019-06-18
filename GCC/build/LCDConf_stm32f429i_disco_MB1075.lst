@@ -1,0 +1,2868 @@
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"LCDConf_stm32f429i_disco_MB1075.c"
+  14              		.text
+  15              		.comm	hltdc,168,4
+  16              		.section	.text.DMA2D_MixColors,"ax",%progbits
+  17              		.align	1
+  18              		.arch armv7e-m
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu fpv4-sp-d16
+  24              	DMA2D_MixColors:
+  25              		@ args = 0, pretend = 0, frame = 32
+  26              		@ frame_needed = 1, uses_anonymous_args = 0
+  27              		@ link register save eliminated.
+  28 0000 80B4     		push	{r7}
+  29 0002 89B0     		sub	sp, sp, #36
+  30 0004 00AF     		add	r7, sp, #0
+  31 0006 F860     		str	r0, [r7, #12]
+  32 0008 B960     		str	r1, [r7, #8]
+  33 000a 1346     		mov	r3, r2
+  34 000c FB71     		strb	r3, [r7, #7]
+  35 000e BB68     		ldr	r3, [r7, #8]
+  36 0010 03F07F43 		and	r3, r3, #-16777216
+  37 0014 B3F17F4F 		cmp	r3, #-16777216
+  38 0018 01D1     		bne	.L2
+  39 001a FB68     		ldr	r3, [r7, #12]
+  40 001c 39E0     		b	.L5
+  41              	.L2:
+  42 001e FB68     		ldr	r3, [r7, #12]
+  43 0020 83F07F43 		eor	r3, r3, #-16777216
+  44 0024 FB61     		str	r3, [r7, #28]
+  45 0026 BB68     		ldr	r3, [r7, #8]
+  46 0028 83F07F43 		eor	r3, r3, #-16777216
+  47 002c BB61     		str	r3, [r7, #24]
+  48 002e 1C4B     		ldr	r3, .L6
+  49 0030 1C4A     		ldr	r2, .L6+4
+  50 0032 1A60     		str	r2, [r3]
+  51 0034 1A4A     		ldr	r2, .L6
+  52 0036 07F11C03 		add	r3, r7, #28
+  53 003a D360     		str	r3, [r2, #12]
+  54 003c 184A     		ldr	r2, .L6
+  55 003e 07F11803 		add	r3, r7, #24
+  56 0042 5361     		str	r3, [r2, #20]
+  57 0044 164A     		ldr	r2, .L6
+  58 0046 07F11403 		add	r3, r7, #20
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 2
+
+
+  59 004a D363     		str	r3, [r2, #60]
+  60 004c FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+  61 004e 1B06     		lsls	r3, r3, #24
+  62 0050 134A     		ldr	r2, .L6
+  63 0052 43F48033 		orr	r3, r3, #65536
+  64 0056 D361     		str	r3, [r2, #28]
+  65 0058 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+  66 005a C3F1FF03 		rsb	r3, r3, #255
+  67 005e 104A     		ldr	r2, .L6
+  68 0060 1B06     		lsls	r3, r3, #24
+  69 0062 5362     		str	r3, [r2, #36]
+  70 0064 0E4B     		ldr	r3, .L6
+  71 0066 0022     		movs	r2, #0
+  72 0068 5A63     		str	r2, [r3, #52]
+  73 006a 0D4B     		ldr	r3, .L6
+  74 006c 4FF00112 		mov	r2, #65537
+  75 0070 5A64     		str	r2, [r3, #68]
+  76 0072 0B4B     		ldr	r3, .L6
+  77 0074 1B68     		ldr	r3, [r3]
+  78 0076 0A4A     		ldr	r2, .L6
+  79 0078 43F00103 		orr	r3, r3, #1
+  80 007c 1360     		str	r3, [r2]
+  81 007e 00BF     		nop
+  82              	.L4:
+  83 0080 074B     		ldr	r3, .L6
+  84 0082 1B68     		ldr	r3, [r3]
+  85 0084 03F00103 		and	r3, r3, #1
+  86 0088 002B     		cmp	r3, #0
+  87 008a F9D1     		bne	.L4
+  88 008c 7B69     		ldr	r3, [r7, #20]
+  89 008e 83F07F43 		eor	r3, r3, #-16777216
+  90              	.L5:
+  91 0092 1846     		mov	r0, r3
+  92 0094 2437     		adds	r7, r7, #36
+  93 0096 BD46     		mov	sp, r7
+  94              		@ sp needed
+  95 0098 5DF8047B 		ldr	r7, [sp], #4
+  96 009c 7047     		bx	lr
+  97              	.L7:
+  98 009e 00BF     		.align	2
+  99              	.L6:
+ 100 00a0 00B00240 		.word	1073917952
+ 101 00a4 00020200 		.word	131584
+ 103              		.section	.text.DMA2D_ConvertColor,"ax",%progbits
+ 104              		.align	1
+ 105              		.syntax unified
+ 106              		.thumb
+ 107              		.thumb_func
+ 108              		.fpu fpv4-sp-d16
+ 110              	DMA2D_ConvertColor:
+ 111              		@ args = 4, pretend = 0, frame = 16
+ 112              		@ frame_needed = 1, uses_anonymous_args = 0
+ 113              		@ link register save eliminated.
+ 114 0000 80B4     		push	{r7}
+ 115 0002 85B0     		sub	sp, sp, #20
+ 116 0004 00AF     		add	r7, sp, #0
+ 117 0006 F860     		str	r0, [r7, #12]
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 3
+
+
+ 118 0008 B960     		str	r1, [r7, #8]
+ 119 000a 7A60     		str	r2, [r7, #4]
+ 120 000c 3B60     		str	r3, [r7]
+ 121 000e 174B     		ldr	r3, .L10
+ 122 0010 4FF48132 		mov	r2, #66048
+ 123 0014 1A60     		str	r2, [r3]
+ 124 0016 154A     		ldr	r2, .L10
+ 125 0018 FB68     		ldr	r3, [r7, #12]
+ 126 001a D360     		str	r3, [r2, #12]
+ 127 001c 134A     		ldr	r2, .L10
+ 128 001e BB68     		ldr	r3, [r7, #8]
+ 129 0020 D363     		str	r3, [r2, #60]
+ 130 0022 124B     		ldr	r3, .L10
+ 131 0024 0022     		movs	r2, #0
+ 132 0026 1A61     		str	r2, [r3, #16]
+ 133 0028 104B     		ldr	r3, .L10
+ 134 002a 0022     		movs	r2, #0
+ 135 002c 1A64     		str	r2, [r3, #64]
+ 136 002e 0F4A     		ldr	r2, .L10
+ 137 0030 7B68     		ldr	r3, [r7, #4]
+ 138 0032 D361     		str	r3, [r2, #28]
+ 139 0034 0D4A     		ldr	r2, .L10
+ 140 0036 3B68     		ldr	r3, [r7]
+ 141 0038 5363     		str	r3, [r2, #52]
+ 142 003a BB69     		ldr	r3, [r7, #24]
+ 143 003c 1B04     		lsls	r3, r3, #16
+ 144 003e 0B4A     		ldr	r2, .L10
+ 145 0040 43F00103 		orr	r3, r3, #1
+ 146 0044 5364     		str	r3, [r2, #68]
+ 147 0046 094B     		ldr	r3, .L10
+ 148 0048 1B68     		ldr	r3, [r3]
+ 149 004a 084A     		ldr	r2, .L10
+ 150 004c 43F00103 		orr	r3, r3, #1
+ 151 0050 1360     		str	r3, [r2]
+ 152 0052 00BF     		nop
+ 153              	.L9:
+ 154 0054 054B     		ldr	r3, .L10
+ 155 0056 1B68     		ldr	r3, [r3]
+ 156 0058 03F00103 		and	r3, r3, #1
+ 157 005c 002B     		cmp	r3, #0
+ 158 005e F9D1     		bne	.L9
+ 159 0060 00BF     		nop
+ 160 0062 1437     		adds	r7, r7, #20
+ 161 0064 BD46     		mov	sp, r7
+ 162              		@ sp needed
+ 163 0066 5DF8047B 		ldr	r7, [sp], #4
+ 164 006a 7047     		bx	lr
+ 165              	.L11:
+ 166              		.align	2
+ 167              	.L10:
+ 168 006c 00B00240 		.word	1073917952
+ 170              		.section	.text._LCD_GetpPalConvTable,"ax",%progbits
+ 171              		.align	1
+ 172              		.syntax unified
+ 173              		.thumb
+ 174              		.thumb_func
+ 175              		.fpu fpv4-sp-d16
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 4
+
+
+ 177              	_LCD_GetpPalConvTable:
+ 178              		@ args = 0, pretend = 0, frame = 24
+ 179              		@ frame_needed = 1, uses_anonymous_args = 0
+ 180 0000 80B5     		push	{r7, lr}
+ 181 0002 86B0     		sub	sp, sp, #24
+ 182 0004 00AF     		add	r7, sp, #0
+ 183 0006 F860     		str	r0, [r7, #12]
+ 184 0008 B960     		str	r1, [r7, #8]
+ 185 000a 7A60     		str	r2, [r7, #4]
+ 186 000c 0023     		movs	r3, #0
+ 187 000e 7B61     		str	r3, [r7, #20]
+ 188 0010 BB68     		ldr	r3, [r7, #8]
+ 189 0012 DB88     		ldrh	r3, [r3, #6]
+ 190 0014 082B     		cmp	r3, #8
+ 191 0016 19D1     		bne	.L13
+ 192 0018 2521     		movs	r1, #37
+ 193 001a 7868     		ldr	r0, [r7, #4]
+ 194 001c FFF7FEFF 		bl	LCD_GetDevFunc
+ 195 0020 3861     		str	r0, [r7, #16]
+ 196 0022 3B69     		ldr	r3, [r7, #16]
+ 197 0024 002B     		cmp	r3, #0
+ 198 0026 0ED0     		beq	.L14
+ 199 0028 BB68     		ldr	r3, [r7, #8]
+ 200 002a DB68     		ldr	r3, [r3, #12]
+ 201 002c 002B     		cmp	r3, #0
+ 202 002e 07D0     		beq	.L15
+ 203 0030 BB68     		ldr	r3, [r7, #8]
+ 204 0032 DB68     		ldr	r3, [r3, #12]
+ 205 0034 1B79     		ldrb	r3, [r3, #4]	@ zero_extendqisi2
+ 206 0036 002B     		cmp	r3, #0
+ 207 0038 0AD0     		beq	.L19
+ 208 003a 0123     		movs	r3, #1
+ 209 003c 7B61     		str	r3, [r7, #20]
+ 210 003e 07E0     		b	.L19
+ 211              	.L15:
+ 212 0040 0123     		movs	r3, #1
+ 213 0042 7B61     		str	r3, [r7, #20]
+ 214 0044 04E0     		b	.L19
+ 215              	.L14:
+ 216 0046 0123     		movs	r3, #1
+ 217 0048 7B61     		str	r3, [r7, #20]
+ 218 004a 01E0     		b	.L19
+ 219              	.L13:
+ 220 004c 0123     		movs	r3, #1
+ 221 004e 7B61     		str	r3, [r7, #20]
+ 222              	.L19:
+ 223 0050 7B69     		ldr	r3, [r7, #20]
+ 224 0052 002B     		cmp	r3, #0
+ 225 0054 04D0     		beq	.L20
+ 226 0056 F868     		ldr	r0, [r7, #12]
+ 227 0058 FFF7FEFF 		bl	LCD_GetpPalConvTable
+ 228 005c 0346     		mov	r3, r0
+ 229 005e 0EE0     		b	.L21
+ 230              	.L20:
+ 231 0060 FB68     		ldr	r3, [r7, #12]
+ 232 0062 9868     		ldr	r0, [r3, #8]
+ 233 0064 FB68     		ldr	r3, [r7, #12]
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 5
+
+
+ 234 0066 1B68     		ldr	r3, [r3]
+ 235 0068 1A46     		mov	r2, r3
+ 236 006a 0749     		ldr	r1, .L22
+ 237 006c FFF7FEFF 		bl	InvertAlpha_SwapRB
+ 238 0070 FB68     		ldr	r3, [r7, #12]
+ 239 0072 1B68     		ldr	r3, [r3]
+ 240 0074 1946     		mov	r1, r3
+ 241 0076 0448     		ldr	r0, .L22
+ 242 0078 FFF7FEFF 		bl	DMA2D_LoadLUT
+ 243 007c 024B     		ldr	r3, .L22
+ 244              	.L21:
+ 245 007e 1846     		mov	r0, r3
+ 246 0080 1837     		adds	r7, r7, #24
+ 247 0082 BD46     		mov	sp, r7
+ 248              		@ sp needed
+ 249 0084 80BD     		pop	{r7, pc}
+ 250              	.L23:
+ 251 0086 00BF     		.align	2
+ 252              	.L22:
+ 253 0088 00000000 		.word	aBufferDMA2D
+ 255              		.section	.text.DMA2D_MixColorsBulk,"ax",%progbits
+ 256              		.align	1
+ 257              		.syntax unified
+ 258              		.thumb
+ 259              		.thumb_func
+ 260              		.fpu fpv4-sp-d16
+ 262              	DMA2D_MixColorsBulk:
+ 263              		@ args = 4, pretend = 0, frame = 16
+ 264              		@ frame_needed = 1, uses_anonymous_args = 0
+ 265              		@ link register save eliminated.
+ 266 0000 80B4     		push	{r7}
+ 267 0002 85B0     		sub	sp, sp, #20
+ 268 0004 00AF     		add	r7, sp, #0
+ 269 0006 F860     		str	r0, [r7, #12]
+ 270 0008 B960     		str	r1, [r7, #8]
+ 271 000a 7A60     		str	r2, [r7, #4]
+ 272 000c FB70     		strb	r3, [r7, #3]
+ 273 000e 1A4B     		ldr	r3, .L26
+ 274 0010 1A4A     		ldr	r2, .L26+4
+ 275 0012 1A60     		str	r2, [r3]
+ 276 0014 184A     		ldr	r2, .L26
+ 277 0016 FB68     		ldr	r3, [r7, #12]
+ 278 0018 D360     		str	r3, [r2, #12]
+ 279 001a 174A     		ldr	r2, .L26
+ 280 001c BB68     		ldr	r3, [r7, #8]
+ 281 001e 5361     		str	r3, [r2, #20]
+ 282 0020 154A     		ldr	r2, .L26
+ 283 0022 7B68     		ldr	r3, [r7, #4]
+ 284 0024 D363     		str	r3, [r2, #60]
+ 285 0026 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 286 0028 1B06     		lsls	r3, r3, #24
+ 287 002a 134A     		ldr	r2, .L26
+ 288 002c 43F48033 		orr	r3, r3, #65536
+ 289 0030 D361     		str	r3, [r2, #28]
+ 290 0032 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 291 0034 C3F1FF03 		rsb	r3, r3, #255
+ 292 0038 0F4A     		ldr	r2, .L26
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 6
+
+
+ 293 003a 1B06     		lsls	r3, r3, #24
+ 294 003c 5362     		str	r3, [r2, #36]
+ 295 003e 0E4B     		ldr	r3, .L26
+ 296 0040 0022     		movs	r2, #0
+ 297 0042 5A63     		str	r2, [r3, #52]
+ 298 0044 BB69     		ldr	r3, [r7, #24]
+ 299 0046 1B04     		lsls	r3, r3, #16
+ 300 0048 0B4A     		ldr	r2, .L26
+ 301 004a 43F00103 		orr	r3, r3, #1
+ 302 004e 5364     		str	r3, [r2, #68]
+ 303 0050 094B     		ldr	r3, .L26
+ 304 0052 1B68     		ldr	r3, [r3]
+ 305 0054 084A     		ldr	r2, .L26
+ 306 0056 43F00103 		orr	r3, r3, #1
+ 307 005a 1360     		str	r3, [r2]
+ 308 005c 00BF     		nop
+ 309              	.L25:
+ 310 005e 064B     		ldr	r3, .L26
+ 311 0060 1B68     		ldr	r3, [r3]
+ 312 0062 03F00103 		and	r3, r3, #1
+ 313 0066 002B     		cmp	r3, #0
+ 314 0068 F9D1     		bne	.L25
+ 315 006a 00BF     		nop
+ 316 006c 1437     		adds	r7, r7, #20
+ 317 006e BD46     		mov	sp, r7
+ 318              		@ sp needed
+ 319 0070 5DF8047B 		ldr	r7, [sp], #4
+ 320 0074 7047     		bx	lr
+ 321              	.L27:
+ 322 0076 00BF     		.align	2
+ 323              	.L26:
+ 324 0078 00B00240 		.word	1073917952
+ 325 007c 00020200 		.word	131584
+ 327              		.section	.text.DMA2D_AlphaBlending,"ax",%progbits
+ 328              		.align	1
+ 329              		.syntax unified
+ 330              		.thumb
+ 331              		.thumb_func
+ 332              		.fpu fpv4-sp-d16
+ 334              	DMA2D_AlphaBlending:
+ 335              		@ args = 0, pretend = 0, frame = 16
+ 336              		@ frame_needed = 1, uses_anonymous_args = 0
+ 337 0000 80B5     		push	{r7, lr}
+ 338 0002 84B0     		sub	sp, sp, #16
+ 339 0004 00AF     		add	r7, sp, #0
+ 340 0006 F860     		str	r0, [r7, #12]
+ 341 0008 B960     		str	r1, [r7, #8]
+ 342 000a 7A60     		str	r2, [r7, #4]
+ 343 000c 3B60     		str	r3, [r7]
+ 344 000e 3A68     		ldr	r2, [r7]
+ 345 0010 0B49     		ldr	r1, .L29
+ 346 0012 F868     		ldr	r0, [r7, #12]
+ 347 0014 FFF7FEFF 		bl	InvertAlpha
+ 348 0018 3A68     		ldr	r2, [r7]
+ 349 001a 0A49     		ldr	r1, .L29+4
+ 350 001c B868     		ldr	r0, [r7, #8]
+ 351 001e FFF7FEFF 		bl	InvertAlpha
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 7
+
+
+ 352 0022 3B68     		ldr	r3, [r7]
+ 353 0024 084A     		ldr	r2, .L29+8
+ 354 0026 0749     		ldr	r1, .L29+4
+ 355 0028 0548     		ldr	r0, .L29
+ 356 002a FFF7FEFF 		bl	DMA2D_AlphaBlendingBulk
+ 357 002e 3A68     		ldr	r2, [r7]
+ 358 0030 7968     		ldr	r1, [r7, #4]
+ 359 0032 0548     		ldr	r0, .L29+8
+ 360 0034 FFF7FEFF 		bl	InvertAlpha
+ 361 0038 00BF     		nop
+ 362 003a 1037     		adds	r7, r7, #16
+ 363 003c BD46     		mov	sp, r7
+ 364              		@ sp needed
+ 365 003e 80BD     		pop	{r7, pc}
+ 366              	.L30:
+ 367              		.align	2
+ 368              	.L29:
+ 369 0040 00000000 		.word	aBuffer_FG
+ 370 0044 00000000 		.word	aBuffer_BG
+ 371 0048 00000000 		.word	aBufferDMA2D
+ 373              		.section	.text.DMA2D_Index2ColorBulk,"ax",%progbits
+ 374              		.align	1
+ 375              		.syntax unified
+ 376              		.thumb
+ 377              		.thumb_func
+ 378              		.fpu fpv4-sp-d16
+ 380              	DMA2D_Index2ColorBulk:
+ 381              		@ args = 4, pretend = 0, frame = 16
+ 382              		@ frame_needed = 1, uses_anonymous_args = 0
+ 383 0000 80B5     		push	{r7, lr}
+ 384 0002 86B0     		sub	sp, sp, #24
+ 385 0004 02AF     		add	r7, sp, #8
+ 386 0006 F860     		str	r0, [r7, #12]
+ 387 0008 B960     		str	r1, [r7, #8]
+ 388 000a 7A60     		str	r2, [r7, #4]
+ 389 000c FB70     		strb	r3, [r7, #3]
+ 390 000e 7B68     		ldr	r3, [r7, #4]
+ 391 0010 0093     		str	r3, [sp]
+ 392 0012 0023     		movs	r3, #0
+ 393 0014 BA69     		ldr	r2, [r7, #24]
+ 394 0016 0649     		ldr	r1, .L32
+ 395 0018 F868     		ldr	r0, [r7, #12]
+ 396 001a FFF7FEFF 		bl	DMA2D_ConvertColor
+ 397 001e 7A68     		ldr	r2, [r7, #4]
+ 398 0020 B968     		ldr	r1, [r7, #8]
+ 399 0022 0348     		ldr	r0, .L32
+ 400 0024 FFF7FEFF 		bl	InvertAlpha_SwapRB
+ 401 0028 00BF     		nop
+ 402 002a 1037     		adds	r7, r7, #16
+ 403 002c BD46     		mov	sp, r7
+ 404              		@ sp needed
+ 405 002e 80BD     		pop	{r7, pc}
+ 406              	.L33:
+ 407              		.align	2
+ 408              	.L32:
+ 409 0030 00000000 		.word	aBufferDMA2D
+ 411              		.section	.text.DMA2D_Color2IndexBulk,"ax",%progbits
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 8
+
+
+ 412              		.align	1
+ 413              		.syntax unified
+ 414              		.thumb
+ 415              		.thumb_func
+ 416              		.fpu fpv4-sp-d16
+ 418              	DMA2D_Color2IndexBulk:
+ 419              		@ args = 4, pretend = 0, frame = 16
+ 420              		@ frame_needed = 1, uses_anonymous_args = 0
+ 421 0000 80B5     		push	{r7, lr}
+ 422 0002 86B0     		sub	sp, sp, #24
+ 423 0004 02AF     		add	r7, sp, #8
+ 424 0006 F860     		str	r0, [r7, #12]
+ 425 0008 B960     		str	r1, [r7, #8]
+ 426 000a 7A60     		str	r2, [r7, #4]
+ 427 000c FB70     		strb	r3, [r7, #3]
+ 428 000e 7A68     		ldr	r2, [r7, #4]
+ 429 0010 0749     		ldr	r1, .L35
+ 430 0012 F868     		ldr	r0, [r7, #12]
+ 431 0014 FFF7FEFF 		bl	InvertAlpha_SwapRB
+ 432 0018 7B68     		ldr	r3, [r7, #4]
+ 433 001a 0093     		str	r3, [sp]
+ 434 001c BB69     		ldr	r3, [r7, #24]
+ 435 001e 0022     		movs	r2, #0
+ 436 0020 B968     		ldr	r1, [r7, #8]
+ 437 0022 0348     		ldr	r0, .L35
+ 438 0024 FFF7FEFF 		bl	DMA2D_ConvertColor
+ 439 0028 00BF     		nop
+ 440 002a 1037     		adds	r7, r7, #16
+ 441 002c BD46     		mov	sp, r7
+ 442              		@ sp needed
+ 443 002e 80BD     		pop	{r7, pc}
+ 444              	.L36:
+ 445              		.align	2
+ 446              	.L35:
+ 447 0030 00000000 		.word	aBufferDMA2D
+ 449              		.section	.text.LCD_MixColorsBulk,"ax",%progbits
+ 450              		.align	1
+ 451              		.syntax unified
+ 452              		.thumb
+ 453              		.thumb_func
+ 454              		.fpu fpv4-sp-d16
+ 456              	LCD_MixColorsBulk:
+ 457              		@ args = 20, pretend = 0, frame = 24
+ 458              		@ frame_needed = 1, uses_anonymous_args = 0
+ 459 0000 80B5     		push	{r7, lr}
+ 460 0002 88B0     		sub	sp, sp, #32
+ 461 0004 02AF     		add	r7, sp, #8
+ 462 0006 F860     		str	r0, [r7, #12]
+ 463 0008 B960     		str	r1, [r7, #8]
+ 464 000a 7A60     		str	r2, [r7, #4]
+ 465 000c 3B60     		str	r3, [r7]
+ 466 000e 0023     		movs	r3, #0
+ 467 0010 7B61     		str	r3, [r7, #20]
+ 468 0012 30E0     		b	.L38
+ 469              	.L39:
+ 470 0014 BA6A     		ldr	r2, [r7, #40]
+ 471 0016 1C49     		ldr	r1, .L40
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 9
+
+
+ 472 0018 F868     		ldr	r0, [r7, #12]
+ 473 001a FFF7FEFF 		bl	InvertAlpha
+ 474 001e BA6A     		ldr	r2, [r7, #40]
+ 475 0020 1A49     		ldr	r1, .L40+4
+ 476 0022 B868     		ldr	r0, [r7, #8]
+ 477 0024 FFF7FEFF 		bl	InvertAlpha
+ 478 0028 97F83020 		ldrb	r2, [r7, #48]	@ zero_extendqisi2
+ 479 002c BB6A     		ldr	r3, [r7, #40]
+ 480 002e 0093     		str	r3, [sp]
+ 481 0030 1346     		mov	r3, r2
+ 482 0032 174A     		ldr	r2, .L40+8
+ 483 0034 1549     		ldr	r1, .L40+4
+ 484 0036 1448     		ldr	r0, .L40
+ 485 0038 FFF7FEFF 		bl	DMA2D_MixColorsBulk
+ 486 003c BA6A     		ldr	r2, [r7, #40]
+ 487 003e 7968     		ldr	r1, [r7, #4]
+ 488 0040 1348     		ldr	r0, .L40+8
+ 489 0042 FFF7FEFF 		bl	InvertAlpha
+ 490 0046 BA6A     		ldr	r2, [r7, #40]
+ 491 0048 3B68     		ldr	r3, [r7]
+ 492 004a 1344     		add	r3, r3, r2
+ 493 004c 9B00     		lsls	r3, r3, #2
+ 494 004e FA68     		ldr	r2, [r7, #12]
+ 495 0050 1344     		add	r3, r3, r2
+ 496 0052 FB60     		str	r3, [r7, #12]
+ 497 0054 BA6A     		ldr	r2, [r7, #40]
+ 498 0056 3B6A     		ldr	r3, [r7, #32]
+ 499 0058 1344     		add	r3, r3, r2
+ 500 005a 9B00     		lsls	r3, r3, #2
+ 501 005c BA68     		ldr	r2, [r7, #8]
+ 502 005e 1344     		add	r3, r3, r2
+ 503 0060 BB60     		str	r3, [r7, #8]
+ 504 0062 BA6A     		ldr	r2, [r7, #40]
+ 505 0064 7B6A     		ldr	r3, [r7, #36]
+ 506 0066 1344     		add	r3, r3, r2
+ 507 0068 9B00     		lsls	r3, r3, #2
+ 508 006a 7A68     		ldr	r2, [r7, #4]
+ 509 006c 1344     		add	r3, r3, r2
+ 510 006e 7B60     		str	r3, [r7, #4]
+ 511 0070 7B69     		ldr	r3, [r7, #20]
+ 512 0072 0133     		adds	r3, r3, #1
+ 513 0074 7B61     		str	r3, [r7, #20]
+ 514              	.L38:
+ 515 0076 7B69     		ldr	r3, [r7, #20]
+ 516 0078 FA6A     		ldr	r2, [r7, #44]
+ 517 007a 9A42     		cmp	r2, r3
+ 518 007c CAD8     		bhi	.L39
+ 519 007e 00BF     		nop
+ 520 0080 1837     		adds	r7, r7, #24
+ 521 0082 BD46     		mov	sp, r7
+ 522              		@ sp needed
+ 523 0084 80BD     		pop	{r7, pc}
+ 524              	.L41:
+ 525 0086 00BF     		.align	2
+ 526              	.L40:
+ 527 0088 00000000 		.word	aBuffer_FG
+ 528 008c 00000000 		.word	aBuffer_BG
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 10
+
+
+ 529 0090 00000000 		.word	aBufferDMA2D
+ 531              		.section	.text.DMA2D_DrawBitmapL8,"ax",%progbits
+ 532              		.align	1
+ 533              		.syntax unified
+ 534              		.thumb
+ 535              		.thumb_func
+ 536              		.fpu fpv4-sp-d16
+ 538              	DMA2D_DrawBitmapL8:
+ 539              		@ args = 12, pretend = 0, frame = 16
+ 540              		@ frame_needed = 1, uses_anonymous_args = 0
+ 541              		@ link register save eliminated.
+ 542 0000 80B4     		push	{r7}
+ 543 0002 85B0     		sub	sp, sp, #20
+ 544 0004 00AF     		add	r7, sp, #0
+ 545 0006 F860     		str	r0, [r7, #12]
+ 546 0008 B960     		str	r1, [r7, #8]
+ 547 000a 7A60     		str	r2, [r7, #4]
+ 548 000c 3B60     		str	r3, [r7]
+ 549 000e 174B     		ldr	r3, .L44
+ 550 0010 4FF48132 		mov	r2, #66048
+ 551 0014 1A60     		str	r2, [r3]
+ 552 0016 154A     		ldr	r2, .L44
+ 553 0018 FB68     		ldr	r3, [r7, #12]
+ 554 001a D360     		str	r3, [r2, #12]
+ 555 001c 134A     		ldr	r2, .L44
+ 556 001e BB68     		ldr	r3, [r7, #8]
+ 557 0020 D363     		str	r3, [r2, #60]
+ 558 0022 124A     		ldr	r2, .L44
+ 559 0024 7B68     		ldr	r3, [r7, #4]
+ 560 0026 1361     		str	r3, [r2, #16]
+ 561 0028 104A     		ldr	r2, .L44
+ 562 002a 3B68     		ldr	r3, [r7]
+ 563 002c 1364     		str	r3, [r2, #64]
+ 564 002e 0F4B     		ldr	r3, .L44
+ 565 0030 0522     		movs	r2, #5
+ 566 0032 DA61     		str	r2, [r3, #28]
+ 567 0034 0D4A     		ldr	r2, .L44
+ 568 0036 BB69     		ldr	r3, [r7, #24]
+ 569 0038 5363     		str	r3, [r2, #52]
+ 570 003a FB69     		ldr	r3, [r7, #28]
+ 571 003c 1A04     		lsls	r2, r3, #16
+ 572 003e 0B49     		ldr	r1, .L44
+ 573 0040 3B6A     		ldr	r3, [r7, #32]
+ 574 0042 1343     		orrs	r3, r3, r2
+ 575 0044 4B64     		str	r3, [r1, #68]
+ 576 0046 094B     		ldr	r3, .L44
+ 577 0048 1B68     		ldr	r3, [r3]
+ 578 004a 084A     		ldr	r2, .L44
+ 579 004c 43F00103 		orr	r3, r3, #1
+ 580 0050 1360     		str	r3, [r2]
+ 581 0052 00BF     		nop
+ 582              	.L43:
+ 583 0054 054B     		ldr	r3, .L44
+ 584 0056 1B68     		ldr	r3, [r3]
+ 585 0058 03F00103 		and	r3, r3, #1
+ 586 005c 002B     		cmp	r3, #0
+ 587 005e F9D1     		bne	.L43
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 11
+
+
+ 588 0060 00BF     		nop
+ 589 0062 1437     		adds	r7, r7, #20
+ 590 0064 BD46     		mov	sp, r7
+ 591              		@ sp needed
+ 592 0066 5DF8047B 		ldr	r7, [sp], #4
+ 593 006a 7047     		bx	lr
+ 594              	.L45:
+ 595              		.align	2
+ 596              	.L44:
+ 597 006c 00B00240 		.word	1073917952
+ 599              		.section	.text.BSP_LCD_DrawBitmap16bpp,"ax",%progbits
+ 600              		.align	1
+ 601              		.syntax unified
+ 602              		.thumb
+ 603              		.thumb_func
+ 604              		.fpu fpv4-sp-d16
+ 606              	BSP_LCD_DrawBitmap16bpp:
+ 607              		@ args = 12, pretend = 0, frame = 32
+ 608              		@ frame_needed = 1, uses_anonymous_args = 0
+ 609 0000 B0B5     		push	{r4, r5, r7, lr}
+ 610 0002 8CB0     		sub	sp, sp, #48
+ 611 0004 04AF     		add	r7, sp, #16
+ 612 0006 F860     		str	r0, [r7, #12]
+ 613 0008 B960     		str	r1, [r7, #8]
+ 614 000a 7A60     		str	r2, [r7, #4]
+ 615 000c 3B60     		str	r3, [r7]
+ 616 000e FB68     		ldr	r3, [r7, #12]
+ 617 0010 1846     		mov	r0, r3
+ 618 0012 FFF7FEFF 		bl	GetBufferSize
+ 619 0016 F861     		str	r0, [r7, #28]
+ 620 0018 2C49     		ldr	r1, .L47
+ 621 001a FA68     		ldr	r2, [r7, #12]
+ 622 001c 1346     		mov	r3, r2
+ 623 001e DB00     		lsls	r3, r3, #3
+ 624 0020 9B1A     		subs	r3, r3, r2
+ 625 0022 9B00     		lsls	r3, r3, #2
+ 626 0024 0B44     		add	r3, r3, r1
+ 627 0026 1B68     		ldr	r3, [r3]
+ 628 0028 1C46     		mov	r4, r3
+ 629 002a 2849     		ldr	r1, .L47
+ 630 002c FA68     		ldr	r2, [r7, #12]
+ 631 002e 1346     		mov	r3, r2
+ 632 0030 DB00     		lsls	r3, r3, #3
+ 633 0032 9B1A     		subs	r3, r3, r2
+ 634 0034 9B00     		lsls	r3, r3, #2
+ 635 0036 0B44     		add	r3, r3, r1
+ 636 0038 0C33     		adds	r3, r3, #12
+ 637 003a 1B68     		ldr	r3, [r3]
+ 638 003c 7A68     		ldr	r2, [r7, #4]
+ 639 003e 02FB03F2 		mul	r2, r2, r3
+ 640 0042 BB68     		ldr	r3, [r7, #8]
+ 641 0044 D118     		adds	r1, r2, r3
+ 642 0046 2148     		ldr	r0, .L47
+ 643 0048 FA68     		ldr	r2, [r7, #12]
+ 644 004a 1346     		mov	r3, r2
+ 645 004c DB00     		lsls	r3, r3, #3
+ 646 004e 9B1A     		subs	r3, r3, r2
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 12
+
+
+ 647 0050 9B00     		lsls	r3, r3, #2
+ 648 0052 0344     		add	r3, r3, r0
+ 649 0054 1433     		adds	r3, r3, #20
+ 650 0056 1B68     		ldr	r3, [r3]
+ 651 0058 03FB01F3 		mul	r3, r3, r1
+ 652 005c 1846     		mov	r0, r3
+ 653 005e 1B49     		ldr	r1, .L47
+ 654 0060 FA68     		ldr	r2, [r7, #12]
+ 655 0062 1346     		mov	r3, r2
+ 656 0064 DB00     		lsls	r3, r3, #3
+ 657 0066 9B1A     		subs	r3, r3, r2
+ 658 0068 9B00     		lsls	r3, r3, #2
+ 659 006a 0B44     		add	r3, r3, r1
+ 660 006c 0833     		adds	r3, r3, #8
+ 661 006e 1B68     		ldr	r3, [r3]
+ 662 0070 1A46     		mov	r2, r3
+ 663 0072 FB69     		ldr	r3, [r7, #28]
+ 664 0074 03FB02F3 		mul	r3, r3, r2
+ 665 0078 0344     		add	r3, r3, r0
+ 666 007a 2344     		add	r3, r3, r4
+ 667 007c BB61     		str	r3, [r7, #24]
+ 668 007e BB6B     		ldr	r3, [r7, #56]
+ 669 0080 DA0F     		lsrs	r2, r3, #31
+ 670 0082 1344     		add	r3, r3, r2
+ 671 0084 5B10     		asrs	r3, r3, #1
+ 672 0086 1A46     		mov	r2, r3
+ 673 0088 3B6B     		ldr	r3, [r7, #48]
+ 674 008a D31A     		subs	r3, r2, r3
+ 675 008c 7B61     		str	r3, [r7, #20]
+ 676 008e 0F49     		ldr	r1, .L47
+ 677 0090 FA68     		ldr	r2, [r7, #12]
+ 678 0092 1346     		mov	r3, r2
+ 679 0094 DB00     		lsls	r3, r3, #3
+ 680 0096 9B1A     		subs	r3, r3, r2
+ 681 0098 9B00     		lsls	r3, r3, #2
+ 682 009a 0B44     		add	r3, r3, r1
+ 683 009c 0C33     		adds	r3, r3, #12
+ 684 009e 1A68     		ldr	r2, [r3]
+ 685 00a0 3B6B     		ldr	r3, [r7, #48]
+ 686 00a2 D31A     		subs	r3, r2, r3
+ 687 00a4 3B61     		str	r3, [r7, #16]
+ 688 00a6 F868     		ldr	r0, [r7, #12]
+ 689 00a8 BC69     		ldr	r4, [r7, #24]
+ 690 00aa 3D6B     		ldr	r5, [r7, #48]
+ 691 00ac 7B6B     		ldr	r3, [r7, #52]
+ 692 00ae 7A69     		ldr	r2, [r7, #20]
+ 693 00b0 3969     		ldr	r1, [r7, #16]
+ 694 00b2 0291     		str	r1, [sp, #8]
+ 695 00b4 0192     		str	r2, [sp, #4]
+ 696 00b6 0093     		str	r3, [sp]
+ 697 00b8 2B46     		mov	r3, r5
+ 698 00ba 2246     		mov	r2, r4
+ 699 00bc 3968     		ldr	r1, [r7]
+ 700 00be FFF7FEFF 		bl	DMA2D_CopyBuffer
+ 701 00c2 00BF     		nop
+ 702 00c4 2037     		adds	r7, r7, #32
+ 703 00c6 BD46     		mov	sp, r7
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 13
+
+
+ 704              		@ sp needed
+ 705 00c8 B0BD     		pop	{r4, r5, r7, pc}
+ 706              	.L48:
+ 707 00ca 00BF     		.align	2
+ 708              	.L47:
+ 709 00cc 00000000 		.word	layer_prop
+ 711              		.section	.text.BSP_LCD_DrawBitmap8bpp,"ax",%progbits
+ 712              		.align	1
+ 713              		.syntax unified
+ 714              		.thumb
+ 715              		.thumb_func
+ 716              		.fpu fpv4-sp-d16
+ 718              	BSP_LCD_DrawBitmap8bpp:
+ 719              		@ args = 12, pretend = 0, frame = 40
+ 720              		@ frame_needed = 1, uses_anonymous_args = 0
+ 721 0000 90B5     		push	{r4, r7, lr}
+ 722 0002 8FB0     		sub	sp, sp, #60
+ 723 0004 04AF     		add	r7, sp, #16
+ 724 0006 F860     		str	r0, [r7, #12]
+ 725 0008 B960     		str	r1, [r7, #8]
+ 726 000a 7A60     		str	r2, [r7, #4]
+ 727 000c 3B60     		str	r3, [r7]
+ 728 000e FB68     		ldr	r3, [r7, #12]
+ 729 0010 1846     		mov	r0, r3
+ 730 0012 FFF7FEFF 		bl	GetBufferSize
+ 731 0016 7862     		str	r0, [r7, #36]
+ 732 0018 2C49     		ldr	r1, .L50
+ 733 001a FA68     		ldr	r2, [r7, #12]
+ 734 001c 1346     		mov	r3, r2
+ 735 001e DB00     		lsls	r3, r3, #3
+ 736 0020 9B1A     		subs	r3, r3, r2
+ 737 0022 9B00     		lsls	r3, r3, #2
+ 738 0024 0B44     		add	r3, r3, r1
+ 739 0026 1B68     		ldr	r3, [r3]
+ 740 0028 1C46     		mov	r4, r3
+ 741 002a 2849     		ldr	r1, .L50
+ 742 002c FA68     		ldr	r2, [r7, #12]
+ 743 002e 1346     		mov	r3, r2
+ 744 0030 DB00     		lsls	r3, r3, #3
+ 745 0032 9B1A     		subs	r3, r3, r2
+ 746 0034 9B00     		lsls	r3, r3, #2
+ 747 0036 0B44     		add	r3, r3, r1
+ 748 0038 0C33     		adds	r3, r3, #12
+ 749 003a 1B68     		ldr	r3, [r3]
+ 750 003c 7A68     		ldr	r2, [r7, #4]
+ 751 003e 02FB03F2 		mul	r2, r2, r3
+ 752 0042 BB68     		ldr	r3, [r7, #8]
+ 753 0044 D118     		adds	r1, r2, r3
+ 754 0046 2148     		ldr	r0, .L50
+ 755 0048 FA68     		ldr	r2, [r7, #12]
+ 756 004a 1346     		mov	r3, r2
+ 757 004c DB00     		lsls	r3, r3, #3
+ 758 004e 9B1A     		subs	r3, r3, r2
+ 759 0050 9B00     		lsls	r3, r3, #2
+ 760 0052 0344     		add	r3, r3, r0
+ 761 0054 1433     		adds	r3, r3, #20
+ 762 0056 1B68     		ldr	r3, [r3]
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 14
+
+
+ 763 0058 03FB01F3 		mul	r3, r3, r1
+ 764 005c 1846     		mov	r0, r3
+ 765 005e 1B49     		ldr	r1, .L50
+ 766 0060 FA68     		ldr	r2, [r7, #12]
+ 767 0062 1346     		mov	r3, r2
+ 768 0064 DB00     		lsls	r3, r3, #3
+ 769 0066 9B1A     		subs	r3, r3, r2
+ 770 0068 9B00     		lsls	r3, r3, #2
+ 771 006a 0B44     		add	r3, r3, r1
+ 772 006c 0833     		adds	r3, r3, #8
+ 773 006e 1B68     		ldr	r3, [r3]
+ 774 0070 1A46     		mov	r2, r3
+ 775 0072 7B6A     		ldr	r3, [r7, #36]
+ 776 0074 03FB02F3 		mul	r3, r3, r2
+ 777 0078 0344     		add	r3, r3, r0
+ 778 007a 2344     		add	r3, r3, r4
+ 779 007c 3B62     		str	r3, [r7, #32]
+ 780 007e 3A6C     		ldr	r2, [r7, #64]
+ 781 0080 BB6B     		ldr	r3, [r7, #56]
+ 782 0082 D31A     		subs	r3, r2, r3
+ 783 0084 FB61     		str	r3, [r7, #28]
+ 784 0086 1149     		ldr	r1, .L50
+ 785 0088 FA68     		ldr	r2, [r7, #12]
+ 786 008a 1346     		mov	r3, r2
+ 787 008c DB00     		lsls	r3, r3, #3
+ 788 008e 9B1A     		subs	r3, r3, r2
+ 789 0090 9B00     		lsls	r3, r3, #2
+ 790 0092 0B44     		add	r3, r3, r1
+ 791 0094 0C33     		adds	r3, r3, #12
+ 792 0096 1A68     		ldr	r2, [r3]
+ 793 0098 BB6B     		ldr	r3, [r7, #56]
+ 794 009a D31A     		subs	r3, r2, r3
+ 795 009c BB61     		str	r3, [r7, #24]
+ 796 009e FB68     		ldr	r3, [r7, #12]
+ 797 00a0 1846     		mov	r0, r3
+ 798 00a2 FFF7FEFF 		bl	LCD_LL_GetPixelformat
+ 799 00a6 7861     		str	r0, [r7, #20]
+ 800 00a8 396A     		ldr	r1, [r7, #32]
+ 801 00aa F869     		ldr	r0, [r7, #28]
+ 802 00ac BC69     		ldr	r4, [r7, #24]
+ 803 00ae BB6B     		ldr	r3, [r7, #56]
+ 804 00b0 FA6B     		ldr	r2, [r7, #60]
+ 805 00b2 0292     		str	r2, [sp, #8]
+ 806 00b4 0193     		str	r3, [sp, #4]
+ 807 00b6 7B69     		ldr	r3, [r7, #20]
+ 808 00b8 0093     		str	r3, [sp]
+ 809 00ba 2346     		mov	r3, r4
+ 810 00bc 0246     		mov	r2, r0
+ 811 00be 3868     		ldr	r0, [r7]
+ 812 00c0 FFF7FEFF 		bl	DMA2D_DrawBitmapL8
+ 813 00c4 00BF     		nop
+ 814 00c6 2C37     		adds	r7, r7, #44
+ 815 00c8 BD46     		mov	sp, r7
+ 816              		@ sp needed
+ 817 00ca 90BD     		pop	{r4, r7, pc}
+ 818              	.L51:
+ 819              		.align	2
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 15
+
+
+ 820              	.L50:
+ 821 00cc 00000000 		.word	layer_prop
+ 823              		.section	.text.GetBufferSize,"ax",%progbits
+ 824              		.align	1
+ 825              		.syntax unified
+ 826              		.thumb
+ 827              		.thumb_func
+ 828              		.fpu fpv4-sp-d16
+ 830              	GetBufferSize:
+ 831              		@ args = 0, pretend = 0, frame = 0
+ 832              		@ frame_needed = 0, uses_anonymous_args = 0
+ 833              		@ link register save eliminated.
+ 834 0000 064B     		ldr	r3, .L54
+ 835 0002 C0EBC000 		rsb	r0, r0, r0, lsl #3
+ 836 0006 03EB8000 		add	r0, r3, r0, lsl #2
+ 837 000a D0E90323 		ldrd	r2, r3, [r0, #12]
+ 838 000e 4069     		ldr	r0, [r0, #20]
+ 839 0010 03FB02F3 		mul	r3, r3, r2
+ 840 0014 00FB03F0 		mul	r0, r0, r3
+ 841 0018 7047     		bx	lr
+ 842              	.L55:
+ 843 001a 00BF     		.align	2
+ 844              	.L54:
+ 845 001c 00000000 		.word	.LANCHOR0
+ 847              		.section	.text.DMA2D_LoadLUT,"ax",%progbits
+ 848              		.align	1
+ 849              		.syntax unified
+ 850              		.thumb
+ 851              		.thumb_func
+ 852              		.fpu fpv4-sp-d16
+ 854              	DMA2D_LoadLUT:
+ 855              		@ args = 0, pretend = 0, frame = 0
+ 856              		@ frame_needed = 0, uses_anonymous_args = 0
+ 857              		@ link register save eliminated.
+ 858 0000 0139     		subs	r1, r1, #1
+ 859 0002 0902     		lsls	r1, r1, #8
+ 860 0004 054B     		ldr	r3, .L57
+ 861 0006 89B2     		uxth	r1, r1
+ 862 0008 41F00101 		orr	r1, r1, #1
+ 863 000c D862     		str	r0, [r3, #44]
+ 864 000e D961     		str	r1, [r3, #28]
+ 865 0010 DA69     		ldr	r2, [r3, #28]
+ 866 0012 42F02002 		orr	r2, r2, #32
+ 867 0016 DA61     		str	r2, [r3, #28]
+ 868 0018 7047     		bx	lr
+ 869              	.L58:
+ 870 001a 00BF     		.align	2
+ 871              	.L57:
+ 872 001c 00B00240 		.word	1073917952
+ 874              		.section	.text.InvertAlpha_SwapRB,"ax",%progbits
+ 875              		.align	1
+ 876              		.syntax unified
+ 877              		.thumb
+ 878              		.thumb_func
+ 879              		.fpu fpv4-sp-d16
+ 881              	InvertAlpha_SwapRB:
+ 882              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 16
+
+
+ 883              		@ frame_needed = 0, uses_anonymous_args = 0
+ 884              		@ link register save eliminated.
+ 885 0000 30B4     		push	{r4, r5}
+ 886              	.L60:
+ 887 0002 50F8044B 		ldr	r4, [r0], #4
+ 888 0006 2304     		lsls	r3, r4, #16
+ 889 0008 C4F30745 		ubfx	r5, r4, #16, #8
+ 890 000c 03F47F03 		and	r3, r3, #16711680
+ 891 0010 2B43     		orrs	r3, r3, r5
+ 892 0012 04F47F45 		and	r5, r4, #65280
+ 893 0016 E443     		mvns	r4, r4
+ 894 0018 2B43     		orrs	r3, r3, r5
+ 895 001a 04F07F44 		and	r4, r4, #-16777216
+ 896 001e 2343     		orrs	r3, r3, r4
+ 897 0020 013A     		subs	r2, r2, #1
+ 898 0022 41F8043B 		str	r3, [r1], #4
+ 899 0026 ECD1     		bne	.L60
+ 900 0028 30BC     		pop	{r4, r5}
+ 901 002a 7047     		bx	lr
+ 903              		.section	.text.InvertAlpha,"ax",%progbits
+ 904              		.align	1
+ 905              		.syntax unified
+ 906              		.thumb
+ 907              		.thumb_func
+ 908              		.fpu fpv4-sp-d16
+ 910              	InvertAlpha:
+ 911              		@ args = 0, pretend = 0, frame = 0
+ 912              		@ frame_needed = 0, uses_anonymous_args = 0
+ 913 0000 00F10803 		add	r3, r0, #8
+ 914 0004 70B5     		push	{r4, r5, r6, lr}
+ 915 0006 01F10804 		add	r4, r1, #8
+ 916 000a A042     		cmp	r0, r4
+ 917 000c 38BF     		it	cc
+ 918 000e 9942     		cmpcc	r1, r3
+ 919 0010 2CBF     		ite	cs
+ 920 0012 0123     		movcs	r3, #1
+ 921 0014 0023     		movcc	r3, #0
+ 922 0016 541E     		subs	r4, r2, #1
+ 923 0018 082C     		cmp	r4, #8
+ 924 001a 94BF     		ite	ls
+ 925 001c 0023     		movls	r3, #0
+ 926 001e 03F00103 		andhi	r3, r3, #1
+ 927 0022 33B3     		cbz	r3, .L72
+ 928 0024 41EA0003 		orr	r3, r1, r0
+ 929 0028 5B07     		lsls	r3, r3, #29
+ 930 002a 22D1     		bne	.L72
+ 931 002c 941E     		subs	r4, r2, #2
+ 932 002e 6408     		lsrs	r4, r4, #1
+ 933 0030 0134     		adds	r4, r4, #1
+ 934 0032 A0F1080E 		sub	lr, r0, #8
+ 935 0036 0B46     		mov	r3, r1
+ 936 0038 4FF0000C 		mov	ip, #0
+ 937              	.L65:
+ 938 003c 5EF8086F 		ldr	r6, [lr, #8]!
+ 939 0040 DEF80450 		ldr	r5, [lr, #4]
+ 940 0044 0CF1010C 		add	ip, ip, #1
+ 941 0048 86F07F46 		eor	r6, r6, #-16777216
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 17
+
+
+ 942 004c 85F07F45 		eor	r5, r5, #-16777216
+ 943 0050 A445     		cmp	ip, r4
+ 944 0052 C3E90065 		strd	r6, r5, [r3]
+ 945 0056 03F10803 		add	r3, r3, #8
+ 946 005a EFD3     		bcc	.L65
+ 947 005c B2EB440F 		cmp	r2, r4, lsl #1
+ 948 0060 05D0     		beq	.L63
+ 949 0062 50F83430 		ldr	r3, [r0, r4, lsl #3]
+ 950 0066 83F07F43 		eor	r3, r3, #-16777216
+ 951 006a 41F83430 		str	r3, [r1, r4, lsl #3]
+ 952              	.L63:
+ 953 006e 70BD     		pop	{r4, r5, r6, pc}
+ 954              	.L77:
+ 955 0070 013C     		subs	r4, r4, #1
+ 956              	.L72:
+ 957 0072 50F8043B 		ldr	r3, [r0], #4
+ 958 0076 83F07F43 		eor	r3, r3, #-16777216
+ 959 007a 41F8043B 		str	r3, [r1], #4
+ 960 007e 002C     		cmp	r4, #0
+ 961 0080 F6D1     		bne	.L77
+ 962 0082 70BD     		pop	{r4, r5, r6, pc}
+ 964              		.section	.text.DMA2D_AlphaBlendingBulk,"ax",%progbits
+ 965              		.align	1
+ 966              		.syntax unified
+ 967              		.thumb
+ 968              		.thumb_func
+ 969              		.fpu fpv4-sp-d16
+ 971              	DMA2D_AlphaBlendingBulk:
+ 972              		@ args = 0, pretend = 0, frame = 0
+ 973              		@ frame_needed = 0, uses_anonymous_args = 0
+ 974              		@ link register save eliminated.
+ 975 0000 30B4     		push	{r4, r5}
+ 976 0002 0D4C     		ldr	r4, .L82
+ 977 0004 0D4D     		ldr	r5, .L82+4
+ 978 0006 2560     		str	r5, [r4]
+ 979 0008 1B04     		lsls	r3, r3, #16
+ 980 000a 0025     		movs	r5, #0
+ 981 000c 43F00103 		orr	r3, r3, #1
+ 982 0010 E060     		str	r0, [r4, #12]
+ 983 0012 6161     		str	r1, [r4, #20]
+ 984 0014 E263     		str	r2, [r4, #60]
+ 985 0016 2561     		str	r5, [r4, #16]
+ 986 0018 A561     		str	r5, [r4, #24]
+ 987 001a 2564     		str	r5, [r4, #64]
+ 988 001c E561     		str	r5, [r4, #28]
+ 989 001e 6562     		str	r5, [r4, #36]
+ 990 0020 6563     		str	r5, [r4, #52]
+ 991 0022 6364     		str	r3, [r4, #68]
+ 992 0024 2368     		ldr	r3, [r4]
+ 993 0026 43F00103 		orr	r3, r3, #1
+ 994 002a 2360     		str	r3, [r4]
+ 995              	.L79:
+ 996 002c 2368     		ldr	r3, [r4]
+ 997 002e DB07     		lsls	r3, r3, #31
+ 998 0030 FCD4     		bmi	.L79
+ 999 0032 30BC     		pop	{r4, r5}
+ 1000 0034 7047     		bx	lr
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 18
+
+
+ 1001              	.L83:
+ 1002 0036 00BF     		.align	2
+ 1003              	.L82:
+ 1004 0038 00B00240 		.word	1073917952
+ 1005 003c 00020200 		.word	131584
+ 1007              		.section	.text.LCD_LL_GetPixelformat,"ax",%progbits
+ 1008              		.align	1
+ 1009              		.syntax unified
+ 1010              		.thumb
+ 1011              		.thumb_func
+ 1012              		.fpu fpv4-sp-d16
+ 1014              	LCD_LL_GetPixelformat:
+ 1015              		@ args = 0, pretend = 0, frame = 0
+ 1016              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1017              		@ link register save eliminated.
+ 1018 0000 E0B9     		cbnz	r0, .L87
+ 1019 0002 154B     		ldr	r3, .L96
+ 1020 0004 154A     		ldr	r2, .L96+4
+ 1021 0006 9B69     		ldr	r3, [r3, #24]
+ 1022 0008 9342     		cmp	r3, r2
+ 1023 000a 16D0     		beq	.L84
+ 1024 000c 144A     		ldr	r2, .L96+8
+ 1025 000e 9342     		cmp	r3, r2
+ 1026 0010 16D0     		beq	.L89
+ 1027 0012 144A     		ldr	r2, .L96+12
+ 1028 0014 9342     		cmp	r3, r2
+ 1029 0016 15D0     		beq	.L90
+ 1030 0018 134A     		ldr	r2, .L96+16
+ 1031 001a 9342     		cmp	r3, r2
+ 1032 001c 14D0     		beq	.L91
+ 1033 001e 134A     		ldr	r2, .L96+20
+ 1034 0020 9342     		cmp	r3, r2
+ 1035 0022 13D0     		beq	.L92
+ 1036 0024 124A     		ldr	r2, .L96+24
+ 1037 0026 9342     		cmp	r3, r2
+ 1038 0028 12D0     		beq	.L93
+ 1039 002a 124A     		ldr	r2, .L96+28
+ 1040 002c 9342     		cmp	r3, r2
+ 1041 002e 11D0     		beq	.L94
+ 1042 0030 114A     		ldr	r2, .L96+32
+ 1043 0032 9342     		cmp	r3, r2
+ 1044 0034 00D0     		beq	.L95
+ 1045              	.L86:
+ 1046 0036 FEE7     		b	.L86
+ 1047              	.L95:
+ 1048 0038 0720     		movs	r0, #7
+ 1049              	.L84:
+ 1050 003a 7047     		bx	lr
+ 1051              	.L87:
+ 1052 003c 0020     		movs	r0, #0
+ 1053 003e 7047     		bx	lr
+ 1054              	.L89:
+ 1055 0040 0120     		movs	r0, #1
+ 1056 0042 7047     		bx	lr
+ 1057              	.L90:
+ 1058 0044 0220     		movs	r0, #2
+ 1059 0046 7047     		bx	lr
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 19
+
+
+ 1060              	.L91:
+ 1061 0048 0320     		movs	r0, #3
+ 1062 004a 7047     		bx	lr
+ 1063              	.L92:
+ 1064 004c 0420     		movs	r0, #4
+ 1065 004e 7047     		bx	lr
+ 1066              	.L93:
+ 1067 0050 0520     		movs	r0, #5
+ 1068 0052 7047     		bx	lr
+ 1069              	.L94:
+ 1070 0054 0620     		movs	r0, #6
+ 1071 0056 7047     		bx	lr
+ 1072              	.L97:
+ 1073              		.align	2
+ 1074              	.L96:
+ 1075 0058 00000000 		.word	.LANCHOR0
+ 1076 005c 00000000 		.word	LCD_API_ColorConv_M8888I
+ 1077 0060 00000000 		.word	LCD_API_ColorConv_M888
+ 1078 0064 00000000 		.word	LCD_API_ColorConv_M565
+ 1079 0068 00000000 		.word	LCD_API_ColorConv_M1555I
+ 1080 006c 00000000 		.word	LCD_API_ColorConv_M4444I
+ 1081 0070 00000000 		.word	LCD_API_ColorConv_8666
+ 1082 0074 00000000 		.word	LCD_API_ColorConv_1616I
+ 1083 0078 00000000 		.word	LCD_API_ColorConv_88666I
+ 1085              		.section	.text.DMA2D_CopyBuffer,"ax",%progbits
+ 1086              		.align	1
+ 1087              		.syntax unified
+ 1088              		.thumb
+ 1089              		.thumb_func
+ 1090              		.fpu fpv4-sp-d16
+ 1092              	DMA2D_CopyBuffer:
+ 1093              		@ args = 12, pretend = 0, frame = 0
+ 1094              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1095              		@ link register save eliminated.
+ 1096 0000 70B4     		push	{r4, r5, r6}
+ 1097 0002 0028     		cmp	r0, #0
+ 1098 0004 34D1     		bne	.L102
+ 1099 0006 214C     		ldr	r4, .L112
+ 1100 0008 214D     		ldr	r5, .L112+4
+ 1101 000a A469     		ldr	r4, [r4, #24]
+ 1102 000c AC42     		cmp	r4, r5
+ 1103 000e 16D0     		beq	.L99
+ 1104 0010 2048     		ldr	r0, .L112+8
+ 1105 0012 8442     		cmp	r4, r0
+ 1106 0014 2ED0     		beq	.L103
+ 1107 0016 2048     		ldr	r0, .L112+12
+ 1108 0018 8442     		cmp	r4, r0
+ 1109 001a 2FD0     		beq	.L104
+ 1110 001c 1F48     		ldr	r0, .L112+16
+ 1111 001e 8442     		cmp	r4, r0
+ 1112 0020 2ED0     		beq	.L105
+ 1113 0022 1F48     		ldr	r0, .L112+20
+ 1114 0024 8442     		cmp	r4, r0
+ 1115 0026 09D0     		beq	.L106
+ 1116 0028 1E48     		ldr	r0, .L112+24
+ 1117 002a 8442     		cmp	r4, r0
+ 1118 002c 2AD0     		beq	.L107
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 20
+
+
+ 1119 002e 1E48     		ldr	r0, .L112+28
+ 1120 0030 8442     		cmp	r4, r0
+ 1121 0032 29D0     		beq	.L108
+ 1122 0034 1D48     		ldr	r0, .L112+32
+ 1123 0036 8442     		cmp	r4, r0
+ 1124 0038 1ED0     		beq	.L109
+ 1125              	.L100:
+ 1126 003a FEE7     		b	.L100
+ 1127              	.L106:
+ 1128 003c 0420     		movs	r0, #4
+ 1129              	.L99:
+ 1130 003e 1C4C     		ldr	r4, .L112+36
+ 1131 0040 039D     		ldr	r5, [sp, #12]
+ 1132 0042 4FF40076 		mov	r6, #512
+ 1133 0046 2660     		str	r6, [r4]
+ 1134 0048 ADB2     		uxth	r5, r5
+ 1135 004a E160     		str	r1, [r4, #12]
+ 1136 004c E263     		str	r2, [r4, #60]
+ 1137 004e 45EA0345 		orr	r5, r5, r3, lsl #16
+ 1138 0052 049B     		ldr	r3, [sp, #16]
+ 1139 0054 2361     		str	r3, [r4, #16]
+ 1140 0056 059B     		ldr	r3, [sp, #20]
+ 1141 0058 2364     		str	r3, [r4, #64]
+ 1142 005a E061     		str	r0, [r4, #28]
+ 1143 005c 6564     		str	r5, [r4, #68]
+ 1144 005e 2368     		ldr	r3, [r4]
+ 1145 0060 43F00103 		orr	r3, r3, #1
+ 1146 0064 2360     		str	r3, [r4]
+ 1147              	.L101:
+ 1148 0066 2368     		ldr	r3, [r4]
+ 1149 0068 DB07     		lsls	r3, r3, #31
+ 1150 006a FCD4     		bmi	.L101
+ 1151 006c 70BC     		pop	{r4, r5, r6}
+ 1152 006e 7047     		bx	lr
+ 1153              	.L102:
+ 1154 0070 0020     		movs	r0, #0
+ 1155 0072 E4E7     		b	.L99
+ 1156              	.L103:
+ 1157 0074 0120     		movs	r0, #1
+ 1158 0076 E2E7     		b	.L99
+ 1159              	.L109:
+ 1160 0078 0720     		movs	r0, #7
+ 1161 007a E0E7     		b	.L99
+ 1162              	.L104:
+ 1163 007c 0220     		movs	r0, #2
+ 1164 007e DEE7     		b	.L99
+ 1165              	.L105:
+ 1166 0080 0320     		movs	r0, #3
+ 1167 0082 DCE7     		b	.L99
+ 1168              	.L107:
+ 1169 0084 0520     		movs	r0, #5
+ 1170 0086 DAE7     		b	.L99
+ 1171              	.L108:
+ 1172 0088 0620     		movs	r0, #6
+ 1173 008a D8E7     		b	.L99
+ 1174              	.L113:
+ 1175              		.align	2
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 21
+
+
+ 1176              	.L112:
+ 1177 008c 00000000 		.word	.LANCHOR0
+ 1178 0090 00000000 		.word	LCD_API_ColorConv_M8888I
+ 1179 0094 00000000 		.word	LCD_API_ColorConv_M888
+ 1180 0098 00000000 		.word	LCD_API_ColorConv_M565
+ 1181 009c 00000000 		.word	LCD_API_ColorConv_M1555I
+ 1182 00a0 00000000 		.word	LCD_API_ColorConv_M4444I
+ 1183 00a4 00000000 		.word	LCD_API_ColorConv_8666
+ 1184 00a8 00000000 		.word	LCD_API_ColorConv_1616I
+ 1185 00ac 00000000 		.word	LCD_API_ColorConv_88666I
+ 1186 00b0 00B00240 		.word	1073917952
+ 1188              		.section	.text.CUSTOM_CopyBuffer,"ax",%progbits
+ 1189              		.align	1
+ 1190              		.syntax unified
+ 1191              		.thumb
+ 1192              		.thumb_func
+ 1193              		.fpu fpv4-sp-d16
+ 1195              	CUSTOM_CopyBuffer:
+ 1196              		@ args = 0, pretend = 0, frame = 0
+ 1197              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1198 0000 4FEAC00C 		lsl	ip, r0, #3
+ 1199 0004 2DE97043 		push	{r4, r5, r6, r8, r9, lr}
+ 1200 0008 ACEB0003 		sub	r3, ip, r0
+ 1201 000c 364E     		ldr	r6, .L128
+ 1202 000e 9B00     		lsls	r3, r3, #2
+ 1203 0010 06EB0308 		add	r8, r6, r3
+ 1204 0014 D8E903E4 		ldrd	lr, r4, [r8, #12]
+ 1205 0018 F558     		ldr	r5, [r6, r3]
+ 1206 001a D8F81430 		ldr	r3, [r8, #20]
+ 1207 001e 04FB0EF8 		mul	r8, r4, lr
+ 1208 0022 03FB08F3 		mul	r3, r3, r8
+ 1209 0026 03FB0151 		mla	r1, r3, r1, r5
+ 1210 002a 03FB0255 		mla	r5, r3, r2, r5
+ 1211 002e 0028     		cmp	r0, #0
+ 1212 0030 45D1     		bne	.L118
+ 1213 0032 B369     		ldr	r3, [r6, #24]
+ 1214 0034 DFF8B890 		ldr	r9, .L128+8
+ 1215 0038 4B45     		cmp	r3, r9
+ 1216 003a 8046     		mov	r8, r0
+ 1217 003c 1ED0     		beq	.L115
+ 1218 003e DFF8B480 		ldr	r8, .L128+12
+ 1219 0042 4345     		cmp	r3, r8
+ 1220 0044 3ED0     		beq	.L119
+ 1221 0046 DFF8B080 		ldr	r8, .L128+16
+ 1222 004a 4345     		cmp	r3, r8
+ 1223 004c 40D0     		beq	.L120
+ 1224 004e DFF8AC80 		ldr	r8, .L128+20
+ 1225 0052 4345     		cmp	r3, r8
+ 1226 0054 3FD0     		beq	.L121
+ 1227 0056 DFF8A880 		ldr	r8, .L128+24
+ 1228 005a 4345     		cmp	r3, r8
+ 1229 005c 0CD0     		beq	.L122
+ 1230 005e DFF8A480 		ldr	r8, .L128+28
+ 1231 0062 4345     		cmp	r3, r8
+ 1232 0064 3AD0     		beq	.L123
+ 1233 0066 DFF8A080 		ldr	r8, .L128+32
+ 1234 006a 4345     		cmp	r3, r8
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 22
+
+
+ 1235 006c 39D0     		beq	.L124
+ 1236 006e DFF89C80 		ldr	r8, .L128+36
+ 1237 0072 4345     		cmp	r3, r8
+ 1238 0074 29D0     		beq	.L125
+ 1239              	.L116:
+ 1240 0076 FEE7     		b	.L116
+ 1241              	.L122:
+ 1242 0078 4FF00408 		mov	r8, #4
+ 1243              	.L115:
+ 1244 007c 1B4B     		ldr	r3, .L128+4
+ 1245 007e A4B2     		uxth	r4, r4
+ 1246 0080 44EA0E44 		orr	r4, r4, lr, lsl #16
+ 1247 0084 4FF40079 		mov	r9, #512
+ 1248 0088 4FF0000E 		mov	lr, #0
+ 1249 008c C3F80090 		str	r9, [r3]
+ 1250 0090 D960     		str	r1, [r3, #12]
+ 1251 0092 DD63     		str	r5, [r3, #60]
+ 1252 0094 C3F810E0 		str	lr, [r3, #16]
+ 1253 0098 C3F840E0 		str	lr, [r3, #64]
+ 1254 009c C3F81C80 		str	r8, [r3, #28]
+ 1255 00a0 5C64     		str	r4, [r3, #68]
+ 1256 00a2 1968     		ldr	r1, [r3]
+ 1257 00a4 41F00101 		orr	r1, r1, #1
+ 1258 00a8 1960     		str	r1, [r3]
+ 1259              	.L117:
+ 1260 00aa 1968     		ldr	r1, [r3]
+ 1261 00ac C907     		lsls	r1, r1, #31
+ 1262 00ae FCD4     		bmi	.L117
+ 1263 00b0 ACEB0000 		sub	r0, ip, r0
+ 1264 00b4 06EB8000 		add	r0, r6, r0, lsl #2
+ 1265 00b8 8260     		str	r2, [r0, #8]
+ 1266 00ba BDE87083 		pop	{r4, r5, r6, r8, r9, pc}
+ 1267              	.L118:
+ 1268 00be 4FF00008 		mov	r8, #0
+ 1269 00c2 DBE7     		b	.L115
+ 1270              	.L119:
+ 1271 00c4 4FF00108 		mov	r8, #1
+ 1272 00c8 D8E7     		b	.L115
+ 1273              	.L125:
+ 1274 00ca 4FF00708 		mov	r8, #7
+ 1275 00ce D5E7     		b	.L115
+ 1276              	.L120:
+ 1277 00d0 4FF00208 		mov	r8, #2
+ 1278 00d4 D2E7     		b	.L115
+ 1279              	.L121:
+ 1280 00d6 4FF00308 		mov	r8, #3
+ 1281 00da CFE7     		b	.L115
+ 1282              	.L123:
+ 1283 00dc 4FF00508 		mov	r8, #5
+ 1284 00e0 CCE7     		b	.L115
+ 1285              	.L124:
+ 1286 00e2 4FF00608 		mov	r8, #6
+ 1287 00e6 C9E7     		b	.L115
+ 1288              	.L129:
+ 1289              		.align	2
+ 1290              	.L128:
+ 1291 00e8 00000000 		.word	.LANCHOR0
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 23
+
+
+ 1292 00ec 00B00240 		.word	1073917952
+ 1293 00f0 00000000 		.word	LCD_API_ColorConv_M8888I
+ 1294 00f4 00000000 		.word	LCD_API_ColorConv_M888
+ 1295 00f8 00000000 		.word	LCD_API_ColorConv_M565
+ 1296 00fc 00000000 		.word	LCD_API_ColorConv_M1555I
+ 1297 0100 00000000 		.word	LCD_API_ColorConv_M4444I
+ 1298 0104 00000000 		.word	LCD_API_ColorConv_8666
+ 1299 0108 00000000 		.word	LCD_API_ColorConv_1616I
+ 1300 010c 00000000 		.word	LCD_API_ColorConv_88666I
+ 1302              		.section	.text.CUSTOM_CopyRect,"ax",%progbits
+ 1303              		.align	1
+ 1304              		.syntax unified
+ 1305              		.thumb
+ 1306              		.thumb_func
+ 1307              		.fpu fpv4-sp-d16
+ 1309              	CUSTOM_CopyRect:
+ 1310              		@ args = 12, pretend = 0, frame = 0
+ 1311              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1312 0000 2DE97043 		push	{r4, r5, r6, r8, r9, lr}
+ 1313 0004 DFF8F480 		ldr	r8, .L144+36
+ 1314 0008 C0EBC004 		rsb	r4, r0, r0, lsl #3
+ 1315 000c A400     		lsls	r4, r4, #2
+ 1316 000e 08EB040C 		add	ip, r8, r4
+ 1317 0012 58F80460 		ldr	r6, [r8, r4]
+ 1318 0016 DCF81490 		ldr	r9, [ip, #20]
+ 1319 001a DCF804E0 		ldr	lr, [ip, #4]
+ 1320 001e DCE90354 		ldrd	r5, r4, [ip, #12]
+ 1321 0022 DCF804C0 		ldr	ip, [ip, #4]
+ 1322 0026 04FB05F4 		mul	r4, r4, r5
+ 1323 002a 09FB04F4 		mul	r4, r9, r4
+ 1324 002e 02FB0511 		mla	r1, r2, r5, r1
+ 1325 0032 04FB0E6E 		mla	lr, r4, lr, r6
+ 1326 0036 04FB0C64 		mla	r4, r4, ip, r6
+ 1327 003a DDE90626 		ldrd	r2, r6, [sp, #24]
+ 1328 003e 02FB0533 		mla	r3, r2, r5, r3
+ 1329 0042 09FB01E1 		mla	r1, r9, r1, lr
+ 1330 0046 09FB0343 		mla	r3, r9, r3, r4
+ 1331 004a AD1B     		subs	r5, r5, r6
+ 1332 004c 0028     		cmp	r0, #0
+ 1333 004e 34D1     		bne	.L134
+ 1334 0050 D8F81820 		ldr	r2, [r8, #24]
+ 1335 0054 204C     		ldr	r4, .L144
+ 1336 0056 A242     		cmp	r2, r4
+ 1337 0058 16D0     		beq	.L131
+ 1338 005a 2048     		ldr	r0, .L144+4
+ 1339 005c 8242     		cmp	r2, r0
+ 1340 005e 2ED0     		beq	.L135
+ 1341 0060 1F48     		ldr	r0, .L144+8
+ 1342 0062 8242     		cmp	r2, r0
+ 1343 0064 2FD0     		beq	.L136
+ 1344 0066 1F48     		ldr	r0, .L144+12
+ 1345 0068 8242     		cmp	r2, r0
+ 1346 006a 2ED0     		beq	.L137
+ 1347 006c 1E48     		ldr	r0, .L144+16
+ 1348 006e 8242     		cmp	r2, r0
+ 1349 0070 09D0     		beq	.L138
+ 1350 0072 1E48     		ldr	r0, .L144+20
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 24
+
+
+ 1351 0074 8242     		cmp	r2, r0
+ 1352 0076 2AD0     		beq	.L139
+ 1353 0078 1D48     		ldr	r0, .L144+24
+ 1354 007a 8242     		cmp	r2, r0
+ 1355 007c 29D0     		beq	.L140
+ 1356 007e 1D48     		ldr	r0, .L144+28
+ 1357 0080 8242     		cmp	r2, r0
+ 1358 0082 1ED0     		beq	.L141
+ 1359              	.L132:
+ 1360 0084 FEE7     		b	.L132
+ 1361              	.L138:
+ 1362 0086 0420     		movs	r0, #4
+ 1363              	.L131:
+ 1364 0088 089A     		ldr	r2, [sp, #32]
+ 1365 008a 1B4C     		ldr	r4, .L144+32
+ 1366 008c 92B2     		uxth	r2, r2
+ 1367 008e 42EA0642 		orr	r2, r2, r6, lsl #16
+ 1368 0092 4FF4007C 		mov	ip, #512
+ 1369 0096 0026     		movs	r6, #0
+ 1370 0098 C4F800C0 		str	ip, [r4]
+ 1371 009c E160     		str	r1, [r4, #12]
+ 1372 009e E363     		str	r3, [r4, #60]
+ 1373 00a0 2561     		str	r5, [r4, #16]
+ 1374 00a2 2664     		str	r6, [r4, #64]
+ 1375 00a4 E061     		str	r0, [r4, #28]
+ 1376 00a6 6264     		str	r2, [r4, #68]
+ 1377 00a8 2368     		ldr	r3, [r4]
+ 1378 00aa 43F00103 		orr	r3, r3, #1
+ 1379 00ae 2360     		str	r3, [r4]
+ 1380              	.L133:
+ 1381 00b0 2368     		ldr	r3, [r4]
+ 1382 00b2 DB07     		lsls	r3, r3, #31
+ 1383 00b4 FCD4     		bmi	.L133
+ 1384 00b6 BDE87083 		pop	{r4, r5, r6, r8, r9, pc}
+ 1385              	.L134:
+ 1386 00ba 0020     		movs	r0, #0
+ 1387 00bc E4E7     		b	.L131
+ 1388              	.L135:
+ 1389 00be 0120     		movs	r0, #1
+ 1390 00c0 E2E7     		b	.L131
+ 1391              	.L141:
+ 1392 00c2 0720     		movs	r0, #7
+ 1393 00c4 E0E7     		b	.L131
+ 1394              	.L136:
+ 1395 00c6 0220     		movs	r0, #2
+ 1396 00c8 DEE7     		b	.L131
+ 1397              	.L137:
+ 1398 00ca 0320     		movs	r0, #3
+ 1399 00cc DCE7     		b	.L131
+ 1400              	.L139:
+ 1401 00ce 0520     		movs	r0, #5
+ 1402 00d0 DAE7     		b	.L131
+ 1403              	.L140:
+ 1404 00d2 0620     		movs	r0, #6
+ 1405 00d4 D8E7     		b	.L131
+ 1406              	.L145:
+ 1407 00d6 00BF     		.align	2
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 25
+
+
+ 1408              	.L144:
+ 1409 00d8 00000000 		.word	LCD_API_ColorConv_M8888I
+ 1410 00dc 00000000 		.word	LCD_API_ColorConv_M888
+ 1411 00e0 00000000 		.word	LCD_API_ColorConv_M565
+ 1412 00e4 00000000 		.word	LCD_API_ColorConv_M1555I
+ 1413 00e8 00000000 		.word	LCD_API_ColorConv_M4444I
+ 1414 00ec 00000000 		.word	LCD_API_ColorConv_8666
+ 1415 00f0 00000000 		.word	LCD_API_ColorConv_1616I
+ 1416 00f4 00000000 		.word	LCD_API_ColorConv_88666I
+ 1417 00f8 00B00240 		.word	1073917952
+ 1418 00fc 00000000 		.word	.LANCHOR0
+ 1420              		.section	.text.CUSTOM_FillRect,"ax",%progbits
+ 1421              		.align	1
+ 1422              		.syntax unified
+ 1423              		.thumb
+ 1424              		.thumb_func
+ 1425              		.fpu fpv4-sp-d16
+ 1427              	CUSTOM_FillRect:
+ 1428              		@ args = 8, pretend = 0, frame = 0
+ 1429              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1430 0000 2DE97847 		push	{r3, r4, r5, r6, r8, r9, r10, lr}
+ 1431 0004 0546     		mov	r5, r0
+ 1432 0006 0E46     		mov	r6, r1
+ 1433 0008 9246     		mov	r10, r2
+ 1434 000a 9846     		mov	r8, r3
+ 1435 000c DDE90849 		ldrd	r4, r9, [sp, #32]
+ 1436 0010 FFF7FEFF 		bl	GUI_GetDrawMode
+ 1437 0014 0128     		cmp	r0, #1
+ 1438 0016 4ED0     		beq	.L161
+ 1439 0018 3749     		ldr	r1, .L162
+ 1440 001a C5EBC503 		rsb	r3, r5, r5, lsl #3
+ 1441 001e 9B00     		lsls	r3, r3, #2
+ 1442 0020 C818     		adds	r0, r1, r3
+ 1443 0022 D0E9032E 		ldrd	r2, lr, [r0, #12]
+ 1444 0026 51F803C0 		ldr	ip, [r1, r3]
+ 1445 002a 4369     		ldr	r3, [r0, #20]
+ 1446 002c 8068     		ldr	r0, [r0, #8]
+ 1447 002e A8EB0608 		sub	r8, r8, r6
+ 1448 0032 0EFB02FE 		mul	lr, lr, r2
+ 1449 0036 0AFB0266 		mla	r6, r10, r2, r6
+ 1450 003a 08F10108 		add	r8, r8, #1
+ 1451 003e A4EB0A04 		sub	r4, r4, r10
+ 1452 0042 03FB06C6 		mla	r6, r3, r6, ip
+ 1453 0046 03FB0EFE 		mul	lr, r3, lr
+ 1454 004a 0134     		adds	r4, r4, #1
+ 1455 004c 00FB0E66 		mla	r6, r0, lr, r6
+ 1456 0050 A2EB0802 		sub	r2, r2, r8
+ 1457 0054 CDB9     		cbnz	r5, .L151
+ 1458 0056 8969     		ldr	r1, [r1, #24]
+ 1459 0058 2848     		ldr	r0, .L162+4
+ 1460 005a 8142     		cmp	r1, r0
+ 1461 005c 16D0     		beq	.L148
+ 1462 005e 2848     		ldr	r0, .L162+8
+ 1463 0060 8142     		cmp	r1, r0
+ 1464 0062 3AD0     		beq	.L152
+ 1465 0064 2748     		ldr	r0, .L162+12
+ 1466 0066 8142     		cmp	r1, r0
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 26
+
+
+ 1467 0068 3DD0     		beq	.L153
+ 1468 006a 2748     		ldr	r0, .L162+16
+ 1469 006c 8142     		cmp	r1, r0
+ 1470 006e 3CD0     		beq	.L154
+ 1471 0070 2648     		ldr	r0, .L162+20
+ 1472 0072 8142     		cmp	r1, r0
+ 1473 0074 3BD0     		beq	.L155
+ 1474 0076 2648     		ldr	r0, .L162+24
+ 1475 0078 8142     		cmp	r1, r0
+ 1476 007a 30D0     		beq	.L156
+ 1477 007c 2548     		ldr	r0, .L162+28
+ 1478 007e 8142     		cmp	r1, r0
+ 1479 0080 37D0     		beq	.L157
+ 1480 0082 2548     		ldr	r0, .L162+32
+ 1481 0084 8142     		cmp	r1, r0
+ 1482 0086 2CD0     		beq	.L158
+ 1483              	.L149:
+ 1484 0088 FEE7     		b	.L149
+ 1485              	.L151:
+ 1486 008a 0025     		movs	r5, #0
+ 1487              	.L148:
+ 1488 008c A1B2     		uxth	r1, r4
+ 1489 008e 234C     		ldr	r4, .L162+36
+ 1490 0090 2348     		ldr	r0, .L162+40
+ 1491 0092 2060     		str	r0, [r4]
+ 1492 0094 41EA0841 		orr	r1, r1, r8, lsl #16
+ 1493 0098 C4F83890 		str	r9, [r4, #56]
+ 1494 009c E663     		str	r6, [r4, #60]
+ 1495 009e 2264     		str	r2, [r4, #64]
+ 1496 00a0 6563     		str	r5, [r4, #52]
+ 1497 00a2 6164     		str	r1, [r4, #68]
+ 1498 00a4 2368     		ldr	r3, [r4]
+ 1499 00a6 43F00103 		orr	r3, r3, #1
+ 1500 00aa 2360     		str	r3, [r4]
+ 1501              	.L150:
+ 1502 00ac 2368     		ldr	r3, [r4]
+ 1503 00ae DB07     		lsls	r3, r3, #31
+ 1504 00b0 FCD4     		bmi	.L150
+ 1505 00b2 BDE87887 		pop	{r3, r4, r5, r6, r8, r9, r10, pc}
+ 1506              	.L161:
+ 1507 00b6 0022     		movs	r2, #0
+ 1508 00b8 1921     		movs	r1, #25
+ 1509 00ba 2846     		mov	r0, r5
+ 1510 00bc FFF7FEFF 		bl	LCD_SetDevFunc
+ 1511 00c0 4246     		mov	r2, r8
+ 1512 00c2 5146     		mov	r1, r10
+ 1513 00c4 3046     		mov	r0, r6
+ 1514 00c6 2346     		mov	r3, r4
+ 1515 00c8 FFF7FEFF 		bl	LCD_FillRect
+ 1516 00cc 2846     		mov	r0, r5
+ 1517 00ce 154A     		ldr	r2, .L162+44
+ 1518 00d0 1921     		movs	r1, #25
+ 1519 00d2 BDE87847 		pop	{r3, r4, r5, r6, r8, r9, r10, lr}
+ 1520 00d6 FFF7FEBF 		b	LCD_SetDevFunc
+ 1521              	.L152:
+ 1522 00da 0125     		movs	r5, #1
+ 1523 00dc D6E7     		b	.L148
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 27
+
+
+ 1524              	.L156:
+ 1525 00de 0525     		movs	r5, #5
+ 1526 00e0 D4E7     		b	.L148
+ 1527              	.L158:
+ 1528 00e2 0725     		movs	r5, #7
+ 1529 00e4 D2E7     		b	.L148
+ 1530              	.L153:
+ 1531 00e6 0225     		movs	r5, #2
+ 1532 00e8 D0E7     		b	.L148
+ 1533              	.L154:
+ 1534 00ea 0325     		movs	r5, #3
+ 1535 00ec CEE7     		b	.L148
+ 1536              	.L155:
+ 1537 00ee 0425     		movs	r5, #4
+ 1538 00f0 CCE7     		b	.L148
+ 1539              	.L157:
+ 1540 00f2 0625     		movs	r5, #6
+ 1541 00f4 CAE7     		b	.L148
+ 1542              	.L163:
+ 1543 00f6 00BF     		.align	2
+ 1544              	.L162:
+ 1545 00f8 00000000 		.word	.LANCHOR0
+ 1546 00fc 00000000 		.word	LCD_API_ColorConv_M8888I
+ 1547 0100 00000000 		.word	LCD_API_ColorConv_M888
+ 1548 0104 00000000 		.word	LCD_API_ColorConv_M565
+ 1549 0108 00000000 		.word	LCD_API_ColorConv_M1555I
+ 1550 010c 00000000 		.word	LCD_API_ColorConv_M4444I
+ 1551 0110 00000000 		.word	LCD_API_ColorConv_8666
+ 1552 0114 00000000 		.word	LCD_API_ColorConv_1616I
+ 1553 0118 00000000 		.word	LCD_API_ColorConv_88666I
+ 1554 011c 00B00240 		.word	1073917952
+ 1555 0120 00020300 		.word	197120
+ 1556 0124 00000000 		.word	CUSTOM_FillRect
+ 1558              		.section	.text.HAL_DMA2D_MspInit,"ax",%progbits
+ 1559              		.align	1
+ 1560              		.global	HAL_DMA2D_MspInit
+ 1561              		.syntax unified
+ 1562              		.thumb
+ 1563              		.thumb_func
+ 1564              		.fpu fpv4-sp-d16
+ 1566              	HAL_DMA2D_MspInit:
+ 1567              		@ args = 0, pretend = 0, frame = 8
+ 1568              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1569              		@ link register save eliminated.
+ 1570 0000 82B0     		sub	sp, sp, #8
+ 1571 0002 074B     		ldr	r3, .L166
+ 1572 0004 0022     		movs	r2, #0
+ 1573 0006 0192     		str	r2, [sp, #4]
+ 1574 0008 1A6B     		ldr	r2, [r3, #48]
+ 1575 000a 42F40002 		orr	r2, r2, #8388608
+ 1576 000e 1A63     		str	r2, [r3, #48]
+ 1577 0010 1B6B     		ldr	r3, [r3, #48]
+ 1578 0012 03F40003 		and	r3, r3, #8388608
+ 1579 0016 0193     		str	r3, [sp, #4]
+ 1580 0018 019B     		ldr	r3, [sp, #4]
+ 1581 001a 02B0     		add	sp, sp, #8
+ 1582              		@ sp needed
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 28
+
+
+ 1583 001c 7047     		bx	lr
+ 1584              	.L167:
+ 1585 001e 00BF     		.align	2
+ 1586              	.L166:
+ 1587 0020 00380240 		.word	1073887232
+ 1589              		.section	.text.HAL_DMA2D_MspDeInit,"ax",%progbits
+ 1590              		.align	1
+ 1591              		.global	HAL_DMA2D_MspDeInit
+ 1592              		.syntax unified
+ 1593              		.thumb
+ 1594              		.thumb_func
+ 1595              		.fpu fpv4-sp-d16
+ 1597              	HAL_DMA2D_MspDeInit:
+ 1598              		@ args = 0, pretend = 0, frame = 0
+ 1599              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1600              		@ link register save eliminated.
+ 1601 0000 044B     		ldr	r3, .L169
+ 1602 0002 1A69     		ldr	r2, [r3, #16]
+ 1603 0004 42F40002 		orr	r2, r2, #8388608
+ 1604 0008 1A61     		str	r2, [r3, #16]
+ 1605 000a 1A69     		ldr	r2, [r3, #16]
+ 1606 000c 22F40002 		bic	r2, r2, #8388608
+ 1607 0010 1A61     		str	r2, [r3, #16]
+ 1608 0012 7047     		bx	lr
+ 1609              	.L170:
+ 1610              		.align	2
+ 1611              	.L169:
+ 1612 0014 00380240 		.word	1073887232
+ 1614              		.section	.text.HAL_LTDC_MspInit,"ax",%progbits
+ 1615              		.align	1
+ 1616              		.global	HAL_LTDC_MspInit
+ 1617              		.syntax unified
+ 1618              		.thumb
+ 1619              		.thumb_func
+ 1620              		.fpu fpv4-sp-d16
+ 1622              	HAL_LTDC_MspInit:
+ 1623              		@ args = 0, pretend = 0, frame = 48
+ 1624              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1625 0000 70B5     		push	{r4, r5, r6, lr}
+ 1626 0002 8CB0     		sub	sp, sp, #48
+ 1627 0004 494B     		ldr	r3, .L173
+ 1628 0006 4A4E     		ldr	r6, .L173+4
+ 1629 0008 4A48     		ldr	r0, .L173+8
+ 1630 000a 4B4D     		ldr	r5, .L173+12
+ 1631 000c 0024     		movs	r4, #0
+ 1632 000e 0094     		str	r4, [sp]
+ 1633 0010 5A6C     		ldr	r2, [r3, #68]
+ 1634 0012 42F08062 		orr	r2, r2, #67108864
+ 1635 0016 5A64     		str	r2, [r3, #68]
+ 1636 0018 5A6C     		ldr	r2, [r3, #68]
+ 1637 001a 02F08062 		and	r2, r2, #67108864
+ 1638 001e 0092     		str	r2, [sp]
+ 1639 0020 009A     		ldr	r2, [sp]
+ 1640 0022 0194     		str	r4, [sp, #4]
+ 1641 0024 1A6B     		ldr	r2, [r3, #48]
+ 1642 0026 42F00102 		orr	r2, r2, #1
+ 1643 002a 1A63     		str	r2, [r3, #48]
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 29
+
+
+ 1644 002c 1A6B     		ldr	r2, [r3, #48]
+ 1645 002e 02F00102 		and	r2, r2, #1
+ 1646 0032 0192     		str	r2, [sp, #4]
+ 1647 0034 019A     		ldr	r2, [sp, #4]
+ 1648 0036 0294     		str	r4, [sp, #8]
+ 1649 0038 1A6B     		ldr	r2, [r3, #48]
+ 1650 003a 42F00202 		orr	r2, r2, #2
+ 1651 003e 1A63     		str	r2, [r3, #48]
+ 1652 0040 1A6B     		ldr	r2, [r3, #48]
+ 1653 0042 02F00202 		and	r2, r2, #2
+ 1654 0046 0292     		str	r2, [sp, #8]
+ 1655 0048 029A     		ldr	r2, [sp, #8]
+ 1656 004a 0394     		str	r4, [sp, #12]
+ 1657 004c 1A6B     		ldr	r2, [r3, #48]
+ 1658 004e 42F00402 		orr	r2, r2, #4
+ 1659 0052 1A63     		str	r2, [r3, #48]
+ 1660 0054 1A6B     		ldr	r2, [r3, #48]
+ 1661 0056 02F00402 		and	r2, r2, #4
+ 1662 005a 0392     		str	r2, [sp, #12]
+ 1663 005c 039A     		ldr	r2, [sp, #12]
+ 1664 005e 0494     		str	r4, [sp, #16]
+ 1665 0060 1A6B     		ldr	r2, [r3, #48]
+ 1666 0062 42F00802 		orr	r2, r2, #8
+ 1667 0066 1A63     		str	r2, [r3, #48]
+ 1668 0068 1A6B     		ldr	r2, [r3, #48]
+ 1669 006a 02F00802 		and	r2, r2, #8
+ 1670 006e 0492     		str	r2, [sp, #16]
+ 1671 0070 049A     		ldr	r2, [sp, #16]
+ 1672 0072 0594     		str	r4, [sp, #20]
+ 1673 0074 1A6B     		ldr	r2, [r3, #48]
+ 1674 0076 42F02002 		orr	r2, r2, #32
+ 1675 007a 1A63     		str	r2, [r3, #48]
+ 1676 007c 1A6B     		ldr	r2, [r3, #48]
+ 1677 007e 02F02002 		and	r2, r2, #32
+ 1678 0082 0592     		str	r2, [sp, #20]
+ 1679 0084 059A     		ldr	r2, [sp, #20]
+ 1680 0086 0694     		str	r4, [sp, #24]
+ 1681 0088 1A6B     		ldr	r2, [r3, #48]
+ 1682 008a 42F04002 		orr	r2, r2, #64
+ 1683 008e 1A63     		str	r2, [r3, #48]
+ 1684 0090 1B6B     		ldr	r3, [r3, #48]
+ 1685 0092 0994     		str	r4, [sp, #36]
+ 1686 0094 03F04003 		and	r3, r3, #64
+ 1687 0098 41F65802 		movw	r2, #6232
+ 1688 009c 0693     		str	r3, [sp, #24]
+ 1689 009e 07A9     		add	r1, sp, #28
+ 1690 00a0 0223     		movs	r3, #2
+ 1691 00a2 0792     		str	r2, [sp, #28]
+ 1692 00a4 0E22     		movs	r2, #14
+ 1693 00a6 DDF818C0 		ldr	ip, [sp, #24]
+ 1694 00aa 0893     		str	r3, [sp, #32]
+ 1695 00ac CDE90A32 		strd	r3, r2, [sp, #40]
+ 1696 00b0 FFF7FEFF 		bl	HAL_GPIO_Init
+ 1697 00b4 07A9     		add	r1, sp, #28
+ 1698 00b6 3046     		mov	r0, r6
+ 1699 00b8 4FF47063 		mov	r3, #3840
+ 1700 00bc 0793     		str	r3, [sp, #28]
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 30
+
+
+ 1701 00be FFF7FEFF 		bl	HAL_GPIO_Init
+ 1702 00c2 07A9     		add	r1, sp, #28
+ 1703 00c4 4FF49863 		mov	r3, #1216
+ 1704 00c8 1C48     		ldr	r0, .L173+16
+ 1705 00ca 0793     		str	r3, [sp, #28]
+ 1706 00cc FFF7FEFF 		bl	HAL_GPIO_Init
+ 1707 00d0 07A9     		add	r1, sp, #28
+ 1708 00d2 4823     		movs	r3, #72
+ 1709 00d4 1A48     		ldr	r0, .L173+20
+ 1710 00d6 0793     		str	r3, [sp, #28]
+ 1711 00d8 FFF7FEFF 		bl	HAL_GPIO_Init
+ 1712 00dc 07A9     		add	r1, sp, #28
+ 1713 00de 4FF48063 		mov	r3, #1024
+ 1714 00e2 1848     		ldr	r0, .L173+24
+ 1715 00e4 0793     		str	r3, [sp, #28]
+ 1716 00e6 FFF7FEFF 		bl	HAL_GPIO_Init
+ 1717 00ea 07A9     		add	r1, sp, #28
+ 1718 00ec 2846     		mov	r0, r5
+ 1719 00ee 4FF40C63 		mov	r3, #2240
+ 1720 00f2 0793     		str	r3, [sp, #28]
+ 1721 00f4 FFF7FEFF 		bl	HAL_GPIO_Init
+ 1722 00f8 0322     		movs	r2, #3
+ 1723 00fa 3046     		mov	r0, r6
+ 1724 00fc 07A9     		add	r1, sp, #28
+ 1725 00fe 0923     		movs	r3, #9
+ 1726 0100 0792     		str	r2, [sp, #28]
+ 1727 0102 0B93     		str	r3, [sp, #44]
+ 1728 0104 FFF7FEFF 		bl	HAL_GPIO_Init
+ 1729 0108 4FF4A053 		mov	r3, #5120
+ 1730 010c 07A9     		add	r1, sp, #28
+ 1731 010e 2846     		mov	r0, r5
+ 1732 0110 0793     		str	r3, [sp, #28]
+ 1733 0112 FFF7FEFF 		bl	HAL_GPIO_Init
+ 1734 0116 2246     		mov	r2, r4
+ 1735 0118 0F21     		movs	r1, #15
+ 1736 011a 5820     		movs	r0, #88
+ 1737 011c FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 1738 0120 5820     		movs	r0, #88
+ 1739 0122 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 1740 0126 0CB0     		add	sp, sp, #48
+ 1741              		@ sp needed
+ 1742 0128 70BD     		pop	{r4, r5, r6, pc}
+ 1743              	.L174:
+ 1744 012a 00BF     		.align	2
+ 1745              	.L173:
+ 1746 012c 00380240 		.word	1073887232
+ 1747 0130 00040240 		.word	1073873920
+ 1748 0134 00000240 		.word	1073872896
+ 1749 0138 00180240 		.word	1073879040
+ 1750 013c 00080240 		.word	1073874944
+ 1751 0140 000C0240 		.word	1073875968
+ 1752 0144 00140240 		.word	1073878016
+ 1754              		.section	.text.HAL_LTDC_MspDeInit,"ax",%progbits
+ 1755              		.align	1
+ 1756              		.global	HAL_LTDC_MspDeInit
+ 1757              		.syntax unified
+ 1758              		.thumb
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 31
+
+
+ 1759              		.thumb_func
+ 1760              		.fpu fpv4-sp-d16
+ 1762              	HAL_LTDC_MspDeInit:
+ 1763              		@ args = 0, pretend = 0, frame = 0
+ 1764              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1765              		@ link register save eliminated.
+ 1766 0000 044B     		ldr	r3, .L176
+ 1767 0002 5A6A     		ldr	r2, [r3, #36]
+ 1768 0004 42F08062 		orr	r2, r2, #67108864
+ 1769 0008 5A62     		str	r2, [r3, #36]
+ 1770 000a 5A6A     		ldr	r2, [r3, #36]
+ 1771 000c 22F08062 		bic	r2, r2, #67108864
+ 1772 0010 5A62     		str	r2, [r3, #36]
+ 1773 0012 7047     		bx	lr
+ 1774              	.L177:
+ 1775              		.align	2
+ 1776              	.L176:
+ 1777 0014 00380240 		.word	1073887232
+ 1779              		.section	.text.HAL_LTDC_LineEventCallback,"ax",%progbits
+ 1780              		.align	1
+ 1781              		.global	HAL_LTDC_LineEventCallback
+ 1782              		.syntax unified
+ 1783              		.thumb
+ 1784              		.thumb_func
+ 1785              		.fpu fpv4-sp-d16
+ 1787              	HAL_LTDC_LineEventCallback:
+ 1788              		@ args = 0, pretend = 0, frame = 8
+ 1789              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1790 0000 70B5     		push	{r4, r5, r6, lr}
+ 1791 0002 144C     		ldr	r4, .L181
+ 1792 0004 6368     		ldr	r3, [r4, #4]
+ 1793 0006 002B     		cmp	r3, #0
+ 1794 0008 82B0     		sub	sp, sp, #8
+ 1795 000a 0646     		mov	r6, r0
+ 1796 000c 1BDB     		blt	.L179
+ 1797 000e 6169     		ldr	r1, [r4, #20]
+ 1798 0010 0191     		str	r1, [sp, #4]
+ 1799 0012 2269     		ldr	r2, [r4, #16]
+ 1800 0014 E168     		ldr	r1, [r4, #12]
+ 1801 0016 6368     		ldr	r3, [r4, #4]
+ 1802 0018 2568     		ldr	r5, [r4]
+ 1803 001a 02FB01F2 		mul	r2, r2, r1
+ 1804 001e 03FB02F3 		mul	r3, r3, r2
+ 1805 0022 019A     		ldr	r2, [sp, #4]
+ 1806 0024 02FB0351 		mla	r1, r2, r3, r5
+ 1807 0028 0022     		movs	r2, #0
+ 1808 002a FFF7FEFF 		bl	HAL_LTDC_SetAddress
+ 1809 002e 3268     		ldr	r2, [r6]
+ 1810 0030 536A     		ldr	r3, [r2, #36]
+ 1811 0032 43F00103 		orr	r3, r3, #1
+ 1812 0036 5362     		str	r3, [r2, #36]
+ 1813 0038 6168     		ldr	r1, [r4, #4]
+ 1814 003a 0020     		movs	r0, #0
+ 1815 003c FFF7FEFF 		bl	GUI_MULTIBUF_ConfirmEx
+ 1816 0040 4FF0FF33 		mov	r3, #-1
+ 1817 0044 6360     		str	r3, [r4, #4]
+ 1818              	.L179:
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 32
+
+
+ 1819 0046 3046     		mov	r0, r6
+ 1820 0048 0021     		movs	r1, #0
+ 1821 004a 02B0     		add	sp, sp, #8
+ 1822              		@ sp needed
+ 1823 004c BDE87040 		pop	{r4, r5, r6, lr}
+ 1824 0050 FFF7FEBF 		b	HAL_LTDC_ProgramLineEvent
+ 1825              	.L182:
+ 1826              		.align	2
+ 1827              	.L181:
+ 1828 0054 00000000 		.word	.LANCHOR0
+ 1830              		.section	.text.LCD_X_Config,"ax",%progbits
+ 1831              		.align	1
+ 1832              		.global	LCD_X_Config
+ 1833              		.syntax unified
+ 1834              		.thumb
+ 1835              		.thumb_func
+ 1836              		.fpu fpv4-sp-d16
+ 1838              	LCD_X_Config:
+ 1839              		@ args = 0, pretend = 0, frame = 0
+ 1840              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1841 0000 70B5     		push	{r4, r5, r6, lr}
+ 1842 0002 744C     		ldr	r4, .L199
+ 1843 0004 2046     		mov	r0, r4
+ 1844 0006 FFF7FEFF 		bl	HAL_LTDC_DeInit
+ 1845 000a 0926     		movs	r6, #9
+ 1846 000c FFF7FEFF 		bl	ili9341_Init
+ 1847 0010 0325     		movs	r5, #3
+ 1848 0012 714B     		ldr	r3, .L199+4
+ 1849 0014 6661     		str	r6, [r4, #20]
+ 1850 0016 0121     		movs	r1, #1
+ 1851 0018 1D22     		movs	r2, #29
+ 1852 001a 40F20D10 		movw	r0, #269
+ 1853 001e A161     		str	r1, [r4, #24]
+ 1854 0020 E261     		str	r2, [r4, #28]
+ 1855 0022 2562     		str	r5, [r4, #32]
+ 1856 0024 6062     		str	r0, [r4, #36]
+ 1857 0026 0025     		movs	r5, #0
+ 1858 0028 40F24316 		movw	r6, #323
+ 1859 002c 40F21711 		movw	r1, #279
+ 1860 0030 40F24712 		movw	r2, #327
+ 1861 0034 0820     		movs	r0, #8
+ 1862 0036 A662     		str	r6, [r4, #40]
+ 1863 0038 E162     		str	r1, [r4, #44]
+ 1864 003a 2263     		str	r2, [r4, #48]
+ 1865 003c 0421     		movs	r1, #4
+ 1866 003e 4FF40032 		mov	r2, #131072
+ 1867 0042 1860     		str	r0, [r3]
+ 1868 0044 A586     		strh	r5, [r4, #52]	@ movhi
+ 1869 0046 1846     		mov	r0, r3
+ 1870 0048 C026     		movs	r6, #192
+ 1871 004a 5A62     		str	r2, [r3, #36]
+ 1872 004c 9961     		str	r1, [r3, #24]
+ 1873 004e 84F83650 		strb	r5, [r4, #54]
+ 1874 0052 1E61     		str	r6, [r3, #16]
+ 1875 0054 FFF7FEFF 		bl	HAL_RCCEx_PeriphCLKConfig
+ 1876 0058 604B     		ldr	r3, .L199+8
+ 1877 005a 2360     		str	r3, [r4]
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 33
+
+
+ 1878 005c 2046     		mov	r0, r4
+ 1879 005e 6560     		str	r5, [r4, #4]
+ 1880 0060 C4E90255 		strd	r5, r5, [r4, #8]
+ 1881 0064 2561     		str	r5, [r4, #16]
+ 1882 0066 FFF7FEFF 		bl	HAL_LTDC_Init
+ 1883 006a 2946     		mov	r1, r5
+ 1884 006c 2046     		mov	r0, r4
+ 1885 006e FFF7FEFF 		bl	HAL_LTDC_ProgramLineEvent
+ 1886 0072 5B4B     		ldr	r3, .L199+12
+ 1887 0074 5B4A     		ldr	r2, .L199+16
+ 1888 0076 DD60     		str	r5, [r3, #12]
+ 1889 0078 4FF44034 		mov	r4, #196608
+ 1890 007c 0221     		movs	r1, #2
+ 1891 007e 1846     		mov	r0, r3
+ 1892 0080 C3E90141 		strd	r4, r1, [r3, #4]
+ 1893 0084 1A60     		str	r2, [r3]
+ 1894 0086 FFF7FEFF 		bl	HAL_DMA2D_Init
+ 1895 008a 0028     		cmp	r0, #0
+ 1896 008c 4AD1     		bne	.L185
+ 1897 008e 0346     		mov	r3, r0
+ 1898 0090 0246     		mov	r2, r0
+ 1899 0092 0446     		mov	r4, r0
+ 1900 0094 5449     		ldr	r1, .L199+20
+ 1901 0096 5548     		ldr	r0, .L199+24
+ 1902 0098 FFF7FEFF 		bl	GUI_DEVICE_CreateAndLink
+ 1903 009c 2046     		mov	r0, r4
+ 1904 009e FFF7FEFF 		bl	LCD_GetSwapXYEx
+ 1905 00a2 0546     		mov	r5, r0
+ 1906 00a4 0028     		cmp	r0, #0
+ 1907 00a6 3ED1     		bne	.L198
+ 1908 00a8 4FF4A072 		mov	r2, #320
+ 1909 00ac F021     		movs	r1, #240
+ 1910 00ae FFF7FEFF 		bl	LCD_SetSizeEx
+ 1911 00b2 2846     		mov	r0, r5
+ 1912 00b4 4FF4A072 		mov	r2, #320
+ 1913 00b8 F021     		movs	r1, #240
+ 1914 00ba FFF7FEFF 		bl	LCD_SetVSizeEx
+ 1915              	.L187:
+ 1916 00be 4C4C     		ldr	r4, .L199+28
+ 1917 00c0 4C49     		ldr	r1, .L199+32
+ 1918 00c2 494D     		ldr	r5, .L199+20
+ 1919 00c4 2160     		str	r1, [r4]
+ 1920 00c6 4FF0FF33 		mov	r3, #-1
+ 1921 00ca 6360     		str	r3, [r4, #4]
+ 1922 00cc 0020     		movs	r0, #0
+ 1923 00ce A561     		str	r5, [r4, #24]
+ 1924 00d0 FFF7FEFF 		bl	LCD_SetVRAMAddrEx
+ 1925 00d4 0020     		movs	r0, #0
+ 1926 00d6 FFF7FEFF 		bl	LCD_GetBitsPerPixelEx
+ 1927 00da C310     		asrs	r3, r0, #3
+ 1928 00dc 6361     		str	r3, [r4, #20]
+ 1929 00de 464A     		ldr	r2, .L199+36
+ 1930 00e0 2121     		movs	r1, #33
+ 1931 00e2 0020     		movs	r0, #0
+ 1932 00e4 FFF7FEFF 		bl	LCD_SetDevFunc
+ 1933 00e8 444A     		ldr	r2, .L199+40
+ 1934 00ea 2321     		movs	r1, #35
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 34
+
+
+ 1935 00ec 0020     		movs	r0, #0
+ 1936 00ee FFF7FEFF 		bl	LCD_SetDevFunc
+ 1937 00f2 A369     		ldr	r3, [r4, #24]
+ 1938 00f4 AB42     		cmp	r3, r5
+ 1939 00f6 23D0     		beq	.L188
+ 1940 00f8 414A     		ldr	r2, .L199+44
+ 1941 00fa 9342     		cmp	r3, r2
+ 1942 00fc 20D0     		beq	.L188
+ 1943 00fe 414A     		ldr	r2, .L199+48
+ 1944 0100 9342     		cmp	r3, r2
+ 1945 0102 1DD0     		beq	.L188
+ 1946 0104 404A     		ldr	r2, .L199+52
+ 1947 0106 9342     		cmp	r3, r2
+ 1948 0108 1AD0     		beq	.L188
+ 1949 010a 404A     		ldr	r2, .L199+56
+ 1950 010c 9342     		cmp	r3, r2
+ 1951 010e 17D0     		beq	.L188
+ 1952 0110 3F4A     		ldr	r2, .L199+60
+ 1953 0112 9342     		cmp	r3, r2
+ 1954 0114 1FD0     		beq	.L189
+ 1955 0116 3F4A     		ldr	r2, .L199+64
+ 1956 0118 9342     		cmp	r3, r2
+ 1957 011a 1CD0     		beq	.L189
+ 1958 011c 3E4A     		ldr	r2, .L199+68
+ 1959 011e 9342     		cmp	r3, r2
+ 1960 0120 19D0     		beq	.L189
+ 1961              	.L190:
+ 1962 0122 FEE7     		b	.L190
+ 1963              	.L185:
+ 1964 0124 FEE7     		b	.L185
+ 1965              	.L198:
+ 1966 0126 F022     		movs	r2, #240
+ 1967 0128 4FF4A071 		mov	r1, #320
+ 1968 012c 2046     		mov	r0, r4
+ 1969 012e FFF7FEFF 		bl	LCD_SetSizeEx
+ 1970 0132 2046     		mov	r0, r4
+ 1971 0134 F022     		movs	r2, #240
+ 1972 0136 4FF4A071 		mov	r1, #320
+ 1973 013a FFF7FEFF 		bl	LCD_SetVSizeEx
+ 1974 013e BEE7     		b	.L187
+ 1975              	.L188:
+ 1976 0140 364A     		ldr	r2, .L199+72
+ 1977 0142 1921     		movs	r1, #25
+ 1978 0144 0020     		movs	r0, #0
+ 1979 0146 FFF7FEFF 		bl	LCD_SetDevFunc
+ 1980 014a 354A     		ldr	r2, .L199+76
+ 1981 014c 2521     		movs	r1, #37
+ 1982 014e 0020     		movs	r0, #0
+ 1983 0150 FFF7FEFF 		bl	LCD_SetDevFunc
+ 1984 0154 A369     		ldr	r3, [r4, #24]
+ 1985              	.L189:
+ 1986 0156 AB42     		cmp	r3, r5
+ 1987 0158 1AD0     		beq	.L191
+ 1988 015a 294A     		ldr	r2, .L199+44
+ 1989 015c 9342     		cmp	r3, r2
+ 1990 015e 17D0     		beq	.L191
+ 1991 0160 284A     		ldr	r2, .L199+48
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 35
+
+
+ 1992 0162 9342     		cmp	r3, r2
+ 1993 0164 0FD0     		beq	.L192
+ 1994 0166 284A     		ldr	r2, .L199+52
+ 1995 0168 9342     		cmp	r3, r2
+ 1996 016a 11D0     		beq	.L191
+ 1997 016c 274A     		ldr	r2, .L199+56
+ 1998 016e 9342     		cmp	r3, r2
+ 1999 0170 0ED0     		beq	.L191
+ 2000 0172 274A     		ldr	r2, .L199+60
+ 2001 0174 9342     		cmp	r3, r2
+ 2002 0176 0BD0     		beq	.L191
+ 2003 0178 264A     		ldr	r2, .L199+64
+ 2004 017a 9342     		cmp	r3, r2
+ 2005 017c 08D0     		beq	.L191
+ 2006 017e 264A     		ldr	r2, .L199+68
+ 2007 0180 9342     		cmp	r3, r2
+ 2008 0182 05D0     		beq	.L191
+ 2009              	.L193:
+ 2010 0184 FEE7     		b	.L193
+ 2011              	.L192:
+ 2012 0186 274A     		ldr	r2, .L199+80
+ 2013 0188 2421     		movs	r1, #36
+ 2014 018a 0020     		movs	r0, #0
+ 2015 018c FFF7FEFF 		bl	LCD_SetDevFunc
+ 2016              	.L191:
+ 2017 0190 2549     		ldr	r1, .L199+84
+ 2018 0192 2648     		ldr	r0, .L199+88
+ 2019 0194 FFF7FEFF 		bl	GUICC_M1555I_SetCustColorConv
+ 2020 0198 2549     		ldr	r1, .L199+92
+ 2021 019a 2648     		ldr	r0, .L199+96
+ 2022 019c FFF7FEFF 		bl	GUICC_M565_SetCustColorConv
+ 2023 01a0 2549     		ldr	r1, .L199+100
+ 2024 01a2 2648     		ldr	r0, .L199+104
+ 2025 01a4 FFF7FEFF 		bl	GUICC_M4444I_SetCustColorConv
+ 2026 01a8 2549     		ldr	r1, .L199+108
+ 2027 01aa 2648     		ldr	r0, .L199+112
+ 2028 01ac FFF7FEFF 		bl	GUICC_M888_SetCustColorConv
+ 2029 01b0 2549     		ldr	r1, .L199+116
+ 2030 01b2 2648     		ldr	r0, .L199+120
+ 2031 01b4 FFF7FEFF 		bl	GUICC_M8888I_SetCustColorConv
+ 2032 01b8 2548     		ldr	r0, .L199+124
+ 2033 01ba FFF7FEFF 		bl	GUI_SetFuncAlphaBlending
+ 2034 01be 2548     		ldr	r0, .L199+128
+ 2035 01c0 FFF7FEFF 		bl	GUI_SetFuncGetpPalConvTable
+ 2036 01c4 2448     		ldr	r0, .L199+132
+ 2037 01c6 FFF7FEFF 		bl	GUI_SetFuncMixColors
+ 2038 01ca 2448     		ldr	r0, .L199+136
+ 2039 01cc BDE87040 		pop	{r4, r5, r6, lr}
+ 2040 01d0 FFF7FEBF 		b	GUI_SetFuncMixColorsBulk
+ 2041              	.L200:
+ 2042              		.align	2
+ 2043              	.L199:
+ 2044 01d4 00000000 		.word	hltdc
+ 2045 01d8 00000000 		.word	.LANCHOR1
+ 2046 01dc 00680140 		.word	1073833984
+ 2047 01e0 00000000 		.word	.LANCHOR2
+ 2048 01e4 00B00240 		.word	1073917952
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 36
+
+
+ 2049 01e8 00000000 		.word	LCD_API_ColorConv_M8888I
+ 2050 01ec 00000000 		.word	GUIDRV_Lin_32_API
+ 2051 01f0 00000000 		.word	.LANCHOR0
+ 2052 01f4 000020D0 		.word	-803209216
+ 2053 01f8 00000000 		.word	CUSTOM_CopyBuffer
+ 2054 01fc 00000000 		.word	CUSTOM_CopyRect
+ 2055 0200 00000000 		.word	LCD_API_ColorConv_M888
+ 2056 0204 00000000 		.word	LCD_API_ColorConv_M565
+ 2057 0208 00000000 		.word	LCD_API_ColorConv_M1555I
+ 2058 020c 00000000 		.word	LCD_API_ColorConv_M4444I
+ 2059 0210 00000000 		.word	LCD_API_ColorConv_8666
+ 2060 0214 00000000 		.word	LCD_API_ColorConv_1616I
+ 2061 0218 00000000 		.word	LCD_API_ColorConv_88666I
+ 2062 021c 00000000 		.word	CUSTOM_FillRect
+ 2063 0220 00000000 		.word	BSP_LCD_DrawBitmap8bpp
+ 2064 0224 00000000 		.word	BSP_LCD_DrawBitmap16bpp
+ 2065 0228 00000000 		.word	Index2ColorBulk_M1555IDMA2D
+ 2066 022c 00000000 		.word	Color2IndexBulk_M1555IDMA2D
+ 2067 0230 00000000 		.word	Index2ColorBulk_M565DMA2D
+ 2068 0234 00000000 		.word	Color2IndexBulk_M565DMA2D
+ 2069 0238 00000000 		.word	Index2ColorBulk_M4444IDMA2D
+ 2070 023c 00000000 		.word	Color2IndexBulk_M4444IDMA2D
+ 2071 0240 00000000 		.word	Index2ColorBulk_M888DMA2D
+ 2072 0244 00000000 		.word	Color2IndexBulk_M888DMA2D
+ 2073 0248 00000000 		.word	Index2ColorBulk_M8888IDMA2D
+ 2074 024c 00000000 		.word	Color2IndexBulk_M8888IDMA2D
+ 2075 0250 00000000 		.word	DMA2D_AlphaBlending
+ 2076 0254 00000000 		.word	_LCD_GetpPalConvTable
+ 2077 0258 00000000 		.word	DMA2D_MixColors
+ 2078 025c 00000000 		.word	LCD_MixColorsBulk
+ 2080              		.section	.text.LCD_X_DisplayDriver,"ax",%progbits
+ 2081              		.align	1
+ 2082              		.global	LCD_X_DisplayDriver
+ 2083              		.syntax unified
+ 2084              		.thumb
+ 2085              		.thumb_func
+ 2086              		.fpu fpv4-sp-d16
+ 2088              	LCD_X_DisplayDriver:
+ 2089              		@ args = 0, pretend = 0, frame = 64
+ 2090              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2091 0000 70B5     		push	{r4, r5, r6, lr}
+ 2092 0002 0139     		subs	r1, r1, #1
+ 2093 0004 90B0     		sub	sp, sp, #64
+ 2094 0006 0446     		mov	r4, r0
+ 2095 0008 1546     		mov	r5, r2
+ 2096 000a 0D29     		cmp	r1, #13
+ 2097 000c 00F29480 		bhi	.L226
+ 2098 0010 DFE801F0 		tbb	[pc, r1]
+ 2099              	.L204:
+ 2100 0014 11       		.byte	(.L215-.L204)/2
+ 2101 0015 92       		.byte	(.L226-.L204)/2
+ 2102 0016 17       		.byte	(.L214-.L204)/2
+ 2103 0017 2A       		.byte	(.L213-.L204)/2
+ 2104 0018 32       		.byte	(.L212-.L204)/2
+ 2105 0019 3A       		.byte	(.L211-.L204)/2
+ 2106 001a 42       		.byte	(.L210-.L204)/2
+ 2107 001b 57       		.byte	(.L209-.L204)/2
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 37
+
+
+ 2108 001c 5F       		.byte	(.L208-.L204)/2
+ 2109 001d 73       		.byte	(.L207-.L204)/2
+ 2110 001e 92       		.byte	(.L226-.L204)/2
+ 2111 001f 7A       		.byte	(.L206-.L204)/2
+ 2112 0020 82       		.byte	(.L205-.L204)/2
+ 2113 0021 07       		.byte	(.L203-.L204)/2
+ 2114              		.p2align 1
+ 2115              	.L203:
+ 2116 0022 824A     		ldr	r2, .L240
+ 2117 0024 2968     		ldr	r1, [r5]
+ 2118 0026 C0EBC004 		rsb	r4, r0, r0, lsl #3
+ 2119 002a 02EB8404 		add	r4, r2, r4, lsl #2
+ 2120 002e 0020     		movs	r0, #0
+ 2121 0030 6160     		str	r1, [r4, #4]
+ 2122              	.L201:
+ 2123 0032 10B0     		add	sp, sp, #64
+ 2124              		@ sp needed
+ 2125 0034 70BD     		pop	{r4, r5, r6, pc}
+ 2126              	.L215:
+ 2127 0036 0028     		cmp	r0, #0
+ 2128 0038 00F08580 		beq	.L238
+ 2129              	.L237:
+ 2130 003c 0020     		movs	r0, #0
+ 2131 003e 10B0     		add	sp, sp, #64
+ 2132              		@ sp needed
+ 2133 0040 70BD     		pop	{r4, r5, r6, pc}
+ 2134              	.L214:
+ 2135 0042 7A4E     		ldr	r6, .L240
+ 2136 0044 D2F804C0 		ldr	ip, [r2, #4]
+ 2137 0048 C0EBC003 		rsb	r3, r0, r0, lsl #3
+ 2138 004c 9B00     		lsls	r3, r3, #2
+ 2139 004e F218     		adds	r2, r6, r3
+ 2140 0050 F558     		ldr	r5, [r6, r3]
+ 2141 0052 D368     		ldr	r3, [r2, #12]
+ 2142 0054 5169     		ldr	r1, [r2, #20]
+ 2143 0056 7648     		ldr	r0, .L240+4
+ 2144 0058 03FB0CF3 		mul	r3, r3, ip
+ 2145 005c 2246     		mov	r2, r4
+ 2146 005e 01FB0351 		mla	r1, r1, r3, r5
+ 2147 0062 FFF7FEFF 		bl	HAL_LTDC_SetAddress
+ 2148 0066 E9E7     		b	.L237
+ 2149              	.L213:
+ 2150 0068 0346     		mov	r3, r0
+ 2151 006a 1146     		mov	r1, r2
+ 2152 006c 7048     		ldr	r0, .L240+4
+ 2153 006e 0122     		movs	r2, #1
+ 2154 0070 FFF7FEFF 		bl	HAL_LTDC_ConfigCLUT
+ 2155 0074 0020     		movs	r0, #0
+ 2156 0076 DCE7     		b	.L201
+ 2157              	.L212:
+ 2158 0078 6D4B     		ldr	r3, .L240+4
+ 2159 007a 1A68     		ldr	r2, [r3]
+ 2160 007c 9369     		ldr	r3, [r2, #24]
+ 2161 007e 43F00103 		orr	r3, r3, #1
+ 2162 0082 9361     		str	r3, [r2, #24]
+ 2163 0084 0020     		movs	r0, #0
+ 2164 0086 D4E7     		b	.L201
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 38
+
+
+ 2165              	.L211:
+ 2166 0088 694B     		ldr	r3, .L240+4
+ 2167 008a 1A68     		ldr	r2, [r3]
+ 2168 008c 9369     		ldr	r3, [r2, #24]
+ 2169 008e 23F00103 		bic	r3, r3, #1
+ 2170 0092 9361     		str	r3, [r2, #24]
+ 2171 0094 0020     		movs	r0, #0
+ 2172 0096 CCE7     		b	.L201
+ 2173              	.L210:
+ 2174 0098 02AA     		add	r2, sp, #8
+ 2175 009a 01A9     		add	r1, sp, #4
+ 2176 009c FFF7FEFF 		bl	GUI_GetLayerPosEx
+ 2177 00a0 D5E900C6 		ldrd	ip, r6, [r5]
+ 2178 00a4 614B     		ldr	r3, .L240
+ 2179 00a6 6248     		ldr	r0, .L240+4
+ 2180 00a8 C4EBC405 		rsb	r5, r4, r4, lsl #3
+ 2181 00ac 03EB8505 		add	r5, r3, r5, lsl #2
+ 2182 00b0 DDE90112 		ldrd	r1, r2, [sp, #4]
+ 2183 00b4 2346     		mov	r3, r4
+ 2184 00b6 C5E903C6 		strd	ip, r6, [r5, #12]
+ 2185 00ba FFF7FEFF 		bl	HAL_LTDC_SetWindowPosition
+ 2186 00be 0020     		movs	r0, #0
+ 2187 00c0 B7E7     		b	.L201
+ 2188              	.L209:
+ 2189 00c2 0346     		mov	r3, r0
+ 2190 00c4 D2E90012 		ldrd	r1, r2, [r2]
+ 2191 00c8 5948     		ldr	r0, .L240+4
+ 2192 00ca FFF7FEFF 		bl	HAL_LTDC_SetWindowPosition
+ 2193 00ce 0020     		movs	r0, #0
+ 2194 00d0 AFE7     		b	.L201
+ 2195              	.L208:
+ 2196 00d2 574A     		ldr	r2, .L240+4
+ 2197 00d4 2B68     		ldr	r3, [r5]
+ 2198 00d6 1268     		ldr	r2, [r2]
+ 2199 00d8 C401     		lsls	r4, r0, #7
+ 2200 00da 02F18401 		add	r1, r2, #132
+ 2201 00de 012B     		cmp	r3, #1
+ 2202 00e0 6358     		ldr	r3, [r4, r1]
+ 2203 00e2 0CBF     		ite	eq
+ 2204 00e4 43F00103 		orreq	r3, r3, #1
+ 2205 00e8 23F00103 		bicne	r3, r3, #1
+ 2206 00ec 6350     		str	r3, [r4, r1]
+ 2207 00ee 536A     		ldr	r3, [r2, #36]
+ 2208 00f0 43F00103 		orr	r3, r3, #1
+ 2209 00f4 5362     		str	r3, [r2, #36]
+ 2210 00f6 0020     		movs	r0, #0
+ 2211 00f8 9BE7     		b	.L201
+ 2212              	.L207:
+ 2213 00fa 0246     		mov	r2, r0
+ 2214 00fc 2968     		ldr	r1, [r5]
+ 2215 00fe 4C48     		ldr	r0, .L240+4
+ 2216 0100 FFF7FEFF 		bl	HAL_LTDC_SetAlpha
+ 2217 0104 0020     		movs	r0, #0
+ 2218 0106 94E7     		b	.L201
+ 2219              	.L206:
+ 2220 0108 1568     		ldr	r5, [r2]
+ 2221 010a 0146     		mov	r1, r0
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 39
+
+
+ 2222 010c 4848     		ldr	r0, .L240+4
+ 2223 010e B5B1     		cbz	r5, .L225
+ 2224 0110 FFF7FEFF 		bl	HAL_LTDC_EnableColorKeying
+ 2225 0114 0020     		movs	r0, #0
+ 2226 0116 8CE7     		b	.L201
+ 2227              	.L205:
+ 2228 0118 1368     		ldr	r3, [r2]
+ 2229 011a 4548     		ldr	r0, .L240+4
+ 2230 011c 1904     		lsls	r1, r3, #16
+ 2231 011e 01F47F02 		and	r2, r1, #16711680
+ 2232 0122 C3F30741 		ubfx	r1, r3, #16, #8
+ 2233 0126 1143     		orrs	r1, r1, r2
+ 2234 0128 03F47F43 		and	r3, r3, #65280
+ 2235 012c 2246     		mov	r2, r4
+ 2236 012e 1943     		orrs	r1, r1, r3
+ 2237 0130 FFF7FEFF 		bl	HAL_LTDC_ConfigColorKeying
+ 2238 0134 0020     		movs	r0, #0
+ 2239 0136 7CE7     		b	.L201
+ 2240              	.L226:
+ 2241 0138 4FF0FF30 		mov	r0, #-1
+ 2242 013c 79E7     		b	.L201
+ 2243              	.L225:
+ 2244 013e FFF7FEFF 		bl	HAL_LTDC_DisableColorKeying
+ 2245 0142 2846     		mov	r0, r5
+ 2246 0144 75E7     		b	.L201
+ 2247              	.L238:
+ 2248 0146 394E     		ldr	r6, .L240
+ 2249 0148 3A4A     		ldr	r2, .L240+8
+ 2250 014a B369     		ldr	r3, [r6, #24]
+ 2251 014c 0020     		movs	r0, #0
+ 2252 014e F021     		movs	r1, #240
+ 2253 0150 CDE90201 		strd	r0, [sp, #8]
+ 2254 0154 9342     		cmp	r3, r2
+ 2255 0156 4FF00000 		mov	r0, #0
+ 2256 015a 4FF4A071 		mov	r1, #320
+ 2257 015e CDE90401 		strd	r0, [sp, #16]
+ 2258 0162 55D0     		beq	.L227
+ 2259 0164 344A     		ldr	r2, .L240+12
+ 2260 0166 9342     		cmp	r3, r2
+ 2261 0168 54D0     		beq	.L228
+ 2262 016a 344A     		ldr	r2, .L240+16
+ 2263 016c 9342     		cmp	r3, r2
+ 2264 016e 53D0     		beq	.L229
+ 2265 0170 334A     		ldr	r2, .L240+20
+ 2266 0172 9342     		cmp	r3, r2
+ 2267 0174 52D0     		beq	.L230
+ 2268 0176 334A     		ldr	r2, .L240+24
+ 2269 0178 9342     		cmp	r3, r2
+ 2270 017a 51D0     		beq	.L231
+ 2271 017c 324A     		ldr	r2, .L240+28
+ 2272 017e 9342     		cmp	r3, r2
+ 2273 0180 50D0     		beq	.L232
+ 2274 0182 324A     		ldr	r2, .L240+32
+ 2275 0184 9342     		cmp	r3, r2
+ 2276 0186 4FD0     		beq	.L233
+ 2277 0188 314A     		ldr	r2, .L240+36
+ 2278 018a 9342     		cmp	r3, r2
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 40
+
+
+ 2279 018c 00D0     		beq	.L234
+ 2280              	.L219:
+ 2281 018e FEE7     		b	.L219
+ 2282              	.L234:
+ 2283 0190 0723     		movs	r3, #7
+ 2284              	.L218:
+ 2285 0192 3168     		ldr	r1, [r6]
+ 2286 0194 0693     		str	r3, [sp, #24]
+ 2287 0196 0B91     		str	r1, [sp, #44]
+ 2288 0198 FF23     		movs	r3, #255
+ 2289 019a 4FF4C061 		mov	r1, #1536
+ 2290 019e 0025     		movs	r5, #0
+ 2291 01a0 0793     		str	r3, [sp, #28]
+ 2292 01a2 0991     		str	r1, [sp, #36]
+ 2293 01a4 0723     		movs	r3, #7
+ 2294 01a6 F021     		movs	r1, #240
+ 2295 01a8 2A46     		mov	r2, r5
+ 2296 01aa 0A93     		str	r3, [sp, #40]
+ 2297 01ac 0C91     		str	r1, [sp, #48]
+ 2298 01ae 4FF4A073 		mov	r3, #320
+ 2299 01b2 02A9     		add	r1, sp, #8
+ 2300 01b4 1E48     		ldr	r0, .L240+4
+ 2301 01b6 0D93     		str	r3, [sp, #52]
+ 2302 01b8 0895     		str	r5, [sp, #32]
+ 2303 01ba ADF83850 		strh	r5, [sp, #56]	@ movhi
+ 2304 01be 8DF83A50 		strb	r5, [sp, #58]
+ 2305 01c2 FFF7FEFF 		bl	HAL_LTDC_ConfigLayer
+ 2306 01c6 2846     		mov	r0, r5
+ 2307 01c8 FFF7FEFF 		bl	LCD_GetBitsPerPixelEx
+ 2308 01cc 0828     		cmp	r0, #8
+ 2309 01ce 1ADD     		ble	.L239
+ 2310 01d0 B269     		ldr	r2, [r6, #24]
+ 2311 01d2 1F4B     		ldr	r3, .L240+36
+ 2312 01d4 9A42     		cmp	r2, r3
+ 2313 01d6 7FF431AF 		bne	.L237
+ 2314 01da 2946     		mov	r1, r5
+ 2315 01dc 1448     		ldr	r0, .L240+4
+ 2316 01de 1D4D     		ldr	r5, .L240+40
+ 2317 01e0 FFF7FEFF 		bl	HAL_LTDC_EnableCLUT
+ 2318 01e4 184B     		ldr	r3, .L240+28
+ 2319 01e6 5E68     		ldr	r6, [r3, #4]
+ 2320              	.L222:
+ 2321 01e8 2046     		mov	r0, r4
+ 2322 01ea B047     		blx	r6
+ 2323 01ec 0134     		adds	r4, r4, #1
+ 2324 01ee B4F5807F 		cmp	r4, #256
+ 2325 01f2 45F8040F 		str	r0, [r5, #4]!
+ 2326 01f6 F7D1     		bne	.L222
+ 2327 01f8 2246     		mov	r2, r4
+ 2328 01fa 0023     		movs	r3, #0
+ 2329 01fc 1649     		ldr	r1, .L240+44
+ 2330 01fe 0C48     		ldr	r0, .L240+4
+ 2331 0200 FFF7FEFF 		bl	HAL_LTDC_ConfigCLUT
+ 2332 0204 1AE7     		b	.L237
+ 2333              	.L239:
+ 2334 0206 2946     		mov	r1, r5
+ 2335 0208 0948     		ldr	r0, .L240+4
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 41
+
+
+ 2336 020a FFF7FEFF 		bl	HAL_LTDC_EnableCLUT
+ 2337 020e 15E7     		b	.L237
+ 2338              	.L227:
+ 2339 0210 2346     		mov	r3, r4
+ 2340 0212 BEE7     		b	.L218
+ 2341              	.L228:
+ 2342 0214 0123     		movs	r3, #1
+ 2343 0216 BCE7     		b	.L218
+ 2344              	.L229:
+ 2345 0218 0223     		movs	r3, #2
+ 2346 021a BAE7     		b	.L218
+ 2347              	.L230:
+ 2348 021c 0323     		movs	r3, #3
+ 2349 021e B8E7     		b	.L218
+ 2350              	.L231:
+ 2351 0220 0423     		movs	r3, #4
+ 2352 0222 B6E7     		b	.L218
+ 2353              	.L232:
+ 2354 0224 0523     		movs	r3, #5
+ 2355 0226 B4E7     		b	.L218
+ 2356              	.L233:
+ 2357 0228 0623     		movs	r3, #6
+ 2358 022a B2E7     		b	.L218
+ 2359              	.L241:
+ 2360              		.align	2
+ 2361              	.L240:
+ 2362 022c 00000000 		.word	.LANCHOR0
+ 2363 0230 00000000 		.word	hltdc
+ 2364 0234 00000000 		.word	LCD_API_ColorConv_M8888I
+ 2365 0238 00000000 		.word	LCD_API_ColorConv_M888
+ 2366 023c 00000000 		.word	LCD_API_ColorConv_M565
+ 2367 0240 00000000 		.word	LCD_API_ColorConv_M1555I
+ 2368 0244 00000000 		.word	LCD_API_ColorConv_M4444I
+ 2369 0248 00000000 		.word	LCD_API_ColorConv_8666
+ 2370 024c 00000000 		.word	LCD_API_ColorConv_1616I
+ 2371 0250 00000000 		.word	LCD_API_ColorConv_88666I
+ 2372 0254 FCFFFFFF 		.word	.LANCHOR3-4
+ 2373 0258 00000000 		.word	.LANCHOR3
+ 2375              		.section	.text.Index2ColorBulk_M8888IDMA2D,"ax",%progbits
+ 2376              		.align	1
+ 2377              		.syntax unified
+ 2378              		.thumb
+ 2379              		.thumb_func
+ 2380              		.fpu fpv4-sp-d16
+ 2382              	Index2ColorBulk_M8888IDMA2D:
+ 2383              		@ args = 0, pretend = 0, frame = 0
+ 2384              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2385 0000 10B5     		push	{r4, lr}
+ 2386 0002 82B0     		sub	sp, sp, #8
+ 2387 0004 0024     		movs	r4, #0
+ 2388 0006 0094     		str	r4, [sp]
+ 2389 0008 FFF7FEFF 		bl	DMA2D_Index2ColorBulk
+ 2390 000c 02B0     		add	sp, sp, #8
+ 2391              		@ sp needed
+ 2392 000e 10BD     		pop	{r4, pc}
+ 2394              		.section	.text.Index2ColorBulk_M4444IDMA2D,"ax",%progbits
+ 2395              		.align	1
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 42
+
+
+ 2396              		.syntax unified
+ 2397              		.thumb
+ 2398              		.thumb_func
+ 2399              		.fpu fpv4-sp-d16
+ 2401              	Index2ColorBulk_M4444IDMA2D:
+ 2402              		@ args = 0, pretend = 0, frame = 0
+ 2403              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2404 0000 10B5     		push	{r4, lr}
+ 2405 0002 82B0     		sub	sp, sp, #8
+ 2406 0004 0424     		movs	r4, #4
+ 2407 0006 0094     		str	r4, [sp]
+ 2408 0008 FFF7FEFF 		bl	DMA2D_Index2ColorBulk
+ 2409 000c 02B0     		add	sp, sp, #8
+ 2410              		@ sp needed
+ 2411 000e 10BD     		pop	{r4, pc}
+ 2413              		.section	.text.Index2ColorBulk_M565DMA2D,"ax",%progbits
+ 2414              		.align	1
+ 2415              		.syntax unified
+ 2416              		.thumb
+ 2417              		.thumb_func
+ 2418              		.fpu fpv4-sp-d16
+ 2420              	Index2ColorBulk_M565DMA2D:
+ 2421              		@ args = 0, pretend = 0, frame = 0
+ 2422              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2423 0000 10B5     		push	{r4, lr}
+ 2424 0002 82B0     		sub	sp, sp, #8
+ 2425 0004 0224     		movs	r4, #2
+ 2426 0006 0094     		str	r4, [sp]
+ 2427 0008 FFF7FEFF 		bl	DMA2D_Index2ColorBulk
+ 2428 000c 02B0     		add	sp, sp, #8
+ 2429              		@ sp needed
+ 2430 000e 10BD     		pop	{r4, pc}
+ 2432              		.section	.text.Index2ColorBulk_M1555IDMA2D,"ax",%progbits
+ 2433              		.align	1
+ 2434              		.syntax unified
+ 2435              		.thumb
+ 2436              		.thumb_func
+ 2437              		.fpu fpv4-sp-d16
+ 2439              	Index2ColorBulk_M1555IDMA2D:
+ 2440              		@ args = 0, pretend = 0, frame = 0
+ 2441              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2442 0000 10B5     		push	{r4, lr}
+ 2443 0002 82B0     		sub	sp, sp, #8
+ 2444 0004 0324     		movs	r4, #3
+ 2445 0006 0094     		str	r4, [sp]
+ 2446 0008 FFF7FEFF 		bl	DMA2D_Index2ColorBulk
+ 2447 000c 02B0     		add	sp, sp, #8
+ 2448              		@ sp needed
+ 2449 000e 10BD     		pop	{r4, pc}
+ 2451              		.section	.text.Index2ColorBulk_M888DMA2D,"ax",%progbits
+ 2452              		.align	1
+ 2453              		.syntax unified
+ 2454              		.thumb
+ 2455              		.thumb_func
+ 2456              		.fpu fpv4-sp-d16
+ 2458              	Index2ColorBulk_M888DMA2D:
+ 2459              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 43
+
+
+ 2460              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2461 0000 10B5     		push	{r4, lr}
+ 2462 0002 82B0     		sub	sp, sp, #8
+ 2463 0004 0024     		movs	r4, #0
+ 2464 0006 0094     		str	r4, [sp]
+ 2465 0008 FFF7FEFF 		bl	DMA2D_Index2ColorBulk
+ 2466 000c 02B0     		add	sp, sp, #8
+ 2467              		@ sp needed
+ 2468 000e 10BD     		pop	{r4, pc}
+ 2470              		.section	.text.Color2IndexBulk_M8888IDMA2D,"ax",%progbits
+ 2471              		.align	1
+ 2472              		.syntax unified
+ 2473              		.thumb
+ 2474              		.thumb_func
+ 2475              		.fpu fpv4-sp-d16
+ 2477              	Color2IndexBulk_M8888IDMA2D:
+ 2478              		@ args = 0, pretend = 0, frame = 0
+ 2479              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2480 0000 10B5     		push	{r4, lr}
+ 2481 0002 82B0     		sub	sp, sp, #8
+ 2482 0004 0024     		movs	r4, #0
+ 2483 0006 0094     		str	r4, [sp]
+ 2484 0008 FFF7FEFF 		bl	DMA2D_Color2IndexBulk
+ 2485 000c 02B0     		add	sp, sp, #8
+ 2486              		@ sp needed
+ 2487 000e 10BD     		pop	{r4, pc}
+ 2489              		.section	.text.Color2IndexBulk_M4444IDMA2D,"ax",%progbits
+ 2490              		.align	1
+ 2491              		.syntax unified
+ 2492              		.thumb
+ 2493              		.thumb_func
+ 2494              		.fpu fpv4-sp-d16
+ 2496              	Color2IndexBulk_M4444IDMA2D:
+ 2497              		@ args = 0, pretend = 0, frame = 0
+ 2498              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2499 0000 10B5     		push	{r4, lr}
+ 2500 0002 82B0     		sub	sp, sp, #8
+ 2501 0004 0424     		movs	r4, #4
+ 2502 0006 0094     		str	r4, [sp]
+ 2503 0008 FFF7FEFF 		bl	DMA2D_Color2IndexBulk
+ 2504 000c 02B0     		add	sp, sp, #8
+ 2505              		@ sp needed
+ 2506 000e 10BD     		pop	{r4, pc}
+ 2508              		.section	.text.Color2IndexBulk_M565DMA2D,"ax",%progbits
+ 2509              		.align	1
+ 2510              		.syntax unified
+ 2511              		.thumb
+ 2512              		.thumb_func
+ 2513              		.fpu fpv4-sp-d16
+ 2515              	Color2IndexBulk_M565DMA2D:
+ 2516              		@ args = 0, pretend = 0, frame = 0
+ 2517              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2518 0000 10B5     		push	{r4, lr}
+ 2519 0002 82B0     		sub	sp, sp, #8
+ 2520 0004 0224     		movs	r4, #2
+ 2521 0006 0094     		str	r4, [sp]
+ 2522 0008 FFF7FEFF 		bl	DMA2D_Color2IndexBulk
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 44
+
+
+ 2523 000c 02B0     		add	sp, sp, #8
+ 2524              		@ sp needed
+ 2525 000e 10BD     		pop	{r4, pc}
+ 2527              		.section	.text.Color2IndexBulk_M1555IDMA2D,"ax",%progbits
+ 2528              		.align	1
+ 2529              		.syntax unified
+ 2530              		.thumb
+ 2531              		.thumb_func
+ 2532              		.fpu fpv4-sp-d16
+ 2534              	Color2IndexBulk_M1555IDMA2D:
+ 2535              		@ args = 0, pretend = 0, frame = 0
+ 2536              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2537 0000 10B5     		push	{r4, lr}
+ 2538 0002 82B0     		sub	sp, sp, #8
+ 2539 0004 0324     		movs	r4, #3
+ 2540 0006 0094     		str	r4, [sp]
+ 2541 0008 FFF7FEFF 		bl	DMA2D_Color2IndexBulk
+ 2542 000c 02B0     		add	sp, sp, #8
+ 2543              		@ sp needed
+ 2544 000e 10BD     		pop	{r4, pc}
+ 2546              		.section	.text.Color2IndexBulk_M888DMA2D,"ax",%progbits
+ 2547              		.align	1
+ 2548              		.syntax unified
+ 2549              		.thumb
+ 2550              		.thumb_func
+ 2551              		.fpu fpv4-sp-d16
+ 2553              	Color2IndexBulk_M888DMA2D:
+ 2554              		@ args = 0, pretend = 0, frame = 0
+ 2555              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2556 0000 10B5     		push	{r4, lr}
+ 2557 0002 82B0     		sub	sp, sp, #8
+ 2558 0004 0024     		movs	r4, #0
+ 2559 0006 0094     		str	r4, [sp]
+ 2560 0008 FFF7FEFF 		bl	DMA2D_Color2IndexBulk
+ 2561 000c 02B0     		add	sp, sp, #8
+ 2562              		@ sp needed
+ 2563 000e 10BD     		pop	{r4, pc}
+ 2565              		.section	.bss.LUT.20695,"aw",%nobits
+ 2566              		.align	2
+ 2567              		.set	.LANCHOR3,. + 0
+ 2570              	LUT.20695:
+ 2571 0000 00000000 		.space	1024
+ 2571      00000000 
+ 2571      00000000 
+ 2571      00000000 
+ 2571      00000000 
+ 2572              		.section	.bss.PeriphClkInitStruct.20703,"aw",%nobits
+ 2573              		.align	2
+ 2574              		.set	.LANCHOR1,. + 0
+ 2577              	PeriphClkInitStruct.20703:
+ 2578 0000 00000000 		.space	48
+ 2578      00000000 
+ 2578      00000000 
+ 2578      00000000 
+ 2578      00000000 
+ 2579              		.section	.bss.aBufferDMA2D,"aw",%nobits
+ 2580              		.align	2
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 45
+
+
+ 2583              	aBufferDMA2D:
+ 2584 0000 00000000 		.space	3840
+ 2584      00000000 
+ 2584      00000000 
+ 2584      00000000 
+ 2584      00000000 
+ 2585              		.section	.bss.aBuffer_BG,"aw",%nobits
+ 2586              		.align	2
+ 2589              	aBuffer_BG:
+ 2590 0000 00000000 		.space	3840
+ 2590      00000000 
+ 2590      00000000 
+ 2590      00000000 
+ 2590      00000000 
+ 2591              		.section	.bss.aBuffer_FG,"aw",%nobits
+ 2592              		.align	2
+ 2595              	aBuffer_FG:
+ 2596 0000 00000000 		.space	3840
+ 2596      00000000 
+ 2596      00000000 
+ 2596      00000000 
+ 2596      00000000 
+ 2597              		.section	.bss.hdma2d,"aw",%nobits
+ 2598              		.align	2
+ 2599              		.set	.LANCHOR2,. + 0
+ 2602              	hdma2d:
+ 2603 0000 00000000 		.space	64
+ 2603      00000000 
+ 2603      00000000 
+ 2603      00000000 
+ 2603      00000000 
+ 2604              		.section	.bss.layer_prop,"aw",%nobits
+ 2605              		.align	2
+ 2606              		.set	.LANCHOR0,. + 0
+ 2609              	layer_prop:
+ 2610 0000 00000000 		.space	28
+ 2610      00000000 
+ 2610      00000000 
+ 2610      00000000 
+ 2610      00000000 
+ 2611              		.ident	"GCC: (GNU Tools for Arm Embedded Processors 8-2018-q4-major) 8.2.1 20181213 (release) [gcc
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 46
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 LCDConf_stm32f429i_disco_MB1075.c
+                            *COM*:000000a8 hltdc
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:17     .text.DMA2D_MixColors:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:24     .text.DMA2D_MixColors:00000000 DMA2D_MixColors
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:100    .text.DMA2D_MixColors:000000a0 $d
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:104    .text.DMA2D_ConvertColor:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:110    .text.DMA2D_ConvertColor:00000000 DMA2D_ConvertColor
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:168    .text.DMA2D_ConvertColor:0000006c $d
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:171    .text._LCD_GetpPalConvTable:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:177    .text._LCD_GetpPalConvTable:00000000 _LCD_GetpPalConvTable
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:881    .text.InvertAlpha_SwapRB:00000000 InvertAlpha_SwapRB
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:854    .text.DMA2D_LoadLUT:00000000 DMA2D_LoadLUT
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:253    .text._LCD_GetpPalConvTable:00000088 $d
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2583   .bss.aBufferDMA2D:00000000 aBufferDMA2D
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:256    .text.DMA2D_MixColorsBulk:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:262    .text.DMA2D_MixColorsBulk:00000000 DMA2D_MixColorsBulk
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:324    .text.DMA2D_MixColorsBulk:00000078 $d
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:328    .text.DMA2D_AlphaBlending:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:334    .text.DMA2D_AlphaBlending:00000000 DMA2D_AlphaBlending
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:910    .text.InvertAlpha:00000000 InvertAlpha
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:971    .text.DMA2D_AlphaBlendingBulk:00000000 DMA2D_AlphaBlendingBulk
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:369    .text.DMA2D_AlphaBlending:00000040 $d
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2595   .bss.aBuffer_FG:00000000 aBuffer_FG
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2589   .bss.aBuffer_BG:00000000 aBuffer_BG
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:374    .text.DMA2D_Index2ColorBulk:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:380    .text.DMA2D_Index2ColorBulk:00000000 DMA2D_Index2ColorBulk
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:409    .text.DMA2D_Index2ColorBulk:00000030 $d
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:412    .text.DMA2D_Color2IndexBulk:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:418    .text.DMA2D_Color2IndexBulk:00000000 DMA2D_Color2IndexBulk
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:447    .text.DMA2D_Color2IndexBulk:00000030 $d
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:450    .text.LCD_MixColorsBulk:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:456    .text.LCD_MixColorsBulk:00000000 LCD_MixColorsBulk
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:527    .text.LCD_MixColorsBulk:00000088 $d
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:532    .text.DMA2D_DrawBitmapL8:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:538    .text.DMA2D_DrawBitmapL8:00000000 DMA2D_DrawBitmapL8
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:597    .text.DMA2D_DrawBitmapL8:0000006c $d
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:600    .text.BSP_LCD_DrawBitmap16bpp:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:606    .text.BSP_LCD_DrawBitmap16bpp:00000000 BSP_LCD_DrawBitmap16bpp
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:830    .text.GetBufferSize:00000000 GetBufferSize
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:1092   .text.DMA2D_CopyBuffer:00000000 DMA2D_CopyBuffer
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:709    .text.BSP_LCD_DrawBitmap16bpp:000000cc $d
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2609   .bss.layer_prop:00000000 layer_prop
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:712    .text.BSP_LCD_DrawBitmap8bpp:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:718    .text.BSP_LCD_DrawBitmap8bpp:00000000 BSP_LCD_DrawBitmap8bpp
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:1014   .text.LCD_LL_GetPixelformat:00000000 LCD_LL_GetPixelformat
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:821    .text.BSP_LCD_DrawBitmap8bpp:000000cc $d
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:824    .text.GetBufferSize:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:845    .text.GetBufferSize:0000001c $d
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:848    .text.DMA2D_LoadLUT:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:872    .text.DMA2D_LoadLUT:0000001c $d
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:875    .text.InvertAlpha_SwapRB:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:904    .text.InvertAlpha:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:965    .text.DMA2D_AlphaBlendingBulk:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:1004   .text.DMA2D_AlphaBlendingBulk:00000038 $d
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:1008   .text.LCD_LL_GetPixelformat:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:1075   .text.LCD_LL_GetPixelformat:00000058 $d
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 47
+
+
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:1086   .text.DMA2D_CopyBuffer:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:1177   .text.DMA2D_CopyBuffer:0000008c $d
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:1189   .text.CUSTOM_CopyBuffer:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:1195   .text.CUSTOM_CopyBuffer:00000000 CUSTOM_CopyBuffer
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:1291   .text.CUSTOM_CopyBuffer:000000e8 $d
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:1303   .text.CUSTOM_CopyRect:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:1309   .text.CUSTOM_CopyRect:00000000 CUSTOM_CopyRect
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:1409   .text.CUSTOM_CopyRect:000000d8 $d
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:1421   .text.CUSTOM_FillRect:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:1427   .text.CUSTOM_FillRect:00000000 CUSTOM_FillRect
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:1545   .text.CUSTOM_FillRect:000000f8 $d
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:1559   .text.HAL_DMA2D_MspInit:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:1566   .text.HAL_DMA2D_MspInit:00000000 HAL_DMA2D_MspInit
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:1587   .text.HAL_DMA2D_MspInit:00000020 $d
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:1590   .text.HAL_DMA2D_MspDeInit:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:1597   .text.HAL_DMA2D_MspDeInit:00000000 HAL_DMA2D_MspDeInit
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:1612   .text.HAL_DMA2D_MspDeInit:00000014 $d
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:1615   .text.HAL_LTDC_MspInit:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:1622   .text.HAL_LTDC_MspInit:00000000 HAL_LTDC_MspInit
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:1746   .text.HAL_LTDC_MspInit:0000012c $d
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:1755   .text.HAL_LTDC_MspDeInit:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:1762   .text.HAL_LTDC_MspDeInit:00000000 HAL_LTDC_MspDeInit
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:1777   .text.HAL_LTDC_MspDeInit:00000014 $d
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:1780   .text.HAL_LTDC_LineEventCallback:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:1787   .text.HAL_LTDC_LineEventCallback:00000000 HAL_LTDC_LineEventCallback
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:1828   .text.HAL_LTDC_LineEventCallback:00000054 $d
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:1831   .text.LCD_X_Config:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:1838   .text.LCD_X_Config:00000000 LCD_X_Config
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2044   .text.LCD_X_Config:000001d4 $d
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2439   .text.Index2ColorBulk_M1555IDMA2D:00000000 Index2ColorBulk_M1555IDMA2D
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2534   .text.Color2IndexBulk_M1555IDMA2D:00000000 Color2IndexBulk_M1555IDMA2D
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2420   .text.Index2ColorBulk_M565DMA2D:00000000 Index2ColorBulk_M565DMA2D
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2515   .text.Color2IndexBulk_M565DMA2D:00000000 Color2IndexBulk_M565DMA2D
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2401   .text.Index2ColorBulk_M4444IDMA2D:00000000 Index2ColorBulk_M4444IDMA2D
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2496   .text.Color2IndexBulk_M4444IDMA2D:00000000 Color2IndexBulk_M4444IDMA2D
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2458   .text.Index2ColorBulk_M888DMA2D:00000000 Index2ColorBulk_M888DMA2D
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2553   .text.Color2IndexBulk_M888DMA2D:00000000 Color2IndexBulk_M888DMA2D
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2382   .text.Index2ColorBulk_M8888IDMA2D:00000000 Index2ColorBulk_M8888IDMA2D
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2477   .text.Color2IndexBulk_M8888IDMA2D:00000000 Color2IndexBulk_M8888IDMA2D
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2081   .text.LCD_X_DisplayDriver:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2088   .text.LCD_X_DisplayDriver:00000000 LCD_X_DisplayDriver
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2100   .text.LCD_X_DisplayDriver:00000014 $d
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2114   .text.LCD_X_DisplayDriver:00000022 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2362   .text.LCD_X_DisplayDriver:0000022c $d
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2376   .text.Index2ColorBulk_M8888IDMA2D:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2395   .text.Index2ColorBulk_M4444IDMA2D:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2414   .text.Index2ColorBulk_M565DMA2D:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2433   .text.Index2ColorBulk_M1555IDMA2D:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2452   .text.Index2ColorBulk_M888DMA2D:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2471   .text.Color2IndexBulk_M8888IDMA2D:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2490   .text.Color2IndexBulk_M4444IDMA2D:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2509   .text.Color2IndexBulk_M565DMA2D:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2528   .text.Color2IndexBulk_M1555IDMA2D:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2547   .text.Color2IndexBulk_M888DMA2D:00000000 $t
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2566   .bss.LUT.20695:00000000 $d
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2570   .bss.LUT.20695:00000000 LUT.20695
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2573   .bss.PeriphClkInitStruct.20703:00000000 $d
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 48
+
+
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2577   .bss.PeriphClkInitStruct.20703:00000000 PeriphClkInitStruct.20703
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2580   .bss.aBufferDMA2D:00000000 $d
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2586   .bss.aBuffer_BG:00000000 $d
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2592   .bss.aBuffer_FG:00000000 $d
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2598   .bss.hdma2d:00000000 $d
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2602   .bss.hdma2d:00000000 hdma2d
+D:\Programs\cygwin64\tmp\ccxFzQfL.s:2605   .bss.layer_prop:00000000 $d
+
+UNDEFINED SYMBOLS
+LCD_GetDevFunc
+LCD_GetpPalConvTable
+LCD_API_ColorConv_M8888I
+LCD_API_ColorConv_M888
+LCD_API_ColorConv_M565
+LCD_API_ColorConv_M1555I
+LCD_API_ColorConv_M4444I
+LCD_API_ColorConv_8666
+LCD_API_ColorConv_1616I
+LCD_API_ColorConv_88666I
+GUI_GetDrawMode
+LCD_SetDevFunc
+LCD_FillRect
+HAL_GPIO_Init
+HAL_NVIC_SetPriority
+HAL_NVIC_EnableIRQ
+HAL_LTDC_SetAddress
+GUI_MULTIBUF_ConfirmEx
+HAL_LTDC_ProgramLineEvent
+HAL_LTDC_DeInit
+ili9341_Init
+HAL_RCCEx_PeriphCLKConfig
+HAL_LTDC_Init
+HAL_DMA2D_Init
+GUI_DEVICE_CreateAndLink
+LCD_GetSwapXYEx
+LCD_SetSizeEx
+LCD_SetVSizeEx
+LCD_SetVRAMAddrEx
+LCD_GetBitsPerPixelEx
+GUICC_M1555I_SetCustColorConv
+GUICC_M565_SetCustColorConv
+GUICC_M4444I_SetCustColorConv
+GUICC_M888_SetCustColorConv
+GUICC_M8888I_SetCustColorConv
+GUI_SetFuncAlphaBlending
+GUI_SetFuncGetpPalConvTable
+GUI_SetFuncMixColors
+GUI_SetFuncMixColorsBulk
+GUIDRV_Lin_32_API
+HAL_LTDC_ConfigCLUT
+GUI_GetLayerPosEx
+HAL_LTDC_SetWindowPosition
+HAL_LTDC_SetAlpha
+HAL_LTDC_EnableColorKeying
+HAL_LTDC_ConfigColorKeying
+HAL_LTDC_DisableColorKeying
+HAL_LTDC_ConfigLayer
+ARM GAS  D:\Programs\cygwin64\tmp\ccxFzQfL.s 			page 49
+
+
+HAL_LTDC_EnableCLUT
